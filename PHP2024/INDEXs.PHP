@@ -1,5 +1,163 @@
 <?php
 echo "<div style='padding:20px'>  ";
+// echo "<br> -----------11111---------<br>";
+// V 24  
+
+/*
+// V 23  Comparaison Operator Part 2
+//  >  <   >=  <=     <=> (1 , 0 , -1) exemlpe a - b ==> 
+// Comparasion on string
+echo "<br> ";
+var_dump(100 <=> 500);//-1
+echo "<br> ";
+var_dump(100 <=> 50);//1
+echo "<br> ";
+var_dump(100 <=> 100);// 0
+echo "<br> ";
+echo "<br> ";
+
+
+
+/*
+// V 22  Comparaison Operator Part 1
+// ==  value
+// != , <> value
+// === value & type 
+echo "<br> ";
+var_dump(100 == "100"); // true
+echo "<br> ";
+var_dump(100.00 == "100"); // true
+echo "<br> ";
+var_dump(100 === "100"); // False
+echo "<br> ";
+var_dump(100 === 100.0); // False
+echo "<br> ";
+echo "<br> ";
+
+
+
+// V 21  Operation  and assigments /
+/*
+$a=10;
+$a+=20;
+echo  $a;  
+echo $a++;  
+echo "<br> ";
+/*
+// V 20  Operation + - *  ** /
+
+echo -(int)"100 fgt"; // -100
+echo "<br> ";
+echo gettype(-(int)"100 fgt"); // integer
+echo "<br> -----------11111---------<br>";
+
+echo +"100";
+echo "<br> ";
+echo gettype(+"100");
+echo "<br> --------------------<br>";
+
+echo "100";
+echo "<br> ";
+echo gettype("100");
+echo "<br> --------------------<br>";
+
+echo 21 % 10;
+echo "<br> ";
+echo 20 / 10;
+echo "<br> ";
+echo 2 ** 4;
+echo "<br> ";
+
+
+/*
+// V 13 ->> 19 test 
+// Qst 6
+echo __LINE__;
+echo "<br> ";
+echo __FILE__;
+echo "<br> ";
+echo __DIR__;
+echo "<br> ";
+
+
+// Qst 5 
+/*  
+Clone file post break echo string int bool if else print
+
+
+// Qst 4
+/*
+echo "<pre>";
+// print_r($_SERVER);
+echo "<pre>";
+echo $_SERVER["DOCUMENT_ROOT"];
+echo "<br> ";
+echo $_SERVER["SERVER_NAME"];
+echo "<br> ";
+echo $_SERVER["SystemRoot"];
+echo "<br> ";
+echo $_SERVER["OPENSSL_CONF"];
+echo "<br> ";
+
+/*
+// Qst 3
+
+$a=200;
+$b=$a;
+$a=100;
+
+echo "<br> ";
+echo  $b;
+$b=&$a;
+// $b=$b -$a;
+echo "<br> ";
+echo  $b;
+echo "<br> ";
+
+/*
+// Qst 2
+$myvar="test1";
+$$myvar="Web";
+echo "<br> ";
+echo $test1;
+echo "<br> ";
+echo $$myvar;
+echo "<br> ";
+echo  " $test1";
+echo "<br> ";
+echo  'Web ----'; 
+echo "<br> ";
+echo  ${$myvar};
+echo "<br> ";
+echo  "${$myvar}";
+echo "<br> "; 
+echo "<br> ";
+echo "<br> ";
+
+
+
+/*
+// Qst 1
+$name="Php And React js";
+$name="Php ,React js";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document <?=$name;?></title>
+</head>
+<body>
+    
+<h1>This is <?=$name;?></h1>
+<p> I Love <?=$name;?></p>
+</body>
+</html>
+
+<?php
+
+/*
 // V 19  Predefined And ..
 echo php_uname();
 echo "<br> ";
