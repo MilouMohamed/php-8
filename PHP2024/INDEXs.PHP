@@ -1,7 +1,304 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 echo "<div style='padding:20px'>  ";
 // echo "<br> -----------11111---------<br>";
-// V 24  
+ 
+// V 32 if Else ....
+echo  " <br>    -------------  <br>";
+
+$vaar=  1 > 5 ? 8888 :  100_200 ;
+echo $vaar;
+echo  " <br>    -------------  <br>";
+ 
+/*
+// V 31 if Else ....
+echo  " <br>    -------------  <br>";
+
+$vaar=  1 > 5 ? 8888 :  100_200 ;
+echo $vaar;
+
+// V 30 if Else ....
+/*
+echo  " <br>    -------------  <br>";
+if (0) {
+    echo "yees";
+}elseif (true) {
+    echo "Non";
+
+}
+
+
+*/
+
+// V 20 ->> 29 test 
+// Qst 8
+echo  " <br>"; 
+// $a=@$b or die("proobleme");
+
+// $f=@ file("txt.txt") or die("proobleme file");
+echo "test";
+echo  " <br>";  
+$g=(@include("inddx.php")) or die("proobleme file php");
+echo  " <br>";  
+echo "test final";
+
+/*
+// Qst 7
+$a=10;
+$b=20;
+
+
+echo  (($a + $b) *( $a + $b) + $a * $a) * $a ;
+echo  " <br>"; 
+echo  " <br>"; 
+echo  " <br>"; 
+
+
+/*
+// Qst 6
+// M1
+$a="Nom 1";
+$b="Nom 2";
+$c="Nom 3";
+ $d = $a ." ";
+ $d .= $b ." ";
+ $d .= $c  ;
+
+// M2
+$d = $a ." ".$b." ".$c;
+// M3
+$d = ' ${$a}  ';
+ echo  " <br>"; 
+ echo  $d; 
+ echo  " <br>"; 
+
+
+
+/*
+// Qst 5
+
+$ponts=10; 
+++$ponts ;
+++$ponts ;
+ echo    ++ $ponts;
+ echo  " <br>"; 
+
+ $ponts=10; 
+   -- $ponts;
+ echo    -- $ponts;
+ echo  " <br>"; 
+
+ $ponts=10; 
+ $ponts-=1;
+echo   --$ponts."<br>";
+$ponts+=4;
+echo   ++$ponts;
+
+
+/*
+// Qst 4
+
+$a=10;
+$b=20;
+$c=15;
+var_dump( $a  <   $b);
+var_dump( $c  >   $a);
+var_dump( $a  >=   $b); 
+var_dump( $a  <>   $b); 
+var_dump( $a  ||   $c); 
+var_dump( $a   and  $c);
+var_dump( gettype($a) == gettype($b)  ); 
+var_dump( gettype($a) === gettype($b)  );
+var_dump( gettype((float)$a)  != gettype($b)  );
+
+
+/*
+// Qst 3
+
+$a=10;
+$b=20;
+echo  $b % $a - true ; 
+echo  " <br>"; 
+echo  -($a*$a + $a) /($a)  +$a; 
+echo  " <br>";  
+echo ($a - $b )/$a  ."  ***** ";
+echo gettype(($a - $b) / $a);
+
+/*
+// Qst 2
+$a="10";
+echo  "$a <br>";
+echo gettype( +$a ); 
+
+echo  " <br> $a <br>";  
+echo gettype( (int)$a ); 
+
+echo  " <br> $a <br>"; 
+echo gettype( (integer)$a ); 
+
+echo  " <br> $a <br>"; 
+echo  get_debug_type($a); 
+
+
+/*
+// Qst 1
+echo 10 * 20 - 15 % 3 + 190 + 10  - 400;//0
+/*
+// V 29 Error Control Operator
+// || awlawiya  que Or
+// ( || )         or ( ..  )
+
+
+$a=10 or 100;
+echo $a; //10  ===> ($a=10) or 100  ==>$a=10
+echo  " <br>    ------Or --------  <br>";
+$a=10 || true;//10  ===>  $a= (10 || true)
+echo $a; //1
+echo  " <br>    -------||-------  <br>";
+
+echo 10 or true;
+echo  " <br>    **************** <br>";
+
+/*
+echo 10 || true;
+echo  " <br>    **************** <br>";
+echo -5 || false ||  0 ||  "" ||  []  ;
+echo  " <br>     ***********<br>"; 
+echo 20 && false &&  0 &&  "" &&  []  ;
+echo  " <br>     ***<br>"; 
+echo 20 && true &&  85 &&  "abs" &&  52  ;
+echo  " <br>     *******<br>"; 
+echo -5 || false;
+echo  "  <br>  ****<br>";
+echo  "<br> ------------ <br>";
+echo true;//1
+echo  "<br> ------------ <br>";
+echo var_dump(1);//1
+echo  "<br> ------------ <br>";
+
+
+/*
+// V 28 Error Control Operator
+$userName=2;
+(@include("./scoures.php")) or die("Pas de file scoure");
+echo  "<br> ";
+
+var_dump(@include("./scoures.php"));
+ 
+$fl=@file("file.txt") or  die("pas de donnes"); 
+
+echo "<pre>";
+print_r($fl);
+echo "</pre>";
+echo  "<br> ------------ <br>";
+
+/*
+
+
+
+  $a=10;
+$b=@$a or die("Pas de variable a");
+echo  $b;
+echo  "<br> ";
+echo  "<br> ";
+echo  "<br> ------------ <br>";
+echo  "<br> ";
+
+/*
+// V 27 Array Operator
+// ==  et != key , Value ,No Type
+// === et  !==  key , Value , Type , Order
+echo  "<br> ";
+$arry1=[1=>10,2=>20];
+$arry2=[2=>"20",1=>"10"];
+$arry3=[2=>"A",1=>"B"];
+$arry4=[1=>"B",2=>"A"];
+// $arry4=[2=>"A",1=>"B"];
+ 
+echo "<pre>"; 
+var_dump($arry3 !== $arry4);//true;
+echo "<br> ------------<br> ";
+var_dump($arry1 == $arry2);//true;
+var_dump($arry3 === $arry4);//true  value  ;
+var_dump($arry1 === $arry2);//false  
+echo "</pre>";
+ 
+echo "<pre>";
+print_r($arry1 + $arry2);
+echo "</pre>";
+
+/*
+// V 26 Concatenate String
+// .  and  .= 
+echo  "<br> ";
+$a ="Nom1 ";
+$a .= " Nom2"; 
+$a .= " Nom3"; 
+echo  "<br> ";
+echo $a;
+echo  "<br> "; 
+
+echo  "<br> ";
+$a="Nom1";
+$$a = "Nom2"; 
+$$$a = "Nom3"; 
+
+echo $Nom2; //Nom3
+echo  "<br> ";
+echo  "<br> ";
+echo  "<br> ";
+echo  "<br> ";
+
+/*
+echo  "<br> ";
+$a="Nom 1";
+$b = "Nom 2";
+$c="Nom 3";
+
+define("MY_CNST",444);
+echo " $a  --  $b  --- $c ".MY_CNST;
+echo  "<br> ";
+echo "{$a}  --  {$b}  --- {$c}" ;
+echo  "<br> ";
+echo "". $a  ."-- ". $b ." ---". $c." ";
+echo  "<br> ";
+echo '${$a}  --  ${$b}  --- ${$c} '.MY_CNST ;
+echo  "<br> ";
+
+
+
+/*
+// V 25 Compere  Operators
+// Or ||  => 
+// And && 
+// Xor    =>  qOne Is True Note Both
+echo "<br> ";
+var_dump(10 > 5 xor 4 > 8 );
+echo "<br> ------------ <br>";
+var_dump(false xor true);
+echo "<br> ";
+var_dump(true xor true);
+echo "<br> ";
+var_dump(false xor false);
+echo "<br> ";
+echo "<br> ";
+echo "<br> ";
+
+/*
+// V 24    Increments And Decrement Operators
+$a=10;
+echo --$a; //9
+echo "<br> ";
+echo --$a;//8
+echo "<br> ";
+echo $a++;//8
+echo "<br> ";
+echo $a;//9
+echo "<br> "; 
+
+
 
 /*
 // V 23  Comparaison Operator Part 2
@@ -246,7 +543,7 @@ echo  "2 js js js js js js js js js js js js  ${$$a}  <br/>"; //Test
 /*
 // V 14 testing  variable and naming Rules
 echo "<br/>";
-$userName = "Medox";
+$ userNm= "Medox";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -254,13 +551,13 @@ $userName = "Medox";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wecm : <?php echo $userName ?></title>
+    <title>Wecm : <?php echo $ userNm?></title>
 </head>
 
 <body>
-    <h1>Binevenu <?php echo $userName ?></h1>
+    <h1>Binevenu <?php echo $ userNm?></h1>
     <div>
-        <p><?= "$userName 45"; ?> Your Score is</p>
+        <p><?= "$ userNm45"; ?> Your Score is</p>
     </div>
     <h3>
         <?php include("scoures.php") ?>
@@ -273,15 +570,15 @@ $userName = "Medox";
 /*
 // V 13  variable and naming Rules
 echo "<br/>";
-$userName = "nom 1";
-$UserName = "nom 2";
+$ userNm= "nom 1";
+$ userNm= "nom 2";
 echo "<br/>";
-echo $userName;
+echo $ userName;
 echo "<br/>";
-echo $UserName;
+echo $ UserName;
 echo "<br/>";
-echo "  $UserName <br/>";
-echo '  $UserName <br/>';
+echo "  $ userNm<br/>";
+echo '  $ userNm<br/>';
 
 
 
