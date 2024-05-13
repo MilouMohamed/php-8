@@ -1,17 +1,165 @@
-<?php
-
-use function PHPSTORM_META\type;
-
+<?php 
 echo "<div style='padding:20px'>  ";
 // echo "<br> -----------11111---------<br>";
+
+// V 38 loop 
+// Do While   One  Time 
+$i=0; 
+do {
+    echo  " <br> $i";
+    $i+=6;
+}while( $i < 103);
+echo  " <br>    ----------------------  <br>"; 
  
+
+/*
+// V 37 loop 
+// While
+echo  " <br>    -------------  <br>";
+$i=0;
+while ( $i < 10 )
+{ 
+    echo  " <br> $i";
+    $i++;
+}
+echo  " <br>    -------------  <br>";
+$i=0;
+while ( $i < 10 ) : 
+    echo  " <br> $i -------- ";
+    $i++;
+endwhile;
+echo  " <br>    -------------  <br>";
+
+/*
+for($i = 1; $i <= 20 ; $i++) {
+    echo  " <br> $i";
+   echo ($i % 10 == 0) ?   " <br>************ "  :  "";
+}
+
+/*
+// V 36 switch 
+echo  " <br>    -------------  <br>";
+$nbbrr=10;
+
+switch ($nbbrr){
+    case 1 : {
+       echo "is One Is => $nbbrr";
+       break ;
+    }
+
+    case 2 : {
+        echo "is Two Is => $nbbrr";
+        break ;
+     }
+
+     case 3 : {
+        echo "is Three Is => $nbbrr";
+        break ;
+     }
+     default :{
+        echo "is Note 1 , 2 Or 3 Is => $nbbrr"; 
+     } 
+}
+
+
+/*
+// V 35 if Else ....
+// ternary Operator  => Short If ;
+echo  " <br>    -------------  <br>";
+echo  " <br>".((1 < 10 )? "Yes":"Non");
+echo  " <br>";
+
+
+
+
+/*
+// V 34 if Else ....
+echo  " <br>    -------------  <br>";
+echo "Clear  nested if";
+
+// V 33 if Else ....
+echo  " <br>    -------------  <br>";
+ 
+if (10 > 4 ) :  echo  " <br> test Yes  <br>"; endif;
+if (10 > 4): echo "deuxeime 1"; elseif  (4 > 2) : echo "Deuxieme 2"; 
+else: echo "else";
+endif;
+/*
 // V 32 if Else ....
 echo  " <br>    -------------  <br>";
 
-$vaar=  1 > 5 ? 8888 :  100_200 ;
+
+
+$vaar =  1 > 5 ? 8888 :  100_200;
 echo $vaar;
 echo  " <br>    -------------  <br>";
- 
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medox</title>
+</head>
+
+<body>
+    <h1>
+        <?php
+        echo "<pre>";
+        print_r($_SERVER["REQUEST_METHOD"]);
+        echo "<pre/>";
+
+
+
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            if ($_POST["user-name"] and  $_POST["lang"]) {
+                echo  "User Name " . $_POST["user-name"];
+                echo "<br>";
+                echo "Option " . $_POST["lang"];
+            }  
+
+            if ($_POST["lang"] == "ar") {
+                header("Location: arabic.php");
+                exit();
+            }
+
+            if ($_POST["lang"] == "fr") {
+                header("Location: france.php");
+                exit();
+            }
+            if ($_POST["lang"] == "en") {
+                header("Location: english.php");
+                exit();
+            }
+        }
+        echo "<br>";
+        echo " *********** ";
+        ?>
+    </h1>
+    <br>
+    <hr>
+
+    <form method="post" action="#">
+        <label for="user-name">User Name</label>
+        <input type="text" name="user-name" />
+        <select name="lang" id="">
+            <option value="ar">Arabic</option>
+            <option value="en">englich</option>
+            <option value="fr">france</option>
+        </select>
+        <button type="submit">Send</button>
+    </form>
+
+</body>
+
+</html>
+
+
+<?php
+
+
 /*
 // V 31 if Else ....
 echo  " <br>    -------------  <br>";
@@ -31,17 +179,17 @@ if (0) {
 
 
 */
-
+/*
 // V 20 ->> 29 test 
 // Qst 8
-echo  " <br>"; 
+echo  " <br>";
 // $a=@$b or die("proobleme");
 
 // $f=@ file("txt.txt") or die("proobleme file");
 echo "test";
-echo  " <br>";  
-$g=(@include("inddx.php")) or die("proobleme file php");
-echo  " <br>";  
+echo  " <br>";
+$g = (@include("inddx.php")) or die("proobleme file php");
+echo  " <br>";
 echo "test final";
 
 /*
@@ -892,4 +1040,6 @@ echo "We love js and react jjss";
 <?="test short";?>
  */
 
-echo " </div>";
+echo " </div> MILOU Med";                                                                                       //Milou Med
+
+
