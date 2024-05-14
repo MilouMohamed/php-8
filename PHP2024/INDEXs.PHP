@@ -1,7 +1,318 @@
-<?php 
+<?php
 echo "<div style='padding:20px'>  ";
-// echo "<br> -----------11111---------<br>";
 
+// echo "<br> -----------11111---------<br>";
+// V 46  fonction DRY Dont Repeat 
+// default Parameter Value
+function my_info($nam ="N1", $age=100, $mail ="defalt--val")
+{
+    echo "$nam , $age , $mail";
+    echo "  <br>";
+}
+my_info("Nom 1",25 ,"Email"); 
+my_info("Nom 3",22  );
+my_info(   );
+my_info(  age:40  );
+my_info("Nom 4",18  );
+
+
+/*
+// V 45  fonction DRY Dont Repeat 
+// return value 
+echo "  <br>";
+// function myTes($ihjskd) : string {
+function myTes($ihjskd)
+{
+    return "funct => " . $ihjskd;
+}
+echo myTes("hjshd");
+echo "  <br>";
+
+
+// V 44  fonction DRY Dont Repeat 
+// simple 
+echo "  <br>";
+function Hello($nam)
+{
+
+    echo "$nam <br>";
+}
+Hello(4545);
+Hello("nam 22");
+
+
+
+/*
+    // echo "<br> -----------11111---------<br>";
+    // V 43  fonction DRY Dont Repeat 
+    function Hello($nam) {
+
+echo "$nam <br>"; 
+
+} 
+Hello("nam");
+Hello("nam 22");
+
+
+/*
+// V 42  Include And Require
+// Include warning and countine Script 
+echo " <br>"; 
+include("test.php");
+echo " <br>"; 
+include_once("test.php");// varaible change 
+echo " <br>"; 
+
+
+// Require warning and  Stop  Script 
+require("test.php"); 
+echo " <br>"; 
+require_once("test.php"); 
+echo " <br>";  
+echo $varGlob;
+echo " <br>";  
+echo " Fin script ";  
+
+/*
+// V 37 ->> 42 test  
+// Qst 10
+echo " <br>"; 
+
+$help_num=4;
+$nums=[2,40,5,6,10,30]; 
+$help_num=count($nums);
+for ($i=0; $i <count($nums) ; $i++) { 
+    
+$help_num--;
+echo " $nums[$i] +  $nums[$help_num] =  ".($nums[$help_num] + $nums[$i] );
+echo " <br>";  
+
+
+}
+
+
+/*
+// V 37 ->> 42 test  
+// Qst 9
+// M2
+echo " <br>"; 
+$help_num=3;
+$nums=[4,5,6,1,2,3];
+$names=["Ahmed","Sayed","Osama","Mohamed","Gamal"];
+for ($l=0; $l <count($names) ; $l++) { 
+   if(in_array($names[$l],["Sayed","Osama"]))
+   {
+    echo $names[$l]."<br>";
+   }
+}
+/*
+// M1
+echo " <br>"; 
+$help_num=3;
+$nums=[4,5,6,1,2,3];
+$names=["Ahmed","Sayed","Osama","Mohamed","Gamal"];
+$help_num=$nums[$help_num];//1
+ 
+for ($jk=0; $jk < count($names) ; $jk++) {
+    if( $jk == $help_num  ){ 
+        echo  "<br>".$names[$jk]; 
+    }
+    if(   $jk == ( $help_num +  $help_num)){ 
+        echo  "<br>".$names[$jk]; 
+    }
+}
+
+
+
+/*
+// V 37 ->> 42 test  
+// Qst 8
+echo " <br>"; 
+$numbers=[1,13,12,20,51,17,30];
+
+for ($jk=0; $jk <count($numbers) ; $jk++) { 
+    echo ($numbers[$jk] % 2 == 0 ?  ($numbers[$jk]/2)." <br>" : ""); 
+}
+
+
+/*
+// V 37 ->> 42 test  
+// Qst 7
+$mix=[1,2,"A","B","C",3,4];
+$isLetter=0;
+$isNumeric=0;
+for($i=0; $i < count($mix) ; $i++) {
+if(is_numeric($mix[$i]))
+{
+echo "$mix[$i] <br>";
+    $isNumeric++;
+}
+else $isLetter++; 
+}
+echo "\"  $isNumeric Numbers Printed\"";
+echo " <br>"; 
+echo "\"  $isLetter Letters  Ignored\"" ;
+
+/*
+// Qst 6
+$money =["Ahmed" => 1_200,"Rachid" => 200,"Rabi3" => 8_000,"Zakariya" => 3_000];
+ 
+foreach($money as  $k=>$v){
+echo "The Name is  $k And i Need  $v Pound from Him  <br>";
+}
+
+
+/*
+// V 37 ->> 42 test  
+// Qst 5
+ 
+$start=0;
+$mix=[1,2,3,"A","B","C",4];
+    echo " <br>--- ".count($mix)." -----<br> "; 
+
+    for ($i=$mix[$start] ; $i < count($mix) ; $i++) {  
+       echo ( is_numeric($mix[$i]) ?  $mix[$i]."<br>": "" );
+    }
+
+
+/*
+// V 37 ->> 42 test  
+// Qst 4
+$start=10;
+$end=0;
+$stop=3; 
+
+for ( $i=$start  ;   ;   ){
+
+//     if($start == $i ) 
+//     echo "$i <br>"; 
+// else echo "0$i <br>"; 
+
+echo ( $start == $i ? "$i ---<br>" :"0$i ---<br>"  );
+
+if($i ==  $stop) break;
+$i--;
+}
+
+/*
+// V 37 ->> 42 test  
+// Qst 3
+
+$num =2;
+$i =3;
+while ($num < 520) {
+    if($num == 2){
+        $num--; 
+    }
+    echo "$num <br>";
+    $num =$i + $num;
+    $i=$i*2; 
+} 
+echo " <br>------------------<br>";
+ 
+/*
+// Qst 2
+$indx = 0;
+M2
+for ($hj=0; $hj < 20 ; ) { 
+    $hj+=2;
+    echo "$hj <br>";
+
+}
+
+/*M1
+while ($indx  <= 20) {
+    $indx++;
+    if ($indx % 2 === 0)
+        echo "$indx <br>";
+}
+/*
+// Qst 1
+$indx=10;
+
+while( $indx  > 0)
+{
+echo "$indx <br>";
+$indx--;
+}
+
+
+
+
+
+
+// echo "<br> -----------11111---------<br>";
+// V 42 loop 
+//  Break Continue
+/*
+echo "test ";
+echo  " <br>  "; 
+*/
+
+/*
+// V 41 loop 
+//  Break Continue
+echo "Continue";
+echo  " <br>  "; 
+$list=["a","b","c","d","e","f"];
+
+foreach ($list as $val) :
+
+if($val === "c")
+continue ; 
+echo  "$val  ******* ** </br>";
+endforeach ;
+
+echo  "</br> ** ******* ** </br> </br>"; 
+
+foreach ($list as $val) {
+
+    if($val === "c")
+    break ; 
+    echo  "$val  ******* ** </br>";
+    }
+    
+/*
+// V 40 loop 
+//  Foreach
+
+$list=["a","b","c","d","e","f"];
+echo  " <pre>  ";
+print_r($list);
+echo  " </pre>  ";
+
+$list2=[$list[0]=>"1a",$list[1]=>"1b",$list[2]=>"1c",$list[3]=>"1d",$list[4]=>"1e",$list[5]=>"1f"];
+echo  " <pre>  ";
+print_r($list2);
+echo  " </pre>  ";
+
+
+echo "Length ".(count($list)). "<br> ";
+foreach ($list as $key => $value) {
+ echo "key=$key => value=$value ";
+ echo  " <br>  ";
+
+}
+
+
+/*
+// V 39 loop 
+//  For 
+$inddx=0;
+for (; ; ) :
+    if($inddx > 5 ) break;
+    echo "$inddx  -___+___-  <br>";  
+    $inddx++;
+endfor;
+
+ echo "<br> -----------11111---------<br>";
+
+ 
+for ( $jj=0; $jj < 5 ;$jj++ ) { 
+   echo "$jj  -----++++ <br>"; 
+}
+
+/*
 // V 38 loop 
 // Do While   One  Time 
 $i=0; 
@@ -35,6 +346,174 @@ for($i = 1; $i <= 20 ; $i++) {
     echo  " <br> $i";
    echo ($i % 10 == 0) ?   " <br>************ "  :  "";
 }
+*/
+
+
+// V 30 ->> 36 test 
+/*
+// Qst 8
+echo "<br>-----------    ----------- <br> ";
+$day="Sat";
+if ($day === "Sat" || $day === "Sun" || $day === "Mon" )
+echo " We Are Open All The Day";
+
+elseif ($day === "Tue" || $day === "Wed"   )
+echo " We Are Open  From 08:12";
+
+elseif ($day === "Thu" || $day === "Fri"   )
+echo " We Are Closed";
+else 
+echo " Unknown Day";
+
+
+
+/*
+// Qst 7
+echo "test 30 --  36 <br>";
+$num_one=23;
+$num_two=5; 
+$op="/";
+echo "<br>-----------  $op  ----------- <br> ";
+ switch($op) {
+    case "+": {
+        echo $num_one+$num_two;
+        break;
+    }
+    case "-": {
+        echo $num_one - $num_two;
+        break;
+    }
+    case "*"  : {
+        echo $num_one * $num_two;
+        break;
+    }
+    case "/": {
+        echo floor( $num_one / $num_two );
+        echo "<br>".$num_one % $num_two;
+        break;
+    }
+    
+    default : {
+        echo "Unknown operation";
+    }
+
+}
+
+
+
+
+
+
+/*
+// Qst 6
+echo "test 30 --  36 <br>";
+
+$genre = "Hack And Slash";
+
+switch ($genre) {
+    case "RPG": {
+            echo "I Recommend Ys Games";
+            break;
+        }
+
+    case "Hack And Slash": {
+            echo "I Recommend Castlevania Games";
+            break;
+        }
+
+
+    case "FPS": {
+            echo "I Recommend Uncharted Games";
+            break;
+        }
+
+
+    case "Platform": {
+            echo "I Recommend Megaman Games";
+            break;
+        }
+
+    case "Puzzle": {
+            echo "I Recommend Megaman Games";
+            break;
+        }
+
+    case "Puzzle": {
+            echo "I Recommend Megaman Games";
+            break;
+        }
+    default: {
+            echo "I Recommend Shadow Of Mordor And Shadow Of War";
+            break;
+        }
+}
+
+
+/*
+// Needed Output
+"I Recommend Castlevania Games"
+ 
+
+
+/*
+// Qst 5
+$name="Osama";
+$age=40;
+$counrty="Maroc";
+
+if( $age > 18 &&  $age==40  && $counrty=="Maroc" ) {
+    echo "The age Is good <br>The Name Is Good <br>Tne Country Is Good";
+} 
+
+
+/*
+// Qst 4
+echo "test 30 --  36 <br>";
+$a=30;
+$b=20;
+$c=10;
+echo  ($a+$b === $c ? "A+B=C": ($a+$c === $b ? "A+C=B": ($b+$c === $a ? "B+C=A": "The End")));
+
+/*
+// Qst 3
+
+// print_r($_SERVER);
+$list_adnm=["m1","g","c","m"];
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){ 
+    if($_POST["user-name"]) {
+
+        echo '<br> Mane Is '.$_POST["user-name"];
+        if( in_array($_POST["user-name"],$list_adnm)){
+        echo "<br> Is Admin ----";
+
+        }
+    }
+
+}
+
+
+?>
+
+<form action="" method="POST">
+
+    <input type="text" name="user-name">
+    <input type="submit" value="Send">
+
+</form>
+
+<?php
+
+
+/*
+// Qst 1 et 2  esy
+echo "test 30 --  36 ";
+$a=100;
+$b=200;
+$c=100;
+ 
+
+
 
 /*
 // V 36 switch 
@@ -186,7 +665,7 @@ echo  " <br>";
 // $a=@$b or die("proobleme");
 
 // $f=@ file("txt.txt") or die("proobleme file");
-echo "test";
+echo default "test";
 echo  " <br>";
 $g = (@include("inddx.php")) or die("proobleme file php");
 echo  " <br>";
@@ -1041,5 +1520,3 @@ echo "We love js and react jjss";
  */
 
 echo " </div> MILOU Med";                                                                                       //Milou Med
-
-
