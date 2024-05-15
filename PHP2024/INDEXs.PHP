@@ -1,6 +1,230 @@
 <?php
 echo "<div style='padding:20px'>  ";
+/*
+// echo "<br> -----------11111---------<br>";
+// V 53  String 
+echo "<br>";
+echo "String function";
+$strng="abcdeF";
+echo " $strng[5] ".strlen($strng)." <br> ".( $strng)." <br> ";
+echo " $strng[-1]   <br> " ;
+echo " {$strng[strlen($strng) -1]}  <br> " ;
 
+echo " $strng <br> ";
+$strng[0]=5;
+echo " $strng <br> ";
+$strng[9]=5;
+echo " $strng <br> ";
+echo " Length =".strlen($strng)." <br> ".( $strng)." <br> ";
+*/
+
+
+// V 43 ->> 52 test  
+// Qst 2
+
+// V 43 ->> 52 test  
+// Qst 1 
+
+function geteting($nm,$gend="") { 
+    if($gend != ""){
+        $genr =($gend == "Male"? "Mr":"Miss");
+        return " Hellow --- $genr --- $nm <br>";
+    }
+    return " Hellow  $nm <br>";
+
+}
+
+echo geteting("H-Nom10","Male");
+echo geteting("H-Nom24","Female");
+echo geteting("H-Nom37");
+
+/*
+// V 52   Arrow Fonction
+echo "<br>";
+echo "Arrow Function";
+
+
+$nb1=10; 
+$fnc2= fn($nnn) => "-- $nnn $nb1 --"; 
+echo "<br>"; 
+echo $fnc2(500);
+
+$fnc=fn($nbrrr) =>  $nbrrr +5;
+
+echo "<br>";
+
+echo $fnc(40);
+
+$f11= function ($sds=5000) use($nb1) {
+    echo " $sds  $nb1";
+};
+echo "<br>";
+echo $f11();
+
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 51  Varaibble function and scope 
+
+$list=[10,20,30,40,50,60];
+$nbr=25;
+
+function add_five($nbrrr)  {
+    return $nbrrr +5;
+}
+
+$list_add=array_map("add_five",$list);
+
+$list_add_ten=array_map(function ($nbrrrrr){ return $nbrrrrr+10;},$list);
+//Anonyme Function callback  
+echo "<pre>";
+print_r($list);
+print_r($list_add);
+print_r($list_add_ten); 
+echo "</pre>";
+
+
+
+
+
+ $nnbbrr=5555;  
+$fun_on=function ($one) use($nnbbrr)  {
+    return "------ $one----- $nnbbrr";
+};
+echo $fun_on(4455);
+echo "<br>";
+
+
+$ny_func=function($sfg){
+    return "test Funct $sfg";
+};
+echo $ny_func(1122);
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 50 Varaibble function
+// Arguments By references   and Type Declaration
+
+function calculate($n1 ,$n2):int { 
+    return $n1+$n2;
+}
+
+
+echo calculate(10.5,9.5)." Type Is ".gettype(calculate(10.5,9.5));
+echo "<br>";
+var_dump(calculate(10.5,9.5));
+
+
+echo "  <br>";   
+function add_five(&$nb){  // by referance
+    return $nb+=20;   
+}
+
+$nbrr=10;
+echo add_five($nbrr);
+echo "  <br>";   
+echo $nbrr;
+
+/*
+// V 49 Varaibble function
+// variable Like Function 
+
+if(function_exists("two")){
+    echo "Yes  Existe";
+
+}else {
+    echo "not Existe";
+}
+
+echo "  <br>"; 
+
+echo strlen("445522");
+echo "  <br>"; 
+
+
+function two($tt=55555)  {
+    return "Two Function $tt"; 
+}
+echo two(445545);
+$func2="two";
+echo "  <br>"; 
+echo $func2("Test param ");
+
+echo "  <br> ---------------------- <br>";
+
+function one()  {
+    return "One Function "; 
+}
+
+echo one();
+echo "  <br>";
+$func1="one";
+echo $func1();//One Function
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 48  fonction Variable Arguments List
+// ...Array  Splat operator
+
+echo "  <br>";
+function test_3_ponts($n,$c="DEf-Val",...$skls)  {
+    echo "$n  | $c  =>>>> ";
+    foreach($skls as  $slk):
+        echo " | $slk ";
+    endforeach;
+    echo " <br> ";
+}
+$list=["html","PHP","REACT"];
+test_3_ponts("Non1","Contry1","html","Css","JS");
+test_3_ponts("Non1");
+test_3_ponts("Non1","Contry1",...$list);
+test_3_ponts("Non1","Contry1",...["JS","CSharp","ADo"]);
+
+// echo "<br> -----------11111---------<br>";
+// V 47  fonction Variable Arguments List
+
+/*
+func_num_args();   all elems
+func_get_arg(index); elem
+func_get_arges() ; Array
+*/
+
+/*
+// M2
+function sommme_tow()
+{
+    $som = 0;
+    for ($i = 0; $i < func_num_args(); $i++) {
+        $som += func_get_arg($i);
+    }
+    return $som;
+}
+
+echo sommme_tow(1, 5, 30);
+echo "  <br>";
+echo sommme_tow(1, 5, 3, 1000);
+echo "  <br>";
+echo "****************************  <br>";
+
+
+
+// M1
+function sommme(...$nbrs)
+{
+    $som = 0;
+
+    for ($i = 0; $i < count($nbrs); $i++) {
+        $som += $nbrs[$i];
+    }
+    return $som;
+}
+
+echo sommme(1, 5, 30);
+echo "  <br>";
+echo sommme(1, 5, 3, 1000);
+echo "  <br>";
+
+/*
 // echo "<br> -----------11111---------<br>";
 // V 46  fonction DRY Dont Repeat 
 // default Parameter Value
