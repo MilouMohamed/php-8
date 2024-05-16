@@ -1,5 +1,216 @@
 <?php
-echo "<div style='padding:20px'>  ";
+echo "<div style='padding:20px'>  "; 
+
+// echo "<br> -----------11111---------<br>";
+// V 60  String  function Part 5 
+// substr_replace(string , eleme ,index Start 0 , length)
+echo "<pre>"; 
+echo substr_replace("OneTwo","Z",0);//Z
+echo "<pre>";
+echo substr_replace("OneTwo","Z",3);//OneZ
+echo "<pre>";
+echo substr_replace("OneTwo","Z",-1);//OneTwZ
+echo "<pre>";
+echo substr_replace("OneTwo","Z",2);//OnZ
+echo "<pre>";
+echo substr_replace("OneTwo","Z",2,2);//OnZwo
+echo "<pre>";
+echo substr_replace("OneTwo","Z",1,4);//OZo 
+echo "<pre>";
+echo substr_replace("OneTwoh jt","Z",1,-1);//OZt
+echo "<pre>";
+echo substr_replace("OneTwoh ","@",1,0);//O@neTwoh  0 Pour Insert not repalace
+echo "<pre>";
+echo "<pre>";
+print_r(substr_replace(["onetwo","TherrFour"],"F",0)); // F F
+print_r(substr_replace(["onetwo","TherrFour"],"F",1));
+print_r(substr_replace(["onetwo","TherrFour"],"F",-1));
+echo "</pre>";
+
+
+
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 59  String  function Part 5 
+// str_replace h != H sencitive
+// str_ireplace h == H Insencitive
+
+echo "<pre>";
+print_r(str_replace([1,3,2],["one","Three"],[1,2,3,4]));//2 = null 
+echo "</pre>";
+echo "<pre>";
+print_r(str_replace([1,3],["one","Three"],[1,2,3,4]));
+echo "</pre>";
+
+
+echo str_replace(["@","#"],[1,2],"#web Sh@#l Zer@ #",$dd);//2web Sh12l Zer1 2
+echo "<br>";
+
+echo str_replace("@","o","web Sh@@l Zer@",$dd);//web Shool Zero
+echo "<br>";
+echo "<br> $dd"; //
+
+
+
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 58  String  function Part 5
+// Dans Url  use 
+
+//String translate 
+echo strtr("abcdb","b",4)."<br>";  //a4cd4
+echo strtr("abcd","ac","fr")."<br>";//fbrd
+$arrl=["@"=>"l","#"=>"o"];
+echo strtr("Web shc##@ zer## @#@ ",$arrl)."<br>";//Web shcool zeroo lol 
+
+/*
+
+//
+echo str_pad("12",8,"*",STR_PAD_RIGHT)."<br>";//12******
+echo str_pad("12",8,"*",STR_PAD_LEFT)."<br>"; //******12
+echo str_pad("12",8,"*",STR_PAD_BOTH)."<br>"; //***12***
+echo str_pad("12",8,"*")."<br>";//12******
+echo str_pad("234",8,0)."<br>"; //23400000
+echo str_pad("3456",8,0)."<br>";
+echo str_pad("45678",8,0)."<br>";
+echo str_pad("567891",8,0)."<br>";
+echo " "."<br>"; 
+
+/* 
+echo "hello [] () * + . <br>";           // hello [] () * + . 
+echo quotemeta("hello [] () * + . <br>");//hello \[\] \(\) \* \+ \.
+
+parse_str("nom=Nom1&add=Adr1&emal=Email@",$arryyy);
+echo "<pre>";
+print_r($arryyy);
+echo "</pre>";
+echo  $arryyy['nom']." | ".$arryyy['add']." | ".$arryyy['emal']." | ";
+
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 57  String  function Part 4
+// strpos Case sencitive  H !+= h
+// strRpos (dernie element) Case sencitive  H !+= h
+// strIpos Case Insencitive H = H
+// strRIpos (dernie element) Case Insencitive and Right  
+// Substr_count  
+
+echo "<br>"; 
+var_dump(substr_count("Hello Hello he He","he")); //int 1
+
+echo "<br>"; 
+var_dump(substr_count("Hello Hello he He","He",6,11)); //int 2
+echo "<br>"; 
+/*
+var_dump(strripos("Hello Hello","h")); //int 6
+echo "<br>";  
+echo "<br>"; 
+var_dump(strpos("Hello Hello","h")); //bool false
+echo "<br>"; 
+var_dump(stripos("Hello Hello","h")); //int 0
+echo "<br>"; 
+var_dump(stripos("Hello Hello","h",-11)); //int 0
+
+
+/*
+echo "<br>"; 
+var_dump(strpos("Hello Hello","H")); //int 0
+echo "<br>"; 
+var_dump(strpos("Hello Hello","H",4)); //int 6
+echo "<br>"; 
+var_dump(strpos("Hello Hello","r",0));// bool false
+echo "<br>"; 
+var_dump(strpos("Hello He.llo",".",-4)); //int 8
+
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 56  String  function Part 3
+echo "<br>";// new lineto <br>
+echo nl2br("noom1\nnoon2\nnoom3",true);
+echo nl2br("noom1\nnoon2\nnoom3",false);// <br> <br />
+echo "<br> ************************ <br>";
+echo nl2br("nom 1
+nom2
+noom3");
+/*
+echo "<br>";
+echo "<h4> T ome <i>Paragraph </i> </h4> ";
+echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ");// detele all atgs
+echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ","<h4>");// not h4
+echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ","<h4><i>");//Note h4 et i tag
+echo "<br>";
+echo chunk_split("abcd efghk rnhoop 4588",3)."<br>";
+echo chunk_split("abcd efghk rnhoop 4588",3,"@")."<br>";
+echo chunk_split("0631514142",3,"--")."<br>";// 3 Trois cararters -- carat
+
+echo "<pre>";
+print_r( str_split("abcdef"));// 1  cararters en array
+print_r( str_split("abcdef",2));// 2  cararters en array
+echo "</pre>";
+
+
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 55  String  function Part 2
+
+echo "<br>";
+echo strlen("    abcd 1  ")."<br>";
+echo strlen(trim("    abcd 1  "))."<br>";
+echo trim("@@@##abcd1efg gh1#@# hj##@#","#@")."<br>";// # et @
+echo rtrim("##@@@##abcd1efg###","#")."<br>";// # 
+echo ltrim("##@@@##abcd1efg###","#")."<br>";// # 
+
+/*
+echo "<br>";
+echo str_shuffle("ABCDEF"); // Random letters
+echo "<br>";
+echo strrev("ABCDEF");
+/*
+$frind="non1 et non2 et nom3 et n4";
+
+echo "<br>";
+echo "<pre>";
+print_r(explode("et",$frind));
+print_r(explode("et",$frind,2));// nom1 , nom2 et nom3...n4;
+print_r(explode("et",$frind,-1));// nom1 , nom2 , nom3 ;
+echo "</pre>";
+
+
+echo "<br>";
+/*
+
+
+
+$frind=["nom1","nom2","nom3","nom4"];
+
+echo implode($frind)."<br>";//Join en js
+echo implode(" ",$frind)."<br>";
+echo implode("-",$frind)."<br>";
+echo implode("*",$frind)."<br>"; 
+echo implode("  ",$frind)."<br>"; 
+echo implode("@",$frind)."<br>"; 
+
+/*
+// echo "<br> -----------11111---------<br>";
+// V 54  String  function Part 1
+echo "<br>";
+$chaine="GabCDefGH nom1 NOM2 Nom3";
+echo ucfirst($chaine) ."<br>";
+echo lcfirst($chaine) ."<br>";
+echo strtolower($chaine) ."<br>";
+echo strtoupper($chaine) ."<br>";
+echo ucwords($chaine) ."<br>";  
+echo ucwords("abc jFG jGK-mo") ."<br>"; 
+echo ucwords("abc jFG jGK-mo","-") ."<br>"; 
+echo str_repeat("10 ",5) ."<br>";
+
+
+
 /*
 // echo "<br> -----------11111---------<br>";
 // V 53  String 
@@ -16,12 +227,197 @@ echo " $strng <br> ";
 $strng[9]=5;
 echo " $strng <br> ";
 echo " Length =".strlen($strng)." <br> ".( $strng)." <br> ";
-*/
+
+
 
 
 // V 43 ->> 52 test  
+// Qst 9 anonyme function 
+echo "<br>";
+$greet=function ($nnmm){
+    return "$nnmm Greeting";
+};
+echo $greet("Medox");
+// Arrow 
+echo "<br>";
+$greet_arr=fn ($nnmm)=>"$nnmm Greeting"; 
+echo $greet_arr("Medox");
+
+  
+
+echo "<br> ************************** ";
+echo "<br>";
+
+
+// V 43 ->> 52 test  
+// Qst 8 global voir github  global variables
+$msg="Helow";
+
+$Hello =fn($nm)=> ( "$msg $nm");
+$Hello2 =function($nm) {
+    global $msg ;
+return "$msg $nm 2222 ";
+};
+
+
+echo $Hello2("Medox");
+echo "<br>";
+echo $Hello("Medox");
+
+/*
+// V 43 ->> 52 test  
+// Qst 7
+echo "<br>";
+function sooom(int $n1,int $n2) { 
+    // $n1=(double)$n1;
+    $n2= $n2 +0.0;
+return $n1 +$n2; 
+}
+
+echo sooom(20 ,10);
+echo "<br>";
+echo gettype( sooom(20 ,10));
+
+
+/*
+// V 43 ->> 52 test  
+// Qst 6
+function calculate($nbr1, $nbr2, $oprt = "+")
+{
+    // echo $oprt."---------------- $nbr1*$nbr2";
+    switch ($oprt) {
+        case  "+":
+        case   "a":
+        case "add": {
+                return ($nbr1 + $nbr2  );
+               
+            }
+        case  "s":
+        case "-": {
+            return ($nbr1 - $nbr2);
+                
+            }
+        case  "m":
+        case "*": {
+            return ($nbr1 * $nbr2);
+                 
+            }
+        default:
+        return "Error"; 
+    }
+}
+echo "<br>";
+echo calculate(10, 20);
+echo "<br>";
+echo calculate(10, 20, "a");
+echo "<br>";
+echo calculate(10, 20, "s");
+echo "<br>";
+echo calculate(10, 20, "-");
+echo "<br>";
+echo calculate(10, 20, "*");
+echo "<br>";
+echo calculate(10, 20, "m");
+echo "<br>";
+echo calculate(10, 20, "mk");
+echo "<br>";
+/*
+// V 43 ->> 52 test  
+// Qst 5
+echo "<br>";
+echo  gettype("ejdn");
+echo  gettype(15);
+echo  gettype(true);
+//string  integer boolean
+
+function check_status($a, $b, $c)
+{
+    $tchng = [$a, $b, $c];
+    $l_n = [];
+    foreach ($tchng as $ietm) {
+        if (gettype($ietm) == "string") $l_n[0] = $ietm;
+        if (gettype($ietm) == "integer") $l_n[1] = $ietm;
+        if (gettype($ietm) == "boolean") $l_n[2] = $ietm;
+    }
+    $l_n[2] = ($l_n[2] ? "Yes" : "Non");
+
+    return "Hello $l_n[0] ,Yr Age Is $l_n[1] , You Are Avalable ?  $l_n[2]";
+}
+echo "<br>";
+echo check_status("Osama",25,true);
+echo "<br>";
+echo check_status(22,"Osama",true);
+echo "<br>";
+echo check_status(true,"Osama",45);
+echo "<br>";
+echo check_status(false,"Osama",35);
+echo "<br>";
+
+
+
+/*
+// V 43 ->> 52 test  
+// Qst 4
+
+function multiply(){
+    $nbr=1;
+    foreach(func_get_args() as $item){
+if(is_numeric($item)){
+    if(is_double($item)){
+        $item=(int)$item;
+    }
+    $nbr*= $item;
+}
+    }
+    return $nbr;
+}
+
+echo "<br>";
+echo multiply(10,20);
+echo "<br>"; 
+echo multiply("A",10,30);
+echo "<br>"; 
+echo multiply(100.5,10,"B");
+
+/*
+// V 43 ->> 52 test  
+// Qst 3
+
+
+function sum_all() {
+    $som=0;
+    foreach(func_get_args() as $nbr) {
+        if($nbr != 5){
+            if($nbr === 10)
+            $som+=$nbr+10;
+        else  $som+=$nbr;
+        } 
+    }
+    return $som; 
+}
+echo  sum_all(10,12,5,6,6,10);
+echo "<br>";
+echo  sum_all(5,10,5,10);
+echo "<br>";
+
+/*
+// V 43 ->> 52 test  
 // Qst 2
 
+$get_args=function () { 
+    $vr="";
+    // foreach(func_get_args() as $elem ):
+    //     $vr.=" || $elem";
+    // endforeach;
+$vr=implode("  |  ",func_get_args());
+//js Join(" | ")
+return $vr;
+};
+
+echo $get_args("Non1 ","Non2 ","Non3 ","Non4 ","Non5 ");
+echo "<br>";
+echo $get_args("Non10 ","Non20 " );
+/*
 // V 43 ->> 52 test  
 // Qst 1 
 
