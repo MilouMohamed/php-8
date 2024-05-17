@@ -1,8 +1,212 @@
 <?php
-echo "<div style='padding:20px'>  "; 
+echo "<div style='padding:20px'>  ";
 
+// echo "<br> -----------11111---------<br>"; 
+// V 63  Array   function Part 1
+$list1 = ["Nom1", "Nom2", "Nom3", "Nom4", "Nom4", "Nom1","Nom1", "Nom3", "Nom3", "Nom1"];
+echo "<pre>";
+// print_r(array_count_values($list1)); // [A] => Nom1 ....
+/* [Nom1] => 3
+    [Nom2] => 1
+    [Nom3] => 3
+    [Nom4] => 1 */ 
+    // print_r($list1) ;
+echo "</pre>";
+
+$lis1 = $list1; 
+$list_res = [];
+for ($i = 0; $i < count($list1) - 1; $i++) :
+
+    $elem = $list1[$i];
+$cntr = 1;
+    echo $elem." | ";
+    for ($j = $i +1; $j < count($list1); $j++) :
+        if ($elem == $list1[$j]) {
+            $cntr++;
+            $list1[$j]="\0";
+        }
+        $list_res[$elem]=$cntr;
+    endfor;
+
+ 
+endfor;
+echo "<pre>";
+print_r($list_res);
+// print_r(array_count_values($list_res));
+echo "</pre>";
+/*
+
+
+$list_keys=["A","b","C","d","E"];
+$list_values=["Nom1","Nom2","Nom3","Nom4","Nom5" ];
+echo "<pre>";
+print_r(array_combine($list_keys,$list_values));// [A] => Nom1 ....
+echo "</pre>";
+
+
+
+
+$list1=["Nom1","Nom2","Nom3","Nom4","Nom5","Nom6","Nom7","Nom8"];
+echo "<pre>";
+print_r(array_chunk($list1,3));
+echo "</pre>";
+$list2=["A"=>"Nom1","b"=>"Nom2","c"=>"Nom3","D"=>"Nom4","e"=>"Nom5","F"=>"Nom6","G"=>"Nom7","H"=>"Nom8"];
+echo "<pre>";
+print_r(array_chunk($list2,3,true));//True for keys
+echo "</pre>";
+echo "<pre>";
+print_r(array_change_key_case($list2,CASE_LOWER));// Lower  for keys
+print_r(array_change_key_case($list2,CASE_UPPER));// Upper   for keys
+echo "</pre>";
+
+
+
+echo  "<br>";
+
+
+
+/*
+// V 53 ->> 62 test  
+// Qst 7 function string
+$chain=["E",1,2,"L","z","E","R","o"];
+echo  "<br>";
+$chn= implode( str_replace([1,2],"", $chain))."<br>"; //ELzERo
+echo  $chn."<br>"; //ELzERo
+echo  "<br>";
+echo implode( array_filter($chain,fn($elm)=> is_string($elm) ))."<br>"; //ELzERo
+echo "<pre>";
+print_r(str_replace([1,2],"", $chain));
+print_r(  array_map("strtolower",$chain)   );// map to lower case 
+print_r(  array_map("ucfirst",$chain)   );// map to lower case 
+echo "</pre>";
+
+
+/*
+// V 53 ->> 62 test  
+// Qst 6 function string
+$chain=["E","l","z","e","r","o"];
+echo implode($chain)."<br>";  
+
+ 
+/*
+// V 53 ->> 62 test  
+// Qst 5 function string
+$strl="Elzero Web School";
+$e="e";
+$o="O";
+$four=4; 
+
+echo $strl."<br>"; 
+echo substr_count( $strl,$e,$four)."<br>"; 
+echo substr_count(strtoupper( $strl),$o,-$four)."<br>";  
+/*
+// V 53 ->> 62 test  
+// Qst 4 function string
+$str="<div><b> Medox One  </b></div> ";
+echo $str."<br>"; 
+echo strip_tags( $str)."<br>"; // remove all tags
+echo strip_tags( $str,"<b>")."<br>";  //Remove  div
+echo str_replace("<div>","",$str)."<br>"; 
+ 
+
+/*
+// V 53 ->> 62 test  
+// Qst 3 function string
+$str="aAa"; 
+$num=3;
+$chr="_";
+
+  $str=  str_repeat( str_pad( strtolower($str),4,"_"),$num) ;
+echo $str."<br>";
+
+$str="aAa"; 
+$str=  str_repeat( strtolower($str).$chr,$num);
+echo $str."<br>";
+
+
+echo "<br>";
+echo "<br>";
+
+/*
+// V 53 ->> 62 test  
+// Qst 2  function string
+echo "<br>";
+$str="Orezle"; 
+echo "$str <br>"; 
+echo ucfirst(strtolower( strrev($str)));
+
+
+/*
+// V 53 ->> 62 test  
+// Qst 1  function string
+$nm_1=-1;
+$nm_2=2.5;
+$let_1="o";
+$let_2="z";
+$str="El%er0"; 
+  $nm_2=(int) $nm_2;
+  $str[$nm_2]=$let_2;
+$str= substr_replace($str,$let_1,$nm_1);  
+echo "<br> ".strlen($str) ."<br> "; 
+echo $str;
+// $str= str_replace(["0","%"],["o","z"],$str);
+echo "<br> " ; 
+echo $str;
+echo "<br>";
+
+
+// V 62  String  function Part 9
+// wordwrap(string ,length,"elemtn" , bool respect lenght)
+/*
+echo number_format(100_000.123456)."<br>";        //100,000
+echo number_format(100_000.123456,3,".")."<br>";  //100,000.123
+echo number_format(100_000.123456,4,",","_")."<br>";//100_000,1235
+echo number_format(100_000.123456,4,"#","@")."<br>";//100@000#1235
+echo floor(100_000.123456)."<br>";//100000
+
+
+
+// strstr senctive  W != w ;
+echo strstr("Elzero Web","W")."<br>"; //Web
+echo strstr("Elzero Web","z")."<br>"; //zero Web
+echo strstr("Elzero Web","W",true)."<br>"; //Elzero 
+echo strstr("Elzero Web","W",false)."<br>"; //Web 
+echo strstr("Elzero Web","L")."<br>"; //vide var_dump => bool(false) 
+
+// strstr Insensetive  W == w ;
+echo stristr("Elzero Web","L",false)."<br>"; //lzero Web 
+
+
+/*
 // echo "<br> -----------11111---------<br>";
-// V 60  String  function Part 5 
+// V 61  String  function Part 8
+// wordwrap(string ,length,"elemtn" , bool respect lenght)
+ 
+
+echo "<br>"; 
+echo similar_text("Elzero","Elzeroo")."<br>"; // 6 rapport de similarit
+echo similar_text("Elz12457896","Elzeroo")."<br>"; // 3 Elz == Elzeroo
+echo similar_text("Elz_ero","Elzeroo",$perc)."<br>"; // 6 
+echo "$perc <br>";// taux de l egalite
+echo "************<br>"; 
+echo strrev("Elzeroho")."<br>";
+echo ("Elzeroom")."<br>";
+echo ord("A")."<br>"; //65
+echo ord("a")."<br>"; //97
+echo chr(65)."<br>"; //a
+echo chr(97)."<br>"; //A
+echo "<br>"; /*
+echo "************<br>"; 
+$nom="Medo med  meddooxlbh one three fourYou addOnd";
+echo wordwrap($nom,8,"<br>") ; // ...<br>meddooxlbh<br> ... 9ata3 chaises par <br> chaque 8 characts
+echo "<br>"; 
+echo wordwrap($nom,8,"<br>",true) ; //...meddoox<br>lbh one   ...9ata3 chaises par <br> chaque 8 characts
+
+
+
+
+/*
+// V 60  String  function Part 7
 // substr_replace(string , eleme ,index Start 0 , length)
 echo "<pre>"; 
 echo substr_replace("OneTwo","Z",0);//Z
@@ -32,7 +236,7 @@ echo "</pre>";
 
 /*
 // echo "<br> -----------11111---------<br>";
-// V 59  String  function Part 5 
+// V 59  String  function Part 6
 // str_replace h != H sencitive
 // str_ireplace h == H Insencitive
 
@@ -139,12 +343,12 @@ noom3");
 /*
 echo "<br>";
 echo "<h4> T ome <i>Paragraph </i> </h4> ";
-echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ");// detele all atgs
+echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ");// delete all atgs
 echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ","<h4>");// not h4
 echo  strip_tags( "<h4> T ome <i>Paragraph </i> </h4> ","<h4><i>");//Note h4 et i tag
 echo "<br>";
-echo chunk_split("abcd efghk rnhoop 4588",3)."<br>";
-echo chunk_split("abcd efghk rnhoop 4588",3,"@")."<br>";
+echo chunk_split("abcd efghk rnhoop 4588",3)."<br>  55555 <br> ";
+echo chunk_split("abcd efghk rnhoop 4588",3,"@")."<br>";//abc@d e@fgh@k r@nho@op @458@8@   copie en trois Morceu 
 echo chunk_split("0631514142",3,"--")."<br>";// 3 Trois cararters -- carat
 
 echo "<pre>";
@@ -161,9 +365,9 @@ echo "</pre>";
 echo "<br>";
 echo strlen("    abcd 1  ")."<br>";
 echo strlen(trim("    abcd 1  "))."<br>";
-echo trim("@@@##abcd1efg gh1#@# hj##@#","#@")."<br>";// # et @
+echo trim("@@@##abcd1efg gh1#@# hj##@#","#@")."<br>";// # et @ abcd1efg gh1#@# hj
 echo rtrim("##@@@##abcd1efg###","#")."<br>";// # 
-echo ltrim("##@@@##abcd1efg###","#")."<br>";// # 
+echo ltrim("##@@@##abcd1efg###","#")."<br>";//left  @@@##abcd1efg###
 
 /*
 echo "<br>";
