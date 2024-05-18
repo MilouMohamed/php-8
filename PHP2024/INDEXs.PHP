@@ -2,6 +2,103 @@
 echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
+// V 64  Array   function Part 3
+
+$lis_crs =[10,20,30];
+
+echo array_product($lis_crs)."<br>";// 6 000
+echo array_sum($lis_crs)."<br>";   // 60
+
+
+
+$lis_crs = [ "php"=>"php1", "JS"=>"js1","react"=>"js1", "Css"=>"Css1", "Html"=>"HTML1",1,"1"]; 
+$pad=["A","B","C","D"];
+
+echo "<pre>"; 
+print_r($pad);
+print_r(array_pad($pad,10,"@"));  // A B C D @ @ @ @...
+print_r(array_pad($pad,-10,"@"));  // @ @ @ @ A B C D...
+echo "</pre>"; 
+
+/* 
+echo "<pre>"; 
+print_r($lis_crs);
+print_r(array_values($lis_crs)); // all values 
+
+print_r(array_keys($lis_crs));//"php" ,"JS" ,0...
+print_r(array_keys($lis_crs,"js1"));//  JS , react 
+print_r(array_keys($lis_crs,"1"));//[0] => 1, [1] => 1
+print_r(array_keys($lis_crs,"1",true));//   [0] => 1
+echo "<pre>";
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 64  Array   function Part 2
+$lis_crs = [ "php"=>"php1", "JS"=>"js1", "Css"=>"Css1", "Html"=>"HTML1"]; 
+
+if(array_key_exists("php",$lis_crs)) 
+echo " Yes In Key <br>"; 
+else 
+echo " Note In Key <br>"; 
+
+echo "<pre>";
+// print_r(); 
+echo "</pre>";
+
+
+
+
+/*
+$list1 = [ "1","Nom1", "Nom2", "Nom3", "Nom4",["Pre1","Pre2"]]; 
+
+if(in_array(1,$list1,true)) { // N != n ; true(Type) 1 != "1"
+echo "Yes in  array";
+}
+else {
+echo "Note  in  array";
+
+}
+/*
+
+echo count($list1, 1 )."  <br> ------------ <br>";//7  (1) [1 2 3 4 5[6 7]];
+echo "<pre>";
+print_r($list1);
+print_r($list2);
+print_r(array_flip( $list1));// Key=> value ====> value=> Key
+echo "</pre>";
+/*
+
+
+$list2=[] ;
+foreach($list1 as $key=>$value) { 
+ try {
+    $list2[$value]= $key; 
+ } catch ( error) {
+     //Probleme nisted Array["Pre1","Pre2"]
+ }
+}
+
+echo "<pre>";
+print_r($list1);
+print_r($list2);
+print_r(array_flip( $list1));// Key=> value ====> value=> Key
+ echo "</pre>";
+
+ /*
+echo "<pre>";
+print_r($list1);
+print_r(array_reverse( $list1));// Key 0=> "Nom1" ====> 4=> "Nom1"
+print_r(array_reverse( $list1,true));// Key 0=> "Nom1" ====> 0=> "Nom1" fin de array 
+echo "</pre>";
+
+
+
+
+
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
 // V 63  Array   function Part 1
 $list1 = ["Nom1", "Nom2", "Nom3", "Nom4", "Nom4", "Nom1","Nom1", "Nom3", "Nom3", "Nom1"];
 echo "<pre>";
@@ -10,6 +107,7 @@ echo "<pre>";
     [Nom2] => 1
     [Nom3] => 3
     [Nom4] => 1 */ 
+    /*
     // print_r($list1) ;
 echo "</pre>";
 
