@@ -2,7 +2,271 @@
 echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
-// V 64  Array   function Part 3
+// V 71  Array  Flter Maps
+$list_lettes=["A","D","F","C","G","T"]; 
+$list_Per=["a1","a2","b1","c2","c3","g4"]; 
+$list_Numbers =[1,5,22,8,9,100,20];
+echo "<pre>"; 
+
+print_r( array_filter($list_Numbers,fn($n)=> $n > 15  ,0));// 0 felter values
+/*  [2] => 22
+    [5] => 100
+    [6] => 20  */
+
+    print_r( array_filter($list_Numbers,fn($n)=> $n > 1  ,ARRAY_FILTER_USE_KEY));//  felter kEYS
+    /*
+        [2] => 22
+        [3] => 8
+        [4] => 9 
+    */
+    echo "<br> ************--------****************** <br>  ";
+print_r( $list_Numbers); 
+print_r( array_filter($list_Numbers,fn($v,$k)=> $v > 20 and $k > 0  ,ARRAY_FILTER_USE_BOTH));//  felter kEYS AND VALUE 
+/*  [2] => 22
+    [5] => 100
+*/
+
+
+echo "</pre>"; 
+
+/*
+$list_lettes=["A","D","F","C","G","T"]; 
+$list_Per=["a1","a2","b1","c2","c3","g4"]; 
+echo "<pre>"; 
+
+print_r(array_map(fn( $nm, $pnm )=> " -*-Mr $nm -*- $pnm ",$list_lettes,$list_Per));
+/*  [0] =>  -*-Mr A -*- a1 
+    [1] =>  -*-Mr D -*- a2 
+    [2] =>  -*-Mr F -*- b1 
+    ..................  */
+
+
+
+
+
+function add_ms($nm ,$pnm=""){
+    return  " ---Mr $nm --- $pnm ";
+}
+
+echo "<pre>"; 
+
+// print_r(array_map("add_ms",$list_lettes));
+// print_r(array_map("add_ms",$list_lettes,$list_Per));
+/* 
+[0] =>  ---Mr A ---
+    [1] =>  ---Mr D ---
+    [2] =>  ---Mr F ---
+    .......*/
+echo "</pre>"; 
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 70  Array  Parte 8-7 Sorting
+// rXXXX ==> reverse 
+// sort <==> rsort   by iNDEXin
+// asort <==> arsort Associative  ASC <==> DESC  by Value
+// ksort <==> krsort Associative  ASC <==> DESC  by KEYS
+ 
+$list_lettes=["A","Z","F","C","G","T","B","L","-1"=>"K"];
+echo "<pre>"; 
+// sort($list_lettes); //Sorte ACS
+//  natsort($list_lettes);  //  1 , 10 ,2 ,21 ,2 => 1 , 2 ,10 , 21
+$list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
+
+  rsort($list_lettes); //Sorte DESC (Reverse sort)
+/*  [0] => K
+    [1] => AC
+    [2] => AB
+    [3] => AAB */
+    
+// $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
+ // asort($list_lettes); //Sorte DESC index
+/*  [C] => AAB
+    [M] => AB
+    [A] => AC
+    [-1] => K */
+    
+// $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
+//  arsort($list_lettes); //Sorte ACS index
+/*  [-1] => K
+    [A] => AC
+    [M] => AB
+    [C] => AAB */
+    /*
+$list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
+ksort($list_lettes); //Sorte ACS Keys
+/* [-1] => K
+   [A] => AC
+   [C] => AAB
+   [M] => AB */
+
+    /*
+   $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
+   krsort($list_lettes); //Sorte ACS Keys
+  /*    [M] => AB
+        [C] => AAB
+        [A] => AC
+        [-1] => K */
+  
+/*
+$list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
+  natsort($list_lettes);  // Sort ASC KEys
+  /*[C] => AAB
+    [M] => AB
+    [A] => AC
+    [-1] => K */
+// echo "<br>";
+/*
+ print_r($list_lettes);
+// print_r($list_lettes);
+echo "</pre>";   
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 69  Array   Slice Splice
+// Slice return elemts and No Update liste
+// array_splice()=== pop return elemst delete et update $list ;
+$list_lettes=["A","D","F","C","G","T"];
+echo "<pre>";   
+// print_r(array_splice($list_lettes,2,-2));// -2 deux derniere elemts  F C
+// return  A D G T 
+
+// print_r(array_splice($list_lettes,2,1,["One","Two"]));//  delete F and add  One Two => A D One Two C G T 
+print_r(array_splice($list_lettes,3,0,["One","Two"]));//  insert at indx 3 One , Two 
+
+// print_r(array_splice($list_lettes,2,1));// return  F
+print_r($list_lettes); // delete F
+echo "</pre>";  
+
+
+
+/*
+$list_lettes=["A","D","F","C","G","T"];
+
+echo "<pre>";  
+print_r(array_slice($list_lettes,2));   // de index 2 a la fin
+echo  "<br>";  
+print_r(array_slice($list_lettes,-2));   // de index -1  -2  ("G","T")
+echo  "<br>";  
+print_r(array_slice($list_lettes,2,3)); //  F  C  G 
+echo  "<br>";   
+*/
+/*echo "<pre>";  /*
+
+$list_lettes=["A","D","F","C","G","T"]; 
+print_r(array_slice($list_lettes,2,-2)); //  F C Note two laste G T 
+echo  "<br>";   
+$list_lettes=["k0"=>"A","k1"=>"D","K2"=>"F","K3"=>"C","K4"=>"G","K5"=>"T"];   
+print_r(array_slice($list_lettes,2)); //  meme Keys string 
+
+$list_Numbers=[10=>"A",20=>"D",30=>"F",40=>"C",50=>"G",60=>"T"]; 
+print_r(array_slice($list_Numbers,2)); // pas meme Keys string ;
+// return F C G T  
+// in array  A D F C G T
+// print_r(array_slice($list_Numbers,2,-1,true)); // 30F 40C 50G meme Keys string ;
+print_r(($list_Numbers)); // lise de 0  ;
+echo  "<br> ----------";   
+
+echo  "<br>________________________<br>";  
+echo "</pre>";  
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 68  Array  Shift Pop Push Unshift
+//    pUsh     Unshift 
+//    Shift    Pop
+
+$list_lettes=["A","D","F","C","G","T"];
+
+
+
+echo  "<br>"; 
+echo "<pre>";  
+print_r( $list_lettes);
+echo "<br> ****************   *************** <br>";
+// array_unshift($list_lettes,"TTTT");//Add At index 0 
+ array_push($list_lettes,"TTTT");//Add At index -1 derniere 
+$list_lettes[]=555;    //Add At index -1 derniere 
+
+// array_shift($list_lettes); // delete the firse elements
+// array_pop($list_lettes); // delete the laste  elements
+
+print_r( $list_lettes);
+
+
+
+
+echo "</pre>"; 
+
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 67  Array Merge Array Replace Rand Shuffle
+$frends_one = ["One"=>"Osama","Two"=>"Ahmed", "Three"=>"Sameh", "Four"=>"Mohamed" ]; 
+$frends_two = ["One"=>"Rabih",0=>"Rachid",]; 
+
+
+$langOne=[10=>"PHP",20=>"CSS",22=>"JS" ,30=>"C#"];
+$langTwo=[10=>"React Native",0=>"C++"];
+$list_lettes=["A","D","F","C","G","T"];
+
+ 
+echo  "<br>"; 
+echo "<pre>"; 
+shuffle($list_lettes);
+print_r($list_lettes);// tat9lab les position
+
+/*
+echo array_rand($list_lettes ); // return the key
+
+echo "<br>"; 
+print_r(array_rand($list_lettes,3 ) ); // return Array 3 elemnts
+echo "<br>"; 
+
+/*
+print_r(array_replace($frends_one ,$frends_two));
+//Replace if exeste or add   keys 10 === "10";
+
+print_r(array_replace($langOne ,$langTwo));
+//Replace if exeste or add
+/*
+
+ 
+print_r(array_merge($frends_one,$frends_two)); // arr1 +arr2  like replace
+// "One"=>"Osama" et  "One"=>"Rabih"  =====> "One"=>"Rabih" , ....
+print_r(array_merge($langOne,$langTwo)); // keys =====> int 0 , 1 2 3
+ /**/
+echo "</pre>"; 
+
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 66  Array   function Part 3
+$frends = ["Osama","Ahmed", "Sameh", "Mohamed" , "Eman"]; 
+
+echo  " <br>"; 
+echo  current($frends). " <br>";  //Osama  index 0
+echo  next($frends). " <br>";     // Ahmed  index 1
+echo  current($frends). " <br>";  // Ahmed  index 1
+echo  next($frends). " <br>";     // Sameh  index 1
+echo  prev($frends). " <br>";     // Ahmed  index -1
+echo  reset($frends). " <br>";    // Ahmed  vers 0 index 0
+echo  end($frends). " <br>";      // Eman  vers 0 index 0
+echo  " <br>"; 
+
+
+echo "<pre>"; 
+echo  "<br> Test Test Des test <br>"; 
+echo "</pre>"; 
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 65  Array   function Part 3
 
 $lis_crs =[10,20,30];
 
@@ -467,9 +731,9 @@ echo trim("@@@##abcd1efg gh1#@# hj##@#","#@")."<br>";// # et @ abcd1efg gh1#@# h
 echo rtrim("##@@@##abcd1efg###","#")."<br>";// # 
 echo ltrim("##@@@##abcd1efg###","#")."<br>";//left  @@@##abcd1efg###
 
-/*
+/* 
 echo "<br>";
-echo str_shuffle("ABCDEF"); // Random letters
+echo str_shuffle("ABCDEF"); // Random letters position tayt9albo
 echo "<br>";
 echo strrev("ABCDEF");
 /*
