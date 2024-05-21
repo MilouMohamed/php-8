@@ -1,6 +1,477 @@
-<?php
+<?php 
 echo "<div style='padding:20px'>  ";
 
+// echo "<br> -----------11111---------<br>"; 
+
+
+// V 77 Filter  filter_var P1 
+// echo "<br> -----------11111---------<br>"; 
+$url="http://localhost/php2024/INDEXs.PHP";  
+$url="http://localhost";  
+$url="hasdajsd,n";  
+
+var_dump(filter_var($url,FILTER_VALIDATE_URL)); //http://localhost..
+echo "<br>"; 
+var_dump(filter_var($url,FILTER_VALIDATE_URL,FILTER_FLAG_PATH_REQUIRED));
+// path  localhost/ or false or null si l url hgshdgsh
+echo "<br>";
+
+ /*
+
+$val= true ; // True || 1 || "yes" || "on"
+$val= false ; // false || 0 || "No" || "of" || ""
+$val=55; // null 
+
+echo "<pre>";
+var_dump(filter_var($val,FILTER_VALIDATE_BOOL,FILTER_NULL_ON_FAILURE));
+echo "</pre>";
+  
+echo " <br><br><br>";
+
+/*
+// V 77 Filter  
+// echo "<br> -----------11111---------<br>"; 
+$val= true ; // True || 1 || "yes" || "on"
+
+// if(filter_var($val,258)){
+    if(filter_var($val,FILTER_VALIDATE_BOOL)){
+    echo "Yes Is Boolean <br>";
+}else 
+echo "Not Is Boolean <br>";
+echo " <br><br><br>";
+
+
+echo "filter";
+echo "<pre>";
+print_r(filter_list());
+echo "</pre>";
+
+echo filter_id("int")."<br>";     //257 == FILTER_VALIDATE_INT
+echo filter_id("boolean")."<br>"; //258 == FILTER_VALIDATE_BOOL
+
+
+
+/*
+// V 76 sqrt min max;
+// echo "<br> -----------11111---------<br>"; 
+
+echo sqrt(4)."<br>"; // 2
+echo sqrt(25)."<br>";// 5
+echo sqrt(9)."<br>"; // 3
+echo pow(9,2)."<br>"; // 81  
+echo  "  ------------------------------ <br>";   
+$list_nbrs=[1,5,2,33,9,0,-5,12];
+echo min($list_nbrs)."<br>"; // -5
+echo "<pre>";
+print_r( min([1,3,5,],[1,2,50]))."<br>"; //  1=1 , 3 > 2 return [1,2,50]
+echo "<pre>";
+
+
+
+echo "<pre>";
+print_r( max([1,3,5],[1,2,80]))."<br>"; //  1=1 , 3 > 2 return [1,3,5]
+echo "<pre>";
+echo max(1,5,2,33,9,0,-5,12)."<br>"; // 33
+
+/*
+// V 75   round( Nmbr , Presision , Mode   ); !=  Note rand (random)
+// Mode 
+echo round(5.99)."<br>";  //    6
+echo round(5.50)."<br>";  //    6
+echo round(-5.50)."<br>";  //  -6
+echo round(5.49)."<br>";  //    5
+echo round(-5.49)."<br>";  //  -5
+echo round(5.10)."<br>";  //    5
+
+echo  "  ------------------------------ <br>";   
+echo round(5.1234,2)."<br>";  //    5.12
+echo round(5.895,2)."<br>";  //    5.9
+echo round(5.994,2)."<br>";  //    5.99
+echo round(5.995,2)."<br>";  //    6
+
+echo  "  ------------------------------ <br>";   
+echo round(5.45,0,PHP_ROUND_HALF_UP)."<br>";  //5  == ceil si 0.5 
+echo round(5.55,0,PHP_ROUND_HALF_UP)."<br>";  //6  == ceil si 0.5 
+
+
+echo round(5.555,0,PHP_ROUND_HALF_DOWN)."<br>";  //6  == floor si 0.5 
+echo round(5.499,0,PHP_ROUND_HALF_DOWN)."<br>";  //6  == floor si 0.5 
+
+
+echo round(5.50,0,PHP_ROUND_HALF_EVEN)."<br>";  //6  == floor si 0.5 
+echo round(4.50,0,PHP_ROUND_HALF_EVEN)."<br>";  //4  == le plus proche 2n nbr paire  
+//  Le plus proche nbr paire
+
+echo round(5.50,0,PHP_ROUND_HALF_ODD)."<br>";  //5  
+echo round(8.50,0,PHP_ROUND_HALF_ODD)."<br>";  //7  == le plus proche 2n +1 nbr Impaire  
+//  Le plus proche nbr Impaire
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 74   ceil , floor , round  ===>  returne Double
+
+echo ceil(11.000_11)."<br>";  // 12 ta9f
+echo floor(11.000_11)."<br>"; // 11  ardiay 
+
+//Negative Values
+echo ceil(-11.000_11)."<br>";  // -11 ta9f
+echo floor(-11.000_11)."<br>"; // -12  ardiay 
+
+
+
+
+// echo "<br> -----------11111---------<br>"; 
+// V 73  math finction 
+/*
+echo "<br>";
+
+//    fmod($n1, $n2)    retrun double 
+echo fmod(11.5 ,5)."<br>";    // 1.5
+echo (double)(11.5  % 5)."<br>";   // 1
+echo  11.5  % 5 ."<br>----------------------<br>";   // 1
+
+//    intdiv($n1, $n2)  === (int)($n1 , $n2 ); retrun int pad double
+echo intdiv(11,5)."<br>";  
+echo (int)(11/5)."<br>";  
+echo  11/5 ."<br>----------------------<br>";  
+
+echo rand(10,15). "<br>"; 
+
+echo abs(10). "<br>";
+echo abs(-100). "<br>";
+echo abs(0). "<br>";
+echo "<br>"; 
+*/
+
+/*
+// V 63 ->> 72 test  
+// Qst 18
+$title = "E&z\$r0 W\$b Sch00&";
+ $serch=["&","\$","0"]; 
+echo (str_replace( $serch,["l","e","o"],$title))."<br>";  
+echo  "<br>";  
+echo "<pre>"; 
+echo "</pre>"; 
+echo "<br>" ;
+
+/*
+// V 63 ->> 72 test  
+// Qst 17
+$nums = [1, "V", 3, 4, 5, 6];
+
+function shffel($list_fnc)
+{
+    $lv = [];
+
+    while (count($list_fnc) != count($lv)) {
+        $indx = rand(0, count($list_fnc) -1 );
+        $elem = $list_fnc[$indx];
+        if ( $elem != "") {
+        $list_fnc[$indx] = "";
+            $lv[] = $elem;
+        }
+    } ;
+
+    return $lv;
+}
+
+
+echo "<pre>";
+print_r(shffel($nums));
+echo "</pre>";
+
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 16
+$mix = ["A", "C", "B", 1, 100, 3, 2, 6, 5, 7];
+ 
+$mix=array_filter($mix,function($nbr) {
+    if(is_numeric($nbr)){
+        if($nbr % 2 == 1 )
+        return $nbr;
+    }
+});
+sort($mix );
+echo "<pre>"; 
+print_r($mix);  
+echo "</pre>"; 
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 15
+$chars = ["o", "r", "e", "z", "l", "E"];
+ 
+$chis="";
+for ($i= count($chars) -1 ; $i >= 0 ; $i--) { 
+    
+$chis.=$chars[$i];
+}
+
+echo "$chis   <br> ";
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 14
+$nums = [10, 100, -20, 50, 30];
+ 
+echo "Plus Petite Raduce    ".array_reduce($nums,fn($cur,$itm)=> $cur =   $cur > $itm ? $cur = $itm: $cur  ,0 )."  <br>"; 
+
+// V 63 ->> 72 test  
+// Qst 13
+$nums = [10, 100, -20, 50, 300];
+ 
+$cntr=$nums[0];
+
+foreach ($nums as $val) {
+    $cntr =   $cntr < $val ? $cntr = $val: $cntr ; 
+}
+echo "Plus Grand  foreach $cntr  <br>"; 
+
+
+echo "Plus Grand raduce    ".array_reduce($nums,fn($cur,$itm)=> $cur =   $cur < $itm ? $cur = $itm: $cur  ,0 )."  <br>"; 
+  
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 12
+$nums = [11, 2, 10, 7, 20, 50];
+
+$cntr=0;
+foreach ($nums as $val  ) { 
+    $cntr+=$val;
+} 
+echo "  $cntr  <br>";  
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 11
+$arr = ["A", "B", "C", "D", "E"];
+
+$cntr=0;
+foreach ($arr as $val  ) { 
+    $cntr++;
+}
+
+echo "  $cntr  <br>";  
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 10
+$mix = [1, 2, 3, "A", "B", "C", 7, 8, 9];
+$nums = [4, 5, 6];
+
+// Write Your Code Here // M2
+//  $mix= array_filter($mix,fn($elem)=> is_numeric($elem));// M2
+//  $mix0=array_splice($mix,3,0,$nums); // M2
+
+
+array_splice($mix,count($nums),count($nums));// M1
+$mix = array_merge($mix,$nums);// M1
+sort($mix);// M1
+
+echo "<pre>"; 
+print_r($mix);  
+echo "</pre>"; 
+ 
+
+/*
+// V 63 ->> 72 test  
+// Qst 9
+$nums = [1, 2, 3, 4, 5, 6];
+ 
+echo "<pre>"; 
+print_r(array_slice(  $nums,-5,-2));
+print_r(array_slice(  $nums,1,-2));
+print_r(array_slice(  $nums,1,3));
+echo "</pre>"; 
+
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 8
+
+$chars = ["A", "B", "C"];
+ 
+array_splice($chars,count($chars),0,"D"); //M6
+//  $chars=array_merge($chars,["D"]);  // M5
+// $chars=[...$chars,"D"];  // M4
+// $chars=[...$chars,"D"];  // M3
+// array_push($chars,"D");// M2
+// $chars[]="D"; // M1
+echo "<pre>"; 
+print_r($chars);
+echo "</pre>"; 
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 7
+$names = ["Osama", "Ahmed", "Sayed", "Mahmoud", "Ali"];
+
+next($names);
+next($names);
+echo current($names) . "<br>"; // "Sayed"
+
+// Write Line Here
+end($names);
+echo current($names) . "<br>"; // "Ali"
+
+// Write Line Here
+
+reset($names);
+echo current($names) . "<br>"; // "Osama"
+ 
+end($names);
+prev($names);
+echo current($names) . "<br>"; // "Mahmoud"
+
+echo "<br>"; 
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 6
+$chars = ["A", "B", "C", "D", "E"];
+$char = "@@";
+$zero = 0; 
+$nbr=count($chars) * (strlen($char));
+echo $nbr."<br>";
+echo "<pre>";  
+print_r(array_pad($chars,$nbr,$char[$zero]));
+echo "</pre>"; 
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 5
+$nums = [5, 10, 20, 5, 30, 40];
+ 
+$nbr=0;
+for ($i=0; $i < count($nums) ; $i++) { 
+     if($nums[$i] != 5)
+     $nbr+=$nums[$i]; 
+}
+echo $nbr."<br>";
+
+
+echo array_reduce($nums,fn($curn,$item)=> $curn += ($item != 5 ? $item : 0  )   ,0);
+echo  "<br>";
+
+echo "<pre>";  
+
+echo "</pre>"; 
+
+/* 
+// V 63 ->> 72 test  
+// Qst 4
+$nums = [10, 20, 30];
+
+echo array_reduce($nums,fn($n1,$n2)=> $n1 + $n2,0);
+echo "<br>"; 
+echo array_sum($nums);
+
+
+
+/*
+// V 63 ->> 72 test  
+// Qst 3
+$friends = [
+    "Ahmed Gamal" => "AG",
+    "Osama Mohamed" => "OM",
+    "Mahmoud Gamal" => "MG",
+    "Ahmed Samy" => "AS"
+  ];
+  
+
+
+  echo "<pre>"; 
+  $friends =array_reverse( array_change_key_case(array_flip($friends))); 
+  print_r($friends); 
+echo "</pre>";  
+
+
+
+
+// V 63 ->> 72 test  
+// Qst 2
+/*
+$codes = ["H", "C", "J"];
+$means = ["HTML", "CSS", "JavaScript"];
+
+$codes =array_map("strtolower",$codes);
+
+echo "<pre>"; 
+print_r(array_combine($codes,$means));
+echo "</pre>"; 
+
+// Output 
+
+ /*
+// V 63 ->> 72 test  
+// Qst 1  
+
+$friends = [
+    "AG" => "Ahmed Gamal",
+    "OM" => "Osama Mohamed",
+    "MG" => "Mahmoud Gamal",
+    "AS" => "Ahmed Samy",
+    "FA" => "Farid Ahmed",
+    "SM" => "Sayed Mohamed"
+  ];
+
+  $friends= array_change_key_case($friends,CASE_LOWER); 
+echo "<br>"; 
+echo "<pre>"; 
+print_r(array_chunk($friends,2,true));
+echo "</pre>"; 
+
+   
+
+
+
+/*
+// echo "<br> -----------11111---------<br>"; 
+// V 72  Array  Reduce
+//Max Min par raduce
+$list_Numbers =[1,5,22,8,9,100,20];
+echo  " Sum = ".array_sum($list_Numbers)."<br>";
+
+
+echo "<pre>"; 
+print_r( array_reduce($list_Numbers ,function($curnt,$item){
+ if ($item > $curnt)
+ return $curnt ;
+ return $item ;
+},10));//max Min 
+/*
+echo "<pre>"; 
+print_r( array_reduce($list_Numbers ,function($curnt,$item){
+ echo  "C=$curnt itm=$item  sum(".$curnt+$item.") <br>";
+return $curnt + $item;
+},0));
+/*  C=0 itm=1  sum(1) 
+    C=1 itm=5  sum(6) 
+    C=6 itm=22  sum(28) 
+    C=28 itm=8  sum(36)
+...... sum 165 */
+echo "</pre>";
+
+
+/*
 // echo "<br> -----------11111---------<br>"; 
 // V 71  Array  Flter Maps
 $list_lettes=["A","D","F","C","G","T"]; 
@@ -12,20 +483,21 @@ print_r( array_filter($list_Numbers,fn($n)=> $n > 15  ,0));// 0 felter values
 /*  [2] => 22
     [5] => 100
     [6] => 20  */
-
+/*
     print_r( array_filter($list_Numbers,fn($n)=> $n > 1  ,ARRAY_FILTER_USE_KEY));//  felter kEYS
     /*
         [2] => 22
         [3] => 8
         [4] => 9 
     */
+/*
     echo "<br> ************--------****************** <br>  ";
 print_r( $list_Numbers); 
 print_r( array_filter($list_Numbers,fn($v,$k)=> $v > 20 and $k > 0  ,ARRAY_FILTER_USE_BOTH));//  felter kEYS AND VALUE 
 /*  [2] => 22
     [5] => 100
 */
-
+/*
 
 echo "</pre>"; 
 
@@ -41,7 +513,7 @@ print_r(array_map(fn( $nm, $pnm )=> " -*-Mr $nm -*- $pnm ",$list_lettes,$list_Pe
     ..................  */
 
 
-
+/*
 
 
 function add_ms($nm ,$pnm=""){
@@ -57,6 +529,7 @@ echo "<pre>";
     [1] =>  ---Mr D ---
     [2] =>  ---Mr F ---
     .......*/
+/*
 echo "</pre>"; 
 
 
@@ -79,21 +552,21 @@ $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
     [1] => AC
     [2] => AB
     [3] => AAB */
-    
+
 // $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
- // asort($list_lettes); //Sorte DESC index
+// asort($list_lettes); //Sorte DESC index
 /*  [C] => AAB
     [M] => AB
     [A] => AC
     [-1] => K */
-    
+
 // $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
 //  arsort($list_lettes); //Sorte ACS index
 /*  [-1] => K
     [A] => AC
     [M] => AB
     [C] => AAB */
-    /*
+/*
 $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
 ksort($list_lettes); //Sorte ACS Keys
 /* [-1] => K
@@ -101,14 +574,14 @@ ksort($list_lettes); //Sorte ACS Keys
    [C] => AAB
    [M] => AB */
 
-    /*
+/*
    $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
    krsort($list_lettes); //Sorte ACS Keys
   /*    [M] => AB
         [C] => AAB
         [A] => AC
         [-1] => K */
-  
+
 /*
 $list_lettes=["C"=>"AAB","M"=>"AB","A"=>"AC", "-1"=>"K"];
   natsort($list_lettes);  // Sort ASC KEys
@@ -235,11 +708,11 @@ print_r(array_replace($langOne ,$langTwo));
 /*
 
  
-print_r(array_merge($frends_one,$frends_two)); // arr1 +arr2  like replace
+print_r(array_merge($frends_one,$frends_two)); //damge joj aray  arr1 +arr2  like replace
 // "One"=>"Osama" et  "One"=>"Rabih"  =====> "One"=>"Rabih" , ....
 print_r(array_merge($langOne,$langTwo)); // keys =====> int 0 , 1 2 3
  /**/
-echo "</pre>"; 
+echo "</pre>";
 
 
 
@@ -370,8 +843,8 @@ echo "<pre>";
 /* [Nom1] => 3
     [Nom2] => 1
     [Nom3] => 3
-    [Nom4] => 1 */ 
-    /*
+    [Nom4] => 1 */
+/*
     // print_r($list1) ;
 echo "</pre>";
 
