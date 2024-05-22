@@ -1,20 +1,215 @@
-<?php 
+<?php
 echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
 
 
-// V 77 Filter  filter_var P1 
+// V 83  is_Dir MkDir RmDIr
+// dir === folder "; 
+echo "Test ";
+echo "<br> ";
+var_dump(is_dir("nvdos/"));         // true
+echo "<br> ";
+var_dump(is_file("nvdos/test.txt"));// true
+echo "<br> ";
+mkdir("NV1");// Create Folder
+echo "<br> ";
+
+
+
+/*
+// V 82 File System Function Part 1
+// echo "<br> -----------11111---------<br>";
+// disk_total_space in bytes
+
+echo round( disk_total_space("C:") / 1024 / 1024 / 1024,2 )." GB<br>";
+echo round(  disk_free_space("C:") / 1024 / 1024 / 1024,2 )." GB<br>";
+
+var_dump(file_exists("file455.txt"));// false or true 
+var_dump(file_exists("/"));//chemain   true 
+echo "<br>";
+echo filesize("file.txt")." En Bytes <br>";   // Bytes
+
+
+// echo disk_total_space("M:") / 1024 / 1024 / 1024 ." GB<br>";
+
+
+// V 81 Filter filter_input
+// echo "<br> -----------11111---------<br>";
+//   INPUT_GET  
+//   INPUT_GET | INPUT_POST | INPUT_COOKIE | INPUT_SERVER | INPUT_ENV
+/*
+echo "test le 81<br>";
+// echo $_GET["num"]; //if value existe  else probleme
+
+echo "<br> ----- ----- ----- ----- -----<br>"; 
+echo "I G =".filter_input(INPUT_GET,"num");//if value existe  else No probleme
+echo "<br> ----- ----- ----- ----- -----<br>"; 
+echo "I G F V I =".filter_input(INPUT_GET,"num",FILTER_VALIDATE_INT);//if value existe 
+echo "<br> ----- ----- ----- ----- -----<br>"; 
+echo "I G F V I =".filter_input(INPUT_GET,"num",FILTER_SANITIZE_NUMBER_INT);//if value existe 
+
+?>
+<form action="" method="get">
+    <label for="numOne"> Num : 
+        <input type="text" name="num" id="numOne">
+    </label>
+    <input type="submit" value="Send">
+</form>
+
+
+<?php
+
+
+
+// V 80 Filter  Sanitize (Ta39im update )  filter
 // echo "<br> -----------11111---------<br>"; 
+// ---
+/*
+$urrl="http:/  ¥ /localhost  ¥ ¥  TS 1m ¬  /";//http://localhostTS1S^/
+var_dump(filter_var($urrl , FILTER_SANITIZE_URL));
+//  LIKE EMAIL BIUT  PLUS CARACTERS 
+echo "<br>";
+
+
+$flot="+100 *- 84";//string(7) "+100-84" 
+$flot="120,120,000.234";//string(12) "120120000234" 
+$flot="120,120,00  ASD ASDA SD0.234";//string(15) "120,120,000.234" AVEC FLAG 
+var_dump(filter_var($flot , FILTER_SANITIZE_NUMBER_FLOAT,["flags"=>   FILTER_FLAG_ALLOW_THOUSAND   |  FILTER_FLAG_ALLOW_FRACTION]));
+// remove all But Digital , + , -
+echo "<br>";
+
+
+
+$int="+-100_55";//+-100_55
+$int="+-100_sgdghhhas asd 66";//+-100_66
+$int="+-100_sgdghhhas  - 55";//string(8) "+-100-55" 
+$int="+100 *- 84";//string(7) "+100-84" 
+var_dump(filter_var($int , FILTER_SANITIZE_NUMBER_INT));
+// remove all But Digital , + , -
+echo "<br>";
+echo "<br>";
+echo "<br>";
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+$eml="email@ma  ¬ il.com"; //¬
+// FILTER_SANITIZE_EMAIL  REMOVE AL BUTN NOTE
+// letter + digits + !#$%&'*+-=?^_`{}|~@.[]
+echo "<br>"; 
+var_dump(filter_var($eml,FILTER_SANITIZE_EMAIL));
+//string(14) "email@mail.com"
+echo "<br>"; 
+echo "<br>"; 
+
+
+// V 79 Filter  filter_var P2
+// echo "<br> -----------11111---------<br>"; 
+/*
+$nbr="100";
+$nbr=10_000;
+var_dump(filter_var($nbr,FILTER_VALIDATE_INT,FILTER_NULL_ON_FAILURE));
+echo "<br>"; 
+*//*
+$nbr=60.55;  
+$nbr=60.00;  //"60.00" ou 60.55  null || 60.00 int  
+var_dump(filter_var($nbr,
+FILTER_VALIDATE_INT,
+["flags"=> FILTER_NULL_ON_FAILURE ,
+"options"=> ["max_range"=>100,"min_range"=>50]
+] 
+));// max <= 100 et min >= 50 et "50.00" string pas 50.00 int  pas 50.50 float
+echo "<br>-------------------- <br>"; 
+
+$nbr_float=60.55;  
+$nbr_float="60.00";  //"60.00" ou 60.55  float  || 60.00 float  
+var_dump(filter_var($nbr_float,
+FILTER_VALIDATE_FLOAT,
+["flags"=> FILTER_NULL_ON_FAILURE ,
+"options"=> ["max_range"=>100,"min_range"=>50]
+] 
+));// max <= 100 et min >= 50 et "50.00" == 50.00 ==  50.50 float
+
+echo "<br>"; 
+
+
+/*
+$eml="mohamed2017tsdi@gmail.com"; 
+$eml="mohamed2017tsdi@gmail"; 
+echo "<br>";  
+var_dump(filter_var($eml,FILTER_VALIDATE_EMAIL));
+echo "<br>";
+var_dump(filter_var($eml,FILTER_VALIDATE_EMAIL,FILTER_NULL_ON_FAILURE));
+// Null si false
+echo "<br>"; 
+
+
+
+
+
+
+
+/*
+// V 78 Filter  filter_var P1 
+// echo "<br> -----------11111---------<br>"; 
+
+$ipp="192.168.11.122";
+ $ipp="1050:0000:0000:0000:0005:0600:300c:326b";//ipv6
+
+var_dump(filter_var($ipp,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6));
+// FILTER_NULL_ON_FAILURE  return Null si false     
+// FILTER_FLAG_IPV4 et FILTER_FLAG_IPV6        
+echo "<br>"; 
+var_dump(filter_var($ipp,FILTER_VALIDATE_IP,["flags" => FILTER_NULL_ON_FAILURE | FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 ]));
+// Les deux 
+
+echo "<br> ------------------------<br>"; 
+$mac="00:00:5E:00:53:AF" ;
+var_dump(filter_var($mac , FILTER_VALIDATE_MAC  ));//bool(false) 
+echo "<br>"; 
+
+var_dump(filter_var($mac , FILTER_VALIDATE_MAC ,FILTER_NULL_ON_FAILURE ));
+//  NULL 
+echo "<br>"; 
+
+
+
+
+
+
+/*
+
 $url="http://localhost/php2024/INDEXs.PHP";  
-$url="http://localhost";  
-$url="hasdajsd,n";  
+// $url="http://localhost";  
+// $url="hasdajsd,n";  
 
 var_dump(filter_var($url,FILTER_VALIDATE_URL)); //http://localhost..
 echo "<br>"; 
+var_dump(filter_var($url,FILTER_VALIDATE_URL,FILTER_NULL_ON_FAILURE));
+// FILTER_NULL_ON_FAILURE SI faus return null si non return true 
+echo "<br>"; 
 var_dump(filter_var($url,FILTER_VALIDATE_URL,FILTER_FLAG_PATH_REQUIRED));
 // path  localhost/ or false or null si l url hgshdgsh
+// FILTER_FLAG_PATH_REQUIRED si pas de pathe return false https...com pas ...com/
 echo "<br>";
+$url="http://localhost/?id=100";  
+var_dump(filter_var($url,FILTER_VALIDATE_URL,FILTER_FLAG_QUERY_REQUIRED));
+// FILTER_FLAG_QUERY_REQUIRED  false si pas de  ?id=100 si  non return true
+echo "<br>"; 
+$url="http://localhost/?id=100";  
+var_dump(filter_var($url,FILTER_VALIDATE_URL,["flags" =>FILTER_NULL_ON_FAILURE| FILTER_FLAG_QUERY_REQUIRED | FILTER_FLAG_PATH_REQUIRED ]));
+// les Trois filter 
+echo "<br>"; 
 
  /*
 
