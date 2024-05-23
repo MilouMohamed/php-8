@@ -3,17 +3,214 @@ echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
 
+// V 89   files Systeme 
+// -------------------------------------
+// ftell fseek rewind
+ 
+
+
+/*
+// V 89   files Systeme 
+// -------------------------------------
+// ftell fseek rewind
+
+$file=fopen("5_lines.txt","r");
+/*
+echo ftell($file). "<br>";   // 0 Position Cursor
+echo fgets($file). "<br>";
+
+echo ftell($file). "<br>";  // 7 Position Cursor
+
+echo  "<br>";
+echo mb_strlen("line1\r\n","8bit"); // 7 Position Cursor (line 2)
+echo  "<br>";
+  
+echo fgets($file). "<br>"; // line 3
+echo ftell($file). "<br>";  
+  
+rewind($file);  // position to 0  pointer
+echo fgets($file). "<br>"; // line 1
+echo ftell($file). "<br>";  
+*/
+/*
+echo fgets($file). "<br>"; // line 1
+echo ftell($file). "<br>";  
+
+fseek($file,1,SEEK_CUR); 
+//  SEEK_SET === ofsite  ici 1
+//  SEEK_CUR  ++ offset
+//  SEEK_END =>  EOF(end of file) + offset [accepte negatife - et +]
+
+fseek($file,1,SEEK_SET);  // ine 1 
+echo fgets($file). "<br>"; // ine 1    
+echo "<br>-------------------------<br>";
+
+fseek($file,-5,SEEK_END);  //  accepte negatife value
+echo fgets($file). "<br>"; // FGH    ===>  FGH + \r + \n  ==> 5
+
+
+
+fclose($file);
+
+/*
+// V 88   files Systeme fopen Parte 3
+// -------------------------------------
+// file feof and Loop Practice
+// c  all parametres pointer at the Beginning
+echo "V88"."<br>";
+// $file=fopen("5_lines.txt","w+");
+
+//  for ($i=1; $i <= 10; $i++) { 
+//       fwrite($file," $i 00 line is ==> $i \r\n");
+//   }
+// fclose($file);
+ /*
+echo "<pre>";
+print_r(file("5_lines.txt"));
+echo "</pre>";
+echo "<br>";
+
+echo "nbr Ligne is ".count(file("5_lines.txt"));
+*/
+
+/*
+
+$ffil=fopen("5_lines.txt","r");
+// while( ! feof($ffil)) { 
+//     echo fgets($ffil)."<br>"; // Line by line
+// }
+
+for ($i=0; $i < 100 ; $i++) { 
+   if(! feof($ffil)){
+    echo  "<b>".fgetc($ffil)."</b> ********* ".fgets($ffil)."   -------<br>"; 
+   }
+   else break ;
+}
+
+fclose($ffil);
+
+
+
+/*
+// V 87   files Systeme fopen Parte 2
+// -------------------------------------
+//   fopen fwrite
+echo "V87"."<br>";
+//           ponter at the end 
+// a  write ponter at the end + create if not existe
+// a+ write and read .....
+// x  Create + Open for write  +  pointer at the start
+// x+ Create + Open for write / write  +  pointer at the start
+
+$file_txt=fopen("file_v86.txt","a");
+
+fwrite($file_txt,"\r\nI Like Php is very Esy",10);   // \r\n new line
+fwrite($file_txt,"\r\nI Like Php is very Esy one");   // \r\n new line
+
+// echo fread($file_txt,1024);
+
+fclose($file_txt);
+
+/*    
+// V 86   files Systeme fopen Parte 1
+// -------------------------------------
+echo "V86"."<br>";
+//       ponter at the start
+//   r (read) r+ if ixiste (read & write)  w (write) w+ (read & write) 
+//   w write file if note existe and replace context if exest
+$myfile=fopen("file.txt","r"); 
+
+    // echo fgets($myfile,4)."<br>";  //Med 
+    // echo fread($myfile,4)."<br>";  //Medo
+    echo fread($myfile,1024)."<br>";  //Medox Nom1 Nom3; test 4    1ko
+
+fclose($myfile);
+
+
+
+
+
+echo "<pre>";
+echo "</pre>";
+
+
+/*
+// V 85   realpath  basename ..
+// -------------------------------------
+echo "---------------"."<br>";
+echo realpath(__FILE__)."<br>";// like echo __FILE__
+echo "---------------"."<br>";
+echo "<pre>";
+print_r(pathinfo(__FILE__));
+/*  [dirname] => M:\Programmation\PHP 8\htdocs\PHP2024
+    [basename] => INDEXs.PHP
+    [extension] => PHP
+    [filename] => INDEXs
+*/
+/*
+echo "</pre>";
+echo pathinfo(__FILE__,PATHINFO_EXTENSION)."<br>";// PHP
+
+/*
+echo "---------------"."<br>";
+//M:\Programmation\PHP 8\htdocs\PHP2024
+echo dirname(__FILE__)."<br>";// emplacement M:\....\PHP2024
+echo dirname(__FILE__,2)."<br>";// emplacement M:\....\htdocs
+echo dirname(__FILE__,3)."<br>";// emplacement M:\....\PHP 8
+
+echo "---------------"."<br>";
+echo __FILE__."__FILE__<br>";          // M:\Progra...\INDEXs.PHP
+echo basename("INDEXs.PHP")."<br>";    // INDEXs.PHP 
+echo basename(__FILE__)."<br>";        // INDEXs.PHP
+echo basename(__FILE__,".PHP")."<br>"; // INDEXs 
+
+/*
+// V 84  files  Chmod Fileprems ,Clear stat cache
+// -------------------------------------
+//Chmod change mode 0777  =>fileprems 16 895 =to 8 > 40777  4 => directory
+// chOwn()  Chnage Owner
+// chgrp()  Chnage Group 
+echo "---------------"."<br>";
+// rmdir("dd4"); 
+clearstatcache();
+// mkdir("dd4",0700);// on windo 16895(b10)===> 40 777(b8)   ignore permission
+// on lunix{serveur} 16832(b10)===> 40 700(b8)  
+echo fileperms("dd4")."<br>";
+chmod("dd4",0722);
+clearstatcache();// pour suppremer le cach
+echo fileperms("dd4")."<br>";
+
+
+
+
 
 // V 83  is_Dir MkDir RmDIr
 // dir === folder "; 
+/*
 echo "Test ";
 echo "<br> ";
 var_dump(is_dir("nvdos/"));         // true
 echo "<br> ";
 var_dump(is_file("nvdos/test.txt"));// true
 echo "<br> ";
-mkdir("NV1");// Create Folder
+// mkdir("name Folder",Mode 0777);// Create Folder
+/* permission Is ignored O  on  windows
+  0777 is octal start with 0
+  0777   =>0  | Owner Permition  | User group Permition  | Others permi  
+Voir image pour 0777 
+*/ 
+/*
 echo "<br> ";
+// mkdir("NV2");// Create Folder
+// mkdir("NV5/nv0/N5"); // Warning
+// mkdir("NV5/nv0/N5",0777); // Warning
+// mkdir("NV5/nv0/N2",0777,true); // create all directory 
+//   mkdir("NV5/nv0/N2",0000,true); // create all directory 
+echo "<br> ";
+echo  file_exists("NV5"); 
+echo "<br> ";
+echo var_dump(rmdir("NV5")); //  true or False if empty if ixiste
+
 
 
 
@@ -32,6 +229,105 @@ echo filesize("file.txt")." En Bytes <br>";   // Bytes
 
 
 // echo disk_total_space("M:") / 1024 / 1024 / 1024 ." GB<br>";
+
+echo "<br> ---------  ---------- ----------  -----------  -----------  --------- <br>" ;
+// V 73 ->> 81 test  
+// Qst 6
+echo "<br>";
+
+
+$url1 = "http://www.elz ero.org";
+$url2 = "http://¥elzero.org";
+$url3 = "https://elzero.org";
+$url4 = "https://elzero.o¥rg";
+ 
+function updateUrl($url) {
+    echo filter_var($url,FILTER_SANITIZE_URL)."<br>";
+}
+
+updateUrl($url1);
+updateUrl($url2);
+updateUrl($url3);
+updateUrl($url4);
+
+
+
+/*
+// V 73 ->> 81 test  
+// Qst 5
+$url1 = "http://www.elz ero.org";
+$url2 = "http://¥elzero.org";
+$url3 = "https://elzero.org";
+$url4 = "https://elzero.o¥rg";
+ 
+echo (filter_var($url1,FILTER_VALIDATE_URL,FILTER_NULL_ON_FAILURE) == NULL ? "Not A Valid URL" :"A Valid URL" )."<br>";
+
+echo (filter_var($url2,FILTER_VALIDATE_URL,FILTER_NULL_ON_FAILURE) == NULL ? "Not A Valid URL" :"A Valid URL" )."<br>";
+
+echo (filter_var($url3,FILTER_VALIDATE_URL,FILTER_NULL_ON_FAILURE) == NULL ? "Not A Valid URL" :"A Valid URL" )."<br>";
+
+echo (filter_var($url4,FILTER_VALIDATE_URL,FILTER_NULL_ON_FAILURE) == NULL ? "Not A Valid URL" :"A Valid URL" )."<br>";
+
+echo "<br>";
+   
+
+
+/*
+// V 73 ->> 81 test  
+// Qst 4
+   
+ 
+foreach (filter_list() as $key => $value) {
+    $lkey[filter_id($value)] = $value;
+}
+
+echo "<pre>";
+// print_r(filter_list());
+print_r($lkey);
+ echo "</pre>";
+
+
+/*
+// V 73 ->> 81 test  
+// Qst 3
+$n1=11.5;
+$n2=9.4898;
+$n3=-7.5;
+echo round($n1,0,PHP_ROUND_HALF_DOWN)."<br>"; //11
+echo round($n2,1)."<br>"; //9.5 
+echo round($n3,0,PHP_ROUND_HALF_DOWN)."<br>"; // -7
+
+
+
+
+/*
+// V 73 ->> 81 test  
+// Qst 2
+$frindes=["Osama","Kamal","Rachid","Rabi3","Yassir","Abdlghni"];
+echo  $frindes[rand(0,count($frindes) -1)]."<br>";
+echo  $frindes[array_rand($frindes)]."<br>"; 
+
+
+/*
+// V 73 ->> 81 test  
+// Qst 1
+ echo rand(11,19)."<br>";
+ echo array_rand(["11"=>"0","12"=>"1","13"=>"3","14"=>"4","15"=>"5","16"=>"06","17"=>"07","18"=>"08","19"=>"08"])."<br>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // V 81 Filter filter_input
@@ -92,15 +388,7 @@ echo "<br>";
 echo "<br>";
 
 
-
-
-
-
-
-
-
-
-
+ 
 /*
 
 $eml="email@ma  ¬ il.com"; //¬
@@ -207,7 +495,7 @@ var_dump(filter_var($url,FILTER_VALIDATE_URL,FILTER_FLAG_QUERY_REQUIRED));
 // FILTER_FLAG_QUERY_REQUIRED  false si pas de  ?id=100 si  non return true
 echo "<br>"; 
 $url="http://localhost/?id=100";  
-var_dump(filter_var($url,FILTER_VALIDATE_URL,["flags" =>FILTER_NULL_ON_FAILURE| FILTER_FLAG_QUERY_REQUIRED | FILTER_FLAG_PATH_REQUIRED ]));
+var_dump(filter_var($url,FILTER_VALIDATE_URL,["flags" =>FILTER_NULL_ON_FAILURE | FILTER_FLAG_QUERY_REQUIRED | FILTER_FLAG_PATH_REQUIRED ]));
 // les Trois filter 
 echo "<br>"; 
 
@@ -284,13 +572,13 @@ echo round(5.895,2)."<br>";  //    5.9
 echo round(5.994,2)."<br>";  //    5.99
 echo round(5.995,2)."<br>";  //    6
 
-echo  "  ------------------------------ <br>";   
+echo  "  ------------------------------ <br>";  
 echo round(5.45,0,PHP_ROUND_HALF_UP)."<br>";  //5  == ceil si 0.5 
 echo round(5.55,0,PHP_ROUND_HALF_UP)."<br>";  //6  == ceil si 0.5 
 
 
 echo round(5.555,0,PHP_ROUND_HALF_DOWN)."<br>";  //6  == floor si 0.5 
-echo round(5.499,0,PHP_ROUND_HALF_DOWN)."<br>";  //6  == floor si 0.5 
+echo round(5.499,0,PHP_ROUND_HALF_DOWN)."<br>";  //5 == floor si 0.5 
 
 
 echo round(5.50,0,PHP_ROUND_HALF_EVEN)."<br>";  //6  == floor si 0.5 
@@ -305,11 +593,11 @@ echo round(8.50,0,PHP_ROUND_HALF_ODD)."<br>";  //7  == le plus proche 2n +1 nbr 
 // echo "<br> -----------11111---------<br>"; 
 // V 74   ceil , floor , round  ===>  returne Double
 
-echo ceil(11.000_11)."<br>";  // 12 ta9f
+echo ceil(11.000_11)."<br>";  // 12 sa9f
 echo floor(11.000_11)."<br>"; // 11  ardiay 
 
 //Negative Values
-echo ceil(-11.000_11)."<br>";  // -11 ta9f
+echo ceil(-11.000_11)."<br>";  // -11 sa9f
 echo floor(-11.000_11)."<br>"; // -12  ardiay 
 
 
@@ -323,6 +611,7 @@ echo "<br>";
 //    fmod($n1, $n2)    retrun double 
 echo fmod(11.5 ,5)."<br>";    // 1.5
 echo (double)(11.5  % 5)."<br>";   // 1
+ 
 echo  11.5  % 5 ."<br>----------------------<br>";   // 1
 
 //    intdiv($n1, $n2)  === (int)($n1 , $n2 ); retrun int pad double
@@ -330,13 +619,12 @@ echo intdiv(11,5)."<br>";
 echo (int)(11/5)."<br>";  
 echo  11/5 ."<br>----------------------<br>";  
 
-echo rand(10,15). "<br>"; 
+echo rand(10,15). "<br>";  
 
 echo abs(10). "<br>";
 echo abs(-100). "<br>";
 echo abs(0). "<br>";
-echo "<br>"; 
-*/
+echo "<br>";   
 
 /*
 // V 63 ->> 72 test  
