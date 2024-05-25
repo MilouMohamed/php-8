@@ -3,16 +3,250 @@ echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
 
-// V 89   files Systeme 
+// V 92  Date  and Time
 // -------------------------------------
-// ftell fseek rewind
+
+/*
+// V 82 ->> 91 test  
+// Qst 7
+$name_file="q7-82-91.txt";
+
+$cntx=file_get_contents($name_file);
+echo $cntx."<br>";
+$file=fopen($name_file,"w",false); 
+$cntx=str_replace("Ossama","Medox",$cntx);
+echo "<br> ---------- ".$cntx." ---------- <br>";
+
+
+fwrite($file,$cntx);
+fclose($file);
+/*
+// V 82 ->> 91 test  
+// Qst 6
+ $nomFile="q5-82-91.txt"; 
+
+$file=file_get_contents($nomFile);  //Hello Elzero Web School
+$file=array_slice(explode(PHP_EOL,$file),0,2); // \n ==  PHP_EOL 
+echo  $file=implode(" ",$file);
+
+
+$file=file($nomFile,FILE_IGNORE_NEW_LINES); 
+echo "<br> ";
+echo  join( " ", array_slice($file,0,2)). "<br> "; 
+ 
+ $filetxt=fopen($nomFile,"r"); 
+
+//  $filetxt_contx=fread($filetxt,filesize($nomFile));
+ $filetxt_contx=fread($filetxt,24);
+ echo $filetxt_contx;
+
+fclose($filetxt);
+echo "<br>   -------   -------   -------   ------- <br>";
+
+
+$filetxt=fopen($nomFile,"r"); 
+echo fgets($filetxt) . " ".fgets($filetxt); 
+fclose($filetxt);
+
+/*
+// V 82 ->> 91 test  
+// Qst 5
+echo basename(__FILE__) ."<br>"; 
+echo basename($_SERVER["PHP_SELF"])."<br>";
+echo basename($_SERVER["SCRIPT_FILENAME"])."<br>";  
+echo basename($_SERVER["SCRIPT_NAME"])."<br>";  
+/*
+// V 82 ->> 91 test  
+// Qst 4
+function change_permission($file_txt) {
+
+    if( is_dir($file_txt)) return "This Is Derectory Note A File <br>";
+
+
+    if( ! is_file($file_txt)) return "Note File Exist Or Derectory <br>";
+    
+
+  if ( strtolower( pathinfo($file_txt,PATHINFO_EXTENSION) ) != "txt")
+  return "File Extension Is Note txt<br> ";
  
 
+
+  $prem=fileperms($file_txt);
+  chmod($file_txt,0600);
+  $premNew=fileperms($file_txt);  
+  // Windows ignore permision
+if( $prem != $premNew )  { 
+    return " Permission Changed<br>";
+}
+
+
+
+}
+
+// fopen("1111.txt","w+");
+
+echo  change_permission("NV1");
+echo  change_permission("NV10");
+echo  change_permission("EPSON L3250.pdf");
+echo  change_permission("file.txt");
+echo  change_permission("1111.txt");
+
+/*
+// V 82 ->> 91 test  
+// Qst 3
+echo "<br>";
+echo "--------". (bool)(is_dir("Programming_/Php_"))."--------<br>";
+
+$prog_="Programming_";
+$php_="Php_";
+
+if ( !(bool)is_dir("$prog_/$php_") )  {
+
+     mkdir("$prog_", 0700, true);
+     chmod("$prog_",0711);
+
+     mkdir("$prog_/$php_", 0700, true);
+     chmod("$prog_/$php_",0711);
+
+        echo   " Created <br>";
+}else   {
+    rmdir("$prog_/$php_");
+    echo  "Detele  Php_<br>"; // detele  Php_
+
+    rmdir("$prog_");
+    echo  "Detele  Programming_ <br>"; // detele  Programming_
+}
+
+
+/*
+// V 82 ->> 91 test  
+// Qst 2
+echo "<br>";
+ 
+echo round(filesize("EPSON L3250.pdf") / 1024 , 2) ." Ko<br>";
+echo round(filesize("EPSON L3250.pdf") / 1024/1024 , 2) ." Mg<br>";
+
+/*
+// V 82 ->> 91 test  
+// Qst 1
+echo "<br>-------------------------<br>";
+echo  round( disk_total_space("C:") / 1024 /1024 / 1024 ,2)."<br>";
+echo  round( disk_total_space("M:") / 1024 /1024 / 1024 ,2)."<br>";
+echo "<br>";
+
+
+$drive=array("C:","M:");
+$drive=["C:","M:"];
+
+$tot_siz=0;
+
+foreach ($drive as $key => $value) {
+  $siz=disk_total_space($value);
+  $tot_siz+=$siz; 
+}
+$gb=$tot_siz /1024 / 1024 /1024;
+$gb=round($gb,2);
+echo $gb."<br>";
+
+
+/*
+// V 91   files Systeme 
+// -------------------------------------
+
+// Open and close automatic
+// echo file_put_contents("filev9-1.txt","aabbccdd")."<br>"; 
+// 8 Bites et overide Contents
+
+echo file_put_contents("filev9-1.txt","\r\n*-*H_H*-*",FILE_APPEND)."<br>";
+// 11 Bites et add Contents == Push
+ 
+echo "<pre>";
+echo "<br>";
+echo "</pre>";
+
+
+/*
+echo get_include_path()."<br>";
+echo file_get_contents("fileHi.txt",true)."<br>";// ture => context
+echo file_get_contents("filev9.txt",true)."<br>";// ture => context 
+echo file_get_contents("filev9.txt",true,null)."<br>";// ture => context 
+echo "<br>----------  file = abcdef_ghk_lmnrts_ zerty_ghttrs_svttmr   ----------------<br>";
+echo file_get_contents("filev9.txt",true,null,4)."<br>"; //ef_ghk_lmnrts_ zerty....
+// start from 4
+echo file_get_contents("filev9.txt",true,null,4,5)."<br>";  //ef_gh
+// start from 4
+*/
+/*
+ echo file_get_contents("https://elzero.com");
+echo "<pre>";
+ print_r(file("https://elzero.com"));
+echo "</pre>";
+*/
+
+/*
+// file() return array 
+// file_get_contents()  return string
+ echo dirname(__FILE__)."<br>";
+echo " <pre> ";
+// print_r(file("file.txt")); array 
+echo " <\pre> ";
+echo "<br> ---------------------- <br> ";
+echo   file_get_contents("file.txt")."<br>";
+
+echo   get_include_path()."<br>"; //M:\Pro....\php\PEAR
+//get_include_path() == dirname(__FILE__)
+
+
+
+// V 90   files Systeme 
+// -------------------------------------
+// ftell fseek rewind
+/*
+ echo "Test";
+ echo "<pre>";
+ print_r(glob("*.*"));// all files 
+ print_r(glob("nv5/*.txt"));// all files   txt dans folder nv5
+ echo "<\pre>";
+*/
+/*
+// $dirc=  opendir("NV1/COPY001.txt");
+$dircscn=  opendir("NV1/");
+
+
+ echo "<pre>"; 
+ print_r(readdir($dircscn));
+ echo "</pre>";
+
+  closedir($dircscn);
+
+// Copy Without Rename
+// copy("nv5/COPY.txt","nv1/COPY.txt"); // 
+
+// Copy With Rename
+// copy("nv5/COPY.txt","nv1/COPY000.txt"); // 
+
+
+// unlink("nv1/COPY000.txt");
+/*
+ rename("nv5/doc txt - Co3.txt","nv5/doctxt.txt");
+ // rename the file meme place
+
+  rename("nv5/doc txt - Co3.txt","nv1/docTxt-Co33.txt");
+  // rename the file auther  place ===> deplace  the file
+
+  rename("nv5/doc txt - Co3.txt","nv1/docTxt-Co33.txt");
+  //  deplace  the file
+
+
+ echo "<pre>";
+ print_r(glob("nv5/*.txt"));// all files   txt dans folder nv5
+ echo "<\pre>";
+*/
 
 /*
 // V 89   files Systeme 
 // -------------------------------------
-// ftell fseek rewind
+// ftell fseek rewind 
 
 $file=fopen("5_lines.txt","r");
 /*
@@ -198,7 +432,7 @@ echo "<br> ";
   0777 is octal start with 0
   0777   =>0  | Owner Permition  | User group Permition  | Others permi  
 Voir image pour 0777 
-*/ 
+*/
 /*
 echo "<br> ";
 // mkdir("NV2");// Create Folder
