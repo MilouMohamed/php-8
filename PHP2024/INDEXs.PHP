@@ -3,8 +3,177 @@ echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
 
+// V 92 ->> 97 test  
+// Qst 1
+$date="2005-10-02";
+$new_date=strtotime(" $date +15 hours  10 Minutes 10 secods");
+
+echo date("Y-m-d H:i:s");
+echo "<pre>";
+ print_r( $new_date); 
+ echo "</pre>";
+
+
+/*
+// V 92 ->> 97 test  
+// Qst 1
+
+$date=date_create("now"); 
+$date=date_create("2022-11-09 19:11:22 "); 
+  date_default_timezone_set("Asia/Riyadh"). "<br>";
+echo  date_default_timezone_get(). "<br>";
+echo   date_format($date,"D, d M y - h:i:s A"). "<br>";
+echo   date_format($date,"l, d F Y  - h:i:s A"). "<br>";
+
+
+/*
+// V 97  Date   functions   date diff StrToTime
+// ------------------------------------- 
+echo "<br> ----------- Parce ---------<br>";  
+
+$dt1=date_create();
+$dt2=date_create("2024-5-6"); 
+echo "<pre>";
+print_r( date_diff($dt1,$dt2));// Array Date 
+echo "</pre>";
+echo " You Are A member For ".date_diff($dt1,$dt2)->days;//21 Jours
+
+echo "<br> ----------- Parce ---------<br>"; 
+echo date("Y-F-l d" ). "<br>";  //2024-May-Monday 27
+echo date("Y-F-l d",strtotime("next day")). "<br>"; //2024-May-Tuesday 28
+echo date("Y-F-l d",strtotime("+10 day")). "<br>"; //2024-June-Thursday 06
+echo date("Y-F-l d",strtotime("next year")). "<br>"; //2025-May-Tuesday 27
+echo date("Y-F-l d",strtotime("tomorrow",strtotime("2000-1-1"))). "<br>"; //2000-January-Sunday 02
+
+
+/*
+// V 96  Date   functions  Time get Date Date Parse
+// -------------------------------------
+
+
+echo "<br> ----------- Parce ---------<br>";  
+echo "<pre>";
+print_r( date_parse("2000-7-9 11:02:55 utc") ) ;  // gere les error in date 
+echo "</pre>";
+
+echo "<br> ----------- Time ---------<br>";  
+echo time() ."Secende  <br>";  // de 1970 jun 1 
+echo time() / 60 ."Minutes  <br>";  
+echo time()/60/60  ."Heur  <br>";  
+echo time()/60/60 /24 ."Jour  <br>";  
+echo time()/60/60 /24 /365 ."Annes  <br>"; 
+
+echo "<br> ----------- get Date ---------<br>";  
+echo "<pre>";
+print_r( getdate() ) ;  // array scened Minites Hours ...
+echo "</pre>";
+echo ( getdate()["yday"] )."<br>" ;  
+$date_m  =  date_create( ) ; // Time
+echo date_format( $date_m,"z"); 
+
+
+
+/*
+// V 95  Date   functions  Add Sub Modify
+// -------------------------------------
+echo "<br> -----------Time---------<br>";  
+$dat=date_create("2000-08-2 10:8:3");
+
+echo date_format($dat,"Y-m-d ")." <br>";//2000-08-02
+date_add($dat,date_interval_create_from_date_string("1 Year 10 month 5 days"));//2002-06-07
+echo date_format($dat,"Y-m-d ")." <br>";
+
+date_sub($dat,date_interval_create_from_date_string("1 Year 10 month 5 days"));//2000-08-02
+echo date_format($dat,"Y-m-d ")." <br>";
+
+date_modify($dat,"+1 year 1 months  +10 day");//2001-09-12
+echo date_format($dat,"Y-m-d ")." <br>"; 
+
+// V 94  Date   Format  Time 
+// -------------------------------------
+/*
+Time----- a ====> am / pm
+--------- A ====> AM / PM (automatic )
+Hour----- g ====> 1 - 12
+--------- h ====> 01 - 12
+--------- G ====> 0 - 23
+--------- H ====> 00 - 23
+Minutes Secends ,Micro
+--------- i ====> 00 - 59
+--------- s ====> 00 - 59
+--------- u ====> Microsecends
+
+*/
+ /*
+$mydate=date_create("3-2-2024 18:50:50 ");
+echo date_format($mydate,"Y - a  * A")." <br>";//2024 - am * AM  
+echo date_format($mydate,"Y - h/H --- g/G")." <br>";//2024 - 06/18 --- 6/18 
+
+echo "<br> -----------Minutes---------<br>";  
+$mydate=date_create("now"); 
+echo date_format($mydate,"Y - H **  i/s  ////  u")." <br>";//2024 - 14 ** 08/11 //// 992818
+
+/*
+// V 93  Date   Format
+// -------------------------------------
+/* Month
+----- m ====> 01 - 12
+----- M ====>  3 letters of month
+----- F ====> Name  of month
+----- t ====> Number Of days In this Month
+*/
+/*
+$mydate=date_create("2024-2-30");
+$mydate=date_create("30-2-2024");
+echo date_format($mydate,"Y ---- y")." <br>";//2024 ---- 24 
+echo date_format($mydate,"M-m- F--t")." <br>";//Mar-03- March--31
+echo   ""." <br>";  
+
+
+ echo "<br> -----------Day---------<br>";  
+/* Day
+----- d ====> 01 - 31
+----- j ====> 1 - 31
+----- D ====> 3 Letters
+
+----- l ====> Full Text
+----- z ====>  day Of Year 0 - 365
+----- S ====>   st , rd Suffix For Day (premier Deuxieme troisieme)
+*/ 
+/*
+$mydate=date_create("now");
+$mydate=date_create("3-2-2024");
+echo date_format($mydate,"d - D ** j")." <br>";// 03-Sat ** 3 
+echo date_format($mydate,"l - z - S") ." <br>"; // Saturday - 33 - rd  
+
+/*
 // V 92  Date  and Time
 // -------------------------------------
+  
+echo date_default_timezone_get()." <br>";
+ date_default_timezone_set("Africa/Dakar")." <br>";// True if Valide value else false 
+echo date_default_timezone_get()." <br>";
+ // Liste time zone https://www.php.net/manual/en/timezones.php
+echo  date("M-D-Y")." <br>"; // Date 
+echo  date("m-d-y")." <br>";  // Date  05-27-24 
+echo  date("h:i:s")." <br>"; // Time  10:35:12
+echo  date("M-d-Y // //   h:i:s")." <br>"; //Date  Time
+echo   " <br> --------- <br>"; // Time
+$date_m  =  date_create("",timezone_open("Asia/Tokyo")) ; // Time
+
+
+echo date_format($date_m,"d-m-Y  H:i:s")." <br>";//27-05-2024 19:35:12 
+echo "<pre>";
+print_r( $date_m ) ;
+echo "</pre>";
+
+
+echo "<br>";
+var_dump( checkdate(11,12,1993)); //bool(true)  
+echo "<br>";
+var_dump( checkdate(32,02,2014)); //bool(false) 
+echo "<br>";
+
 
 /*
 // V 82 ->> 91 test  
