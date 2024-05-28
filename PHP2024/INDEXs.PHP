@@ -3,14 +3,128 @@ echo "<div style='padding:20px'>  ";
 
 // echo "<br> -----------11111---------<br>"; 
 
-// V 92 ->> 97 test  
-// Qst 1
-$date="2005-10-02";
-$new_date=strtotime(" $date +15 hours  10 Minutes 10 secods");
+// V 99  Date Cookies Part 2
+// ------------------------------------- 
+// Path   php2024 all Subdomaine is god 
+//ila kan f meme doamine il va marche bien si non el ne marcher pas
 
+
+echo "<br> ----------- Cookies ---------<br>";  
+setcookie("V99","9 Val",0,"/php2024/V99");//  Path V99
+setcookie("V99-1","9-1 val" );// ths  Path "/" [V99-1] => 123Value
+ // dans index une seul (V99-1) et dans  /php2024/V99  deux (V99-1,V99)
+/*
+echo "<br> ----------- Cookies ---------<br>";  
+setcookie("V99","123Value", time() + (2*24*60*60));// 2 jours
+setcookie("V99-1","124Value", strtotime(" + 2 days"));// 2 jours 
+echo $_COOKIE["V99"]. "<br>"; // value
+*/ 
+echo "<br>";
+echo "<pre>";
+print_r($_COOKIE);
+echo "</pre>";
+
+/*
+// V 98  Date Cookies Part 1
+// ------------------------------------- 
+echo "<br> ----------- Cookies ---------<br>";  
+echo "<br> ----------- Cookies ---------<br>";  
+
+// setcookie("php--844","my_value" );
+// setcookie("php-8","my_value",1,"/","localhost",true,true );
+setcookie("php-855","my_value" );
+// infinit cookies navigator one not all 
+setcookie("php-8Date","my_value",time() + (60 *60 * 24 * 2) ); // +2 jours
+
+ 
+echo "ttttt";
+/*
+// V 92 ->> 97 test  
+// Qst 5 
+echo "<br>"; 
+echo time()."<br>";   //1716893074
+
+$dt= new DateTime();
+echo $dt->getTimestamp()."<br>";   //1716893074
+
+echo explode(" ",microtime())[1]."<br>";  //1716893074
+
+list($mls,$scd)=explode(" ",microtime());
+echo $scd."<br>";   //1716893074
+
+[$mls,$scd]=explode(" ",microtime());
+echo $scd."<br>";   //1716893074
+ 
+
+
+echo "<pre>"; 
+print_r( $dt); 
+ echo "</pre>";
+
+/*
+// V 92 ->> 97 test  
+// Qst 4
+echo "<br>"; 
+$dt="1990-10-01";
+$date= date_diff(date_create($dt),date_create("1970-1-1")); 
+echo $date->days." Days <br>"; 
+echo $date->y." Years <br>"; 
+echo "<br>"; 
+
+echo "<pre>"; 
+ print_r( $date); 
+ echo "</pre>";
+
+
+
+
+/*
+// V 92 ->> 97 test  
+// Qst 3
+echo "<br>"; 
+date_default_timezone_set("Africa/cairo");
+echo date_default_timezone_get()."<pre>";
+
+$dt="1990-10-01";
+$date=date_create($dt);
+$time= strtotime($dt);
+$time_now=strtotime(date_format( date_create(),"Y-m-d H:i:s"));
+// echo   $time." ***<br>";
+// echo   $time_now." *****<br>";
+$time_n=$time_now - $time;// now between 1990 and now
+
+echo   (round($time/60/60/24 ,1,PHP_ROUND_HALF_UP))." Days<br>";
+echo   (round($time/60/60/24/365,1,PHP_ROUND_HALF_UP ))." Years<br>"; 
+
+echo "<br> -----------  ---------  ---------  ---------  ---------<br>";  
+
+
+echo "<pre>"; 
+ print_r( $date); 
+ echo "</pre>";
+
+
+
+
+/*
+// V 92 ->> 97 test  
+// Qst 2
+$date="2005-10-02";
+date_default_timezone_set("Africa/cairo");
+echo date_default_timezone_get()."<br>";
+echo  "<br>";
+$date=date_create( "$date +15 hour  +15 minutes +15 second ");
+
+echo "<pre>"; 
+ print_r( $date); 
+ echo "</pre>";
+echo date_format($date,"Y , F , l  \'dS\'   h:i:s");
+
+// $new_date=date_add($date,$date1);
+/*
 echo date("Y-m-d H:i:s");
 echo "<pre>";
- print_r( $new_date); 
+ print_r( $date); 
  echo "</pre>";
 
 
