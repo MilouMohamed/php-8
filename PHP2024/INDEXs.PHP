@@ -1,8 +1,208 @@
 <?php
 echo "<div style='padding:20px'>  ";
-
+/*
+Need ------------------
+-----1  Error Exeption
+-----2  OOP
+-----3  MVC
+*/
+ 
 // echo "<br> -----------11111---------<br>"; 
 
+// V 98 ->> 105 test  
+// Qst 4
+
+setcookie("site[color]","blue", 0,"/");
+setcookie("site[layout]","boxed", 0,"/");
+setcookie("site[font]","Swat", 0,"/");
+
+/*
+// V 98 ->> 105 test  
+// Qst 3
+setcookie("site[layout]","boxed",time() -1 ,"/");
+
+
+// V 98 ->> 105 test  
+// Qst 2
+
+echo "<pre>";
+print_r($_COOKIE);
+echo "<pre>";
+/*
+echo "Your Color Is ". $_COOKIE["site"]["color"]." And  Your Font Is ".$_COOKIE["site"]["font"]."<br>";  
+ 
+// V 98 ->> 105 test  
+// Qst 1  
+setcookie("site[color]","blue", strtotime(" +2 month +5 days"),"/");
+setcookie("site[layout]","boxed", strtotime(" +2 month +5 days"),"/");
+setcookie("site[font]","Swat", strtotime(" +2 month +5 days"),"/");
+
+/*
+// V 105 Header
+// -------------------------------------
+// echo   "Vide 105 <br>";  
+// header("HTTP/1.0 404 Not Found");
+
+echo "<a href='index_v105.php' >Page Test <a> ";
+// header("location: index_v105.php");// Supprimer Ou Remplae les hestorys (reteur page home)
+
+// rederect in 5 secods
+header("Refresh:5; url=index_v105.php"); 
+exit;// Pour La securite
+// vour Cours php securty in chaine
+
+/*
+// V 104 Session  Unset Destroy (Login and Logout)
+// -------------------------------------
+//-------------------------------------- 
+// print_r($_SERVER);
+session_start(); 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_POST["userName"] == "mm11") {
+
+        $_SESSION["name"] = $_POST["userName"];
+        $_SESSION["id"] = 2024;
+    }
+}
+if (isset($_SESSION["name"])) {
+    echo "<br>Welcome Mr " . strtoupper($_SESSION["name"]) . "<br>";
+} else {
+?>
+    <form action="" method="post">
+        <input type="text" name="userName">
+        <input type="submit" value="Login">
+    </form>
+
+<?php   }  
+echo "<a href='logout.php'>Logout<a> " ;
+//-------------------------------------- 
+/*
+echo "V 104" . "<br>";
+
+session_start();
+$_SESSION["val1"] = "test Val 1";
+$_SESSION["val2"] = "test Val 222";
+
+
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+session_destroy(); // detele file in tmp
+// session_unset();// free all session 
+
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+
+
+/*
+// V 103 Session Edite 
+// ------------------------------------- 
+echo "V 103" . "<br>";
+
+session_id("myIdSession");//  avant session start
+
+session_start();
+ 
+echo session_id()."<br>";// id === value in browser
+
+$_SESSION["val1"]="test Val 1";
+$_SESSION["val2"]="test Val 222";
+
+$_SESSION["name"]="Name_01"; 
+
+ isset($_SESSION["views"]) ? $_SESSION["views"]++ :$_SESSION["views"]=1 ;
+
+echo "Your Name is ".$_SESSION["name"]." Views Count Is ".$_SESSION["views"]."<br>";
+
+echo "---- <a href='index_v103.php'> Index V 103 . php<a><br>";
+
+echo "<pre>";
+print_r( $_SESSION   );
+echo "</pre>";
+
+
+
+
+// session_destroy();
+
+/*
+// V 102 Session
+// ------------------------------------- 
+echo "V 102" . "<br>";
+
+ session_start(); // Pour autorise l acces
+
+echo "<br> <a href='index_v102.php'>index_v102.php  </a> <br>";
+
+$_SESSION["name"]="Medox";
+$_SESSION["id"]=1008;
+
+
+echo "<br>";
+echo "<pre>";
+print_r( $_SESSION   );
+echo "</pre>";
+
+
+/*
+// V 101  Date Cookies Part 2 Practice
+// ------------------------------------- 
+echo "V 101" . "<br>";
+
+if(isset($_COOKIE["bgColor"])) {
+echo "<style> body { background-Color:".$_COOKIE["bgColor"]." }  </style>";
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+setcookie("bgColor",$_POST["bg-color"],strtotime("+1 days"));
+ header("Location:".$_SERVER["REQEST_URL"]);// Pour refreche page
+ exit();
+}
+
+echo "<br>";
+echo $_COOKIE["bgColor"];
+echo "<br>";
+
+?>
+
+
+
+<form action="" method="POST">
+    <input type="color" name="bg-color">
+    <input type="submit" value="Change Color">
+</form>
+
+
+<?php
+/*
+// V 100  Date Cookies Part 2
+// ------------------------------------- 
+// Modifer delete Add array
+// remove ====> time cookies  (time() -  1)
+echo "Test"."<br>";
+setcookie("list_1[color]","Green");
+setcookie("list_1[font]","22px");
+setcookie("list_1[bgColor]","White");
+
+echo $_COOKIE["list_1"]["color"]."<br>"; //Green
+echo $_COOKIE["list_1"]["font"]."<br>";  //22px 
+
+echo "<pre>";
+print_r($_COOKIE);
+echo "</pre>";
+
+/*
+ setcookie("Cok1","Value",strtotime(" +2 days "),"/","");
+  setcookie("Cok1-1s","Value",time() + 10,"/","");
+
+echo "<pre>";
+print_r($_COOKIE);
+echo "</pre>";
+
+
+/*
 // V 99  Date Cookies Part 2
 // ------------------------------------- 
 // Path   php2024 all Subdomaine is god 
@@ -18,7 +218,8 @@ echo "<br> ----------- Cookies ---------<br>";
 setcookie("V99","123Value", time() + (2*24*60*60));// 2 jours
 setcookie("V99-1","124Value", strtotime(" + 2 days"));// 2 jours 
 echo $_COOKIE["V99"]. "<br>"; // value
-*/ 
+*/
+/*
 echo "<br>";
 echo "<pre>";
 print_r($_COOKIE);
@@ -218,7 +419,7 @@ Minutes Secends ,Micro
 --------- u ====> Microsecends
 
 */
- /*
+/*
 $mydate=date_create("3-2-2024 18:50:50 ");
 echo date_format($mydate,"Y - a  * A")." <br>";//2024 - am * AM  
 echo date_format($mydate,"Y - h/H --- g/G")." <br>";//2024 - 06/18 --- 6/18 
@@ -253,7 +454,7 @@ echo   ""." <br>";
 ----- l ====> Full Text
 ----- z ====>  day Of Year 0 - 365
 ----- S ====>   st , rd Suffix For Day (premier Deuxieme troisieme)
-*/ 
+*/
 /*
 $mydate=date_create("now");
 $mydate=date_create("3-2-2024");
