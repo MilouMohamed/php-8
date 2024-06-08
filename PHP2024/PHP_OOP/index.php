@@ -4,6 +4,126 @@ echo "Ficher Index <br>";
 // V1 , V2 , V3 et V4   Presentation   
 
 echo "<br>------***------** POO **--------***------<br>";
+echo "V12  ---- ----  -----  ...... ...... <br>";
+// Ecncapsulation  
+class ApplePhone
+{
+    public $name;
+    public $inch;
+    public $ram;
+    public $space;
+    private $lock;// update from class only
+
+    public function new_item($n, $i, $r, $s = "15GB Default")
+    {
+        $this->name = $n;
+        $this->inch = $i;
+        $this->ram = $r;
+        $this->space = $s;
+    }
+
+    public function chefr_lock($lc)
+    {
+        $this->lock = sha1( $lc); // chefre les donnes
+    }
+}
+
+
+
+$phon = new ApplePhone();
+$phon->new_item("nom1", 17, 16, "250Gb");
+//   $phon->lock="Nom122";
+
+  $phon->chefr_lock("Nom123");// private lock ici change
+ 
+echo "<pre>";
+print_r($phon);
+echo "</pre>";
+
+/*
+echo "V11  ---- ----  -----  ...... ...... <br>";
+
+class ApplePhone
+{
+    public $name;
+    public $inch;
+    public $ram;
+    public $space;
+
+public function new_item($n,$i,$r,$s="15GB Default"){
+$this->name=$n;
+$this->inch=$i;
+$this->ram=$r;
+$this->space=$s;
+
+}
+}
+
+$phon=new ApplePhone();
+$phon2=new ApplePhone();
+$phon->new_item("nom1",17,16,"250Gb");
+$phon2->new_item("nom2",15,32);
+
+echo "<pre>";
+print_r($phon);
+print_r($phon2);
+echo "</pre>";
+
+
+/*
+echo "V10  ---- ----  -----  ...... ...... <br>";
+// self and this
+
+class ApplePhone
+{
+    public $name;
+    public $inch;
+    public $ram;
+    public $space;
+
+    const NBRCACH = 52;
+
+    public function get_Nbr()
+    {
+        echo "<br>test De Constant " . self::NBRCACH;
+    }
+}
+$phon1 = new ApplePhone();
+echo $phon1::NBRCACH; // M1
+
+/*
+echo "V9  ---- ----  -----  ...... ...... <br>";
+// constante  php 5.3 > const + define
+// const === define     
+// self:: Pour les constant  dans la class
+define("NMBR", "tstd");
+echo NMBR . "<br>";
+
+const nbr = 100;
+echo nbr . "<br>";
+
+
+echo "<br>   <br>";
+class ApplePhone
+{
+    public $name;
+    public $inch;
+    public $ram;
+    public $space;
+
+    const NBRCACH = 52;
+
+    public function get_Nbr()
+    {
+        echo "<br>test De Constant " . self::NBRCACH;
+    }
+}
+$phon1 = new ApplePhone();
+echo $phon1::NBRCACH; // M1
+echo "<br>";
+echo ApplePhone::NBRCACH;// M2
+
+/*
 echo "V8  ---- ----  -----  ...... ...... <br>";
 // This    ===> pseudo variable
 class ApplePhone
