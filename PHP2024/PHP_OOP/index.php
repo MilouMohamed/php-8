@@ -1,9 +1,104 @@
-<?php
+<?php 
 
 echo "Ficher Index <br>";
 // V1 , V2 , V3 et V4   Presentation   
 
 echo "<br>------***------** POO **--------***------<br>";
+echo "V14  ---- ----  -----  ...... ...... <br>";
+// Override 
+class ApplePhone
+{
+
+    public $name;
+    public $inch;
+    public $ram;
+    public $space; 
+
+    public function new_item($n, $i, $r, $s = "15GB Default")
+    {
+        $this->name = $n;
+        $this->inch = $i;
+        $this->ram = $r;
+        $this->space = $s; 
+    }
+
+    public function  sayHello()  {
+        echo "Hay Phone " . $this->name . "<br>";
+    }
+}
+
+
+class  SonyPhone extends ApplePhone
+{
+
+    public $ecran = "LCD";
+
+    public function  sayHello()  {// override
+        echo "Hay Phone " . $this->name . " and ".$this->ecran."<br>";
+    }
+}
+
+
+$phone1= new ApplePhone();
+$phone1->new_item("Nom10",7.6,16,"8gb");
+$phone1->sayHello();
+
+$phone2= new SonyPhone();
+$phone2->new_item("Nom20",8.6,32,"16gb");
+$phone2->sayHello();
+
+echo  "<pre>";
+print_r($phone1);
+echo "<br>-------------------------------<br>";
+print_r($phone2);
+echo  "</pre>";
+
+/*
+echo "V13  ---- ----  -----  ...... ...... <br>";
+// inheritence  l heritage
+class ApplePhone {
+ 
+    public $name;
+    public $inch;
+    public $ram;
+    public $space;
+    private $lock; 
+    
+    public function new_item($n, $i, $r, $s = "15GB Default")
+    {
+        $this->name = $n;
+        $this->inch = $i;
+        $this->ram = $r;
+        $this->space = $s;
+        $this->lock="default";
+    } 
+}
+
+class SonyPhone extends ApplePhone {
+
+ public $camer="LCD";
+
+ public function add_new_sony ($n, $i, $r, $s = "15GB Default",$cm)
+ {
+     $this->name    = $n;
+     $this->inch    = $i;
+     $this->ram     = $r;
+     $this->space   = $s; 
+     $this->camer   = $cm;
+ }  
+}
+
+$phone1= new ApplePhone();
+$phone1->new_item("Nom10",7.6,16,"8gb");
+
+$phone2= new ApplePhone();
+$phone2->new_item("Nom20",8.6,32,"16gb");
+echo  "<pre>";
+print_r($phone1);
+echo "<br>-------------------------------<br>";
+print_r($phone2);
+echo  "</pre>";
+/*
 echo "V12  ---- ----  -----  ...... ...... <br>";
 // Ecncapsulation  
 class ApplePhone
@@ -278,3 +373,6 @@ echo "</pre>";
 
                                                                                 MILOU Mohamed
 */
+
+
+echo "<link href='style.css' rel='stylesheet' >";
