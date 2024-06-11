@@ -2,8 +2,320 @@
 
 echo "Ficher Index <br>";
 // V1 , V2 , V3 et V4   Presentation   
-
+// php is single inhertence 
 echo "<br>------***------** POO **--------***------<br>";
+echo " ---- V29  ---- ----  -----  ...... ...... <br>";
+//  29 Traits  Part 2    php > 5.4 
+echo   "<br>";
+
+trait  TraitOne
+{
+    public function f1_One()
+    {
+        echo "Is f1 from TraitOne <br>";
+    }
+}
+trait  TraitTwo
+{
+    public function f1_Two()
+    {
+        echo "----Is f1 from TraitTwo <br>";
+    }
+}
+
+trait TraitThree
+{
+    public function f1_Three()
+    {
+        echo "--------Is f1 from TraitThree <br>";
+    }
+}
+
+class Samsung
+{
+}
+
+class Howawi
+{
+}
+
+class LG
+{
+    use TraitOne;
+
+}
+
+class Phone
+{// like extentds or implemetns 
+    use TraitOne;
+    use TraitTwo;
+    use TraitThree;
+}
+
+$sams= new Samsung();
+
+$howaw= new Howawi();
+$lg= new LG();
+
+$phone= new Phone();
+$phone->f1_One();
+$phone->f1_Two();
+$phone->f1_Three();
+echo " ---------------- LG ---------------  <br> ";
+$lg= new LG();
+$lg->f1_One(); 
+
+
+
+print "<br>";
+print "<pre>";
+print_r($sams);
+print_r($howaw);
+print_r($lg);
+print_r($phone);
+print "</pre>";
+
+
+
+
+
+/*
+echo " ---- V28  ---- ----  -----  ...... ...... <br>";
+//  28 Traits  Part 1    php > 5.4 
+// Presentation
+// Traits Comme Class but
+        ---not instancied 
+        ---not impliment
+echo   "<br>";  
+
+
+/*
+echo " ---- V27  ---- ----  -----  ...... ...... <br>";
+//  27 Chaining  ()->()->()->();
+class Phone
+{ 
+    public $pre = "Pre1";
+
+    public function f1()
+    {
+        echo " This F1<br>";
+        return $this;
+    }
+    public function f2()
+    {
+        echo " This F2<br>";
+        return $this;
+    }
+    public function f3()
+    {
+        echo " This F3<br>";
+        return $this;// This for Chaining
+    }
+ 
+}
+
+$phone= new Phone();
+//   $phone->f1();
+//   $phone->f2();
+//   $phone->f3();
+
+  $phone->f1()->f2()->f3();
+
+
+echo   "<br>";  
+
+
+
+
+/* 
+echo " ---- V26  ---- ----  -----  ...... ...... <br>";
+//  26 Static
+
+define("KEY_ONE", 12000);
+
+echo KEY_ONE . "    </br></br>";
+
+class Phone
+{
+
+    public $pre = "Pre1";
+
+    public function sayHello()
+    {
+        echo " <br>This IS Func Sey Hello<br>";
+    }
+ 
+    public static $name = "Nom1";// not accesse from Object = new ...
+    public static function sayHelloTwo()// this not work her
+    {
+        echo " <br>This IS Func Sey Hello Static <br>";
+    }
+}
+
+$phone1 = new Phone();
+
+echo $phone1->pre . "<br>";  
+$phone1->sayHello();
+$phone1->sayHelloTwo();// accesse to static from object
+
+
+echo Phone::$name . "<br>";
+echo Phone::sayHelloTwo() . "<br>";
+
+
+
+
+
+/*  
+echo " ---- V25  ---- ----  -----  ...... ...... <br>";
+//  25 Clone Part  2
+// object (clone)  have object(Copy)
+// ce exemple n est pas la
+
+
+class Phone
+{
+    public $n1 = 0; 
+
+    public function __construct($n11) {
+        $this->n1 = ++ $n11;
+    }
+
+    public function __clone() {
+        $this->n1 = ++$this->n1;
+    } 
+}
+
+class Phone2
+{
+    public $object1; 
+
+    function __clone()
+    {
+        // Force a copy of this->object, otherwise
+        // it will point to same object.
+        $this->object1 = clone $this->object1;
+    }
+}
+
+$obj = new Phone2();
+
+$obj->object1 = new Phone(10); 
+
+$obj2 = clone $obj;
+$obj->object1=1000;
+
+print "Original obj : \n<br><pre>";
+print_r($obj);
+
+print "Cloned obj2 : \n<br>";
+print_r($obj2);
+print "</pre>";
+
+ 
+/*
+echo " ---- V24  ---- ----  -----  ...... ...... <br>";
+//  24 Clone Part   1
+class Iphone {
+    public $name;
+    public $prenom;
+
+    public function __construct($n,$p) {
+        $this->name = $n;
+        $this->prenom = $p;
+    }
+
+
+}
+
+$phone=new Iphone("Nom1",10);
+$copy=$phone;  // Copy By Reference 
+$copy2=clone $phone;  // Copy   clone
+
+$phone->name="Nom 001";
+$copy->name="Nom 003";
+
+
+echo "<pre>";
+print_r($phone); // "Nom03",10
+print_r($copy);  // "Nom03",10
+print_r($copy2); // "Nom1" ,10
+echo "</pre>";
+
+
+
+
+
+
+
+
+/*
+echo "V23  ---- ----  -----  ...... ...... <br>";
+//  23 Magic methods  Get Set   like C#
+// get exicute if proprty not existe or private proprty
+// set exicute if proprty not existe or private proprty
+// set interge la jouter de class->newOption
+// set respect OOP
+
+class Sony
+{ 
+    public $name="16gb";
+    public $ram="Sony1";  
+      private $colorOne;
+
+ /*M1   public function __get($name)
+    { echo "The Fnstion [".$name."] Is not accessible<br>";
+    }
+*/
+/*
+public function __set($name, $value)// inserdit $phon1->colorOne=1200
+{
+    echo " $name is $value  from set   <br>   ";
+}
+
+}
+
+
+$phon1 = new Sony();
+// echo  $phon1->color."<br>"; // get M1
+  $phon1->colorOne=1200; // set interdit   M2 
+echo  $phon1->colorOne."<br>"; // set
+echo "<pre>";
+print_r($phon1);
+echo "</pre>";
+/*
+echo "V22  ---- ----  -----  ...... ...... <br>";
+//  22 Magic methods 2 __Call call if fonction note existe  or Private 
+
+class Sony
+{ 
+    public $name="16gb";
+    public $ram="Sony1"; 
+
+    private function seyHello()
+    {
+        echo  "<br>From Hello <br>";
+    }
+
+    public function __call($name, $arguments)// si le Methode n existe pas 
+    {
+        echo "<br>The test $name Is Note Fond  || ".implode(" ",$arguments)." ||  <br>";
+    }
+ 
+}
+
+$phon1 = new Sony( );
+$phon1->htesTEstMethode();
+$phon1->func_meyhode_2(1,2,3,5,6);
+$phon1->func_meyhode_3();
+echo "<pre>";
+print_r($phon1);
+echo "</pre>";
+
+
+
+
+/* 
 echo "V21  ---- ----  -----  ...... ...... <br>";
 //  21 Magic methods 1 Constract
 // Strta with [ __ ]
@@ -24,6 +336,12 @@ class Sony
         $this->ram = $rm;
         echo  "<br> ----- Constractor -----<br>";
         echo  " Hello $nm and ram is $rm <br>";
+    }
+
+
+    public function __destruct()
+    {
+        echo "<br> Is Destroy <br>";
     }
 }
  
@@ -350,7 +668,7 @@ print_r($phone2);
 echo  "</pre>";
 /*
 echo "V12  ---- ----  -----  ...... ...... <br>";
-// Ecncapsulation  
+// Ecncapsulation    ====> provate or protected
 class ApplePhone
 {
     public $name;
