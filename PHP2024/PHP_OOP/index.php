@@ -4,6 +4,81 @@ echo "Ficher Index <br>";
 // V1 , V2 , V3 et V4   Presentation   
 // php is single inhertence 
 echo "<br>------***------** POO **--------***------<br>";
+echo " ---- V31  ---- ----  -----  ...... ...... <br>";
+//  31 Traits  Part 4    php > 5.4 
+// conflict 
+
+
+/*
+echo " ---- V30  ---- ----  -----  ...... ...... <br>";
+//  30 Traits  Part 3    php > 5.4 
+// Traits From Traits 
+trait Train_1
+{
+    public function f1_t1()
+    {
+        echo "From Trait 1  is F1<br>";
+        return $this;
+    }
+}
+
+trait Trait_2
+{
+    public function f1_t2()
+    {
+        echo "From Trait 2  is F1<br>";
+        return $this;
+    }
+}
+
+trait Trait_3
+{
+    public function f1_t3()
+    {
+        echo "From Trait 3  is F1<br>";
+        return $this;
+    }
+    public function hello_phone()
+    {
+        echo "Hello From TRAIT  <br>";
+        return $this;
+    }
+}
+
+trait All_Traits
+{
+    use Train_1, Trait_2, Trait_3;
+}
+class Device {
+     public function hello_phone()
+    {
+        echo "Hello From CLASS Phone <br>";
+        return $this;
+    }
+}
+ 
+class Phone_o extends Device
+{
+    use All_Traits;
+public $nm="1200";
+   
+}
+echo "<br>---------------------------------<br>";
+
+$phn1= new Phone_o();
+echo $phn1->nm."<br>";
+// $phn1->f1_t1();
+// $phn1->f1_t2();
+// $phn1->f1_t3();
+// + return $this;
+$phn1->f1_t1()->f1_t2()->f1_t3();
+$phn1->hello_phone();//Hello From TRAIT
+
+
+
+
+
+/*
 echo " ---- V29  ---- ----  -----  ...... ...... <br>";
 //  29 Traits  Part 2    php > 5.4 
 echo   "<br>";
@@ -46,7 +121,7 @@ class LG
 }
 
 class Phone
-{// like extentds or implemetns 
+{// like extentds or implemetns  
     use TraitOne;
     use TraitTwo;
     use TraitThree;
@@ -119,7 +194,7 @@ $phone= new Phone();
 //   $phone->f2();
 //   $phone->f3();
 
-  $phone->f1()->f2()->f3();
+  $phone->f1()->f2()->f3();// chaining
 
 
 echo   "<br>";  
@@ -264,7 +339,7 @@ class Sony
       private $colorOne;
 
  /*M1   public function __get($name)
-    { echo "The Fnstion [".$name."] Is not accessible<br>";
+    { echo "The Fnstion [".$name."] Is not accessible or not existe <br>";
     }
 */
 /*
