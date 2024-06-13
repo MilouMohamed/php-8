@@ -1,0 +1,11 @@
+level is = 2
+Msg is = Undefined variable $n
+File is = M:\Programmation\PHP 8\htdocs\PHP2024\INDEXs.PHP
+Line is = 29
+------------------------ 
+level is = 2
+Msg is = Undefined variable $n
+File is = M:\Programmation\PHP 8\htdocs\PHP2024\INDEXs.PHP
+Line is = 29
+------------------------ 
+

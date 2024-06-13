@@ -1,21 +1,116 @@
 <?php
 echo "<div style='padding:20px'>  ";
 
- 
-// echo "<br> -----------11111---------<br>"; 
-// START  36  OOP VIDEOS   
-
-
-
-
-
-
 /*
 Need ------------------
 -----1  Error Exeption
------2  OOP
+-----2  OOP   (fine)
 -----3  MVC
 */
+
+// -----1  Error Exeption
+// V 8   Ytb: EraaSoft 8 vidoes
+// Set Error  => pour modifie l erreur
+// save Error In File  
+
+function errorHandle ($level,$msg,$file,$line) {
+
+    $res="level is = ".$level;
+    $res.="\nMsg is = ".$msg;
+    $res.="\nFile is = ".$file;
+    $res.="\nLine is = ".$line;
+    $res.="\n\r------------------------ \n\r";
+
+    error_log($res,3,"fileError.txt");
+}
+
+set_error_handler("errorHandle");
+
+echo $n;
+
+
+
+/* My test 
+$fileErro=fopen("ErrorFile.txt","r+");
+$vr=file_get_contents($fileErro);
+
+fwrite($fileErro,$vr."\n\rtest ici file Error \n\r");
+
+
+fclose($fileErro);
+
+
+/*
+// V 7   Ytb: EraaSoft 8 vidoes
+// Set Error  => pour modifie l erreur
+
+
+
+function errorsHandel($level, $msg, $file, $line)
+{
+    echo "Level Is " . $level . " <br>";
+    echo "message Is " . $msg . " <br>";
+    echo "File Is " . $file . " <br>";
+    echo "Line Is " . $line . " <br>";
+    die;
+}
+
+set_error_handler('errorsHandel');
+echo $f;
+
+
+//  Not Work In Fatal Error
+// $g="hj"+4;
+
+
+/*
+// V 6   Ytb: EraaSoft 8 vidoes
+// Display Error
+// ini_set("display_errors",0);// 0=hide  1=Show
+error_reporting(E_NOTICE | E_WARNING);// pour Afficher Notice + Warning
+$nb="10k"; 
+echo $nbl; 
+
+// -----1  Error Exeption
+// V 5   Ytb: EraaSoft 8 vidoes
+//Anatomy Of Error
+// Name : Message Error : File Line 
+//Fatal error: Uncaught Error: Call to undefined function fetef() in C:..\PHP2024\INDEXs.PHP:13 
+
+// -----1  Error Exeption
+// V 4   Ytb: EraaSoft 8 vidoes
+//Explication 
+
+/*
+// -----1  Error Exeption
+// V 3   Ytb: EraaSoft 8 vidoes
+// Eror Type 4
+// ---- Warnning  ===> pas stop des script 
+// Like inclide "fileNotExiste"
+
+// ---- Notice  ===> pas stop des script 
+// Like inclide "fileNotExiste"
+$n=100;
+echo "tst $n<br>";
+echo $b; // Undefunde VAriable
+
+// ---- Parse  ===>  stop des script 
+// Like  echo "test " echo "Bg ";  (Pas De ;) 
+// echo "tst $n<br>"
+
+// ---- Fatal  ===>  stop des script  (Tres Dangere)
+// undefined Function  
+// echoo "tst $n<br>";
+
+
+ 
+// echo "<br> -----------11111---------<br>"; 
+// START  36  OOP VIDEOS   
+//  PHP OOP  Voir  Dossie OOP  (fine)
+// V1 et V2   Presentation       
+echo "<p> Test de Test </p>"; 
+
+
  
 // echo "<br> -----------11111---------<br>"; 
 // FINE 105 VIDEOS 
