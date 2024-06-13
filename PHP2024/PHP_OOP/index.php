@@ -1,12 +1,110 @@
 <?php
-
+ 
 echo "Ficher Index <br>";
 // V1 , V2 , V3 et V4   Presentation   
 // php is single inhertence 
 echo "<br>------***------** POO **--------***------<br>";
+echo " ---- V35  ---- ----  -----  ...... ...... <br>";
+//  35  Autoload (Pour integre les class dans ce fiche Ou li de require * 10 fois)
+// syntax  NomClass.class.php;
+
+// require "V35/clas_One.class.php";
+// require "V35/clas_Two.class.php";
+// require "V35/clas_Three.class.php";
+/*
+
+spl_autoload_register(function($cls) {
+// ici requuer == require_once
+require "V35/$cls.class.php";
+});
+$var=new  clas_Three();
+print_r($var);
+
+
+
+
+
+/*
+echo " ---- V34  ---- ----  -----  ...... ...... <br>";
+//  34  Namespace Part 3 subNAme Space 
+
+require "testNameSpace.php";
+
+$tst= new subNameSpace\nmSp1\testNamSpClass(); 
+$tst->testNameSpace();
+
+
+$tst= new subNameSpace\nmSp2\testNamSpClass(); 
+$tst->testNameSpace2();
+
+
+
+
+/*
+echo " ---- V33  ---- ----  -----  ...... ...... <br>";
+//  33  Namespace Part 2  
+
+require "Sony.php";
+require "Lg.php";
+require "Sumsung.php";
+
+
+$phone= new Sumsung\Phone_Class();// namespace Sumsung
+$phone->createPhone();
+print_r($phone);
+
+/*
+echo " ---- V32  ---- ----  -----  ...... ...... <br>";
+//  32  Namespace Part 1 
+
+require_once "class.testing.php";
+
+$tes=new Test();
+echo "<pre>";
+print_r($tes);
+echo "</pre>";
+
+
+
+
+/*
 echo " ---- V31  ---- ----  -----  ...... ...... <br>";
 //  31 Traits  Part 4    php > 5.4 
-// conflict 
+// conflict  ta3arod (meme func dans les deux trait) 
+trait trait_one
+{
+    public  function hello($nm)
+    {
+        echo " From 11111111 Trait One $nm <br>";
+    }
+}
+trait trait_two
+{
+    public  function hello($nm)
+    {
+        echo " From 22222222 Trait Two $nm <br>";
+    }
+}
+
+class Phone
+{
+    use trait_one, trait_two {
+        // reaname methode 2
+        trait_two::hello as methode2;
+
+
+        trait_one::hello insteadof trait_two;
+        // use hello in trai11 en place de trai22 
+        // oblige pour exixute ...as...
+        
+    }
+}
+
+$phone = new Phone();
+$phone->hello("Thiiis 111 ");  /// from trait Two
+$phone->methode2("Thiiis 222 "); // from trait One 
+
+
 
 
 /*
