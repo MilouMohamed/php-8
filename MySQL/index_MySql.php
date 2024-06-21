@@ -1,10 +1,69 @@
 <?php
 // MySQL  Elzero Web School   51 videos
 echo "MySQL <br>";  // 
+echo "V 18  ----------------------------<br>";
+//----------- Constraint   Foreign Key Test Relation ;
+// alter table v_17_prod add CONSTRAINT fk_clt FOREIGN key(id_c) REFERENCES v_17_client(id_c) 
+// ON DELETE setnull  on UPDATE CASCADE
+// [ ON UPDATE { NO ACTION | CASCADE | SET NULL | SET DEFAULT } ]
+// RESTRIC  erro dans delete et update  
+// ALTER TABLE v_17_prod DROP INDEX fk_clt; 
+
+
+ 
+
+
+/*
+echo "V 17  ----------------------------<br>";
+//----------- Constraint   Foreign Key Test Relation ;
+// table  v_17_client
+// alter table v_17_prod add CONSTRAINT fk_clt FOREIGN key(id_c) REFERENCES v_17_client(id_c) 
+// ON DELETE CASCADE  on UPDATE CASCADE
+// --------------------- JOINT
+// SELECT * FROM v_17_prod JOIN v_17_client on v_17_client.id_c = v_17_prod.id_c; 
+// update v_17_client set id_c=44 WHERE id_c=33; // poue modifier id pk in t1 (foreign key in t2)
+// delete from v_17_client WHERE id_c = 11; 
+
+
+
+
+/*
+echo "V 16  ----------------------------<br>";
+//----------- Constraint   Foreign Key ;
+// v_11 
+// Foreign key (id_c) references t1(id)
+// ) ENGINE = InnoDB
+// attention la suprission de t2 ne peut pas etre si le t1 n est pas supprime
+
+/*
+echo "V 15  ----------------------------<br>";
+//----------- Constraint   PRIMARY KEY (Not acccepte NULL);
+// alter table v_15 add primary KEY(id); 
+// alter table v_15 DROP PRIMARY KEY; 
+// 
+/*
+echo "V 14  ----------------------------<br>";
+//----------- Constraint   NOT NULL and UNIQUE;
+// UNIQUE ===> ne pas  repate (ne pas repete commme nom etilisateur) 
+// ALTER TABLE t1 add UNIQUE(nm1);    
+// alter table t1 ADD CONSTRAINT UNIQUE KEY(nm1); 
+
+// show INDEX from t1;   // show les constraint d un table
+// alter table t1 drop INDEX nm1; (dans index )
+
+// 
+
+/*
+echo "V 13  ----------------------------<br>";
+//----------- Constraint;
+//alter TABLE t1 MODIFY nm8 varchar(50) NOT NULL; 
+// TRUNCATE TABLE t1   ===> pour vide la table
+
+
 echo "V 12  ----------------------------<br>";
 //----------- Tables Advanced;
 // alter table t1 MODIFY tt98 int(11), DROP nm; //2 instruction 
-// change to utf8_general_ci all colunms
+// change to utf8_general_ci all colunms de tyoe char Varchar
 //alter TABLE t1 CONVERT TO CHARACTER SET utf8;
 //alter TABLE t1 CONVERT TO CHARACTER SET LATIN1; 
 
