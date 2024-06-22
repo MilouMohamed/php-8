@@ -1,6 +1,48 @@
 <?php
 // MySQL  Elzero Web School   51 videos
 echo "MySQL <br>";  // 
+echo "V 22  ----------------------------<br>";
+//----------- Constraint   Foreign Key Many To Many ;
+// Client 1_n  --------------- 1_n Product
+// SELECT nom as "Le Nom", LEFT(nom,2) FROM `v_22_stringf`;  ma | ca (deux letters)
+// SELECT nom as "Le Nom", LEFT(nom,2) FROM `v_22_stringf`;  ..co | ..da (deux letters derniere)
+//SELECT nom as "Le Nom", MID(nom,2, 4) FROM `v_22_stringf`;//Moroco ==> oroc 
+//   MID(nom,-3, 2)   ======>   Marrakech 	ec
+// MID(String , posiStart, lenght)  
+
+
+/*
+echo "V 21  ----------------------------<br>";
+//----------- Constraint   Foreign Key Many To Many ;
+// Client 1_n  --------------- 1_n Product
+/*
+create table v_21_ShopMember (
+     id_p int , id_c int, date_sp date, 
+PRIMARY KEY(id_c , id_p), 
+CONSTRAINT Fk_Shp_Cli FOREIGN KEY(id_c) REFERENCES v_17_client(id_c)
+ on DELETE CASCADE on UPDATE CASCADE, 
+ CONSTRAINT Fk_Prod FOREIGN KEY(id_p) REFERENCES v_16_prdc(id_p)
+  On DELETE CASCADE On UPDATE CASCADE 
+); 
+*/
+
+
+/*
+echo "V 20  ----------------------------<br>";
+//----------- Constraint   Foreign Key One To One ;
+// Clinet 1  --------------- 1 Serial
+
+
+/*
+echo "V 19  ----------------------------<br>";
+//----------- Constraint   Foreign Key One To Many ;
+// Clinet 1  --------------- 0_n Comments
+
+
+ 
+
+
+/*
 echo "V 18  ----------------------------<br>";
 //----------- Constraint   Foreign Key Test Relation ;
 // alter table v_17_prod add CONSTRAINT fk_clt FOREIGN key(id_c) REFERENCES v_17_client(id_c) 
