@@ -1,8 +1,91 @@
 <?php
 // MySQL  Elzero Web School   51 videos
-echo "MySQL <br>";  // 
+echo "MySQL <br>";  //  
+
+
+echo "V 29  ----------------------------<br>";
+//-----------  LPad RPad
+// SELECT nom, RPAD(nom,5,"-") FROM `v_22_stringf
+// pc#	pc#--        ||    	pcMoroco 	pcMor
+echo str_pad("001234",12,"-",STR_PAD_RIGHT); //001234------
+
+
+/*
+echo "V 28  ----------------------------<br>";
+//-----------  TRIM (str , {LEADING(lowal space) | TRAILING (lakher space) | Both(les deux)} ,  {Remove Str From str} )
+// defalt values is ===>>  Both  and Space
+//[ Nom      ]  => 	[Nom]
+// SELECT nom , TRIM(nom) FROM `v_22_stringf`;
+// SELECT TRIM(LEADING from nom) FROM `v_22_stringf`; ...mmm... =>mmm...
+// SELECT TRIM(TRAILING  from nom) FROM `v_22_stringf`; ...mmm... =>...mmm
+// SELECT TRIM(TRAILING "-" from nom) FROM `v_22_stringf`; ...mmm... =>...mmm---
+// RTRIM LTRIM 
+
+/*
+echo "V 27  ----------------------------<br>";
+//-----------  INSERT (str , Position ,  Length , Replace)
+// select INSERT("9876543210",4,1,"F");  // 987F543210
+// select INSERT("9876543210",4,3,"F");  // 987F3210
+
+
+/*
+echo "V 26  ----------------------------<br>";
+//-----------  CONCAT  Concat_Ws
+//---  CONCAT(str1,str2,str3,str4) 
+//select concat("-","00","88","77");   //-008877
+
+// Concat With Seperator
+//---  Concat_Ws (separator , str1,str2,str3,str4)
+// select concat_ws("-","00","88","77")  // 00-88-77
+
+
+/*
+echo "V 25  ----------------------------<br>";
+//-----------  REPEAT  REPLACE  REVERSE
+// Repeat (Str , nmbr Of Repatr)
+// Replace  (Str ,cherche , to )
+// Reverse  (Str  )
+// SELECT REPEAT("test ",10); 
+// SELECT REPEAT(nom,5) FROM `v_22_stringf`;  //M-r-c-
+// SELECT REPLACE(nom,"o","-") FROM `v_22_stringf`; // Moroco M-r-c-
+// SELECT REVERSE(nom) FROM `v_22_stringf`; // Moroco == ocoroM
+// UPDATE v_22_stringf set nom = REPLACE(nom , "T","t") WHERE id_s=1;
+
+
+//  echo str_repeat("*** --",10);
+
+
+
+/*
+echo "V 24  ----------------------------<br>";
+//----------- Upper Case Lower Case
+// SELECT nom, LCASE(nom) , UCASE(nom) FROM `v_22_stringf` WHERE 1
+// LCASE(nom) = LOWER      UCASE = UPPER
+
+
+/*
+echo "V 23  ----------------------------<br>";
+//----------- Sring Length Char_Length
+// SELECT nom, LENGTH(nom) as "lENGTH" FROM `v_22_stringf`; 
+// SELECT nom, Char_Length(nom) as "lENGTH" FROM `v_22_stringf`; 
+// meme resultat
+//  LENGTH(nom) €=3  £=2     |||||||| Char_Length(nom)    €=1  £=1
+
+
+// SELECT nom, CONCAT( UPPER( LEFT(nom,1)) , LOWER(MID(nom,2))) as "Nom COmplete" FROM `v_22_stringf`; 
+// Capitalize 
+
+
+
+
+
+
+
+
+/*
 echo "V 22  ----------------------------<br>";
 //----------- Constraint   Foreign Key Many To Many ;
+// base de donnnes v_11 table V_22_string
 // Client 1_n  --------------- 1_n Product
 // SELECT nom as "Le Nom", LEFT(nom,2) FROM `v_22_stringf`;  ma | ca (deux letters)
 // SELECT nom as "Le Nom", LEFT(nom,2) FROM `v_22_stringf`;  ..co | ..da (deux letters derniere)
@@ -10,7 +93,7 @@ echo "V 22  ----------------------------<br>";
 //   MID(nom,-3, 2)   ======>   Marrakech 	ec
 // MID(String , posiStart, lenght)  
 
-
+ 
 /*
 echo "V 21  ----------------------------<br>";
 //----------- Constraint   Foreign Key Many To Many ;
