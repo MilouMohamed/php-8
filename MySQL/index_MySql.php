@@ -2,8 +2,83 @@
 // MySQL  Elzero Web School   51 videos
 echo "MySQL <br>";  //  
 
+echo "V 37  ---- ------------------------<br>";
+//-----------   BETWEEN "FROM Date 9Dima" and "TO Date Jdida"  
+// SELECT * FROM `v_30` WHERE dateV BETWEEN "2024-6-5" and "2024-6-25"; // 4 rows
+// SELECT * FROM `v_30` WHERE dateV NOT BETWEEN "2024-6-18" and "2024-7-5"; // 3 Rows From 10 
+// SELECT * FROM `v_30` WHERE idV BETWEEN 1 and 100;  // 3 rows
 
-echo "V 29  ----------------------------<br>";
+
+/*
+echo "V 36  ----v11  table v_30 ------------------------<br>";
+//-----------   Date :  DATE_ADD , DATE_SUB , Last_Day
+// SELECT Last_Day("2025-1-10")  ;   //2025-01-31  (30 Ou 31) 
+
+// SELECT DATE_ADD("2025-1-1" , INTERVAL 10 day);  // 2025-01-11
+// SELECT DATE_SUB("2025-1-10", INTERVAL 5 day );  // 2025-01-05
+
+
+/*
+echo "V 35  ---- ------------------------<br>";
+//-----------   Date : DATEDIFF(date Jdida , Date 9dima)   
+// ========> Resultata En Jours
+// SELECT DATEDIFF("2024-2-10","2024-1-25") FROM `v_30`;  // 16
+// SELECT DATEDIFF("2024-2-10","2024-2-5") FROM `v_30`;   //  5
+
+
+
+
+
+
+/*
+echo "V 34  ---- ------------------------<br>";
+//-----------   Date : Month Hour Minute
+// SELECT 
+// dateV,                MONTH(dateV),  MONTHNAME(dateV) ,  HOUR(dateV) ,  MINUTE(dateV) FROM `v_30`
+// 2024-06-20 12:32:10 	6 	          June 	          12 	          32
+
+
+/*
+echo "V 33  ---- ------------------------<br>";
+//-----------   Date : Day DayName
+// SELECT DAYNAME(dateV) FROM `v_30`    // Tuesday
+// SELECT DAYOFMONTH(dateV) FROM `v_30` // = DAY()  25  (1 - 31 )
+// SELECT DAYOFWEEK(dateV) FROM `v_30`   // 3 (tlat  1 - 7 )
+// SELECT DAYOFYEAR(dateV) FROM `v_30` WHERE 1;  // 177 (dans 365)
+
+/*
+echo "V 32  ---- ------------------------<br>";
+//-----------   Date : YYYY-MM-DD  HH:MM:SS
+//------------   CurTime  |   CurDate  |  Now;   
+// SELECT curDate(),     CURRENT_DATE, Now(); 
+//        2024-06-25 	2024-06-25 	2024-06-25 10:40:01
+     // YYYY-MM-DD  HH:MM:SS
+
+//SELECT CURTIME() , CURRENT_TIME;   //10:55:41 	10:55:41 
+
+
+// CURRENT_TIMESTAMP() =	CURRENT_TIMESTAMP 	  =  NOW() 	
+// 2024-06-25 11:11:04 	2024-06-25 11:11:04 	2024-06-25 11:11:04
+
+
+/*
+echo "V 31  ---- ------------------------<br>";
+//-----------   MOD     POW        TRUNCATE(nbr , decimal) =(TA9riban)= ROUND
+// SELECT MOD(11,5)  ; // 1
+// SELECT POW(2,3); POWER(2,3)    // 8
+// SELECT TRUNCATE(2.4567,2); //  2.45 
+// SELECT ROUND(2.4567,2);    //  2.46
+
+
+/*
+echo "V 30  ---- ------------------------<br>";
+//-----------  Ceil(SA9F)  Floor(ARDIYA)  Round(TA9RIBI)
+// SELECT priceV , FLOOR(priceV) , CEIL(priceV) , ROUND(priceV , 2) FROM `v_30`; 
+//        10.894 	10        	11 	          10.89
+
+
+/*
+echo "V 29  ---- ------------------------<br>";
 //-----------  LPad RPad
 // SELECT nom, RPAD(nom,5,"-") FROM `v_22_stringf
 // pc#	pc#--        ||    	pcMoroco 	pcMor
