@@ -1,12 +1,126 @@
 <?php
+
+/*
+Proc
+DELIMITER //
+create PROCEDURE Proc1()
+BEGIN
+
+SELECT "This is sql proc";
+
+END //
+DELIMITER ;
+
+CALL `Proc1`(); 
+*/
+
+
+
+
 // MySQL  Elzero Web School   51 videos
 echo "MySQL <br>";  //  
 
+
+echo "V 46  -----------------------------<br>";
+//----------- Les  Functions
+// SELECT * FROM `v_30` ORDER by priceV ASC     // ASC DESC
+// SELECT * FROM `v_30` ORDER by priceV ASC , NAME DESC; 
+// SELECT idV , priceV , COUNT(priceV) FROM `v_30` GROUP BY priceV; 
+
+// SELECT idV , priceV , COUNT(priceV) FROM `v_30`
+//  GROUP BY priceV 
+//  ORDER BY COUNT(priceV); 
+
+
+// SELECT idV, priceV , COUNT(priceV) as cc FROM `v_30`
+//  GROUP BY priceV  
+//  HAVING count(priceV) > 2  
+
+/*
+echo "V 45  -----------------------------<br>";
+//----------- Les  Functions
+//select USER(),  SESSION_USER(); ;  // root@localhost
+// select version();  //10.4.32-MariaDB
+// select CHARSET(USER());   // utf8
+// select DATABASE();  v_11
+// select CONNECTION_ID();  1831 change 1847 ...
+
+
+/*
+echo "V 44  -----------------------------<br>";
+//----------- Les Arthmetric Operators
+// select  10 / 2        // 5.000  ROUND(10/2) Ou TRUNCATE(10/3 , 0)
+// select  10 div 2      // 5 
+
+
+
+/*
+echo "V 43  -----------------------------<br>";
+//----------- Case  is SWITCH on PHP
+// M1
+// SELECT idV , CASE WHEN idV=1 THEN 'Is One' WHEN idV=2 THEN 'Is Two'
+//  WHEN idV=4 THEN 'Is Four' WHEN idV>10 THEN 'Is > 10' 
+// ELSE 'Nom ' END as resultat FROM `v_30`; 
+
+// M2 
+// SELECT idV, CASE idV WHEN 1 THEN "Is One" WHEN 2 THEN "Is Two" 
+// WHEN 10 THEN " 10" ELSE "Not Found" END as Resulta FROM `v_30` 
+
+
+
+/*
+echo "V 42  -----------------------------<br>";
+//----------- Logical Operator  IF(Condition  , True , False)
+// SELECT * ,IF(nbrV > 20 ,"Yes > 20" ,"Not > 20") FROM `v_30`;  // 3 rows
+// UPDATE `v_30` SET  NAME = IF(nbrV > 10 , CONCAT("Mr",nbrV) , CONCAT("Mdm",nbrV) ) ;
+
+
+/*
+echo "V 41  -----------------------------<br>";
+//----------- Logical Operator 
+//  [  And=&&    |    Or=||    |    Xor   |   Not !=   ]
+
+// SELECT * FROM `v_30` WHERE NAME LIKE "%nom%" AND nbrV > 5  ; 
+
+// XOR   ( True or False )   ( False or True )   ===>>>   TRUE
+
+ 
+
+
+
+
+/*
+echo "V 40  -----------------------------<br>";
+//-----------   Comparasion Operator
+// select * FROM v_30 WHERE nbrV != 1;   meme 1
+// select * FROM v_30 WHERE nbrV <> 1;   meme 1
+
+/*
+echo "V 39  -----------------------------<br>";
+//-----------   LIKE Not LIKE
+// SELECT * FROM `v_30` WHERE NAME LIKE "%r%";  
+// SELECT * FROM `v_30` WHERE NAME Like "4%6"; // 4tesx6
+// SELECT * FROM `v_30` WHERE NAME Like "Rom____";  // Rom 85s  ( _ ) = Un Letter
+
+
+
+/*
+echo "V 38  ---- ------------------------<br>";
+//-----------   IN
+// SELECT * FROM `v_30` WHERE idV IN (1,2,3,5,7,8,0); 
+// SELECT * FROM `v_30` WHERE idV NOT IN (1,2,3,5,7,8,0); 
+
+
+
+
+
+/*
 echo "V 37  ---- ------------------------<br>";
 //-----------   BETWEEN "FROM Date 9Dima" and "TO Date Jdida"  
 // SELECT * FROM `v_30` WHERE dateV BETWEEN "2024-6-5" and "2024-6-25"; // 4 rows
 // SELECT * FROM `v_30` WHERE dateV NOT BETWEEN "2024-6-18" and "2024-7-5"; // 3 Rows From 10 
 // SELECT * FROM `v_30` WHERE idV BETWEEN 1 and 100;  // 3 rows
+
 
 
 /*
