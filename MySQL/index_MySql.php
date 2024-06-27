@@ -1,6 +1,164 @@
 <?php
 
+
+// MySQL  Prof Noureddine Bahi   13 videos
+echo "MySQL <br>";  //  
+
+echo "V 2/13  -----------------------------<br>";
+/*----------- PROCEDURE if | elseif | ELSE | end  | if
+
+DROP  PROCEDURE if EXISTS p2_v2;
+
+DELIMITER **
+CREATE PROCEDURE p2_v2(inn int) 
+BEGIN 
+DECLARE note  int;
+set note=inn;
+IF(note < 10) THEN 
+SELECT "Roudouble";
+ELSEIF(  note < 19) THEN 
+SELECT "Bom";
+ELSE  SELECT "20/20"  ;
+END if;
+ 
+END **
+
+DELIMITER ;
+ 
+CALL  p2_v2(5) ;
+CALL  p2_v2(15) ;
+CALL  p2_v2(150) ;
+
+
+
+
+
+// elseIf()
+DROP  PROCEDURE if EXISTS p2_v2;
+
+DELIMITER **
+CREATE PROCEDURE p2_v2(inn int) 
+BEGIN 
+DECLARE note  int;
+set note=inn;
+IF(note >= 10) THEN 
+SELECT "Braveau";
+ELSEIF(note < 10) THEN 
+SELECT "Redouble";
+end if ;
+ 
+END **
+
+DELIMITER ;
+ 
+CALL  p2_v2(5) ;
+
+
+
+
+DROP  PROCEDURE if EXISTS p1_v2;
+
+DELIMITER **
+CREATE PROCEDURE p1_v2(inn int) 
+BEGIN 
+DECLARE note  int;
+set note=inn;
+IF(note >= 10) THEN 
+SELECT "Braveau";
+end IF;
+if(note < 10) THEN 
+SELECT "Redouble";
+end if ;
+ 
+END **
+
+DELIMITER ;
+ 
+CALL  p1_v2(5) ;
+// ---------------------------------------------------
+DROP  PROCEDURE if EXISTS p1_v2;
+
+DELIMITER **
+CREATE PROCEDURE p1_v2() 
+BEGIN 
+DECLARE note  int DEFAULT 12;
+IF(note >= 10) THEN 
+SELECT "Braveau";
+end IF;
+if(note < 10) THEN 
+SELECT "Redouble";
+end if ;
+ 
+END **
+
+DELIMITER ;
+ 
+CALL  p1_v2() ;
+
+
+
+
+
+
+
+
+
 /*
+
+echo "V 1/13  -----------------------------<br>";
+//----------- Inner Join ... on 
+
+--------------------------------------------------
+DROP PROCEDURE IF EXISTS p2;
+DELIMITER **
+
+CREATE PROCEDURE p2 ()
+BEGIN
+DECLARE ch varchar(100) DEFAULT "Test";
+ 
+SET ch="Mom 2";
+SELECT ch;
+
+END **
+DELIMITER ;
+
+CALL p2();
+
+
+
+
+
+DROP PROCEDURE if EXISTS p1;
+
+DELIMITER //
+CREATE PROCEDURE p1() 
+	BEGIN
+    	DECLARE gt integer DEFAULT 44; 
+        SET gt=gt+10;
+        SELECT concat( "FROM P_",gt);
+
+    END //
+DELIMITER ;
+    
+
+DROP PROCEDURE  if EXISTS POne2; 
+DELIMITER //
+CREATE   PROCEDURE  POne3()
+BEGIN 
+	DECLARE n int; 
+    SELECT "IS N "; 
+    SELECT n; 
+    SET n=1; 
+    SELECT "Is 2 N"; 
+    SELECT n; END  //
+
+DELIMITER  ;
+CALL POne3();
+
+
+
+CREATE PROCEDURE POne(nb int) BEGIN DECLARE n int DEFAULT 10; SELECT n+"IS N "; SET n=n+1; SELECT n+"Is 2 N"; END; 
+
 Proc
 DELIMITER //
 create PROCEDURE Proc1()
@@ -8,7 +166,10 @@ BEGIN
 
 SELECT "This is sql proc";
 
-END //
+declare n int;
+set n =100;
+select n;
+END // 
 DELIMITER ;
 
 CALL `Proc1`(); 
@@ -21,6 +182,66 @@ CALL `Proc1`();
 echo "MySQL <br>";  //  
 
 
+echo "V 51  -----------------------------<br>";
+//----------- Inner Join ... on 
+// inner join ==== declare ()
+
+
+/*
+echo "V 50  -----------------------------<br>";
+//----------- Inner Join ... on 
+
+// ELECT * FROM v_47_user u INNER JOIN v_47_lang l 
+// on u.id_lng = l.id_lng;
+
+// ELECT * FROM v_47_user u LEFT JOIN v_47_lang l 
+// on u.id_lng = l.id_lng; // inner Join +  v_47_user
+
+// ELECT * FROM v_47_user u right JOIN v_47_lang l 
+// on u.id_lng = l.id_lng; // inner Join +  v_47_lang
+
+/*
+echo "V 49  -----------------------------<br>";
+//----------- Inner Join ... on 
+
+
+
+
+
+/*
+
+echo "V 48  -----------------------------<br>";
+//----------- Alias   ( as  "Nom Colun" )
+/*
+select 
+u.id_usr as "Id User",
+l.label_lng as "Nom Lang"
+from  v_47_user u JOIN v_47_lang l 
+ON  u.id_lng = l.id_lng
+
+ 
+*/
+
+
+/*
+echo "V 47  -----------------------------<br>";
+//----------- JOIN   (v_47_user  et v_47_lang )
+/*
+create table v_47_User (
+id_usr int PRIMARY KEY AUTO_INCREMENT,
+  name_usr  varchar(20) ,
+    date_usr date DEFAULT NOW(),
+id_lng int  not NULL
+)
+create TABLE v_47_Lang (
+id_lng int PRIMARY KEY AUTO_INCREMENT,
+    label_lng varchar(20) 
+)
+    ALTER TABLE v_47_user add CONSISTENT fk_lang FOREIGN KEY(id_lng) REFERENCES v_47_lang(id_lng)
+*/
+
+
+/*
 echo "V 46  -----------------------------<br>";
 //----------- Les  Functions
 // SELECT * FROM `v_30` ORDER by priceV ASC     // ASC DESC
