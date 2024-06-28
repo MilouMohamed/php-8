@@ -2,24 +2,260 @@
 
 
 // MySQL  Prof Noureddine Bahi   13 videos
+// Database: v_p_n_b_v13   Table: table_1 
 echo "MySQL <br>";  //  
 
-echo "V 2/13  -----------------------------<br>";
+
+echo "V 11/13   -----------------------------<br>";
+/*----------- Les Fonctions    return Multiline 
+
+
+
+
+
+
+
+
+
+
+
+echo "V 10/13   -----------------------------<br>";
+/*----------- Les Fonctions   The functions 
+drop FUNCTION if EXISTS nom_par_id;
+DELIMITER // 
+CREATE FUNCTION nom_par_id(num int)
+RETURNS varchar(200) DETERMINISTIC 
+BEGIN
+DECLARE  res varchar(200);
+ set res= (select Nom_ FROM table_1 WHERE id_ = num  );
+
+RETURN res;
+
+END //
+DELIMITER ;
+
+
+
+
+
+
+
+echo "V 9/13   -----------------------------<br>";
+/*----------- Les Fonctions   The functions 
+
+DROP FUNCTION if EXISTS  f_min_prix;
+
+DELIMITER **
+CREATE FUNCTION f_min_prix()
+RETURNS text DETERMINISTIC 
+BEGIN
+
+DECLARE mn double;
+DECLARE  nom varchar(20) ;
+DECLARE  txt varchar(200);
+DECLARE id int;
+SET mn= (SELECT MIN(Prix_) from table_1);
+
+SET  id=(SELECT id_ FROM table_1 WHERE Prix_ = mn);
+SET  nom=(SELECT Nom_ FROM table_1 WHERE Prix_ = mn);
+ 
+set txt = concat("Id:",id,"  Nom:",nom," Prix:",mn); 
+RETURN txt;
+
+END **
+DELIMITER ;
+
+
+select f_min_prix(); 
+
+
+
+
+
+
+
+DELIMITER //
+CREATE FUNCTION f_Max()
+RETURNS INT DETERMINISTIC 
+BEGIN
+DECLARE max int;
+set max=(SELECT max(Prix_) FROM table_1 );
+RETURN max;
+END //
+ DELIMITER ;
+
+ SELECT `f_Max`() AS `f_Max`; 
+
+
+
+
+
+
+echo "V 8/13   -----------------------------<br>";
+/*----------- Les Types  PROCEDURE 
+DELIMITER //
+CREATE PROCEDURE p_inout(in nbr1 int , INOUT conter int)
+BEGIN
+
+SET conter=conter+nbr1;
+
+END //
+DELIMITER  ;
+
+SET @nb=2;
+CALL  p_inout(1,@nb) ; 
+SELECT @nb as Resultat;
+
+
+
+
+
+echo "V 7/13   -----------------------------<br>";
+/*----------- Les Types  PROCEDURE  OUT
+
+DELIMITER //
+CREATE PROCEDURE p_moyenne(OUT moyen float) 
+BEGIN  
+set moyen = (SELECT AVG(Prix_) FROM table_1);
+ 
+END //
+DELIMITER ;
+
+CALL p_moyenne(@val);
+select  @val as "Moyenne";
+
+
+/*
+echo "V 6/13   -----------------------------<br>";
+/*----------- Les Types  PROCEDURE  
+DELIMITER //
+CREATE PROCEDURE p_moyenne(OUT moyen float) 
+BEGIN  
+set moyen = (SELECT AVG(Prix_) FROM table_1);
+ 
+END //
+DELIMITER ;
+
+CALL p_moyenne(@val);
+select  @val as "Moyenne";
+
+
+
+
+DELIMITER //
+CREATE PROCEDURE p_between_date(d1 date,d2 date)
+BEGIN 
+SELECT * from table_1 WHERE Date_ BETWEEN d1 AND d2;
+ 
+END //
+DELIMITER ;
+
+
+
+
+DROP PROCEDURE  if EXISTS  p_sum_prix_par_nom;
+
+DELIMITER //
+CREATE PROCEDURE p_sum_prix_par_nom(in nom varchar(200))
+BEGIN
+
+SELECT SUM(Prix_) As  "Le Total pour "
+FROM table_1 WHERE Nom_ LIKE nom;
+
+
+END //
+DELIMITER ;
+
+
+
+
+
+
+
+echo "V 5/13   -----------------------------<br>";
+/*----------- Les Types  PROCEDURE   
+DROP PROCEDURE IF EXISTS p_prix;
+DELIMITER //
+CREATE PROCEDURE p_prix(id int) 
+BEGIN
+	SELECT Prix_ FROM table_1 WHERE id_ = id;
+	
+END //
+DELIMITER ;
+
+CALL p_prix(2);
+
+
+
+echo "V 4/13   -----------------------------<br>";
+/*----------- Les Types  PROCEDURE   
+1 ------- sans param
+1 ------- avec param  IN
+1 ------- avec param  OUT
+1 ------- avec param  IN OUT
+
+
+
+
+
+
+echo "V 3/13   -----------------------------<br>";
+/*----------- PROCEDURE while do  || LOOP 
+DROP PROCEDURE if EXISTS loop_1;
+
+DELIMITER //
+CREATE PROCEDURE loop_1() 
+BEGIN 
+DECLARE nbr int;
+SET nbr=1;
+
+lp1:LOOP
+SELECT concat( "nice ",nbr);
+IF(nbr >= 4) THEN 
+LEAVE lp1;
+ELSE  SET nbr=nbr+1;
+END IF;
+ 
+END LOOP lp1; 
+END //
+DELIMITER ;
+
+
+
+
+
+/*DELIMITER //
+CREATE PROCEDURE p1(nbr int) 
+BEGIN 
+
+WHILE (nbr > 0)  DO
+SELECT "salaam ";
+SET nbr=nbr-1;
+END WHILE;
+ 
+END //
+
+DELIMITER  ;
+ 
+
+
+echo "V 2/13   -----------------------------<br>";
 /*----------- PROCEDURE if | elseif | ELSE | end  | if
+
 
 DROP  PROCEDURE if EXISTS p2_v2;
 
-DELIMITER **
-CREATE PROCEDURE p2_v2(inn int) 
-BEGIN 
-DECLARE note  int;
-set note=inn;
-IF(note < 10) THEN 
-SELECT "Roudouble";
-ELSEIF(  note < 19) THEN 
-SELECT "Bom";
-ELSE  SELECT "20/20"  ;
-END if;
+DELIMITER **   
+CREATE PROCEDURE p2_v2(inn int)    
+BEGIN    
+DECLARE note  int;   
+set note=inn;   
+IF(note < 10) THEN  
+SELECT "Roudouble"; 
+ELSEIF(  note < 19) THEN   
+SELECT "Bom";   
+ELSE  SELECT "20/20"  ;  
+END if;   
  
 END **
 
