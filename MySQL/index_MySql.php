@@ -6,15 +6,105 @@
 echo "MySQL <br>";  //  
 
 
+echo "V 12/13 et 13/13    -----------------------------<br>";
+/*----------- CURSOR   
+
+DROP PROCEDURE if EXISTS p1;
+DELIMITER //
+CREATE PROCEDURE p1()
+BEGIN
+DECLARE a int(11);
+DECLARE b double;
+DECLARE isEnd bool DEFAULT False;
+DECLARE cur CURSOR for SELECT id_ , Prix_ from table_1;
+DECLARE CONTINUE HANDLER FOR NOT  FOUND SET isEnd= true;
+OPEN cur;
+lp:LOOP
+FETCH cur INTO a,b ;
+if(isEnd) THEN LEAVE lp;
+END if;
+
+SELECT CONCAT("Id ",a,"  ||| Prix",b) as "Id AND Prix";
+END LOOP lp;
+
+CLOSE cur;
+
+END //
+DELIMITER ;
+ 
+
+
+
+
+
+  DROP PROCEDURE if EXISTS  curdemo;
+ 
+ DELIMITER //
+ CREATE PROCEDURE curdemo()
+BEGIN
+  DECLARE done INT DEFAULT FALSE;
+  DECLARE a int;
+  DECLARE b varchar(255);
+  DECLARE cur1 CURSOR FOR SELECT id_,Prix_  FROM table_1; 
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+  OPEN cur1; 
+
+  read_loop: LOOP
+    FETCH cur1 INTO a, b; 
+    IF done THEN
+      LEAVE read_loop;
+    END IF;
+    SELECT concat("Le Nom ",a," -------- Prix",b) ;
+  END LOOP;
+/
+  CLOSE cur1; 
+END //
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
 echo "V 11/13   -----------------------------<br>";
 /*----------- Les Fonctions    return Multiline 
+DROP table if EXISTS temp1;
+create TABLE  temp1(
+id int,nom varchar(200), prix double , date_ date);
+
+DELIMITER //
+CREATE FUNCTION func_tab()
+RETURNS int DETERMINISTIC
+BEGIN   
+DECLARE rs INT DEFAULT 0 ;
+INSERT INTO  temp1 (SELECT * FROM table_1);
+SET rs=1;
+RETURN rs;
+END //
+DELIMITER ;
+
+
+appeler La fonction 
+
+SELECT * from temp1; 
+ 
+SELECT func_tab();
+
+SELECT * from temp1; 
 
 
 
 
 
 
-
+SELECT *  from temp1  LIMIT 2  ; les troir premier 
 
 
 
