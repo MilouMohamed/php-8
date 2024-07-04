@@ -5,8 +5,7 @@ if (isset($_POST["send"])) {
 
     $un = $_POST["username"];
     $pwd = $_POST["password"];
-    if (!empty($un) and !empty($pwd)) {
-        echo "<hr>"; 
+    if (!empty($un) and !empty($pwd)) { 
 
         $dt = date("Y-m-d H:m:s");
         var_dump($dt);
@@ -27,7 +26,7 @@ if (isset($_POST["send"])) {
 
     }
 }
- 
+
 
 ?>
 <!DOCTYPE html>
@@ -44,13 +43,15 @@ if (isset($_POST["send"])) {
     <?php include_once("nav.php")   ?>
 
     <div class="container-global">
-        <h2>Ecom Projecy</h2>
-        <?php echo "test  de test php"; ?>
+        <h2>Ecom Projecy</h2> 
+ 
+        <div class='center-elem' >
+            <h4>Ajouter Un Nouveau Utilisateur</h4>
 
-        
-        <?php include_once "login.php" ?>
-        
-        
+            <?php include_once "login.php"; ?>
+
+        </div>
+
     </div>
 </body>
 

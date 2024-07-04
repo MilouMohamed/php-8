@@ -5,7 +5,7 @@ if (isset($_POST["send"])) {
 
     $un = $_POST["username"];
     $pwd = $_POST["password"];
-    if (!empty($un) and !empty($pwd)) {
+    if (!empty($un) || !empty($pwd)) {
 
         include "databaseEcom.php";
 
@@ -21,8 +21,7 @@ if (isset($_POST["send"])) {
             // var_dump($sqlreq->fetch()); 
             session_start();
             $_SESSION["utilisateur"] = $sqlreq->fetch();
-              header("location:admin.php");
-
+            header("location:admin.php");
         } else {
 ?>
             <div class="label-info">

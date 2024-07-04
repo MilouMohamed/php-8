@@ -14,7 +14,7 @@
 
             <label for="password">PassWord :
             </label>
-            <input value="0000" type="text" placeholder="PassWord" id="password" name="password" />
+            <input value="" type="text" placeholder="PassWord" id="password" name="password" />
 
 
         </div>
