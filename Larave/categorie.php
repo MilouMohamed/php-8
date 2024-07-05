@@ -43,9 +43,9 @@ $donnes = $pdo->query("SELECT * FROM `ec_catg`")->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo  $value["descrip"]; ?></td>
                             <td><?php echo  $value["date_crate_c"]; ?></td>
                             <td>
-                            <button type="button" name="modifier" class="btn btn-edit">Modifier</button>
-                            <button type="button" name="supprimer" class="btn btn-detele">Supprimer</button>
-                        </td>
+                            <a  href="modif_cat.php?id=<?= $value["id_cg"]; ?>" name="modifier" class="btn btn-edit">Modifier</a>
+                            <a  href="supp_cat.php?id=<?= $value["id_cg"]; ?>" onclick="return confirm('Vous Voulez vraiment Supprimer  Categorie <?= strtoupper( $value['libelle']); ?>')" name="supprimer" class="btn btn-detele">Supprimer</a>
+                         </td>
                         </tr>
                     <?php } ?>
 

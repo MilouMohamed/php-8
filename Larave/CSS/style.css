@@ -11,7 +11,7 @@
     list-style: none;
     text-decoration: none;
     font-family: "Playwrite IT Moderna", cursive;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 body {
@@ -19,10 +19,19 @@ body {
 }
 
 .btn {
-    padding: 1px 4px;
+    padding: 2px 4px;
     font-size: 12px;
     margin: 2px 1px;
     border: 2px solid #ff031b;
+    cursor: pointer;
+}
+.btn:hover {
+    border: 2px solid black;
+    background-color: white; 
+}
+
+.btn:active {
+    background-color:gray;     
 }
 
 .btn-edit {
@@ -74,13 +83,15 @@ input:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 
 .nav-bar .list-nav ul a {
     padding: 7px 5px;
-    margin: 0px 5px;
-    border-radius: 10px;
+    margin: 0px 3px;
+    border-radius: 5px;
     background-color: red;
     display: flex;
     flex-wrap: nowrap;
@@ -214,7 +225,17 @@ input:focus {
     position: absolute;
     width: 90%;
     bottom: 10px;
+    animation:  disp 2s ease-out  forwards; 
+    
 }
+
+@keyframes disp { 
+    100%{ 
+        visibility: hidden;
+    }
+    
+}
+
 
 .label-info-bon {
     background-color: green;
@@ -338,9 +359,11 @@ table {
 
     th {
         background-color: gray;
-        font-size: 15px;
-        padding: 4px 7px;
+        font-size: 18px;
+        padding: 8px 11px;
         font-weight: bold;
+        text-decoration: underline;
+        
     }
 
     tr:nth-child(2n+1) {
@@ -359,4 +382,9 @@ table {
         text-align: center;
     }
 
+    tr td:nth-child(1),tr td:nth-child(3),
+        tr td:nth-child(4){
+        text-align: center;
+        background-color: rgba(50,50,200,0.3) ;
+    }
 }

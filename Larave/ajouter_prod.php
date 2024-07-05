@@ -11,37 +11,34 @@ $tab_prods = $sqlstat->fetchAll();
 
 
 
-if (isset($_POST["sendNc"])) { 
+if (isset($_POST["sendNc"])) {
 
     $lib = $_POST["Libelle"];
     $prix = $_POST["prix"];
     $disc = $_POST["discont"];
     $id_cat = $_POST["id_categor"];
     if (!empty($lib)  and !empty($prix)  and !empty($disc)  and !empty($id_cat)) {
-        $dt = date("Y-m-d H:i:s");  
+        $dt = date("Y-m-d H:i:s");
 
         $rqt =   $pdo->prepare("INSERT INTO `ec_prod`(  `libelle`, `prix`, `discont`, `id_cg`, `date_crate_p`) VALUES (?,?,?,?,?)");
         $inserte =  $rqt->execute([$lib, $prix, $disc, $id_cat, $dt]);
         if ($inserte) {
-            ?>
+?>
             <div class="label-info label-info-bon ">
                 Bien Ajouter <?php echo $lib  ?> Dans Les Categores
             </div>
         <?php
-        }
-        else{
+        } else {
         ?>
             <div class="label-info label-info-bon ">
                 Probleme !!! (456000)
             </div>
         <?php
         }
-
-       
     } else {
 
 
-    ?>
+        ?>
         <div class="label-info  ">
             Probleme Tous les Champ Sont Obligatoir !!!
         </div>
@@ -70,7 +67,7 @@ if (isset($_POST["sendNc"])) {
 
             <div class="libell">
                 <label for="Libelle">Libelle : </label>
-                <input type="text" name="Libelle" value="lib1">
+                <input type="text" name="Libelle" value="Modifie">
             </div>
 
             <div class="libell">
@@ -86,8 +83,7 @@ if (isset($_POST["sendNc"])) {
             <div class="libell">
                 <label for="id_categor">Choisissez Une : </label>
                 <select name="id_categor">
-                    <option value="">Choisissez Une Categorie</option>
-                    <option value="2" selected>My Cat</option>
+                    <option value="">Choisissez Une Categorie</option> 
                     <?php
                     //SELECT * FROM `ec_catg`  `id_cg`,`libelle`
                     foreach ($tab_prods as   $value) {
@@ -108,42 +104,35 @@ if (isset($_POST["sendNc"])) {
 
 
     <script>
-var progres= document.getElementsByName("discont")[0];
-var label1= document.querySelector("#myRangLab label::after");
-  
- 
-console.log(progres); 
+        
+    var progres = document.getElementsByName("discont")[0];
+    var label1 = document.querySelector("#myRangLab label");
+        window.onload=function(){
+            label1.innerHTML = "Discont :  " + 50 + " %"; 
+    }
 
-progres.onchange=()=> {
-    var val=progres.value;
-    console.log(val); 
-    
-
-    
-    console.log(label1); 
-
-  
-
-}
-
-
+        progres.onchange = () => {
+            var val = progres.value; 
+            label1.innerHTML = "Discont :  " + val + " %";
+                
+    }
     </script>
+
     <style>
-#myRangLab label {
-position: relative;  
-}
-#myRangLab label::after  {
-position: absolute;
-content: "";
-width: 20px; 
-height: 20px;   
-border-radius: 40%;
-background-color: #ac9e9e;
-  top: -12px;
-  left: 120px;
-}
+        #myRangLab label {
+            position: relative;
+        }
 
-
+        #myRangLab label::after {
+            position: absolute;
+            /* content: "***"; */
+            width: 20px;
+            height: 20px;
+            border-radius: 40%;
+            background-color: #ac9e9e;
+            top: -12px;
+            left: 120px;
+        }
     </style>
 </body>
 
