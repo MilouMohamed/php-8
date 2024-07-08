@@ -1,7 +1,8 @@
 <?php
 require_once "databaseEcom.php";
 
-$donnes = $pdo->query("SELECT  p.*, c.libelle as lb_cat FROM `ec_prod` p INNER JOIN ec_catg c on  p.id_cg=c.id_cg ")->fetchAll(PDO::FETCH_OBJ);
+$donnes = $pdo->query("SELECT  p.*, c.libelle as lb_cat FROM `ec_prod` p left JOIN ec_catg c on  p.id_cg=c.id_cg ")->fetchAll(PDO::FETCH_OBJ);
+  
 
 ?>
 <!DOCTYPE html>
@@ -28,6 +29,8 @@ $donnes = $pdo->query("SELECT  p.*, c.libelle as lb_cat FROM `ec_prod` p INNER J
                         <th>ID</th>
                         <th>Libelle</th>
                         <th>Prix</th>
+                        <th>Icon</th>
+                        <th>Image</th>
                         <th>Discount</th>
                         <th>Libelle Cat</th>
                         <th>Date Creation</th>
@@ -43,7 +46,11 @@ $donnes = $pdo->query("SELECT  p.*, c.libelle as lb_cat FROM `ec_prod` p INNER J
                             <td><?= $value->id_p; ?></td>
                             <td><?= strtoupper($value->libelle); ?></td>
                             <td><?php echo  $value->prix . " mad"; ?></td>
-                            <td><?php echo  $value->discont . " %"; ?></td>
+                            <td>
+                                <i class="<?php echo  $value->econ_c . " %"; ?>"></i>    
+                            </td> 
+                            <td><img src="<?php echo ( $value->image_p ?  $value->image_p : "upload/no-Image.JPG"   )   ; ?>" alt="Image Prod" height="80px" ></td>
+                            <td><?php echo  $value->discont   ; ?></td>
                             <td><?= strtoupper($value->lb_cat); ?></td>
                             <td><?= $value->date_crate_p; ?></td>
                             <td>

@@ -44,6 +44,7 @@ if(!$connecte && pathinfo(__FILE__)["basename"] != "index.php" )
 */
 </script>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="fonts\fontawesome-free-6.5.2-web(1)\fontawesome-free-6.5.2-web\css\all.min.css">
 
 <nav class=" nav-bar">
 

@@ -17,11 +17,27 @@ if (isset($_POST["sendNc"])) {
     $prix = $_POST["prix"];
     $disc = $_POST["discont"];
     $id_cat = $_POST["id_categor"];
+    $econ = $_POST["econ_c"];
+
+    // echo "<pre>";
+    //  print_r($_FILES);
+    // echo "</pre>";
+
     if (!empty($lib)  and !empty($prix)  and !empty($disc)  and !empty($id_cat)) {
         $dt = date("Y-m-d H:i:s");
 
-        $rqt =   $pdo->prepare("INSERT INTO `ec_prod`(  `libelle`, `prix`, `discont`, `id_cg`, `date_crate_p`) VALUES (?,?,?,?,?)");
-        $inserte =  $rqt->execute([$lib, $prix, $disc, $id_cat, $dt]);
+        $filename = "Upload/no-Image.JPG";
+
+        if ($_FILES["img"]) {
+
+            $filename = "Upload/". uniqid() . $_FILES["img"]["name"];
+            move_uploaded_file($_FILES["img"]["tmp_name"],$filename);
+        }
+
+
+        $rqt =   $pdo->prepare("INSERT INTO `ec_prod`(  `libelle`, `prix`, `discont`, `id_cg`, `date_crate_p`,econ_c,image_p) VALUES (?,?,?,?,?,?,?)");
+        $inserte =  $rqt->execute([$lib, $prix, $disc, $id_cat, $dt, $econ, $filename]);
+
         if ($inserte) {
 ?>
             <div class="label-info label-info-bon ">
@@ -62,7 +78,7 @@ if (isset($_POST["sendNc"])) {
     <div class="container-global cont-categ">
         <h2>Ajoutre Produit</h2>
 
-        <form action="" method="post" class="form-prod">
+        <form action="" method="post" class="form-prod" enctype="multipart/form-data">
             <!-- libelle 	prix 	discont 	id_cg 	  -->
 
             <div class="libell">
@@ -81,9 +97,14 @@ if (isset($_POST["sendNc"])) {
             </div>
 
             <div class="libell">
-                <label for="id_categor">Choisissez Une : </label>
+                <label for="img">Image : </label>
+                <input type="file" name="img" />
+            </div>
+
+            <div class="libell">
+                <label for="id_categor">Categorie : </label>
                 <select name="id_categor">
-                    <option value="">Choisissez Une Categorie</option> 
+                    <option value="3">Choisissez Une Categorie</option>
                     <?php
                     //SELECT * FROM `ec_catg`  `id_cg`,`libelle`
                     foreach ($tab_prods as   $value) {
@@ -94,7 +115,10 @@ if (isset($_POST["sendNc"])) {
                 </select>
             </div>
 
-
+            <div class="libell" id="myRangLab">
+                <label for="econ_c">Icon : </label>
+                <input type="text" name="econ_c"  value="fa-solid fa-cannabis">
+            </div>
 
             <button type="submit" name="sendNc">Ajouter Produit</button>
 
@@ -104,18 +128,17 @@ if (isset($_POST["sendNc"])) {
 
 
     <script>
-        
-    var progres = document.getElementsByName("discont")[0];
-    var label1 = document.querySelector("#myRangLab label");
-        window.onload=function(){
-            label1.innerHTML = "Discont :  " + 50 + " %"; 
-    }
+        var progres = document.getElementsByName("discont")[0];
+        var label1 = document.querySelector("#myRangLab label");
+        window.onload = function() {
+            label1.innerHTML = "Discont :  " + 50 + " %";
+        }
 
         progres.onchange = () => {
-            var val = progres.value; 
+            var val = progres.value;
             label1.innerHTML = "Discont :  " + val + " %";
-                
-    }
+
+        }
     </script>
 
     <style>

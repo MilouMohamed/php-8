@@ -14,6 +14,7 @@ $sql=$sql->fetch(PDO::FETCH_OBJ);
 $libl=$sql->libelle;
 $desc=$sql->descrip;
 $date_cr=$sql->date_crate_c;
+$econ_c=$sql->econ_c;
 
 ?>
         <div class="label-info label-info-bon ">
@@ -35,12 +36,13 @@ if(isset($_POST["send_modif"])){
 $libl=$_POST["Libelle"];
 $desc=$_POST["description"];
 $date_cr=$_POST["date_creat"]; 
+$econ_c=$_POST["econ_c"]; 
 
-if(!empty($libl) && !empty($desc) && !empty($date_cr) ){ 
-$req= $pdo->prepare("UPDATE `ec_catg`  set libelle=?, `descrip`=?,date_crate_c =?
+if(!empty($libl) && !empty($desc) && !empty($date_cr) && !empty($econ_c) ){ 
+$req= $pdo->prepare("UPDATE `ec_catg`  set libelle=?, `descrip`=?,econ_c =?,date_crate_c =?
                      WHERE id_cg=?;"); 
 
- $req->execute([$libl,$desc,$date_cr,$id]); 
+ $req->execute([$libl,$desc,$econ_c,$date_cr,$id]); 
 
 } else {
     ?> 
@@ -85,6 +87,10 @@ $req= $pdo->prepare("UPDATE `ec_catg`  set libelle=?, `descrip`=?,date_crate_c =
             <div class="libell">
                 <label for="description">Description : </label>
                 <textarea name="description" > <?= $desc ;?></textarea>
+            </div>
+            <div class="libell">
+                <label for="econ_c">Econ_c : </label>
+                <textarea name="econ_c" > <?= $econ_c ;?></textarea>
             </div>
 
             <div class="libell">

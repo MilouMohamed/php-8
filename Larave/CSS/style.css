@@ -41,6 +41,22 @@ body {
 .btn-detele {
     background-color: #e6c07a;
 }
+.btn-catg {
+    width: max-content; 
+    margin:10px;
+    border-radius:10px;
+    padding:3px 5px;
+}
+
+i {
+    
+    font-size: 28px;
+}
+
+
+
+
+
 
 
 
@@ -388,3 +404,168 @@ table {
         background-color: rgba(50,50,200,0.3) ;
     }
 }
+/****** Clien categores****************************************************/
+
+.container-global.catgr {
+    
+    padding: 20px;
+    h2 {
+        padding: 5px;
+        margin: 0 auto 10px;
+        width: max-content;
+        font-size: 25px;
+    }
+    
+}
+
+
+.liste-cat {
+    padding: 20px;
+    margin: 20px 50px;
+    background-color: #b5d5ec;
+     
+    border-left: red 5px solid;
+    border-radius: 25px;
+    
+    .btn-catg {
+        display: inline-flex;
+        position: relative;
+    } 
+    
+    
+}
+
+
+
+/****** Clien categores List Prod Of Categories****************************************************/
+.list-cat-prod { 
+    
+    .liste-cat {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .porteur { 
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(280px, 400px));
+        padding: 20px;
+        grid-gap: 20px;
+        justify-content: center;
+    }
+    
+    .card-prod {
+        overflow: hidden;
+        background-color: white; 
+        
+    }
+    
+    .img-div {
+        height: 200px; 
+        
+    }
+    .img-div img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+    }
+    
+    .infor-div {
+        padding: 10px;
+        
+    }
+    
+    .infor-div h2 { 
+        margin-left: 12px;  
+        background-color: black;
+          color: red;
+        border-left: 4px solid red;
+        padding: 5px 12px;
+    }
+    
+    div.infor-div div {  
+        color: red;
+        text-align: center ;  
+        font-size: 22px; 
+}
+    
+    
+    .infor-div span {   
+        background-color: gray;
+          color: white;
+        border-right:  4px solid black;
+        border-left:   4px solid black;
+        padding: 5px 12px;
+        width: max-content;
+        
+        float: right;
+        margin-right: -7px;
+        border-radius: 10px 0 20px 0;
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************/
+/***********************************/
+/**** Animation *******************/
+    .btn-catg:hover :after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: transparent;
+        border-bottom: dashed 2.5px black ;
+        
+        animation: zigzag 1s linear infinite;
+        bottom:  0px;
+        left: 50%;
+        transform: translateX(-50%); 
+    }
+@keyframes zigzag {
+    0%,100% { 
+        bottom: 0px; 
+        width: 100%;
+        border-color: red;
+    }
+    
+    50% { 
+        bottom: -10px; 
+        width: 0%;
+        border-color: #b5d5ec;;
+        
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

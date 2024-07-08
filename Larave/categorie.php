@@ -29,6 +29,7 @@ $donnes = $pdo->query("SELECT * FROM `ec_catg`")->fetchAll(PDO::FETCH_ASSOC);
                         <th>ID</th>
                         <th>Libelle</th>
                         <th>Description</th>
+                        <th>Icon</th>
                         <th>Date Creation</th>
                         <th>Operation</th>
                     </tr>
@@ -41,6 +42,9 @@ $donnes = $pdo->query("SELECT * FROM `ec_catg`")->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo  $value["id_cg"]; ?></td>
                             <td><?php echo  $value["libelle"]; ?></td>
                             <td><?php echo  $value["descrip"]; ?></td>
+                            <td> 
+                                <i class="<?php echo  $value["econ_c"]; ?>"></i>
+                            </td>
                             <td><?php echo  $value["date_crate_c"]; ?></td>
                             <td>
                             <a  href="modif_cat.php?id=<?= $value["id_cg"]; ?>" name="modifier" class="btn btn-edit">Modifier</a>
