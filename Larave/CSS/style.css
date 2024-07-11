@@ -9,9 +9,12 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    text-decoration: none;
     font-family: "Playwrite IT Moderna", cursive;
     font-size: 15px;
+}
+a {
+    
+     text-decoration: none;
 }
 
 body {
@@ -41,9 +44,11 @@ body {
 .btn-detele {
     background-color: #e6c07a;
 }
-.btn-catg {
+.btn-catg ,
+  .btn-catg,
+    .btn-catg_sub{
     width: max-content; 
-    margin:10px;
+    margin:5px;
     border-radius:10px;
     padding:3px 5px;
 }
@@ -52,10 +57,42 @@ i {
     
     font-size: 28px;
 }
+.badge_ { 
+    width: max-content;
+    padding: 5px 8px;
+    border-radius: 5px;
+    margin: 5px;  
+    font-size: 16px;
+}
+.badge_.warning {
+    background-color: orange; 
+}
+.badge_.danger {
+    background-color: red; 
+}
+ 
+.badge_.date {
+    background-color: gray; 
+}
 
 
-
-
+.center-elm { 
+    background-color: black;  
+        text-align: center;
+    .btn-catg,
+    .btn-catg_sub{
+        background-color: white;
+        color: black;
+        padding:7px 10px  ;
+        font-size: 17px;
+    }
+    form {
+        display: flex;
+        text-align: center;  
+        align-items: center;
+        width: max-content;
+    }
+}
 
 
 
@@ -122,6 +159,12 @@ input:focus {
 }
 
 
+.nav-bar .list-nav ul .panier i  {
+    font-size: 22px;
+    color: white;
+}
+
+
 .nav-bar .logo {
     transition: .2s;
 }
@@ -160,7 +203,7 @@ input:focus {
 
 .container-login {
     margin: 10px auto;
-    height: 300px;
+    height: 320px;
     width: 300px;
     background-color: red;
     padding: 15px;
@@ -177,7 +220,7 @@ input:focus {
     padding-bottom: 50px;
     text-align: center;
     color: white;
-    text-shadow: 2px 2px black;
+    text-shadow: 2px 2px black; 
 }
 
 .container-login .form-login {
@@ -411,9 +454,9 @@ table {
     padding: 20px;
     h2 {
         padding: 5px;
-        margin: 0 auto 10px;
-        width: max-content;
+        margin: 0 auto 10px; 
         font-size: 25px;
+        display: block;
     }
     
 }
@@ -554,8 +597,169 @@ table {
 }
 
 
+/***** Detail Prod *****************************************************/
+.catd-prod {
+    .card-prod{   
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        
+        
+        .img-div {
+            
+        float: left;
+            justify-content: center;
+            align-content: center;
+            width: 50%;  
+            img {
+                min-width:  40%;
+               width: 100%; 
+                max-width:500px;
+            }
+        }
+        
+        
+        
+        .infor-div {
+            float: right; 
+            width: 50%;
+            padding: 10px;
+                min-width:  40%;
+             min-width: 200px;
+            
+            h2 {
+                text-transform:uppercase;
+                margin-bottom: 20px; 
+                display:inline;
+            }
+            div {
+                color: white;
+                background-color: gray;
+                margin-bottom: 20px;
+            }  
+        }  
+        .center-elm { 
+            background-color: red;   
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            border-top-left-radius: 10px;
+        }
+        span.date {
+            display: block;
+        }
+    }  
+    
+}
 
 
+    .cntr {
+        z-index: 3 ;;
+        display: flex;
+        justify-content: space-evenly !important;
+        align-items: center !important; 
+        border-top: 3px white solid;
+        z-index: 20 !important;
+            position: relative !important;;
+      
+       
+    .counter {
+        background-color: white; 
+        padding: 5px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+        
+        >*{
+            height: 40px;
+            width: 100px;
+            margin: 5px;
+            text-align: center;
+            display:block;
+            font-size: 20px;
+            position: relative;
+        }
+        
+    }
+    
+
+* {
+    z-index: 5;
+}
+
+
+
+
+
+@media (max-width : 800px) {
+     .card-prod{
+    flex-direction: column;
+    display: flex;
+         
+         .infor-div  , .img-div {  ;
+             width: 100% !important; 
+             height: max-content;
+             
+             img { 
+             height:  100% !important; 
+             width: 100% !important; 
+                 min-height: 100% !important;
+                 min-width:  100% !important;
+             }
+         }
+         
+         .img-div {
+             height: 70% !important;
+         }
+         
+         .infor-div  {
+             height: 30% !important;
+             background-color: green !important;
+             display: 
+             
+         }
+         .infor-div div:nth-child(3){ 
+             background-color: white;
+             color: black;
+             font-weight: bold;
+             float: right;
+         }
+         .infor-div span:nth-child(4){ 
+             float: left;
+         }
+}
+      
+    
+.liste-cat { 
+     
+    border-top:  orange 5px solid;
+    border-left:none;
+}
+      .center-elm { 
+            background-color: black !important;;   
+            position: relative !important; 
+          border-radius: 0 !important;
+        }
+    
+    .badge_ {
+        font-size: 14px;
+        display:grid;
+    }
+    
+    
+    .catd-prod {
+    .card-prod{  
+            h2 {
+                font-sizse: 14px;
+                display:inline;
+                
+        }
+        
+        }  
+}
 
 
 

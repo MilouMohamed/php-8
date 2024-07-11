@@ -54,6 +54,9 @@ if(!$connecte && pathinfo(__FILE__)["basename"] != "index.php" )
 
     <li class="list-nav">
         <ul>
+            <a href="client/index.php">Client</a>
+        </ul>
+        <ul>
             <a href="index.php">Ajoter Utili</a>
         </ul>
         <?php
