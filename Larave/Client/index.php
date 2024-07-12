@@ -15,7 +15,9 @@ $donnes = $pdo->query("SELECT  * from  ec_catg ")->fetchAll(PDO::FETCH_OBJ);
 
 <body>
 
-    <?php include_once("nav_cline.php");  ?>
+    <?php 
+    session_start();
+    include_once("nav_cline.php");  ?>
     <div class="container-global catgr">
         <h2><i class="fa-solid fa-rectangle-list fa-1x"></i>Liste Des Categories</h2>
         <hr />

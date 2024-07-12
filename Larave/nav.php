@@ -53,9 +53,13 @@ if(!$connecte && pathinfo(__FILE__)["basename"] != "index.php" )
     </span>
 
     <li class="list-nav">
+    <?php  
+            if (isset($_SESSION["utilisateur"])) { ?>
         <ul>
             <a href="client/index.php">Client</a>
         </ul>
+        <?php
+            }   ?>
         <ul>
             <a href="index.php">Ajoter Utili</a>
         </ul>

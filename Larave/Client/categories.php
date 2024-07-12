@@ -1,7 +1,9 @@
 <?php
 require_once "../databaseEcom.php";
+ session_start();
+ 
 
-
+ 
 if (isset($_GET["id"])) {
 
     $id = $_GET["id"];
@@ -69,8 +71,7 @@ $tab_categ_one = $sql->fetch(PDO::FETCH_OBJ);
             <div class="porteur">
 
                 <?php 
-                
-                session_start();
+                 
                 foreach ($tab_prod as $prod) {
                 ?>
                     <div>
@@ -91,13 +92,11 @@ $tab_categ_one = $sql->fetch(PDO::FETCH_OBJ);
                         <?php
 
                         $id_p = $prod["id_p"];
-                        require("counter.php"); ?>
-                        <h1>test </h1>
+                        require("counter.php"); ?> 
                     </div>
 
                 <?php
-                }
-
+                } 
                 ?>
 
             </div>

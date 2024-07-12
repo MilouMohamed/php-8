@@ -1,5 +1,9 @@
 <?php
 require_once "../databaseEcom.php";
+session_start();
+ 
+// var_dump( $_SESSION["utilisateur"]["id_u"]);
+// var_dump( $_SESSION["Panier"] );
 
 
 if (isset($_GET["id"])) {
@@ -89,7 +93,6 @@ if (isset($_GET["id"])) {
 
                     <div class="center-elm">
                     <?php 
-                    session_start();
                     require("counter.php"); ?>
                     </div>
                  

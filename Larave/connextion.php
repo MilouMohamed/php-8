@@ -20,8 +20,9 @@ if (isset($_POST["send"])) {
         if ($sqlreq->rowCount() >= 1) {
             // var_dump($sqlreq->fetch()); 
             session_start();
-            $_SESSION["utilisateur"] = $sqlreq->fetch();
-            header("location:admin.php");
+            $_SESSION["utilisateur"] = $sqlreq->fetch(); 
+
+             header("location:admin.php");
         } else {
 ?>
             <div class="label-info">

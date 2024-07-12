@@ -8,16 +8,22 @@ if (!isset($_SESSION["utilisateur"])) {
 
 
 $id_p = $_POST["id_p"];
-$qtt = $_POST["qtt"];
+$qtt =(int)( $_POST["qtt"]);
 $id_u = $_SESSION["utilisateur"]["id_u"];
 
-if ( !empty($id_p) && !empty($qtt)) { 
+if ( !empty($id_p)  ) { 
+
     if (!isset($_SESSION["Panier"][$id_u])) {
         $_SESSION["Panier"][$id_u]  = [];
     }  
-        $_SESSION["Panier"][$id_u][ $id_p] = $qtt; 
+    if($qtt== 0)  
+       unset($_SESSION["Panier"][$id_u][$id_p]); 
+    else
+        $_SESSION["Panier"][$id_u][$id_p] = $qtt; 
         
-        header("location: detail_Produit.php?id=$id_p");
+        // header("location: detail_Produit.php?id=$id_p");
+        // header("location:".$_SERVER['REQUEST_URI']);
+        header("location:".$_SERVER['HTTP_REFERER']); // return meme rerfreche
          
 }else {
     echo "<h1>Probleme Dans id De produit</h1>";

@@ -10,8 +10,7 @@ if (isset($_GET["id"])) {
     $sql = $pdo->prepare("SELECT * FROM `ec_prod` WHERE id_p= ? ");
     $sql->execute([$id]);
     $tab_prod = $sql->fetch(PDO::FETCH_ASSOC);
-
-
+ 
 
 
     $sql2 = $pdo->prepare("SELECT * FROM `ec_catg`");
@@ -43,21 +42,37 @@ if (isset($_POST["modifier"])) {
 
 
 
+
+echo "<br>-------------------- ---<br><pre>";
+ var_dump( $tab_prod);
+ echo "Tab***************FILE";
+ var_dump( $_FILES);
+ echo "</pre>";
+
     if (!empty($lib) && !empty($prix) && !empty($discont) && !empty($catg)) {
 
         $fimename = $tab_prod["image_p"];
  
-        if (!empty($_FILES["image_p"]) or  $_FILES["image_p"]== null ) { 
+        if (  $_FILES["image_p"]["size"]> 0 &&  $_FILES["image_p"]!= null ) { 
 
             $fimename =  'upload/'.  uniqid() .$_FILES['image_p']['name'] ;
             move_uploaded_file($_FILES["image_p"]["tmp_name"], $fimename);
-        }
-
+            $sql3 =   $pdo->prepare("UPDATE ec_prod set `libelle`=?, `prix`=?,`discont`=?,`econ_c`=?,`image_p`=?, `id_cg`=? WHERE id_p =?;");
+            $sql3->execute([$lib, $prix, $discont, $econ, $fimename, $catg, $id]);
+    
+        }else { 
  
-        $sql3 =   $pdo->prepare("UPDATE ec_prod set `libelle`=?, `prix`=?,`discont`=?,`econ_c`=?,`image_p`=?, `id_cg`=? WHERE id_p =?;");
-        $sql3->execute([$lib, $prix, $discont, $econ, $fimename, $catg, $id]);
+            if( $_FILES["image_p"]["size"] == 0 )
+             {$fimename = "Upload/no-Image.JPG" ;}
 
-        // header("location:produit.php");
+             if( !empty($tab_prod["image_p"]) )
+              {$fimename = $tab_prod["image_p"] ;}
+
+             $sql3 =   $pdo->prepare("UPDATE ec_prod set `libelle`=?, `prix`=?,`discont`=?,`econ_c`=?,`image_p`=?, `id_cg`=? WHERE id_p =?;");
+             $sql3->execute([$lib, $prix, $discont, $econ, $fimename, $catg, $id]);
+     
+    }
+           header("location:produit.php");
     ?>
         <div class="label-info  label-info-bon  ">
             Modification Est fais Avce Succes de Produit <?= $lib  ?>
@@ -122,7 +137,7 @@ if (isset($_POST["modifier"])) {
                 <input type="file" name="image_p"  >
             </div>
 
-            <img src='<?php echo (($tab_prod["image_p"]) ?  $tab_prod["image_p"]   : "Upload/no-Image.JPG") ?>' alt="img " height="100px" width="200px">
+            <img src='<?php echo (($tab_prod["image_p"] != null) ?  $tab_prod["image_p"]   : "Upload/no-Image.JPG") ?>' alt="img " height="100px" width="200px">
 
             <div class="libell">
                 <label for="id_categor">les Categories : </label>

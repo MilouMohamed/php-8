@@ -759,12 +759,52 @@ table {
         }
         
         }  
+        }  
 }
 
+.panier {
+    
+    .tab-panier {
+        td {
+            padding: 5px  12px;  
+        }
+          
+        tr >td>* {
+            
+    display:flex; 
+            justify-content: center;
+            align-items: center; 
+        }
+        
+        .center-elm  {
+            background-color: transparent;
+            border: none;
+            }
+        input.counter {
+            width: 100px;
+        }
+        
+        img {
+            height: 100px;
+            margin: 2px auto;
+        }
+        
+        
+          td:last-child {
+         display: block !important; 
+              display:inline-table !important;  
+              text-align: center;
+              padding: 10px;
+              margin: 10px auto; 
+              border:none ;
+              width: max-content;
+              color: red;
+    }
+         
+    }
 
 
-
-
+}
 
 
 
