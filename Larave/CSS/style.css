@@ -673,14 +673,15 @@ table {
         
     }
         
-        >*{
+        form >*{
             height: 40px;
-            width: 100px;
+            width:19% !important;; 
             margin: 5px;
             text-align: center;
             display:block;
             font-size: 20px;
             position: relative;
+             
         }
         
     }
@@ -800,13 +801,54 @@ table {
               width: max-content;
               color: red;
     }
+        .tr-last {
+            padding: 0 !important;;
+            margin: 0 !important;;
+        }
+        .tr-last form {
+            margin: 0px; 
+            display: flex !important;;
+            flex-wrap: wrap;
+            flex-direction: column;
+                
+        }
+         
+        .tr-last form button{
+            margin:2px 5px; 
+            
+        }
+         
          
     }
 
+.container-global.catgr ,
+ .catgr ,
+.container-global {
+padding: 0px !important;
+    margin: 5px !important;
+}
 
+       .porteur { 
+        display: block; 
+        justify-content: center;
+           align-items: center;
+    }
+}
 }
 
 
+@media (max-width : 800px) {
+    
+    
+.panier { 
+.container-global.catgr ,
+ .catgr ,
+.container-global {
+padding: 0px !important;
+    margin: 5px !important;
+}
+}
+}
 
 
 

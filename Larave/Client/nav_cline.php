@@ -1,7 +1,6 @@
 <?php
 $nbrProd = 0;
-
-// echo "<pre>";
+ 
  
  if (isset($_SESSION["utilisateur"]) &&  isset($_SESSION["Panier"] )) {
     
