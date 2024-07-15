@@ -11,17 +11,67 @@ Youtube : jamaoui  Mouad
 
  
 //-1 ---------- Ecommerce php 		(33) ----------------
+// Database: ecom_1 
+//*******************************************************
+//--------------    29 / 33 
+/*
+
+ALTER TABLE ec_cmd CHANGE `date_createion` date_create datetime DEFAULT CURRENT_TIME; 
+
+
+SELECT * FROM ec_ligne_cmd;
+SELECT * FROM ec_cmd;
+ALTER TABLE ec_ligne_cmd add CONSTRAINT fk_cmd FOREIGN KEY(id) REFERENCES ec_cmd(id);
+
+
+use ecom_1; use ecom_1;
+ 
+ DROP TABLE if EXISTS ligne_cmd;
+ DROP TABLE if EXISTS ec_ligne_cmd;
+CREATE TABLE ec_ligne_cmd (
+id int PRIMARY KEY,
+    id_p int ,
+prix decimal ,
+    qtt int,
+    total decimal    
+);
+
+ALTER TABLE ec_ligne_cmd ADD   FOREIGN KEY(id_p) REFERENCES ec_prod(id_p)
+on DELETE CASCADE 
+on UPDATE CASCADE ;
+
+
+
+
+
+
+
+
+
+
+create table ec_cmd (
+id int PRIMARY KEY AUTO_INCREMENT,
+    id_u int,
+    total decimal ,
+    date_create datetime,
+     foreign key(id_u) REFERENCES ec_user(id_u) 
+     on DELETE CASCADE on UPDATE CASCADE
+
+)
+
+
+
+
+
+
+
+
+
+
 // Database: ecom_1 Table: ec_catg 
 //*******************************************************
 //--------------    3 / 33
 echo "Test ---- Test";
-
-
-
-
-
-
-
 
 
 

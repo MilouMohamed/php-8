@@ -51,7 +51,24 @@ if (!empty($_SESSION["Panier"][$id_u])) {
 </head>
 
 <body>
-    <?php include_once "nav_cline.php"; ?>
+    <?php include_once "nav_cline.php";
+
+    if (isset($_POST["conferme"])) {
+$total=0;
+var_dump($tab_prod );
+
+foreach($lis_prod_ses as $prod => $qttPro){
+
+     $total= $qttPro["prix"] *  $qttPro["id_p"];
+
+}
+var_dump($total);
+
+
+ 
+    }
+
+    ?>
 
     <div class="Panier">
 
