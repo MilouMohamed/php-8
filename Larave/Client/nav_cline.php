@@ -2,14 +2,14 @@
 $nbrProd = 0;
  
  
- if (isset($_SESSION["utilisateur"]) &&  isset($_SESSION["Panier"] )) {
+ if (!empty($_SESSION["utilisateur"]) &&  !empty($_SESSION["Panier"])) {
     
     $id_u = $_SESSION["utilisateur"]["id_u"];
     $nbrProd = count($_SESSION["Panier"][$id_u]);
  }
  
 
-?>
+?> 
 
 
 <link rel="stylesheet" href="../css/style.css">

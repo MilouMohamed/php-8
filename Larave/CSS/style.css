@@ -131,6 +131,12 @@ input:focus {
 
 }
 
+.nav-bar .list-nav ul.active { 
+    a{
+    background-color: green; 
+    }
+}
+
 .nav-bar .list-nav,
 .nav-bar .logo {
     display: flex;

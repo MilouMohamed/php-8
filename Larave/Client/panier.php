@@ -23,7 +23,8 @@ if (isset($_POST["vider"])) {
 $qtt = 0;
 $tab_prod = [];
 if (!empty($_SESSION["Panier"][$id_u])) {
-
+var_dump($_SESSION["Panier"][$id_u]);
+echo "<br>--------------------<br><br>";
     $lis_prod_ses = $_SESSION["Panier"][$id_u];
     $ids_prod = array_keys($_SESSION["Panier"][$id_u]);
 
@@ -54,18 +55,87 @@ if (!empty($_SESSION["Panier"][$id_u])) {
     <?php include_once "nav_cline.php";
 
     if (isset($_POST["conferme"])) {
-$total=0;
-var_dump($tab_prod );
 
-foreach($lis_prod_ses as $prod => $qttPro){
+        $total = 0;
+        // var_dump($tab_prod);
+        // echo "<br>";
+        $list_inser = [];
 
-     $total= $qttPro["prix"] *  $qttPro["id_p"];
+        foreach ($tab_prod as $prod) {
+            $id_p = $prod["id_p"];
+            $qtt = $lis_prod_ses[$id_p];
+            $prix = $prod['prix'];
+            $total += $qtt * $prix;
 
-}
-var_dump($total);
+            array_push($list_inser,[
+                "id_p" => $id_p,
+                "prix" => $prix,
+                "qtt" => $qtt,
+                "total" => $qtt * $prix,
+            ]);
+        }
+        // echo "<br><br> =total  = $total";
+
+             $sql = $pdo->prepare("INSERT INTO `ec_cmd`(  `id_u`, `total` ) VALUES (?,?)");
+            $sql->execute([$id_u, $total]);
 
 
- 
+        echo "<br><br> ";
+           $id_cmd = $pdo->lastInsertId(); 
+        // $id_cmd=5;
+        // echo "<pre>";
+        // echo "</pre>";
+        // var_dump($sql->errorInfo());
+        // var_dump($sql->debugDumpParams());
+        $sql_lign_cmd="INSERT INTO ec_ligne_cmd(  id_p, prix, qtt, total, id_cmd) VALUES ";
+        $total1 = 0;
+        foreach ($list_inser as $prod) {
+            $id_p = $prod["id_p"];
+            $prix = $prod["prix"];
+            $qtt = $prod["qtt"];
+            $total1 = $prod["total"];
+            $sql_lign_cmd.="(:id_p$id_p,:prix$id_p ,:qtt$id_p  ,:total$id_p  ,$id_cmd  ),";  
+            
+        }
+        
+        $sql_lign_cmd=substr($sql_lign_cmd,0,-1) ; 
+        // echo "<br>--- ".$sql_lign_cmd."<br><br>";
+        
+         
+        $sqlRes=$pdo->prepare($sql_lign_cmd);
+
+        foreach ($list_inser as $prod) {
+            $id_p = $prod["id_p"]; 
+            // echo "<br>$id_p et ".$prod["id_p"];
+            $sqlRes->bindParam(":id_p$id_p",$prod["id_p"]);
+            $sqlRes->bindParam(':prix'.$id_p,$prod["prix"]);
+            $sqlRes->bindParam(':qtt'.$id_p,$prod["qtt"]);
+            $sqlRes->bindParam(':total'.$id_p,$prod["total"]); 
+        } 
+        // var_dump( $sqlRes);
+        
+        // echo "<pre>"; 
+        // var_dump($sqlRes->debugDumpParams());
+        // echo "</pre>";
+
+        // echo "<br>-------------<br>";
+        //   var_dump($sqlRes->errorInfo());
+        // echo "<br>-------------<br>";
+        // echo "<br><br> ";
+        
+          $ett= $sqlRes->execute();
+        // echo "<br>-------------<br>";
+       if($ett){ 
+        $_SESSION["Panier"][$id_u]=[];
+        
+        header("location:".$_SERVER['HTTP_REFERER']);
+        ?>
+        <div class="label-info  "  style=" animation-delay: 4s;">
+            Votre Commande de <?= $total1  ?> : MAD Est Bien Ajoutee
+        </div>
+        <?php 
+       }
+
     }
 
     ?>
