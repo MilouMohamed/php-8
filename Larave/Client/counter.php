@@ -27,7 +27,7 @@ if(!empty($_SESSION["Panier"][$id_u][$id_p])){
         <button   class="btn btn-catg btn-moins">-</button>
         <input type="hidden" name="id_p" value="<?= $id_p   ?>" >
         <input type="number" name="qtt" class="counter" min="0" value="<?php echo $qtt ;?>"  >
-        <button   class="btn btn-catg  btn-plus"><?= $id_p   ?></button>
+        <button   class="btn btn-catg  btn-plus">+</button>
         <button   type="submit" class="btn btn-catg_sub "><?php  if($qtt > 0) echo '<i class="fa-regular fa-pen-to-square"></i> '; else echo '<i class="fa-solid fa-cart-plus"></i>';    ?></button>
         <?php 
         if($qtt >0){ 

@@ -392,8 +392,7 @@ input:focus {
 
 /**  TBALE  *********************************************************/
 .center-table {
-    margin: 5px auto;
-    background-color: red;
+    margin: 5px auto; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -856,6 +855,12 @@ padding: 0px !important;
 }
 }
 
+.crat-ling-cmd table {
+    margin: 0 auto; 
+}
+.crat-ling-cmd img{
+    height: 80px;
+}
 
 
 

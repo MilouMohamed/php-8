@@ -18,6 +18,7 @@ Youtube : jamaoui  Mouad
 
 ALTER TABLE ec_cmd CHANGE `date_createion` date_create datetime DEFAULT CURRENT_TIME; 
 
+alter TABLE ec_cmd add COLUMN valid int DEFAULT 0; 
 
 SELECT * FROM ec_ligne_cmd;
 SELECT * FROM ec_cmd;

@@ -23,8 +23,7 @@ if (isset($_POST["vider"])) {
 $qtt = 0;
 $tab_prod = [];
 if (!empty($_SESSION["Panier"][$id_u])) {
-var_dump($_SESSION["Panier"][$id_u]);
-echo "<br>--------------------<br><br>";
+     
     $lis_prod_ses = $_SESSION["Panier"][$id_u];
     $ids_prod = array_keys($_SESSION["Panier"][$id_u]);
 
@@ -79,8 +78,7 @@ echo "<br>--------------------<br><br>";
              $sql = $pdo->prepare("INSERT INTO `ec_cmd`(  `id_u`, `total` ) VALUES (?,?)");
             $sql->execute([$id_u, $total]);
 
-
-        echo "<br><br> ";
+ 
            $id_cmd = $pdo->lastInsertId(); 
         // $id_cmd=5;
         // echo "<pre>";

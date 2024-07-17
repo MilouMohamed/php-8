@@ -16,7 +16,7 @@ $donnes = $pdo->query("SELECT cm.*,u.login_u as 'name' FROM `ec_cmd` cm inner jo
 </head>
 
 <body>
-    <?php include_once("nav.php")   ?>
+    <?php include_once ("nav.php") ?>
 
     <div class="container-global">
         <h2>Ecom Projecy MILOU MED</h2>
@@ -28,22 +28,25 @@ $donnes = $pdo->query("SELECT cm.*,u.login_u as 'name' FROM `ec_cmd` cm inner jo
                     <tr>
                         <th>ID</th>
                         <th>Client</th>
-                        <th>Total</th> 
+                        <th>Total</th>
                         <th>Date Creation</th>
                         <th>Operation</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    foreach ($donnes as   $value) {
-                    ?>
+                    <?php
+                    foreach ($donnes as $value) {
+                        ?>
                         <tr>
-                            <td><?php echo  $value["id"]; ?></td>
-                            <td><?php echo  strtoupper( $value["name"]); ?></td>
-                            <td><?php echo  $value["total"]." : MAD"; ?></td> 
-                            <td><?php echo  $value["date_create"]; ?></td>
+                            <td><?php echo $value["id"]; ?></td>
+                            <td><?php echo strtoupper($value["name"]); ?></td>
+                            <td><?php echo $value["total"] . " : MAD"; ?></td>
+                            <td><?php echo $value["date_create"]; ?></td>
+                           
                             <td>
-                              </td>
+                                <a class="btn btn-edit" href="commandeOne.php?id_cmd=<?= $value["id"]; ?>">Afficher Details</a>
+                            </td>
+
                         </tr>
                     <?php } ?>
 
