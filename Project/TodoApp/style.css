@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: arial,poping;
+    list-style: none;
+}
+/****TOAST ******************************************/
+.toast {
+    position: absolute;
+    z-index: -1;
+    width: max-content; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #ff000075;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+   animation: show 2s linear forwards ;   
+   
+} 
+ 
+.toast-ok {
+    background-color: #00ff1075;
+    
+}
+
+@keyframes show {
+   100% {   
+        visibility: hidden;  
+       z-index: 22;
+       
+    }
+}
+
+
+
+/**********************************************/
+
+  .my-nav {
+    background-color: #599c5a6b;
+    padding: 5px 10px;
+    text-align: center;
+      z-index: 1;
+}
+.container { 
+    height: 100%;
+    width: 100%;
+    background-color: #ccc8bf; 
+    margin: 0; 
+    z-index: 1;
+}
+
+.container .my-nav h1{
+    color: white;
+    padding: 5px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column; 
+    width: 60%;
+    margin: 10px auto;
+    background-color: #436452;
+    padding: 14px;
+    border-radius: 3px;
+    box-shadow: -4px 4px 8px 1px black; 
+}
+
+
+.container form input {
+    padding: 10px 8px;
+    margin-bottom: 10px;
+}
+
+
+.container form button {
+    padding:6px 10px ; 
+    width: max-content;
+    margin: 0px auto;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.container ul{
+    width: 80%; 
+    margin: 20px auto 0px;
+    display: flex;
+    flex-direction: column;  
+    border: 1px dashed gray;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+
+
+.container ul li{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+}
+
+
+.container ul li .edit-btn {  
+    margin-left:  calc(80% - 175px);
+}
+
+.container ul li .edit-btn input {  
+  padding: 2px 4px;
+    margin: 2px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
