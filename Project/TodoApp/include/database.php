@@ -6,4 +6,18 @@ try {
   die("Probleme de connection au bd  ". $e->getMessage());
 }
                                                                                                             // MILOU MED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
