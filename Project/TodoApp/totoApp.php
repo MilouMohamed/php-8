@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
+    <title>Todo App PHP MoMi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,7 +22,7 @@
 
         if (!empty($_POST["titre"])) {
             $titre = htmlspecialchars($_POST["titre"]);
-            echo "<br>" . $titre . "<br>";
+            // echo "<br>" . $titre . "<br>";
 
             $sql = $pdo->prepare("insert into items(txt) values(?); ");
             $etat = $sql->execute([$titre]);
@@ -77,7 +77,7 @@
                             <td><?= $item["txt"] ?></td>
                             <td class="edit-btn">
                                 <form  method="post"> 
-                                    <input type="text" name="id_i" value="<?= $item['id_i'] ?>"  hidden>
+                             <input type="text" name="id_i" value="<?= $item["id_i"] ?>"  hidden>
                                     <input type="submit" value="&#9998;" name="update_item"  formaction="update.php">
                                     
                                     <input type="submit" value="&#10008;" name="delete_item" onclick="return confirm('Vous Voulllez Supprimer Cette Tache ???')"  formaction="supprimer.php">
