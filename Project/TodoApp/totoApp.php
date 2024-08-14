@@ -113,7 +113,7 @@ INSERT INTO items (txt) VALUES ("tache 1"),
 ("tache 4"),("tache 5"),
 ("tache 6"),("tache 7");
 
-
+MILOU MED
                                                                                                                 MILOU MED 
 */
 ?>
