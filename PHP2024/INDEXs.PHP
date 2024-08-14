@@ -1,5 +1,20 @@
 <?php
 echo "<div style='padding:20px'>  ";
+// var_dump($sqlstat->errorInfo());
+
+/*
+ytb : https://www.youtube.com/@JamaouiMouad
+
+-----1  Ecom projct         (Terminer)  
+                                    ---> Todo list
+                                    (bootswatch for color)
+                                    // link code html https://www.toptal.com/designers/htmlarrows/symbols/
+-----2  MVC                 (Encour)
+-----3  PHP POO             (Terminer)
+-----4  DAO                 (Terminer) 
+*/ 
+
+
 
 /*
 Need ------------------
@@ -17,7 +32,7 @@ function errorHandle ($level,$msg,$file,$line) {
 
     $res="level is = ".$level;
     $res.="\nMsg is = ".$msg;
-    $res.="\nFile is = ".$file;
+    $res.="\nFile is = ".$file; 
     $res.="\nLine is = ".$line;
     $res.="\n\r------------------------ \n\r";
 
@@ -2111,6 +2126,9 @@ print_r(array_flip( $list1));// Key=> value ====> value=> Key
 echo "</pre>";
 /*
 
+error Sql state
+var_dump($sql->errorInfo());
+var_dump($sql->debugDumpParams());
 
 $list2=[] ;
 foreach($list1 as $key=>$value) { 
