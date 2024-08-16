@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+<?php include_once "./view/include/nav.php"; ?>
     <div class="container">
         <h1><?= $title ?></h1>
         <?= $content ?>
