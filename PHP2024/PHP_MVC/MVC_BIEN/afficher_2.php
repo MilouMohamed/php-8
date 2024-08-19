@@ -1,5 +1,6 @@
 <?php
 require_once "./controller/stagaire_control.php";
+// fichier index is this One 
 
 
 if (isset($_GET["action"])) {
@@ -36,29 +37,20 @@ if (isset($_GET["action"])) {
             break;
         }
 
-        default: {
-            echo "IS DEFAULT <br>";
 
+        default: {
+            index_Action();
+            break;
         }
 
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     // <!-- MILOU MED  -->
 
-
-
+} else {
+    header("location:afficher_2.php?action=");
+    index_Action();
 
 }
