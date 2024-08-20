@@ -1,11 +1,35 @@
 <?php
 
-require "./app/models/Stagaire.php";
+// require "./app/models/Stagaire.php";
+require "./app/models/autoLoad.php";
 
-
-$stagaire=new Stagaire();
+$stagaire = new Stagaire();
 echo "<pre>";
- print_r(Stagaire::find(5));
+
+$vtr= new Voiture();
+$vtr->setColor("red");
+print_r($vtr);
+
+
+// print_r(Stagaire::where("nom","Nom 1"));
+
+echo "<br>*----*********----*<br>";
+
+
+print_r(Stagaire::where("age", 20));
+
+echo "<br>*----*****find****----*<br>";
+
+print_r(Stagaire::find(6));
+
+
+
+
+
+
+
+
+//  print_r(Stagaire::find(2)); 
 echo "</pre>";
 
 /*

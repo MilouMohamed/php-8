@@ -63,7 +63,6 @@ class Stagaire extends Models
         $sql = static::dataBase()->prepare("INSERT INTO stagaires_dao   VALUES (null,?,?,?,?,?)");
 
         return $sql->execute([$this->nom, $this->prenom, $this->age, $this->login, $this->pass]);
-
     }
 
     function delete($id_stg)
@@ -77,7 +76,6 @@ class Stagaire extends Models
     {
         $sqlState = $this->dataBase()->prepare("UPDATE `stagaires_dao` SET   nom= ?, prenom=?,age=?,login=?,pass=? WHERE id= ?");
         return $sqlState->execute([$n, $pr, $a, $l, $pw, $i]);
-
     }
 
     public static function all()
@@ -88,13 +86,16 @@ class Stagaire extends Models
 
     public static function find($id)
     {
+
+return current( static::where("id",$id));
+        /*
         //probleme de return One lement
         $sqlStat = static::dataBase()->prepare(" select * from stagaires_dao where   id= ?");
         $sqlStat->execute([$id]);
         $sqlStat->setFetchMode(PDO::FETCH_CLASS, Stagaire::class);
 
         return $sqlStat->fetch();
-        
+
 
         // OU  Pour fetchAll
         // $stgr=current( $sqlStat->fetchAll(PDO::FETCH_CLASS,Stagaire::class)); 
@@ -105,7 +106,19 @@ class Stagaire extends Models
         // $stgr=current($stgr);
         // var_dump($stgr);
         // return $stgr;
+        */
     }
+
+    public  static function where($column, $value,$operat='=') {
+      $sqlState=  static::dataBase()->prepare("SELECT * FROM  stagaires_dao  WHERE   $column $operat ? "); 
+      $sqlState->execute([$value]); 
+      $donnees=$sqlState->fetchAll(PDO::FETCH_CLASS,"Stagaire"); 
+
+if(empty($donnees)){
+throw new Exception("Aucun Stagaire n'est Trouvé !!!!" );
 
 }
 
+      return  $donnees;
+    }
+}
