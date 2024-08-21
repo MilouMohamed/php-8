@@ -1,5 +1,6 @@
 <?php
-
+namespace app\models;
+use PDO;
 class Models
 {
     protected $id;

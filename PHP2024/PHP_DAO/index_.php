@@ -1,27 +1,30 @@
-<?php
+<?php 
+ 
 
 // require "./app/models/Stagaire.php";
-require "./app/models/autoLoad.php";
+require "AutoLoader.php";
+AutoLoader::regester();
 
-$stagaire = new Stagaire();
+$stagaire = new       app\models\Stagaire();
 echo "<pre>";
 
-$vtr= new Voiture();
+print_r($stagaire);
+
+$vtr= new app\models\Voiture();
 $vtr->setColor("red");
 print_r($vtr);
 
-
+/**/
 // print_r(Stagaire::where("nom","Nom 1"));
-
+/*
 echo "<br>*----*********----*<br>";
-
-
-print_r(Stagaire::where("age", 20));
+ 
+print_r(  Stagaire::where("age", 20));
 
 echo "<br>*----*****find****----*<br>";
 
 print_r(Stagaire::find(6));
-
+ 
 
 
 

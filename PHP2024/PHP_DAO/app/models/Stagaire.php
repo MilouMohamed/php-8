@@ -1,5 +1,10 @@
 <?php
 
+namespace app\models;
+
+use Exception;
+use PDO;
+
 require "models.php";
 
 class Stagaire extends Models
@@ -65,7 +70,7 @@ class Stagaire extends Models
         return $sql->execute([$this->nom, $this->prenom, $this->age, $this->login, $this->pass]);
     }
 
-    function delete($id_stg)
+    public static function delete($id_stg)
     {
         // Methode Static
         $sqlState = self::dataBase()->prepare("delete from stagaires_dao where id = ? ;");

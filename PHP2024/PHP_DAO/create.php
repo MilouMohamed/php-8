@@ -1,8 +1,8 @@
 <?php
 
-require "./app/models/Stagaire.php";
+// require "./app/models/Stagaire.php";
 
-$stagaire=new Stagaire();
+$stagaire=new app\models\Stagaire();
 
 $stagaire->setNom("Nom 20");
 $stagaire->setPrenom("Prenon 20");

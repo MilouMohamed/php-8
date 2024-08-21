@@ -1,20 +1,19 @@
 <?php
 
-  class Voiture {
+namespace app\models;
 
-private $color;
+class Voiture
+{
 
-function getColor()  {
+  private $color;
+
+  function getColor()
+  {
     return $this->color;
+  }
+
+  function setColor($clr)
+  {
+    $this->color = $clr;
+  }
 }
-
-function setColor($clr){
-$this->color= $clr;
-} 
-}
-
-
-
-
-
-
