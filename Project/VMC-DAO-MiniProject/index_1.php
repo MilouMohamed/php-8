@@ -1,22 +1,60 @@
 <?php
-use app\models\Voiture;
+use app\controller\Voiture_contro;
 
-require "vendor/autoload.php"; 
+require "vendor/autoload.php";
 
-echo "Test ";
+if (isset($_GET["action"])) {
+
+    $actionPage = $_GET["action"];
+
+    switch ($actionPage) {
+        case 'list': {
+            Voiture_contro::index_Action();
+            break;
+        }
+        case 'create': {
+            Voiture_contro::create_Action();
+            break;
+        }
+        
+        case 'store': {
+            Voiture_contro::store_Action();
+            break;
+        }
+         
+        case 'edit': {
+            Voiture_contro::edit_Action(); 
+            break;
+        }
+        case 'update': {
+            Voiture_contro::update_Action();
+            break;
+        }
+        case 'delete': {
+            Voiture_contro::delete_Action();
+            break;
+        }
+        
+        
+
+        default: {
+            echo "<h2>Page Not Found 404 <h2>";
+
+            break;
+        }
+    }
+
+}
+
+// print_r($voitr);
 
 
-$voitr=new Voiture("BMB",50000);
 
-echo "<pre>";
-print_r($voitr);
-
-
-
-
-echo "</pre>";
 
 /*
+
+echo "<pre>";
+echo "</pre>";
 
 
 composer init ;
@@ -41,7 +79,7 @@ CREATE table Voiture (
 id int PRIMARY key AUTO_INCREMENT ,
     modele varchar(100),
     prix double 
-)
+)   ;
 
 
 INSERT INTO `voiture`  VALUES 

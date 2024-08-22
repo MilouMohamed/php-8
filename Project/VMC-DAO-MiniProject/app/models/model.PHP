@@ -5,18 +5,18 @@ use PDO;
 class model
 {
 
-    private $id;
-    private static  $db;
+    protected $id;
+    protected static  $db;
 
     public function getId()
     {
         return $this->id;
     }
     public static function database()
-    {
+    {  
 
-        if (is_null(static::$db)) {
-            static::$db = new PDO("MYSQL:local:localhost,dbname=mvc_1_v3", "root");
+         if (is_null(static::$db)) {
+            static::$db = new PDO("mysql:dbname=mvc_1_v3;host=localhost;", "root", "");
         }
         return static::$db;
     }
