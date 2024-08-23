@@ -12,47 +12,64 @@
     <?php
 
     include "./includee/nav.php";
-    require "./includee/model.php";
 
-    ?>
-    <?php
 
     if (isset($_POST["ajouter"])) {
         $log = $_POST["login"];
         $pas = $_POST["pass"];
 
-        // $date = date_format(date_create("now"), "Y-m-d H:i:s");
-        $date = date("Y-m-d H:i:s");
- 
-        $sqlState = database()->prepare("INSERT INTO `ec_user` VALUES (null,?,?,? )");
+        if (empty($log) || empty($pas)) {
+    ?>
+            <div class="alert error">
+                <h2>Tous les Champs sont Obligatoire </h2>
+            </div>
+            <?php 
+        } else {
 
-        $sqlState->execute([$log, $pas, $date]);
+            require "./includee/model.php";
+            // $date = date_format(date_create("now"), "Y-m-d H:i:s");
+            $date = date("Y-m-d H:i:s");
 
+            $sqlState = database()->prepare("INSERT INTO `ec_user` VALUES (null,?,?,? )");
+
+            $rse =       $sqlState->execute([$log, $pas, $date]);
+            if ($rse) {
+                header("location:connection.php");
+            } else {
+            ?>
+                <div class="alert error">
+                    <h2>Probleme de Connection !!!</h2>
+                </div>
+    <?php
+            }
+        }
     }
+
     ?>
 
-<div class="container">
-    <form method="post" class="center">
+    <div class="container">
+        <form method="post" class="center">
 
-        <div class="row">
-            <label for="login">Login : </label>
-            <input type="text" name="login">
-        </div>
-
-
-        <div class="row">
-            <label for="pass">Pass : </label>
-            <input type="text" name="pass">
-        </div>
-
-        <div class="row">
-            <input type="submit" name="ajouter" value="Ajouter">
-        </div>
+        <h1>Page Inscription :</h1> 
+            <div class="row">
+                <label for="login">Login : </label>
+                <input type="text" name="login">
+            </div>
 
 
-    </form>
+            <div class="row">
+                <label for="pass">Pass : </label>
+                <input type="text" name="pass">
+            </div>
 
-</div>
+            <div class="row">
+                <input type="submit" name="ajouter" value="Ajouter">
+            </div>
+
+
+        </form>
+        
+    </div>
 
 </body>
 
@@ -62,29 +79,25 @@
 
 /*  Base De Donnees
 
-insert into  ec_produit VALUES
-(null,"danone 2",2.5,2,2,CURRENT_TIME,null),
-(null,"banan",10.5,0,1,CURRENT_TIME,null),
-(null,"Tomat",2.5,2,1,CURRENT_TIME,null),
-(null,"voiture",12000,10,3,CURRENT_TIME,null);
 
-ALTER TABLE ec_produit add CONSTRAINT fk_Cat FOREIGN key(id_categorie ) REFERENCES 
-ec_categorie(id) on DELETE CASCADE on  update CASCADE;
 
-alter table drop inde id_categorie;
 
-ALTER TABLE ec_produit ADD COLUMN img varchar(254)
+create database if not EXISTS ecom_1_2eme_f;
 
-create table ec_produit(
-id int PRIMARY key AUTO_INCREMENT,
-    libelle varchar(100),
-    prix  decimal,
-    discount int,
-    id_categorie int ,
-date_c datetime ,
-    constraint foreign key (id_categorie) REFERENCES ec_categorie(id)
+use ecom_1_2eme_f;
 
-)
+CREATE TABLE ec_user(
+id int primary key AUTO_INCREMENT,
+    login varchar(100),
+    pass varchar(100),
+    date_c datetime
+);
+     
+INSERT into ec_user values
+(null,"111","0000",CURRENT_DATE),
+(null,"000","0000",CURRENT_DATE),
+(null,"222","0000",CURRENT_DATE);
+
 
 
 
@@ -105,19 +118,26 @@ INSERT into ec_categorie values (null,"fawakih","Pas de Descrip",CURRENT_TIME),
 
 
 
-create database if not EXISTS ecom_1_2eme_f;
+create table ec_produit(
+id int PRIMARY key AUTO_INCREMENT,
+    libelle varchar(100),
+    prix  decimal,
+    discount int,
+    id_categorie int ,
+date_c datetime ,
+    constraint foreign key (id_categorie) REFERENCES ec_categorie(id)
+    on DELETE CASCADE on UPDATE CASCADE
 
-use ecom_1_2eme_f;
+);
 
-CREATE TABLE ec_user(
-id int primary key AUTO_INCREMENT,
-    login varchar(100),
-    pass varchar(100),
-    date_c datetime
-)
-     
-INSERT into ec_user values
-(null,"111","0000",CURRENT_DATE),
-(null,"000","0000",CURRENT_DATE),
-(null,"222","0000",CURRENT_DATE);
-    */
+ALTER TABLE ec_produit ADD COLUMN img varchar(254);
+
+insert into  ec_produit VALUES
+(null,"danone 2",2.5,2,2,CURRENT_TIME,null),
+(null,"banan",10.5,0,1,CURRENT_TIME,null),
+(null,"Tomat",2.5,2,1,CURRENT_TIME,null),
+(null,"voiture",12000,10,3,CURRENT_TIME,null);
+ 
+
+
+ */

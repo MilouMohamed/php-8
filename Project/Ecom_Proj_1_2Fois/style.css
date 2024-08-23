@@ -10,7 +10,35 @@
     font-size: 18px;
     
 }
+/****Alert ************/
+.alert {
+    background-color: gray;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    animation: hide 2s linear infinite; 
+ 
+    position: absolute;
+    width: calc(100% - 120px);
+    margin: 1px 30px;
+    bottom: 20px;
+    right: 30px;
+}
+@keyframes hide {
+   0%{ 
+             opacity: 1;
+    } 
+90%{
+    background-color: orange;  
+    } 
+    100%{ 
+        opacity: 0;
+    }
+}
 
+.alert.error {
+    background-color: red;
+}
 
 /*NAV BAR */
 nav{
@@ -30,6 +58,7 @@ nav ul a,nav .logo a{
     display: block;
     transition-duration: .5s;
     border-radius: 5px;
+   margin:auto 3px ;
 }
 nav .logo a{
     font-weight: bold; 
@@ -59,7 +88,17 @@ nav .logo a:hover {
     left: 50%;
     transform: translate(-50%,-50%);
 }
-
+.center-v {
+    margin: 2px auto;
+    display: block;
+    text-align: center; 
+}
+.bg-gray {
+    background-color: gray;
+}
+.p-3 {
+    padding: 14px  5px;
+}
 
 
 form{
