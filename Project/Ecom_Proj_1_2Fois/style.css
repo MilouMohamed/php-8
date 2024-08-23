@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border:none;
+    outline: none;
+    caret-color: red;
+    font-size: 18px;
+    
+}
+
+
+/*NAV BAR */
+nav{
+    display: flex; 
+    align-items: center;
+    background-color: red;
+    justify-content: space-between; 
+    padding: 5px 10px;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul a,nav .logo a{
+   padding:15px 10px;
+    display: block;
+    transition-duration: .5s;
+    border-radius: 5px;
+}
+nav .logo a{
+    font-weight: bold; 
+}
+nav ul a:hover {
+    background-color: black;
+    color: red;
+}
+
+nav .logo a:hover {
+    background-color: white;
+    font-weight: bold;
+    color: black;
+}
+
+
+/*****INdex Connection */
+.container {
+    margin: 0 20px;
+    padding: 10px;
+    
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+
+form{
+    width: 400px;
+    margin: 2px auto; 
+    padding: 20px;
+    background-color: gray;
+    border-radius: 5px;
+    border: 2px red solid;   
+}
+form .row {
+    display: flex;
+    justify-content: space-between;
+     padding: 12px;
+    input {
+        width:100%;
+        height: 25px;
+    border-radius: 2px;
+        
+    }
+    label{
+       width:  100px; 
+        
+    }
+    input[type=submit]{
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom:  5px;
+        height: max-content;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
