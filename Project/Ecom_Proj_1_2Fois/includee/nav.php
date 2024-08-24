@@ -21,6 +21,8 @@ session_start();
             ?>
             <li><a href="ajouter_catg.php">Aj Catg</a></li>
             <li><a href="ajouter_prod.php">Aj Prod</a></li>
+            <li><a href="list_categ.php">lt Cat</a></li>
+            <li><a href="list_prod.php">lt Prd</a></li>
             <li><a href="admin.php">Admin</a></li>
             <li><a href="includee/decnt.php">Dec</a></li>
         <?php
