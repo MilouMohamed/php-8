@@ -13,9 +13,9 @@
 
     include "./includee/nav.php"; 
 
-    session_start();
- 
-    include "./includee/securete.php";
+
+    if (!isset($_SESSION["user"]))  
+    header("location:connection.php"); 
   
     ?>
     <div class="container">

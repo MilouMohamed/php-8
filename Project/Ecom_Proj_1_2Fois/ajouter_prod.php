@@ -11,13 +11,17 @@
 <body>
     <?php
 
+    include "./includee/nav.php";
+
+    if (!isset($_SESSION["user"]))  
+    header("location:connection.php"); 
 
     if (isset($_POST["connecter"])) {
         $log = $_POST["login"];
         $pas = $_POST["pass"];
 
         if (empty($log) || empty($pas)) {
-            ?>
+    ?>
             <div class="alert error">
                 <h2>Tous les Champs sont Obligatoire </h2>
             </div>
@@ -31,26 +35,25 @@
             $sqlState = database()->prepare("select * from `ec_user` where  `login`=? and  `pass`=?  ");
 
             $sqlState->execute([$log, $pas]);
-            $nbr = $sqlState->rowCount();
+            $nbr =    $sqlState->rowCount();
 
 
             if ($nbr > 0) {
+ 
 
-                session_start();
                 $_SESSION["user"] = $sqlState->fetch(PDO::FETCH_OBJ);
 
                 header("location:admin.php");
             } else {
-                ?>
+            ?>
                 <div class="alert error">
                     <h2>Mot de Passe Ou Login Incorect !!!</h2>
                 </div>
-                <?php
+    <?php
             }
         }
     }
 
-    include "./includee/nav.php";
     ?>
     <div class="container">
         <form method="post" class="center">
