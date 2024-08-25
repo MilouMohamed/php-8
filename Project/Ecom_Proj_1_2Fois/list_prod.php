@@ -35,6 +35,12 @@
         <div class="center-v">
 
             <h1>Liste Des Produits</h1>
+
+            <hr>
+            <div class="left"> 
+                <a class="  btn  left" href="./ajouter_prod.php"> Ajouter Nouvel Produit</a>
+            </div>
+            <hr>
             <table  >
                 <thead>
                     <tr>
@@ -62,7 +68,10 @@
                         <td><?= $catgr->lib_cat  ; ?></td>
                         <td><?= $catgr->date_c  ; ?></td>
                         <td><?= $catgr->img  ; ?></td>
-                        <td>X O </td>
+                        <td> 
+                            <a class="btn btn-mdf btn1 " href="./modifer_categ.php?id=<?= $catgr->id; ?>">Modf</a>
+                            <a class="btn  btn-dlt btn1  " href="./delete_catg.php?id=<?= $catgr->id; ?>">Supp</a>
+                            </td>
                     </tr>
                     <?php  
                     endforeach;

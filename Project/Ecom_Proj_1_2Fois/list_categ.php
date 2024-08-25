@@ -24,11 +24,11 @@
     // var_dump($categors);
 
     if (count($categors) == 0) {
-        ?>
+    ?>
         <div class="alert error">
             <h2>Pas De Categories</h2>
         </div>
-        <?php die();
+    <?php die();
     }
 
     ?>
@@ -36,7 +36,12 @@
         <div class="center-v">
 
             <h1>Liste Des Categories</h1>
-            <table  >
+            <hr>
+            <div class="left"> 
+                <a class="  btn  left" href="./ajouter_catg.php"> Ajouter Cathegorie</a>
+            </div>
+            <hr>
+            <table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -47,17 +52,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php  
-                    foreach($categors as $catgr):
+                    <?php
+                    foreach ($categors as $catgr):
                     ?>
-                    <tr>
-                        <td><?= $catgr->id  ; ?></td>
-                        <td><?= $catgr->libelle  ; ?></td>
-                        <td><?= $catgr->description  ; ?></td>
-                        <td><?= $catgr->date_c  ; ?></td>
-                        <td> </td>
-                    </tr>
-                    <?php  
+                        <tr>
+                            <td><?= $catgr->id; ?></td>
+                            <td><?= $catgr->libelle; ?></td>
+                            <td><?= $catgr->description; ?></td>
+                            <td><?= $catgr->date_c; ?></td>
+                            <td> 
+                            <a class="btn btn-mdf btn1 " href="./modifer_categ.php?id=<?= $catgr->id; ?>">Modf</a>
+                            <a class="btn  btn-dlt btn1  " href="./delete_catg.php?id=<?= $catgr->id; ?>">Supp</a>
+                            
+                            </td>
+                        </tr>
+                    <?php
                     endforeach;
                     ?>
                 </tbody>

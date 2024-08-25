@@ -38,7 +38,7 @@
             $sqlState = database()->prepare("INSERT INTO `ec_produit`(  `libelle`, `prix`, `discount`, `id_categorie`  ) VALUES ( ?,?,?,?)");
 
             $sqlState->execute([$libelle, $prix, $discount, $id_categorie]);
-            header("location:list_categ.php");
+            header("location:list_prod.php");
         }
     }
     ?>
@@ -86,6 +86,7 @@
 
     </div>
 
+    <script src="./script.js"></script> 
 </body>
 
 </html>
