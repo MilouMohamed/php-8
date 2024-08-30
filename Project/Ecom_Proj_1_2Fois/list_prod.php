@@ -58,19 +58,19 @@
                     
 <!-- // id 	libelle 	prix 	discount 	id_categorie 	date_c 	img  -->
                     <?php  
-                    foreach($produits as $catgr):
+                    foreach($produits as $prod):
                     ?>
                     <tr>
-                        <td><?= $catgr->id  ; ?></td>
-                        <td><?= $catgr->libelle  ; ?></td>
-                        <td><?= $catgr->prix  ; ?> MAD</td>
-                        <td><?= $catgr->discount  ; ?></td>
-                        <td><?= $catgr->lib_cat  ; ?></td>
-                        <td><?= $catgr->date_c  ; ?></td>
-                        <td><?= $catgr->img  ; ?></td>
+                        <td><?= $prod->id  ; ?></td>
+                        <td><?= $prod->libelle  ; ?></td>
+                        <td><?= $prod->prix  ; ?> MAD</td>
+                        <td><?= $prod->discount  ; ?></td>
+                        <td><?= $prod->lib_cat  ; ?></td>
+                        <td><?= $prod->date_c  ; ?></td>
+                        <td><?= $prod->img  ; ?></td>
                         <td> 
-                            <a class="btn btn-mdf btn1 " href="./modifer_categ.php?id=<?= $catgr->id; ?>">Modf</a>
-                            <a class="btn  btn-dlt btn1  " href="./delete_catg.php?id=<?= $catgr->id; ?>">Supp</a>
+                            <a class="btn btn-mdf btn1 " href="./modifier_prod.php?id=<?= $prod->id; ?>"  >Modf</a>
+                            <a class="btn  btn-dlt btn1" href="./delete_prod.php?id=<?= $prod->id ?>"  onclick="return confirm('Vous Voullez Supprimer <?= $prod->libelle ?>')" >Supp</a>
                             </td>
                     </tr>
                     <?php  

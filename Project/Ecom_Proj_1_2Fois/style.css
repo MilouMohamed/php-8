@@ -10,6 +10,11 @@
     font-size: 18px;
     
 }
+
+
+
+
+
 /****Alert ************/
 .alert {
     background-color: gray;
@@ -89,17 +94,60 @@ nav .logo a:hover {
     transform: translate(-50%,-50%);
 }
 .center-v {
-    margin: 2px auto;
-    display: block;
+    margin: 2px auto; 
     text-align: center; 
 }
+
+.d-block {
+    display: block;
+}
+.d-flex {
+    display: flex;
+}
+.j-c-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.j-c-s {
+    display: flex; 
+    align-items: center;
+    gap: 10px;
+}
+
+.list-Items{
+display: flex;  
+    gap: 3px;
+    flex-wrap: wrap;
+}
+
 .bg-gray {
     background-color: gray;
 }
+
 .p-3 {
     padding: 14px  5px;
 }
 
+.m-5  {
+   margin: 5px;
+}
+.m-15  {
+   margin: 5px;
+}
+.m-10  {
+   margin: 5px;
+}
+
+.hvr-b-r:hover {
+    background-image: linear-gradient(0deg,red,black);
+    color: white;
+}
+.hvr-w-r:hover {
+    background-image: linear-gradient(20deg,red 20%,white 50%,white );
+    color: black;
+}
 
 form{
     width: 400px;
@@ -109,6 +157,14 @@ form{
     border-radius: 5px;
     border: 2px red solid;   
 }
+
+
+form.mdf{
+    width: 50%;
+    max-width: 700px;
+    min-width: 450px; 
+}
+
 form .row {
     display: flex;
     justify-content: space-between;
@@ -306,13 +362,64 @@ input[type=range]:focus::-ms-fill-upper {
   background: #FF0000;
 }
 
+/*** Clien  Prod**********************************/
 
+.flex-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.card-prod { 
+    border-radius: 10px; 
+    width: 280px;
+    height: 360px;
+    overflow: hidden;
+    position: relative; 
+    background-image: linear-gradient(20deg,gray 2%,red 50%,red );
 
+}
 
+.card-prod:hover {
+    color: white; 
+}
 
+.card-prod .img-div {
+    height: 250px;
+    width: 280px;
+}
+.card-prod .img-div img{
+    height: 100%;
+    width: 100%;
+}
+ 
+.card-prod .info ,
+.card-prod .date {
+    padding: 10px;
+    
+}
 
+.card-prod .info { 
+    margin-top: 5px; 
+    border-bottom:  2px solid red;
+}
 
-
+.card-prod .info span {
+    margin: 10px auto ;
+    display: flex;
+    float: right;
+}
+.card-prod .date {
+    margin-top: 25px;
+    padding: 10px ;
+    display: block; 
+    border-top:  2px solid red;
+    border-top:  2px dashed red;
+}
+.card-prod .date span { 
+    display: block;
+    font-size: 13px; 
+    
+}
 
 
 

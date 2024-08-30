@@ -107,7 +107,7 @@ libelle varchar(100) ,
     description varchar(100),
     date_c datetime 
 );
-
+ALTER TABLE ec_categorie ADD icon_c varchar(250) DEFAULT  'fa-solid fa-layer-group'
 INSERT into ec_categorie values (null,"fawakih","Pas de Descrip",CURRENT_TIME),
  (null,"khodar","Pas de Descrip 2",CURRENT_TIME),
   (null,"ajban","Pas de Descrip 3",CURRENT_TIME),

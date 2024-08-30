@@ -16,6 +16,7 @@ session_start();
             <li><a href="index_.php">Insc</a></li>
         <?php } ?>
         <li><a href="connection.php">Conx</a></li>
+        <li><a href="./FRONT/c_list_categ.php">CNT</a></li>
         <?php
         if (isset($_SESSION["user"])) {
             ?>

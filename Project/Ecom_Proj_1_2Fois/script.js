@@ -1,6 +1,7 @@
 
 console.log("11111111");
 
+ 
 window.onload=function() {
 
  var rang= document.querySelector("input[type='range']");

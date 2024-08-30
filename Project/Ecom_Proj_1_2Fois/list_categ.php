@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/all.min.css">
     <title>Ecom Site</title>
 </head>
 
@@ -22,13 +23,13 @@
     $categors = database()->query("select  * from `ec_categorie`  order by id desc ")->fetchAll(PDO::FETCH_OBJ);
 
     // var_dump($categors);
-
+    
     if (count($categors) == 0) {
-    ?>
+        ?>
         <div class="alert error">
             <h2>Pas De Categories</h2>
         </div>
-    <?php die();
+        <?php die();
     }
 
     ?>
@@ -36,8 +37,8 @@
         <div class="center-v">
 
             <h1>Liste Des Categories</h1>
-            <hr>
-            <div class="left"> 
+            <hr><br>
+            <div class="left">
                 <a class="  btn  left" href="./ajouter_catg.php"> Ajouter Cathegorie</a>
             </div>
             <hr>
@@ -54,19 +55,26 @@
                 <tbody>
                     <?php
                     foreach ($categors as $catgr):
-                    ?>
+                        ?>
                         <tr>
-                            <td><?= $catgr->id; ?></td>
-                            <td><?= $catgr->libelle; ?></td>
+                            <td><?= $catgr->id; ?> </td>
+                            <td>
+                                <div class="d-flex j-c-s ">
+                                    <i class="<?= $catgr->icon_c ?>"></i>
+                                    <?= $catgr->libelle; ?>
+                                </div>
+
+                            </td>
                             <td><?= $catgr->description; ?></td>
                             <td><?= $catgr->date_c; ?></td>
-                            <td> 
-                            <a class="btn btn-mdf btn1 " href="./modifer_categ.php?id=<?= $catgr->id; ?>">Modf</a>
-                            <a class="btn  btn-dlt btn1  " href="./delete_catg.php?id=<?= $catgr->id; ?>">Supp</a>
-                            
+                            <td>
+                                <a class="btn btn-mdf btn1 " href="./modifer_categ.php?id=<?= $catgr->id; ?>">Modf</a>
+                                <a class="btn  btn-dlt btn1  " href="./delete_catg.php?id=<?= $catgr->id; ?>"
+                                    onclick="return confirm('Vous Voullez Supprimer <?= $catgr->libelle ?>')">Supp</a>
+
                             </td>
                         </tr>
-                    <?php
+                        <?php
                     endforeach;
                     ?>
                 </tbody>
