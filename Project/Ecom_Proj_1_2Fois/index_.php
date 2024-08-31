@@ -132,12 +132,13 @@ date_c datetime ,
 
 ALTER TABLE ec_produit ADD COLUMN img varchar(254);
 
+
 insert into  ec_produit VALUES
 (null,"danone 2",2.5,2,2,CURRENT_TIME,null),
 (null,"banan",10.5,0,1,CURRENT_TIME,null),
 (null,"Tomat",2.5,2,1,CURRENT_TIME,null),
 (null,"voiture",12000,10,3,CURRENT_TIME,null);
  
-
+UPDATE  ec_produit set img= "./uploads/no_Img.JPG";
 
  */

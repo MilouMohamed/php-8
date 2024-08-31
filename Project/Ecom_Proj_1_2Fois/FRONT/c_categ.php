@@ -42,19 +42,15 @@
             <hr>
             <div class="flex-grid">
 
-                <!-- // id 	libelle 	prix 	discount 	id_categorie 	date_c 	img  -->
-                <?php
-
-echo '<i class='.$_GET["icon"].' ></i> '; 
-                var_dump($_GET);
+                 <?php
+ 
                
                 foreach ($produits as $prod):
-                    //  $prod->id <?= $prod->libelle  ; ? > $prod->prix  ;$prod->discount   $prod->date_c $prod->img 
-                    ?>
+                       ?>
                     <div class="card-prod  hvr-w-r">
-
+<a href="c_detail_Prod.php?id=<?=  $prod->id ?>" class="m-0 p-0">
                         <div class="img-div">
-                            <img src="../img/img-4.JPG" alt="">
+                            <img src="../uploads/<?= file_exists("../uploads/$prod->img")? $prod->img :"no_Img.jpg" ; ?>" alt="Image Produit"    >
                         </div>
 
                         <div class="info">
@@ -65,7 +61,7 @@ echo '<i class='.$_GET["icon"].' ></i> ';
                         <div class="date">
                             <span>Ajouter Le : <?= $prod->date_c; ?> </span>
                         </div>
-
+                        </a>
                     </div>
 
                     <?php

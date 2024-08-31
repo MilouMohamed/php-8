@@ -26,7 +26,7 @@
     if (count($categors) == 0) {
         ?>
         <div class="alert error">
-            <h2>Pas De Categories</h2>
+            <h2>Pas De Categories </h2>
         </div>
         <?php die();
     }
@@ -35,7 +35,7 @@
     <div class="container">
         <div class="center-v">
 
-            <h1>Liste Des Categories</h1>
+            <h1>Liste Des  <i class="fa-solid fa-icons"></i> Categories </h1>
             <hr><br> 
             <div class="list-Items m-5 ">
                 <?php
@@ -63,8 +63,7 @@
 
         </div>
 
-        <i class="fa-solid fa-icons"></i>
-            <i class="fa-solid fa-icons"></i>
+        
     </div>
 
 </body>

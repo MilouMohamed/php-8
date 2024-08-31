@@ -126,10 +126,16 @@ display: flex;
     background-color: gray;
 }
 
+.p-0 {
+    padding: 0;
+}
 .p-3 {
     padding: 14px  5px;
 }
 
+.m-0{
+    margin: 0;
+}
 .m-5  {
    margin: 5px;
 }
@@ -148,6 +154,15 @@ display: flex;
     background-image: linear-gradient(20deg,red 20%,white 50%,white );
     color: black;
 }
+.mh-60px{
+    max-height: 60px;
+}
+.mw-50px {
+    max-height: 50px;
+}
+
+
+
 
 form{
     width: 400px;
@@ -420,6 +435,33 @@ input[type=range]:focus::-ms-fill-upper {
     font-size: 13px; 
     
 }
+
+
+/**** Deateil Produit******************************/
+
+.view-prod {
+    height: 80%; 
+     background-color: red ;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.view-prod .img-div img{
+   max-height: 90%;
+    height: 450px;
+    max-width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

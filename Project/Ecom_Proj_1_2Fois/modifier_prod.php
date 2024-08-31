@@ -30,9 +30,9 @@
    
     if (isset($_POST["modifier_prod"])) {
 
-echo "<pre>";
-          var_dump($_POST);
-echo "</pre>";
+// echo "<pre>";
+//           var_dump($_POST);
+// echo "</pre>";
         
 
         $id = $_POST["id"];
@@ -41,8 +41,16 @@ echo "</pre>";
         $discount = $_POST["discount"];
         $id_categorie = $_POST["id_categorie"];
 
-          
+ 
+        
+        $image_from=$_FILES["image_p"]["tmp_name"];
+        $image_name="no_Img.JPG";
 
+        if($_FILES["image_p"]["error"] == 0)
+        $image_name=$_FILES["image_p"]["name"];
+ 
+          $image_to="./uploads/$image_name";
+ 
         if (empty($libel) || empty($prix)  || empty($discount)  ) {
             ?>
             <div class="alert error">
@@ -52,12 +60,13 @@ echo "</pre>";
         } else {
 
             $date = date("Y-m-d H:i:s");
-            $sqlState = database()->prepare("update  `ec_produit` set libelle =? , prix=? , discount=? , id_categorie =? where id = ?"); 
+            $sqlState = database()->prepare("update  `ec_produit` set libelle =? , prix=? , discount=? , id_categorie =?, img=? where id = ?"); 
             // <!-- // id 	libelle 	prix 	discount 	id_categorie 	date_c 	img 	 -->  
-            $etat = $sqlState->execute([$libel, $prix, $discount,$id_categorie, $id]);
+            $etat = $sqlState->execute([$libel, $prix, $discount,$id_categorie,$image_name, $id]);
 
 
-            if ($etat) {
+            if ($etat) { 
+            move_uploaded_file($image_from,$image_to);
                 header("location:list_prod.php");
             } else {
                 ?>
@@ -71,7 +80,7 @@ echo "</pre>";
 
     ?>
     <div class="container">
-        <form method="POST" class="center mdf">
+        <form method="POST" class="center mdf" enctype="multipart/form-data" >
 
             <h1>Modifier Produit</h1>
             <input type="hidden" name="id" value="<?= $prod->id ?>">
@@ -85,6 +94,11 @@ echo "</pre>";
             <div class="row">
                 <label for="prix">Prix : </label>
                 <input type="number"  step="2"  name="prix" value="<?= $prod->prix ?>"></input>
+            </div>
+
+            <div class="row">
+                <label for="image_p">Image : </label>
+                <input type="file"  name="image_p"  ></input>
             </div>
  
             <div class="row">
@@ -126,6 +140,7 @@ echo "</pre>";
         </form>
 
     </div>
+    <script src="./script.js"></script>
 
 </body>
 

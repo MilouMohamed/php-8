@@ -67,7 +67,7 @@
                         <td><?= $prod->discount  ; ?></td>
                         <td><?= $prod->lib_cat  ; ?></td>
                         <td><?= $prod->date_c  ; ?></td>
-                        <td><?= $prod->img  ; ?></td>
+                        <td><img src="./uploads/<?= file_exists("./uploads/$prod->img")? $prod->img :"no_Img.jpg" ; ?>" alt="Image " class="mw-50px mh-60px"  ></td>
                         <td> 
                             <a class="btn btn-mdf btn1 " href="./modifier_prod.php?id=<?= $prod->id; ?>"  >Modf</a>
                             <a class="btn  btn-dlt btn1" href="./delete_prod.php?id=<?= $prod->id ?>"  onclick="return confirm('Vous Voullez Supprimer <?= $prod->libelle ?>')" >Supp</a>
