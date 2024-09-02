@@ -116,7 +116,7 @@ INSERT into ec_categorie values (null,"fawakih","Pas de Descrip",CURRENT_TIME),
 
 
 
-
+alter table ec_produit add discrip_p varchar(250) DEFAULT "Pas de Descritopn ici pour ce produit il faut ajouter Une description pour detaille les caracterestiques Merci "
 
 create table ec_produit(
 id int PRIMARY key AUTO_INCREMENT,

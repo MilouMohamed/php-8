@@ -34,7 +34,7 @@
     <div class="container">
         <div class="center-v">
 
-            <h1>Liste Des Produits</h1>
+            <h1>List De Produits</h1>
 
             <hr>
             <div class="left"> 

@@ -18,14 +18,14 @@
 
 
     require "../includee/model.php";
-
+    $_GET["id"]=1;
     $sqlState2 = database()->prepare("select * from ec_produit where id_categorie =?   order by id desc ");
     $sqlState2->execute([$_GET["id"]]);
 
     $produits = $sqlState2->fetchAll(PDO::FETCH_OBJ);
 
 
-    if (count($produits) == 0) {
+    if (count($produits) == 100) {
         ?>
         <div class="alert error">
             <h2>Pas De Produits Pour Categorie <?= $_GET["libelle"] ?> </h2>
@@ -35,7 +35,8 @@
     ?>
     <div class="container">
         <div class="m-10">
-            <h1>Liste Des Produits Pous Categorie <?= $_GET["libelle"] . '<i class=' . $_GET["icon"] . ' ></i> '; ?>
+            <h1>Liste Des Produits Dans Panier De  
+                <?php   echo $_SESSION["user"]->login ;    ?>
             </h1>
             <br>
 
@@ -44,7 +45,7 @@
             <div class="flex-grid">
 
                 <?php
-
+die;
 
                 foreach ($produits as $prod):
                     ?>
@@ -76,10 +77,9 @@
 
 
             </div>
-            <br><br><br>000000000000<br>
+            <br><br><br><br>
             <i class="fa-solid fa-icons"></i>
             ------------------------------
-            <i class="fa-solid fa-cart-shopping"></i> 
         </div>
 
     </div>
