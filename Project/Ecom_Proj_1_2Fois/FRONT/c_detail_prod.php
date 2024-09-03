@@ -15,14 +15,14 @@
     <?php
 
     include "../includee/c_nav.php";
-
-
-
+ 
     require "../includee/model.php";
+
+ 
 
     $sqlState2 = database()->prepare("select * from ec_produit where id =?");
     $sqlState2->execute([$_GET["id"]]);
-
+ 
     $prod = $sqlState2->fetch(PDO::FETCH_OBJ);
 
 
@@ -67,7 +67,7 @@
                     </div>
                     <?php  include "../includee/counter.php"  ?>
 
-                    <a class="btn btns btn-mdf d-b " href="c_add_to_panier.php">Ajouter Au Pannier</a>
+                    <!-- <a class="btn btns btn-mdf d-b " href="c_add_to_panier.php">Ajouter Au Pannier</a> -->
                 </div>
 
             </div>

@@ -18,68 +18,115 @@
 
 
     require "../includee/model.php";
-    $_GET["id"]=1;
-    $sqlState2 = database()->prepare("select * from ec_produit where id_categorie =?   order by id desc ");
-    $sqlState2->execute([$_GET["id"]]);
 
-    $produits = $sqlState2->fetchAll(PDO::FETCH_OBJ);
+    if (is_null($_SESSION["user"]) or empty($_SESSION["user"])) {
+        header("location:../connection.php");
+    }
 
 
-    if (count($produits) == 100) {
+    $id_user = $_SESSION["user"]->id;
+
+
+    if (isset($_SESSION["panier"]) && isset($_SESSION["panier"][$id_user])) {
+
+        // var_dump($_SESSION["panier"][$id_user]);
+
+
+    } else {
         ?>
         <div class="alert error">
-            <h2>Pas De Produits Pour Categorie <?= $_GET["libelle"] ?> </h2>
+            <h2>Pas De Produits Pour Client <?= $_SESSION["user"]->login ?> </h2>
         </div>
         <?php die();
     }
+
+    $lst = array_column($_SESSION["panier"][$id_user], "id_p");
+    if(count($lst) > 0)
+    {
+
+    $id_P_s = implode(",", $lst);
+
+    $produits = database()->query("select * from ec_produit where id in ($id_P_s) order by id desc;  ")->fetchAll(PDO::FETCH_OBJ);
+    /*
+    echo"<br> -------------- <br>";
+    var_dump($sqlState2);
+    echo  $id_P_s;
+    echo"<br> -------------- <br>";
+    
+    echo "<br>".count($produits)."----------------------<br>";
+*/
+
+} 
+   else {
+        ?>
+        <div class="alert error">
+            <h2>Pas De Produits Pour User <?= $_SESSION["user"]->login ?> </h2>
+        </div>
+        <?php die();
+    } 
+
     ?>
     <div class="container">
         <div class="m-10">
-            <h1>Liste Des Produits Dans Panier De  
-                <?php   echo $_SESSION["user"]->login ;    ?>
+            <h1>Liste Des Produits Dans Panier De
+                <?php echo $_SESSION["user"]->login; ?>
             </h1>
             <br>
 
 
             <hr>
-            <div class="flex-grid">
 
-                <?php
-die;
+            <?php
 
-                foreach ($produits as $prod):
-                    ?>
-                    <div class="card-prod  hvr-w-r">
-                        <a href="c_detail_prod.php?id=<?= $prod->id ?>" class="m-0 p-0">
-                            <div class="img-div">
-                                <img src="../uploads/<?= file_exists("../uploads/$prod->img") ? $prod->img : "no_Img.jpg"; ?>"
-                                    alt="Image Produit">
-                            </div>
+            if (is_null($produits)) {
+                die;
+            }
+            //if (isset($_SESSION["panier"][$id_user][$prod->id])) {
+            echo "<h1>";
+            foreach ($produits as $prod):
+                echo " | -  ";
+            endforeach;
 
-                            <div class="info">
-                                <h2><?= $prod->libelle; ?></h2>
-                                <span> <?= $prod->prix; ?>:MAD </span>
-                            </div>
+            echo "</h1>";
+            ?>
 
-                            <div class="date">
-                                <span>Ajouter Le : <?= $prod->date_c; ?> </span>
-                            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Libille</th>
+                        <th>Qtt</th>
+                        <th>Prix</th>
+                        <th>Discount</th>
+                        <th>Date</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                        </a>
- 
-                        <?php include "../includee/counter.php" ?> 
-
-                    </div>
-
+                    <!-- // id 	libelle 	prix 	discount 	id_categorie 	date_c 	img  -->
                     <?php
-                endforeach;
-                ?>
+                    foreach ($produits as $prod):
+                        ?>
+                        <tr>
+                            <td><?= $prod->id; ?></td>
+                            <td><?= $prod->libelle; ?></td>
+                            <td><?= $_SESSION["panier"][$id_user][$prod->id]["qtt"]; ?></td>
+                            <td><?= $prod->prix; ?> MAD</td>
+                            <td><?= $prod->discount; ?></td>
+                            <td><?= $prod->date_c; ?></td>
+                            <td><img src="../uploads/<?= file_exists("../uploads/$prod->img") ? $prod->img : "no_Img.jpg"; ?>"
+                                    alt="Image " class="mw-50px mh-60px"></td>
+
+                        </tr>
+                        <?php
+                    endforeach;
+                    ?>
+                </tbody>
+            </table>
 
 
-            </div>
-            <br><br><br><br>
-            <i class="fa-solid fa-icons"></i>
-            ------------------------------
+
         </div>
 
     </div>
