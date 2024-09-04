@@ -127,7 +127,10 @@ display: flex;
 .bg-gray {
     background-color: gray;
 }
-
+ 
+.bg-transp {
+    background-color: transparent !important;;
+}
 .p-0 {
     padding: 0;
 }
@@ -253,6 +256,7 @@ form .row {
 }
 .btn-dlt { 
      background-color: rgba(220,0,0,.6);
+min-width:20px;
 }
 .left{
     position: relative;
@@ -289,6 +293,7 @@ form .row {
     width: calc((100% / 3 ) - 20px );
     border-bottom: 6px solid red;
     margin: 0 10px 5px;
+       min-width: 15px;
 }
    .btn-p-m .plus,
   .btn-p-m .moin{
@@ -300,6 +305,7 @@ form .row {
     text-align: center;
     border-radius: 5px;
       cursor: pointer;
+      min-width: 30px;
 }
 
 .btn-p-m .inpt-val {
@@ -309,7 +315,10 @@ form .row {
     
 }
   
-
+.big-val .btn-p-m .inpt-val {
+  width: 80px !important;
+      
+}
 
 
 
@@ -342,7 +351,9 @@ table {
     }
     
 } 
-
+td.bg-trsnp {
+    background-color: #fff;
+}
 
 input[type=range] {
   height: 26px;
@@ -715,4 +726,7 @@ font-size: 19px;
     align-items: center;
 }
 
+td.line { 
+    min-width: max-content; 
+}
 

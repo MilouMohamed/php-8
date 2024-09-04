@@ -13,12 +13,12 @@
 <body>
     <?php
 
-    include "../includee/c_nav.php";
-
-
-
+    include "../includee/c_nav.php"; 
     require "../includee/model.php";
 
+
+echo "is Valider ";
+    die;
     if (is_null($_SESSION["user"]) or empty($_SESSION["user"])) {
         header("location:../connection.php");
     }
@@ -140,8 +140,8 @@
                     <td>Total <?= $total ?> : MAD</td></tr>
                     <tr>
                     <td colspan="5" class="bg-trsnp" > </td>    
-                    <td class="line"><a class="btn-add" href="c_valider_cmd.php">Valider CMD</a></td>
-                    <td class="line"><a class="btn-add" href="c_vidie_panier.php">Vider <i class="fa-solid fa-cart-shopping"></i> </a></td>
+                    <td><a href="">Valider CMD</a></td>
+                    <td><a href="c_valider_cmd.php">Vider <i class="fa-solid fa-cart-shopping"></i> </a></td>
                 </tr>
                 </tbody>
             </table>
