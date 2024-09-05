@@ -7,16 +7,13 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="./../css/all.min.css">
 
-    <title>Ecom Site</title>
+    <title>Ecom Site 00</title>
 </head>
 
 <body>
     <?php
 
     include "../includee/c_nav.php";
-
-
-
     require "../includee/model.php";
 
     if (is_null($_SESSION["user"]) or empty($_SESSION["user"])) {
@@ -27,38 +24,44 @@
     $id_user = $_SESSION["user"]->id;
 
 
+    // echo "<br>-------------<br>"; 
+
     if (!isset($_SESSION["panier"]) && !isset($_SESSION["panier"][$id_user])) {
-        ?>
+    ?>
         <div class="alert error">
             <h2>Pas De Produits Pour Client <?= $_SESSION["user"]->login ?> </h2>
         </div>
-        <?php die();
+    <?php die();
     }
 
     $lst = array_column($_SESSION["panier"][$id_user], "id_p");
+   
+
     if (count($lst) > 0) {
 
         $id_P_s = implode(",", $lst);
 
         $produits = database()->query("select * from ec_produit where id in ($id_P_s) order by id desc;  ")->fetchAll(PDO::FETCH_OBJ);
-
-        echo "  $id_P_s  ****** ";
-        echo " coun " . count($produits);
-        echo "--------------------------------------";
+ 
     } else {
-        ?>
+    ?>
         <div class="alert error">
             <h2>Pas De Produits Pour User <?= $_SESSION["user"]->login ?> </h2>
         </div>
-        <?php die();
+    <?php die();
     }
 
+    /*
+ var_dump($lst);
+    echo "<br>-------------<br>"; */
+     
 
     ?>
     <div class="container">
         <div class="m-10">
             <h1>Liste Des Produits Dans Panier De
-                <?php echo $_SESSION["user"]->login; ?>
+                <?php echo $_SESSION["user"]->login; ?> 
+                <?php echo $_SESSION["user"]->login ; echo " id_user ". $id_user; ?>
             </h1>
             <br>
 
@@ -67,90 +70,91 @@
 
             <?php
 
-
+$id_user = $_SESSION["user"]->id;
             if (isset($_POST["valid_cmd"])) {
                 $tabl_prod_qtt = array();
-                $total_cmd=0;
+                $total_cmd = 0;
 
-                foreach ($produits as $prod_pan) {
-                    echo " HHH -- ";
+                foreach ($produits as $prod_pan) { 
                     $totl_Prod = 0;
                     $qtt_p = (int) ($_SESSION["panier"][$id_user][$prod_pan->id]["qtt"]);
-                  /* // $pri_red=$prod_pan->prix -($prod_pan->prix *  $discount / 100); */
-                    $totl_Prod +=(float)( $qtt_p * (float)$prod_pan->prix);
+                    /* // $pri_red=$prod_pan->prix -($prod_pan->prix *  $discount / 100); */
+                    $totl_Prod += (float)($qtt_p * (float)$prod_pan->prix);
+
+                    // echo " $totl_Prod +=(float)( $qtt_p * (float) $prod_pan->prix);";
+                    // echo " totl_Prod +=(float)(   qtt_p  * (float)  prod_pan->prix);<br>";
+                    $total_cmd += (float)$totl_Prod;
                     
-echo " $totl_Prod +=(float)( $qtt_p * (float) $prod_pan->prix);";
-echo " totl_Prod +=(float)(   qtt_p  * (float)  prod_pan->prix);<br>";
-                    $total_cmd+=(float)$totl_Prod;
-echo " <br >total_cmd $total_cmd";
-                    $tabl_prod_qtt = [
-                        "id" => $prod_pan->id,
+                    $id_pdoo= $prod_pan->id;
+                    $tabl_prod_qtt[$id_pdoo]= [
+                        "id" => $id_pdoo,
                         "prix" => $prod_pan->prix,
                         "qtt" => $qtt_p,
-                        "total_p" => $totl_Prod
+                        "total_p" => $totl_Prod 
                     ];
-
                 }
-                $id_user = $_SESSION["user"]->id;
+           
 
  
 
-                var_dump($total_cmd);
- 
 
                 $sqlState8 = $pdo->prepare("INSERT INTO `ec_cmd` (id,`id_client`, `total` ) VALUE(null,?,?) ;");
-                $sqlState8->execute([$id_user, $totl_Prod]);
+                $sqlState8->execute([$id_user, $total_cmd]);
 
                 $id_cmd_last = $pdo->lastInsertId();
 
-                $sql = "INSERT INTO `ec_line_cmd`(id_p, id_cmd, prix, qtt, total)VALUES ";
+                $sql = "INSERT INTO `ec_line_cmd`( id_p, id_cmd, prix, qtt, total)VALUES ";
 
                 foreach ($produits as $prd) {
                     $id_p = $prd->id;
-                    $sql .= " (:id_p$id_p,:id_cmd$id_p,:prix$id_p,:qtt$id_p, :total$prd->id  ) ,";
-
+                    $sql .= " ( :id_p$id_p,:id_cmd$id_p,:prix$id_p,:qtt$id_p, :total$id_p   ) ,";
                 }
                 $sql = substr($sql, 0, -1);
                 $sqlState_p = $pdo->prepare($sql);
-
-                foreach ($produits as $prd) {
-                    $qtt = (int) $_SESSION["panier"][$id_user][$prd->id]["qtt"];
+ 
+              
+                foreach ($tabl_prod_qtt as $prdt) {
+                 /*   $qtt = (int) $prd->qtt;
                     $prix_ttc = $prd->prix - ($prd->prix * $prd->discount / 100);
                     $tot_p1 = ((int) $_SESSION["panier"][$id_user][$prd->id]["qtt"]) * ($prd->prix - ($prd->prix * $prd->discount / 100));
 
+*/
+                    // echo " || id_p  $id_p  $tot_p1 = $qtt * $prix_ttc;<br>";
 
-                    echo " || id_p  $id_p  $tot_p1 = $qtt * $prix_ttc;<br>";
+                 /*   echo "<br>-----------<br>;<pre>";
+                    var_dump($prdt);
+                    echo " </pre>";*/
 
-                    $id_p = $prd->id;
-                    $sqlState_p->bindParam(":id_p" . $id_p, $prd->id);
+                $id_p = $prdt["id"]; 
+                    $sqlState_p->bindParam(":id_p$id_p", $prdt["id"]);
 
-                    $sqlState_p->bindParam(":prix$id_p", $prd->prix);
+                    $sqlState_p->bindParam(":prix$id_p", $prdt["prix"]);
                     $sqlState_p->bindParam(":id_cmd$id_p", $id_cmd_last);
-                    $sqlState_p->bindParam(":qtt$id_p", $qtt);
-                    $sqlState_p->bindParam(":total$id_p", $tot_p1);
-
+                    $sqlState_p->bindParam(":qtt$id_p", $prdt["qtt"]);
+                    $sqlState_p->bindParam(":total$id_p", $prdt["total_p"]);    
                 }
-
-                var_dump($sqlState_p->debugDumpParams());
+ 
+              /*  var_dump($sqlState_p->debugDumpParams());
                 echo "<br>-----------<br>;";
-                var_dump($pdo);
+                var_dump($pdo);*/
+
                 $rs = $sqlState_p->execute();
                 if ($rs) {
-                    // $_SESSION["panier"][$id_user]=[];
-                    ?>
+                      $_SESSION["panier"][$id_user]=[];
+            ?>
                     <div class="alert bein">
                         <h2>La Commande Est Bien Ajouter </h2>
                     </div>
-                    <?php die;
+                <?php die;
                 }
             }
-
+ 
             if (is_null($produits) || !isset($_SESSION["panier"][$id_user]) || is_null($_SESSION["panier"][$id_user])) {
                 ?>
                 <div class="alert error">
-                    <h2>Pas De Produits Pour Client : <?= $_SESSION["user"]->login ?> </h2>
+                    <h2>Pas De Produits Pour Client : <?= $_SESSION["user"]->login ?>  </h2>
                 </div>
-                <?php
+            <?php
             }
 
             ?>
@@ -181,23 +185,23 @@ echo " <br >total_cmd $total_cmd";
                         $prix_ttc = $prx - ($prx * $dict / 100);
                         $tot_p = $qtt * $prix_ttc;
                         $total += $tot_p;
-                        ?>
+                    ?>
                         <tr>
                             <!-- <td><?= $prod->id; ?></td> -->
-                            <td class="center-v"><img
+                            <td class="center-v"><?= $prod->id; ?> *** <img
                                     src="../uploads/<?= file_exists("../uploads/$prod->img") ? $prod->img : "no_Img.jpg"; ?>"
                                     alt="Image " class="mw-50px mh-60px"></td>
                             <td><?= $prod->libelle; ?></td>
                             <td class="big-val"><?php
-                            include "../includee/counter.php";
-                            ?></td>
+                                                include "../includee/counter.php";
+                                                ?></td>
                             <td><?= $prx; ?> MAD</td>
                             <td><?= $prod->discount; ?></td>
                             <td><?= $prix_ttc ?></td>
                             <td><?= $tot_p ?></td>
 
                         </tr>
-                        <?php
+                    <?php
                     endforeach;
                     ?>
                     <tr>
