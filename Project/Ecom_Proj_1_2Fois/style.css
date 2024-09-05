@@ -28,20 +28,24 @@
     bottom: 20px;
     right: 30px;
 }
+
+.alert.error {
+    background-color: red;
+}
+.alert.bein {
+    background-color: #0bf61a87 ;
+}
+
 @keyframes hide {
    0%{ 
              opacity: 1;
     } 
-90%{
-    background-color: orange;  
+70%{  
+     opacity: 1;
     } 
     100%{ 
         opacity: 0;
     }
-}
-
-.alert.error {
-    background-color: red;
 }
 
 /*NAV BAR */
@@ -182,6 +186,22 @@ form{
     border: 2px red solid;   
 }
 
+form.normal{
+    width: max-content ;
+    background-color:transparent;
+    border: none;
+    padding: 0px;
+    input{
+      background-color: transparent;
+        padding: 10px;
+        margin: 0;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    
+}
 
 form.mdf{
     width: 50%;

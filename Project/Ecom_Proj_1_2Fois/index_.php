@@ -141,4 +141,41 @@ insert into  ec_produit VALUES
  
 UPDATE  ec_produit set img= "./uploads/no_Img.JPG";
 
+
+
+
+// RENAME TABLE t1 to t2
+ 
+DROP TABLE if EXISTS  ec_cmd;
+DROP TABLE if EXISTS ec_line_cmd;
+
+
+CREATE TABLE ec_cmd (
+    id 			int PRIMARY KEY AUTO_INCREMENT ,
+    id_client 	INT ,
+    total 		float ,
+    date_c_cmd 	datetime DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_client) REFERENCES ec_user(id)
+    on DELETE CASCADE on UPDATE CASCADE
+    );
+ 
+
+
+
+CREATE TABLE ec_line_cmd (
+	id 		int PRIMARY KEY AUTO_INCREMENT ,
+    id_p 	int,
+    id_cmd 	int,
+    prix 	float,
+    qtt 	int ,
+    total 	float,
+    FOREIGN KEY(id_p) REFERENCES  ec_produit(id)
+     on DELETE CASCADE on UPDATE CASCADE,
+    FOREIGN KEY(id_cmd) REFERENCES  ec_cmd(id)
+     on DELETE CASCADE on UPDATE CASCADE
+);
+
+
+
+
  */
