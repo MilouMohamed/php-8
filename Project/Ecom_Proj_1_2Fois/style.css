@@ -176,6 +176,10 @@ display: flex;
     margin-top: 5px;
 }
 
+.active {
+    background-color: white;
+}
+
 
 form{
     width: 400px;
