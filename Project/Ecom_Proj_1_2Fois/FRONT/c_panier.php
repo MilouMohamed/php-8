@@ -59,8 +59,7 @@
     ?>
     <div class="container">
         <div class="m-10">
-            <h1>Liste Des Produits Dans Panier De
-                <?php echo $_SESSION["user"]->login; ?> 
+            <h1>Liste Des Produits Dans Panier De 
                 <?php echo $_SESSION["user"]->login ; echo " id_user ". $id_user; ?>
             </h1>
             <br>
@@ -75,11 +74,19 @@ $id_user = $_SESSION["user"]->id;
                 $tabl_prod_qtt = array();
                 $total_cmd = 0;
 
+
+          /*      echo "<pre>";
+                var_dump($produits[0]->discount);
+                echo "<br>---<br>";
+
+                var_dump($produits);
+                echo "</pre>";
+ */
                 foreach ($produits as $prod_pan) { 
                     $totl_Prod = 0;
                     $qtt_p = (int) ($_SESSION["panier"][$id_user][$prod_pan->id]["qtt"]);
                     /* // $pri_red=$prod_pan->prix -($prod_pan->prix *  $discount / 100); */
-                    $totl_Prod += (float)($qtt_p * (float)$prod_pan->prix);
+                    $totl_Prod += (float)($qtt_p * (float)($prod_pan->prix - ($prod_pan->prix * $prod_pan->discount / 100 )));
 
                     // echo " $totl_Prod +=(float)( $qtt_p * (float) $prod_pan->prix);";
                     // echo " totl_Prod +=(float)(   qtt_p  * (float)  prod_pan->prix);<br>";
@@ -114,16 +121,7 @@ $id_user = $_SESSION["user"]->id;
  
               
                 foreach ($tabl_prod_qtt as $prdt) {
-                 /*   $qtt = (int) $prd->qtt;
-                    $prix_ttc = $prd->prix - ($prd->prix * $prd->discount / 100);
-                    $tot_p1 = ((int) $_SESSION["panier"][$id_user][$prd->id]["qtt"]) * ($prd->prix - ($prd->prix * $prd->discount / 100));
-
-*/
-                    // echo " || id_p  $id_p  $tot_p1 = $qtt * $prix_ttc;<br>";
-
-                 /*   echo "<br>-----------<br>;<pre>";
-                    var_dump($prdt);
-                    echo " </pre>";*/
+                
 
                 $id_p = $prdt["id"]; 
                     $sqlState_p->bindParam(":id_p$id_p", $prdt["id"]);
@@ -140,7 +138,7 @@ $id_user = $_SESSION["user"]->id;
 
                 $rs = $sqlState_p->execute();
                 if ($rs) {
-                      $_SESSION["panier"][$id_user]=[];
+                    //   $_SESSION["panier"][$id_user]=[];
             ?>
                     <div class="alert bein">
                         <h2>La Commande Est Bien Ajouter </h2>
