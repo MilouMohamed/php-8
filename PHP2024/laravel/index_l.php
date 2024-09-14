@@ -1,5 +1,63 @@
 <?php
 echo "laravel";
+// VIdeo      V32
+// Validation Par Class
+//php artisan make:request ProfileRequest (voir http /Requests)
+// $fildes=  $request->validated();// Les Champ Valide
+//
+
+
+// VIdeo      V31
+// crypateg et VAlidation du mote de passe
+//ProfileControle  $request->validate([ "password"=>"required|confirmed",
+//type="text" name="password_confirmation"
+// crypage
+// 
+// $fildes["password"]=Hash::make($fildes["password"]);
+
+
+// VIdeo      V30
+// la validation d un formulaire
+//$request->validate([
+    // "name"=>"required|unique:nomTable
+ //  @error('name') {{$message}} @enderror
+ /* all errors
+ @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            {{$error}}
+        @endforeach 
+    @endif
+*/
+
+
+// VIdeo      V29
+// Route model binding 
+//Controller == return view("profile/show",compact("profile") );//29
+//Routes == Route::get('/profiles/{profile}
+//Routes == Route::get('/profiles/{profile:email}
+// getRouteKeyName() : string{  return "id"; default
+
+
+// VIdeo      V28
+// Redirectnio 
+// redirect("/home")
+// redirect()->route(...)  == to_route(...)
+// redirect()->action(...)
+// back(...)->withInput()
+
+
+// VIdeo      V27
+// FlashBag  route()->width("keySession","msg")
+// @if(session()->has('sucess')) 
+
+// VIdeo      V26
+// Insertion de Donnees STORE
+// @csrf pour les formulaires ( view create )
+//Model ==> Profile ==> protected $fillable=[ "name","amil",..
+       
+
+
+
 // VIdeo      V25
 // Formulaire pour  Ajouter
 
