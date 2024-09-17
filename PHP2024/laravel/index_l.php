@@ -1,5 +1,45 @@
 <?php
 echo "laravel";
+// VIdeo      V36
+//Modifier
+
+
+
+// VIdeo      V35 
+// Supprission
+//Route::delete(....
+// <form ...> @method("DELETE") 
+// func destroy(profile $profile) $profile->delete();
+
+
+// VIdeo      V34
+// Logout Decennection  
+// @auth  si connecte @endauth  // @guest si non connecte @endguest
+// session()->flush();
+// Auth::logout();
+// {{Auth()->user()->email}}
+
+
+// VIdeo      V33
+// Autontification 
+/*
+if (Auth::attempt($valus)) {
+    $request->session()->regenerate();
+    return redirect()->route("homePage")->with("god","Voue etes Connecte Par Email ". $emial); 
+} else {
+    return back()->withErrors([
+        "login_error" => "Email Ou mot de pass Incorect ."
+    ])->onlyInput("login");
+}*/
+// ----------------------
+// dans controller login
+// dd(Auth::attempt($valus));
+// use Illuminate\Support\Facades\Auth;
+// changemet de table user vers table Profiles dans fichier config {Auto}
+
+
+
+
 // VIdeo      V32
 // Validation Par Class
 //php artisan make:request ProfileRequest (voir http /Requests)
