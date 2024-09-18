@@ -1,7 +1,49 @@
 <?php
 echo "laravel";
+// VIdeo      V40
+// Afficher Et Modifier Image
+// cmd php artisan storage:link  (storage dans public)
+//src="{{asset("./storage/$prfl->image")}}"
+
+
+
+// VIdeo      V39
+//Soft delete 
+//cmd  php artisan make:migration add_delete_at_to_profiles_table --table=profiles
+//Migration \ func up $table->softDeletes(); 
+//Migration \ func down  $table->dropSoftDeletes(); 
+// cmd   php artisan migrate
+
+// Models \ profile \ use SoftDeletes;  use Illuminate\Database\Eloquent\SoftDeletes; 
+
+
+// VIdeo      V38
+// Ajouter Image Dans BD
+//rules(): array { return [ "image"=>"image|mimes:png,jpg,svg,jpeg|max:2048(en kb en peux ajouter les Dimentions)"
+// dans Contr stor  $request->file("image")->store("profile/imgs","public");
+//  $filename= $request->file("image")->store("profile/imgs","public");//v 38 (public pour les serveur exemple s3 voir v 38)
+// $fildes["image"]=$filename;
+// $filename= $request->file("image")->storeAs("profile/imgs","nameFile","public");//v 38
+
+// VIdeo      V37
+// Ajouter Un Champ Dans BD image
+// php artisan make:migration add_image_to_profiles_table --table=profiles
+// func up(){   $table->string("image",150)->after("bio");}
+// func down(){   $table->dropColumn("image");}
+// php artisan migrate        pour execute vers bd
+// from 
+
+
+
 // VIdeo      V36
 //Modifier
+//form   @csrf  @method("put")
+// Route::put
+// controller update(ProfileRequest $request,profile $profile ) 
+   // $profile->update();
+ //  $fildes = $request->validated();// Les Champ Valide
+//$profile->fill($fildes)->save();
+
 
 
 
