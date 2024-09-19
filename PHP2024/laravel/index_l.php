@@ -1,6 +1,50 @@
 <?php
 echo "laravel";
-// VIdeo      V40
+// VIdeo      V45
+// Route Group Resources (dans 1 ligne)
+// php artisan route:list --name=profile  (Pour Afficher Les Routes De Profile)
+// Route::resource("profiles",ProfileController::class); 
+
+//php artisan make:model Publication -mcr  (Model / Controller / Resources)
+
+
+
+// VIdeo      V44
+// Route Group
+// Route::prefix("profiles")->name("profiles.")->group(function(){ ici les Route::get..
+        // Name(ici) et get(ici)
+// Route::controller(ProfileController::class)->group(function () {
+/* 
+Route::prefix("profiles")->name("profiles.")->group(function () {
+    Route::controller(ProfileController::class)->group(function () { 
+    
+        Route::get('/', "index")->name("index"); 
+        // enplace de 
+       Route::get('/profiles',[ProfileController::class,"index"])->name("profiles.index");
+
+*/
+
+
+// VIdeo      V43
+// changemant de Routes Name
+/*Model / Profile
+public function getImageAttribute($value){
+return "my iimmgg Wooo $value";// si  image nexiste pas
+}
+*/
+
+
+
+
+// VIdeo      V42
+// securete csrf
+
+
+
+
+
+// VIdeo      V41
+// VIdeo      V40 
 // Afficher Et Modifier Image
 // cmd php artisan storage:link  (storage dans public)
 //src="{{asset("./storage/$prfl->image")}}"
