@@ -268,6 +268,10 @@ if (Auth::attempt($valus)) {
 //homeController::class end use namespace1 
 
 
+// composer dump-autoload (laravel 10)
+
+
+
 // Passage de donnees a la vue      v7
 // Request $request
 
