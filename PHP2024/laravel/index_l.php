@@ -1,5 +1,28 @@
 <?php
 echo "laravel";
+
+
+// VIdeo      V47
+// Routege \ Argument Option  \ Away \ Cache 
+// Route::get("/age/{age?}" // ? pour Facultatif
+// dd(Route::current());
+// dd(Route::currentRouteName()); // name 
+// dd(Route::currentRouteAction()); // Action stor|create|destroy ....
+
+// Route::get(...(){ return redirect()->away("https://www.google.ma");// vers page externe
+
+//php artisan route:cache
+//php artisan route:clear
+
+
+// VIdeo      V46
+// protected function redirectTo(Request $request): ?string
+// {  return $request->expectsJson() ? null : route('login.show');
+// dans Route  ->middleware("auth");Ou dans Controller constructor
+
+
+
+
 // VIdeo      V45
 // Route Group Resources (dans 1 ligne)
 // php artisan route:list --name=profile  (Pour Afficher Les Routes De Profile)
