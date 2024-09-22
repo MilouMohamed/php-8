@@ -2,6 +2,24 @@
 echo "laravel";
 
 
+// VIdeo      V49
+//Request,input,string
+// use Illuminate\Http\Request ; dans route web 
+// pour use   function(Request $request )dump($request->name);
+// Pour les perfermance use  $request->input("name_inpt");// ben perfermance
+// dump($request->input("name_inpt","si name_inpt n est pas dans from"));
+// dump($request->date("date_inpt" ));
+//
+
+// VIdeo      V48
+//injection de dépendances  class dans  parametres d une fun 
+// Route::get("/srv/{a}/{b}",function($a,$b,Calcul $calcul){
+    //injection de dépendances
+        // $som=$calcul->somme($a,$b);
+// class Calcul
+
+
+
 // VIdeo      V47
 // Routege \ Argument Option  \ Away \ Cache 
 // Route::get("/age/{age?}" // ? pour Facultatif
