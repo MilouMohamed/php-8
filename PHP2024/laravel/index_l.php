@@ -1,7 +1,57 @@
 <?php
 echo "laravel";
+// VIdeo      V54
+// Modifier Publication
 
 
+
+
+// VIdeo      V53
+// Ajouter Publicatin 
+// Route::resource("publication",PublicationController::class);
+// Pour Linke automaticment et mis les Routes 
+// php artisan make:request PublicationRequest
+        // Pour Ajouter roules(validation des Donnees titre ...)
+
+
+
+
+
+
+
+
+// VIdeo      V52
+// headers Responces Request
+// $responce=new Response(["data"=>"ookk"]);
+// $res =$responce->withHeaders([
+    // "Content-Type"=>"Application/Json"
+    //, "Content-Type"=>"text/html",
+// ]);
+    //  return $res;
+
+    // dd($request->header()); info sur header 
+    // "accept" => array:1 [▼
+    // 0 => "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8"
+//   ]
+// dd($request->url(),$request->fullUrl());
+    //http://127.0.0.1:8000/request?id=55 fullUrl
+
+
+
+// VIdeo      V51
+// Cookies Laravel
+// $cokObg= cookie("Age",$cok,1);// dure limite
+// $cokObg= cookie()->forever("Age",$cok);// 400 jrs
+// return $resp->withCookie($cokObg);
+// Route::get("/cookies/get",function(Request $request){
+    // dd( $request->cookie("Age"));// Respect Case
+
+
+// VIdeo      V50
+// Response Afficher And Download file
+// return response()->download("storage/profile/imgs/profile.jpg"); // pour ignore 
+
+ 
 // VIdeo      V49
 //Request,input,string
 // use Illuminate\Http\Request ; dans route web 
