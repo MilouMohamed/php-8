@@ -1,5 +1,35 @@
 <?php
 echo "laravel";
+// VIdeo      V58
+// Afichage des publicatios dans Profile laravel
+// return $this->hasMany(Publication::class); comme jointure (Publication et Profile)
+// <x-PubCard :canUpdate="auth()->user()->id === $pub->Profile_id" :pub="$pub" />
+
+
+
+// VIdeo      V57
+// Affecter Pub a un utilisateur
+//dans View @auth
+// @if ($pub->Profile_id === Auth::user()->id)
+/*** Controller ****************** */
+// $formValidate["Profile_id"] =Auth::user()->id;
+
+
+
+// VIdeo      V56
+// Relationship
+// 1 - n  | n - n  | n - 1  ...
+//php artisan make:migration add_Profile_id_to_publications_table //Pour Ajouter Un  nevau champ 
+// $table->unsignedBigInteger("Profile_id");
+// $table->foreign("Profile_id")->references("id")->on("profiles")->onDelete("Cascad")->onUpdate("Cascad");
+
+
+
+// VIdeo      V55
+// Page index(Afficher Les Publs) Publications
+
+
+
 // VIdeo      V54
 // Modifier Publication
 
