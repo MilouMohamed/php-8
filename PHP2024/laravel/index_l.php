@@ -1,5 +1,52 @@
 <?php
 echo "laravel";
+// VIdeo      V62
+// les Autorisations et Permission  
+//----> Polices     Comme(Controllers)
+
+
+
+
+
+// VIdeo      V61
+// les Autorisations et Permission
+//----> Gates       Comme(Routes)
+//----> Polices     Comme(Controllers)
+// app/http/Provider/AuthService
+/* public function boot(): void
+    { $this->registerPolicies(); 
+        //Gates  V61
+        Gate::define("update-publication",function(GenericUser $profile,Publication $pub){
+            return $profile->id === $pub->Profile_id;
+        });
+    }
+*/
+// if (!Gate::allows("update-publication",$publication)) { v61
+
+//best => Gate::authorize("update-publication",$publication);//v61
+
+
+
+
+
+// VIdeo      V60
+// les Autorisations et Permission
+/* Methode 1
+ if (Auth::id() !== $publication->Profile_Pub->id) {
+            return abort("404");
+        } 
+*/
+
+
+
+// VIdeo      V59
+// Afficher Image du profiele dans la list des publication
+// public function Profile_Pub() {   
+    // return $this->belongsTo(profile::class,"Profile_id");
+// } 
+
+
+
 // VIdeo      V58
 // Afichage des publicatios dans Profile laravel
 // return $this->hasMany(Publication::class); comme jointure (Publication et Profile)
