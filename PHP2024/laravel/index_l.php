@@ -1,11 +1,32 @@
 <?php
 echo "laravel";
+// VIdeo      V63
+// Web Services REST
+// Thiorique  
+
+
 // VIdeo      V62
 // les Autorisations et Permission  
 //----> Polices     Comme(Controllers)
+//(creation d un Policy sur Publication) php artisan make:policy publicationPolicy --model=publication
+/////// Ajouter Le code dans Provider / AuthServiceProvider
+// protected $policies = [ 
+    // Publication::class => publicationPolicy::class,
+    // update(GenericUser $user, publication $publication): bool
+    // {   return $user->id === $publication->Profile_id;
 
+    //Pour probleme undefind genericUser  
+//   dans config/auth.php   'users' => [ 
+        //  'driver' => 'eloquent',
+        //  'table' => 'profiles',
+        //  "model"=>profile::class
 
-
+//Probleme (profile::getAuthIdentifierName()) class profile extends User
+// dans controller if ($requestt->user()->cannot("update", $publication)) {
+//     abort(403);
+// }
+       
+// dans View cardPub   @can("update", $publication) place de @auto et if(update)
 
 
 // VIdeo      V61
