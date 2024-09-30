@@ -1,5 +1,25 @@
 <?php
 echo "laravel";
+// VIdeo      V65
+// Afficher Ajouter Modifier Supprimer WebServices
+
+
+
+
+
+// VIdeo      V64
+// Liste Profile (web services)
+// php artisan make:controller Api/ProfileController --model=profile --api     
+// Dans Route(web) api.php aouter 
+// Route::apiResource("profiles",ProfileController::class);//ProfileContr de api
+// public function index()
+// { $profiles=profile::all();
+//   return  response()->json($profiles); Format Json
+//Ou 
+    // return Publication::all();//Not supprimer
+    // return Publication::withTrashed()->get(); // Toutes
+
+
 // VIdeo      V63
 // Web Services REST
 // Thiorique  
