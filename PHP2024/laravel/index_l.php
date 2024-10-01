@@ -1,15 +1,27 @@
 <?php
 echo "laravel";
 // VIdeo      V65
-// Afficher Ajouter Modifier Supprimer WebServices
-
+// Afficher Ajouter Modifier Supprimer WebServices 
+// aficharge  
+    //M1 $profiles=profile::all();
+    //M1   return  response()->json($profiles);
+    // return Publication::all();//Not supprimer
+    // return Publication::withTrashed()->get(); // Toutes
+//  meme pour delete et update    $data=[
+    // "name"=>"Mwdox",
+    // "email"=>"Mwdox@gmail.com",
+    // "langProg"=>["n1"=>1,"n2"=>2,"n3"=>3]
+// ];
+// return response()->json(
+    // $data
+// );
 
 
 
 
 // VIdeo      V64
 // Liste Profile (web services)
-// php artisan make:controller Api/ProfileController --model=profile --api     
+// php artisan make:co ntroller Api/ProfileController --model=profile --api     
 // Dans Route(web) api.php aouter 
 // Route::apiResource("profiles",ProfileController::class);//ProfileContr de api
 // public function index()
