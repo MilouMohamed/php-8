@@ -1,5 +1,29 @@
 <?php
 echo "laravel";
+// VIdeo      V66
+// php artisan make:resource ProfileResource
+// Pour Personaliser les Resource De Json
+// Ou Lieu de returne Profile  en vas reteurne une colection Pesronaliser 
+// dans ControlProfile dans func show 
+        // return new ProfileResource($profile);// v 66
+        // $values["created_at_2"]=date_format(date_create($this->created_at),"Y-m-d");Normalisation des donnees
+        // return $values;
+// Pour PAge Not FOund 
+/*
+//API/*  => JSON namespace App\Exceptions;
+        $this->renderable(function (NotFoundHttpException $nfex,Request $request) {
+            if ($request->is("api/*")) {
+                return response()->json([
+                    "Message"=>"Probleme not found"
+                ],404);
+            }
+        });
+*/
+
+
+
+
+
 // VIdeo      V65
 // Afficher Ajouter Modifier Supprimer WebServices 
 // aficharge  
