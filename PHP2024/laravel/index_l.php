@@ -1,5 +1,23 @@
 <?php
 echo "laravel";
+// VIdeo      V67
+// php artisan cache:table (Pour Cree une table dans db pour les caches)
+// cache et cache_locks
+// php artisan migrate
+// config  
+// 'default' => env('CACHE_DRIVER', 'database'),// databese place pour stoce les donnees
+// .env  CACHE_DRIVER=database 
+/* Pour importe les donnes du cache
+ $profile= Cache::remember($prefex,10,function() use ($id){
+         return profile::findOrFail($id);
+      });
+      // Cache::forget($prefex) Supprimer Cache
+*/
+
+
+
+
+
 // VIdeo      V66
 // php artisan make:resource ProfileResource
 // Pour Personaliser les Resource De Json
