@@ -1,5 +1,14 @@
 <?php
 echo "laravel";
+// VIdeo      V68
+//Cache WebServices
+
+
+
+
+
+
+
 // VIdeo      V67
 // php artisan cache:table (Pour Cree une table dans db pour les caches)
 // cache et cache_locks
