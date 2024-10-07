@@ -1,5 +1,74 @@
 <?php
 echo "laravel";
+// VIdeo      V71
+// Vite cooment intaller react ou  vj front end
+// instalation 
+        // nodejs
+        // cmd vs instalation des pakage FrontEnd
+        // npm install        install all the dependencies in your project
+       // npm  install --save-dev @vitejs/plugin-react (Pour react js)
+/*
+vite.confid.js ... defineConfig({
+    plugins: [
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true,
+        }),
+        react(),// ajouter React function
+*/
+// composer require laravel/ui (Pour Installer bootstrap local et d autres files)
+// php artisan ui bootstrap
+// npm install && npm run dev 
+// npm run build
+
+
+// VIdeo      V70
+// session 
+// comme Cache
+// .env  SESSION_DRIVER=database 
+// php artisan session:table
+// php artisan migrate
+// $lastCompteur =  $request->session()->increment("Compteur",3);// et(decrement)nbr chaque refreche
+// $request->session()->forget("Compteurt.t1");// forget supprimer definitivemnt // delete deplace dans curbaille exemple
+
+
+
+// VIdeo      V69
+// Query Builder laravel
+// dd( DB::table("profiles")->where("name","yasine")->get());// array
+// dd( DB::table("profiles")->where("id","2")->first());// Un seul
+// dd( vars: DB::table("profiles")->where("id","2")->value("email"));
+// dd( DB::table("profiles")->count("id"));//agrigation Count /max /min
+// dd( DB::table("profiles")->where("id","=",101)->exists());//existance   True False
+// dd( DB::table("profiles")->join("publications","profiles.id","=","publications.id")->get());//Jointure
+/*
+dd( DB::table("profiles")->where([
+    ["id","=",1]
+])->orWhere([
+    ["id","=",5]
+])->get())    select X or Y */
+// dd( DB::table("profiles")->whereIn("id",[1,3,8] )->get());//where X or Y
+// dd( DB::table("profiles")->whereBetween("id",[2,5] )->get()); 
+/*
+ dd( DB::table("profiles")
+->orderBy("name","desc")
+->get());  
+*/
+// select * from `profiles` order by `name` desc 
+// DB::table("profiles")->orderBy("name","desc")->dd();  // Pour Affciher La Requete
+
+ /*
+  DB::table("profiles")
+  ->orderBy("name","desc")
+  ->dd();    
+  DB::table("profiles")
+->where("id","=",2)
+->dump();  // Pour Afficher La data
+ */
+
+
+
+
 // VIdeo      V68
 //Cache WebServices
 
