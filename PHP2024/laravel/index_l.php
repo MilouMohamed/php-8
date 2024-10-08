@@ -1,5 +1,37 @@
 <?php
 echo "laravel";
+// VIdeo      V73
+// confirmation  email
+//Dans Class ProfileMail  Pour Envoyer email et nom 
+// public function __construct($nameP ,$emailP)
+
+
+
+
+
+
+
+
+
+
+
+
+
+// VIdeo      V72
+// envoyer  Un Email
+// php artisan make:mail ProfileMail (ceartion class mail)
+// php artisan config:cache  (pour vide le cache de config)home > index
+// index page controller exempl 
+// Mail::to("test0022b@gmail.com")->send(new ProfileMail()); 
+
+/* dans class ProfileMail   attaechment return [
+ Attachment::fromStorage("public/profile/imgs/profile.JPG")
+    ->as("image.jpg")
+    ->withMime("image/jpg")  */
+
+
+
+
 // VIdeo      V71
 // Vite cooment intaller react ou  vj front end
 // instalation 
@@ -19,7 +51,10 @@ vite.confid.js ... defineConfig({
 // composer require laravel/ui (Pour Installer bootstrap local et d autres files)
 // php artisan ui bootstrap
 // npm install && npm run dev 
-// npm run build
+// npm run build (dans Public / build / assets app-xxxx fiche compeler) 
+// pour installer React 
+// npm install --save-dev react react-dom 
+
 
 
 // VIdeo      V70
