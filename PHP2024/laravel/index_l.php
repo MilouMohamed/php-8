@@ -4,7 +4,8 @@ echo "laravel";
 // confirmation  email
 //Dans Class ProfileMail  Pour Envoyer email et nom 
 // public function __construct($nameP ,$emailP)
-
+// public function __construct(private profile $profile)
+// 
 
 
 
@@ -18,7 +19,7 @@ echo "laravel";
 
 
 // VIdeo      V72
-// envoyer  Un Email
+// envoyer  Un Email  (https://mailtrap.io/)
 // php artisan make:mail ProfileMail (ceartion class mail)
 // php artisan config:cache  (pour vide le cache de config)home > index
 // index page controller exempl 
