@@ -1,12 +1,54 @@
 <?php
 echo "laravel";
+// Ecom 1
+// composer require barryvdh/laravel-debugbar 
+//pour Les requetes sql sur console
+
+
+
+
+
+// VIdeo      V74
+// suceruse l authentication
+// class profile extends User implements MustVerifyEmail
+//Login >>  Auth::user()->hasVerifiedEmail() verefie si dans bd est deja verefied
+// $profile = Auth::user();
+// if ($profile->hasVerifiedEmail()) {
+    // $request->session()->regenerate();
+
+
+
+
 // VIdeo      V73
 // confirmation  email
 //Dans Class ProfileMail  Pour Envoyer email et nom 
 // public function __construct($nameP ,$emailP)
 // public function __construct(private profile $profile)
-// 
+/*
+  $href=url("")."/Verefy_email/".base64_encode($date_creat."///".$id);
+        return new Content(
+            view: 'emails.inscription',
+            with:[
+                "email"=>$this->profile->email,
+                "name"=>$this->profile->name, 
+                "href"=>$href,
+            ]
+*/
 
+/*  function verefy email
+  [$ceatedAt, $id] = explode("///", base64_decode($hash));
+      $profile = profile::findOrFail($id);
+      $email = $profile->email;
+      $name = $profile->name;
+   dump($profile->created_at->toDateTimeString(), $ceatedAt,$id);
+ 
+      if ($profile->created_at->toDateTimeString() !== $ceatedAt  ) {
+         return abort(404,"Probleme de verification !!!");
+         // return response("Probleme ",403);
+      }
+
+
+*/
 
 
 
@@ -182,6 +224,14 @@ dd( DB::table("profiles")->where([
 // Route::apiResource("profiles",ProfileController::class);//ProfileContr de api
 // public function index()
 // { $profiles=profile::all();
+// $products =Produit::query()->paginate(3);
+// {{ $products->links()}}// buttons bootsreap
+//
+// problele de style <  et  >    
+/*namespace App\Providers;
+ boot(): void
+  {  Paginator::useBootstrapFive();
+*/
 //   return  response()->json($profiles); Format Json
 //Ou 
     // return Publication::all();//Not supprimer
@@ -380,7 +430,7 @@ dd( DB::table("profiles")->where([
 // VIdeo      V45
 // Route Group Resources (dans 1 ligne)
 // php artisan route:list --name=profile  (Pour Afficher Les Routes De Profile)
-// Route::resource("profiles",ProfileController::class); 
+// Route::resource("profiles",ProfileController::class); // Nom soit Miniscul
 
 //php artisan make:model Publication -mcr  (Model / Controller / Resources)
 
@@ -424,7 +474,7 @@ return "my iimmgg Wooo $value";// si  image nexiste pas
 // VIdeo      V40 
 // Afficher Et Modifier Image
 // cmd php artisan storage:link  (storage dans public)
-//src="{{asset("./storage/$prfl->image")}}"
+//src="{{asset("./storage/$prfl->image")}}" Oui 
 
 
 
@@ -457,18 +507,18 @@ return "my iimmgg Wooo $value";// si  image nexiste pas
 
 
 // VIdeo      V36
-//Modifier
+//Modifier Le Nom de Route Soin miniscule 
 //form   @csrf  @method("put")
 // Route::put
 // controller update(ProfileRequest $request,profile $profile ) 
    // $profile->update();
- //  $fildes = $request->validated();// Les Champ Valide
+ //  $fildes = $request->validated();// Les Champ Valide//original et Attribuits
 //$profile->fill($fildes)->save();
 
 
 
 
-// VIdeo      V35 
+// VIdeo V35 
 // Supprission
 //Route::delete(....
 // <form ...> @method("DELETE") 
@@ -549,13 +599,19 @@ if (Auth::attempt($valus)) {
 // back(...)->withInput()
 
 
-// VIdeo      V27
+// VIdeo      V27 
 // FlashBag  route()->width("keySession","msg")
 // @if(session()->has('sucess')) 
+/* une fois
+@if (session()->has("Success"))
+  <div class="alert alert-success">
+    {{Session::get("Success")}}
+*/
 
 // VIdeo      V26
 // Insertion de Donnees STORE
 // @csrf pour les formulaires ( view create )
+// form  enctype="multipart/form-data" (Image)
 //Model ==> Profile ==> protected $fillable=[ "name","amil",..
        
 
@@ -655,6 +711,7 @@ if (Auth::attempt($valus)) {
  
 
 //composer create-project laravel/laravel formation_Mo_Ja ;
+//composer create-project --prefer-dist laravel/laravel nom-du-projet "10.*"
 
 
 
