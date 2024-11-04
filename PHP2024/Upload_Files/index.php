@@ -1,5 +1,6 @@
 <br>
 <?php
+
 ?>
 <br><br><br>
 <form method="post" enctype="multipart/form-data">
@@ -10,6 +11,19 @@
 </form>
 <hr>
 <?php
+
+// Pour Les serveur En Ligne
+echo "---------------";
+echo "<br> REALPATH =\t\t\t\t";
+echo  realpath(dirname(getcwd()));
+
+echo "<br> FILLE =\t\t\t\t";
+echo  __FILE__;
+
+echo "<br> DIR =\t\t\t\t";
+echo  __DIR__;
+echo "<br>";
+echo "---------------";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     echo "OUi POST <br>";
@@ -28,44 +42,60 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // echo "Count " . count($name_img_s);
     // echo "<br>";
     $extentios = array("png", "jpg", "jpeg", "gif");
+    if ($name_error_s[0] == 4) {
+        echo "<div style='background-color:orange;padding:7px 12px; 
+        margin-bottom:10px'>  No File Uploded</div>";
+    } else {
+
+        $img_To_bd="";
+        for ($i = 0; $i < count($name_img_s); $i++):
+
+            $errors = array();
 
 
-    for ($i = 0; $i < count($name_img_s); $i++) {
-
-        $errors = array();
-
-        if ($name_error_s[$i] == 4) {
-            $errors[] = "<div> No File Uploded</div>";
-        } else {
             if ($name_size_s[$i] > 1000_000)
                 $errors[] = " Grand Size !!!";
-            $typeImg=explode(".",$name_img_s[$i]);
-            $typeImg= strtolower(end($typeImg));
+            $typeImg = explode(".", $name_img_s[$i]);
+            $typeImg = strtolower(end($typeImg));
             // echo "<br> typeImg $typeImg <br>";
 
             if (!in_array($typeImg, $extentios))
                 $errors[] = " Pad de type Image !!!";
 
-        }
 
 
- 
-if (empty($errors)) { 
-            move_uploaded_file($name_tmp_name_s[$i], __DIR__ . "\up\\" . $name_img_s[$i]);
+                $nameRand="Image_".rand(2,40_000_000_000).".$typeImg"; 
+
+        if (empty($errors)) { 
+            move_uploaded_file($name_tmp_name_s[$i], __DIR__ . "\up\\". $nameRand);
 
             echo "<div style='background-color:green;padding:5px; margin-bottom:10px'>Nom Fille $name_img_s[$i] \t\t\t\t Est Bien Uplode  " . ($i + 1) . " </div>";
+            $img_To_bd.="/". $nameRand;
+
+
         } else {
 
-            for ($j = 0; $j < count($errors); $j++) { 
-                echo "<div style='background-color:orange;padding:7px 12px; 
-        margin-bottom:10px'>\tNom Fille " . $name_img_s[$i] . " \t\t Error  " . ($i + 1) . "  :$errors[$j] </div>";
-            } 
-
+            echo "<br>Error File Number  \t\t |" . ($i + 1) . "|<br>";
+            echo "<div style='background-color:orange;padding:7px 12px; 
+        margin-bottom:10px'>";
+            for ($j = 0; $j < count($errors); $j++) {
+                echo "---Nom Fille " . $name_img_s[$i] . "\t    :$errors[$j]";
+            }
+            echo "</div>"; 
+       
         }
 
-    }
+    endfor;
+    echo "<br/>"; 
+
+   echo $img_To_bd;
 
 }
+
+
+}
+
+
 
 
 

@@ -16,7 +16,7 @@ $extentios = array("png", "jpg", "jpeg", "gif");
 
 $extent_img = explode('.', $name_img);
 $extent_img = strtolower(end($extent_img));
-divise les affectation probleme 
+divise les affectation probleme (2 ligns)
 ------------------
 ["error"] sont les suivantes :
 0 - Pas d'erreur, le fichier a été téléchargé avec succès.
