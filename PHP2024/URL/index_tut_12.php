@@ -10,8 +10,70 @@
 <body>
     <?php
 
+
+$startTime=microtime(true);
+echo "</br>Start = $startTime</br>"; 
+$array_repeat=range(1,1_000);
+
+echo "<pre>";
+echo "********";
+echo "--------";
+print_r($array_repeat);
+echo "--------";
+echo "********";
+echo "</pre>";
+
+for ($i=0; $i < 5_000; $i++) { 
+    echo "<h1><br>";
+    echo "****1";
+    echo "<p>Code One <p>".$i;
+    echo "****2";
+    echo "<br></h1>";
+}
+
+$entTime=microtime(true);
+echo "</br>End = $entTime</br>";
+
+$deff=$entTime - $startTime;
+$deff=round($deff,5);
+echo "</br>deff = $deff</br>";
+
+/*
+
+
+// V12 Measer Page Loadung Time (Temp de chargement)
+
+
+// V11 Introduction
+
+
+
+
+//10 Requer VS Include
+
+include "./v5/file2_inc.inc";
+
+
+echo "Yes No Proble";
+//9 if nested
+
+
+/*
+//8 if Short  Opeateur Ternaire
 //7 if nested
     // V6 glob();
+    $i = 70;
+if($i == "0"){
+echo "Yes zeroooooooooo<br>";
+}
+else {
+echo "No  zeroooooooooo<br>";
+
+} 
+
+echo  $i ;
+
+
     
     $i = 0;
     echo "<br> $i Items<br>";
