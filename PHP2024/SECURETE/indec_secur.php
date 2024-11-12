@@ -6,7 +6,73 @@ echo "<br>";
 // ini_set('display_errors', '0');// desacteve msg error
 // error_reporting(0);
 
+// v 14  Secure Upload Files
+echo "v 14 "  ;
+echo "<br>";
+
+
+// var_dump($_FILES);
+
+if($_SERVER['REQUEST_METHOD'] == "POST"): 
+$img=$_FILES["image"];
+
+$size_img=$img["size"];
+$type_img=$img["type"];
+$tmp_img=$img["tmp_name"];
+$error_img=$img["error"];
+
+echo "#Size :\t $size_img <br>#";
+echo "Type :\t $type_img <br>#";
+echo "Tmp :\t $tmp_img <br>#";
+echo "Error :\t $error_img <br>#";
+else:
+echo " Pas de Fiche <br>";
+
+endif;
+?>
+
+
+<form  action="#"  method="POST" enctype="multipart/form-data">
+<label for="file">Image : </label>
+<input type="file" name="image" id="file">
+<input type="submit" value="Upload">
+
+</form>
+<?php 
+
+
+// v 13 Prevent Execute Specific Files
+
+// <FilesMatch "\.(bak|old|save)$">
+    // Require all denied
+// </FilesMatch>
+// Explication :
+    // Bloque tout fichier ayant une extension .bak, .old, ou .save (souvent utilisés pour des sauvegardes).
+
+
+
+
+// v 12 suceure Directory par IP (www.myip.com)
+// dans  file htaccess  
+// Order Deney,Allow
+// Deney from all
+// Allow From 41.142.43.150
+
+
+
+
+// v 11 suceure Directory par  create Directory Firewall
+// Pour Ajouter Un mot de pass et login  a un clien 
+// Cpanel => FILES => Derectory Privency  folder => Nom Folder => set Permition (pass word et ajouter Client (ceation use))
+
+
+
+
+
+
+/*
 // v 10 https let s encrypt  free ssl
+
 
 
 // v 9 header location thene exit or die
