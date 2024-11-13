@@ -6,7 +6,22 @@ echo "<br>";
 // ini_set('display_errors', '0');// desacteve msg error
 // error_reporting(0);
 
-// v 14  Secure Upload Files
+session_start();
+
+session_regenerate_id();// Pour Chanage Id de Session chaque load
+
+echo "<br>". session_id()."<br>";
+
+// V 18 Session Fixation  
+
+// v 17 PAROLE SUR FILTER DANS JAVASCRIPT ET PHP
+
+
+// v 16   file log error in server 
+
+
+
+// v 14 & 15   Secure Upload Files 
 echo "v 14 "  ;
 echo "<br>";
 
@@ -20,9 +35,30 @@ $size_img=$img["size"];
 $type_img=$img["type"];
 $tmp_img=$img["tmp_name"];
 $error_img=$img["error"];
+$name_img=$img["name"];
+ 
 
-echo "#Size :\t $size_img <br>#";
+$exten_imgs_valid=["png","jpeg","jpg","gif","svg"];
+$ext_img= explode("/",$type_img);
+$ext_img=strtolower(end($ext_img));
+
+if(in_array($ext_img ,$exten_imgs_valid)):
+echo "--------------- Oui image Valid<br>";
+else:
+    echo "--------------- Nom  image n est pas Valid<br>"; 
+    return;
+endif;
+
+
+
+
+$img_new_name=rand(1,1_000_000).".".$ext_img;
+
+echo "#Name :\t $name_img <br>#";
+echo "img_new_name :\t $img_new_name <br>#";
+echo "Size :\t $size_img <br>#";
 echo "Type :\t $type_img <br>#";
+echo "Extension :\t $ext_img <br>#";
 echo "Tmp :\t $tmp_img <br>#";
 echo "Error :\t $error_img <br>#";
 else:
