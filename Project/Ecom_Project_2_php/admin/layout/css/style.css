@@ -1,3 +1,26 @@
-* {
-    background-color: rgba(36, 33, 33, 0.58);
+body {
+    background-color: #cbc9c9;
 }
+
+
+
+/* Start Login Admin */
+.login-admin {
+    width: 300px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login-admin input { 
+    background-color: #c1bebe;
+}
+
+.login-admin input[type="submit"] {
+    background-color: #008dde !important;
+    color: white;
+}
+.login-admin input[type="text"]:focus::placeholder,
+.login-admin input[type="text"]:active::placeholder { 
+    color: transparent;
+}
+
+/* End Login Admin */
