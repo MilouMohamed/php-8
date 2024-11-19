@@ -1,5 +1,6 @@
 body {
     background-color: #cbc9c9;
+    font-size: 16px;
 }
 
 
@@ -24,3 +25,64 @@ body {
 }
 
 /* End Login Admin */
+/* Start Bootstrap Edit  */
+/* Start Navbar  */
+.navbar {
+    font-size: 1em;
+}
+.navbar .navbar-brand {
+    font-size: 1em;
+}
+
+.navbar  a.nav-link {
+    padding: 10px  !important;
+    transition: .3s;
+ }
+ .navbar  a.nav-link:hover {
+    padding: 10px 10px  8px 10px  !important;
+    border-bottom: red 2px solid;
+    color: red;
+
+ }
+
+ .dropdown-menu {
+    left: -18px !important;
+    min-width: 11em;
+    ul>li { 
+    width: 100%;
+    padding: 50px;
+    }
+ } 
+    .dropdown-menu    li:hover { 
+    background-color: rgb(22, 22, 22); 
+ }
+
+
+.navbar .dropdown-item {
+    padding: 10px 12px;
+  &:hover,
+  &:focus {
+    color: red;
+    background-color: rgb(22, 22, 22);
+    border-bottom: red 2px solid;
+}
+}
+
+ul > li > a.dropdown-item {
+font-size: 1em;
+color: rgb(255, 255, 255);
+} 
+
+ul > li > a.dropdown-item:hover,
+ul > li > a.dropdown-item:active {
+width: max-content;    
+}
+
+ 
+
+
+
+/* End Navbar  */
+ 
+/* End Bootstrap Edit  */
+ 
