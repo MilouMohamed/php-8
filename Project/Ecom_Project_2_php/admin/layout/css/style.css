@@ -83,6 +83,18 @@ width: max-content;
 
 
 /* End Navbar  */
+/* Start members  */
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* End members  */
+ 
+
  
 /* End Bootstrap Edit  */
  

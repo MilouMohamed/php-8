@@ -4,15 +4,16 @@
 $css="./layout/css/";
 $js="./layout/js/"; 
 $temp="./includes/templates/";
+$func="./includes/func/";
 $lng="./includes/lang/";
 
 
 
 
   
-
-include($temp . "headerAdmin.php");
 include ($lng."en.php"); 
+include ($func."function.php");
+include($temp . "headerAdmin.php");
 
  
 require("connect.php");

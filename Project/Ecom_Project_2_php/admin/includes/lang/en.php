@@ -24,6 +24,22 @@ static $lg=array(
     "STATISTIC"         =>"Statistic", 
     "LOGS"              =>"Logs", 
 
+    //Membres  edit
+    "TITRE_MEMBERS"     =>"Edit Members", 
+    "NAME"              =>"NAME", 
+    "FULLE_NAME"        =>"Full Name", 
+    "EMAIL"             =>"Email", 
+    "PASSWORD"          =>"Password", 
+    "SAVE"          =>"Save", 
+    "NO_PROFILE_ID"          =>"No Profile withe this id",
+
+    //Membres Update
+    "TITRE_MEMBERS_UPDATE"          =>"Update Members",
+
+    
+
+    
+
 
 );
 return $lg[$phrase];

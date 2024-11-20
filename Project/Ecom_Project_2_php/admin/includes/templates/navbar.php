@@ -28,7 +28,7 @@
             <?= lang("MY_NAME")?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><?= lang("EDIT_PROFILE")?></a></li>
+            <li><a class="dropdown-item" href="members.php?do=Edit&UserId=<?= $_SESSION["Id"] ?>"><?= lang("EDIT_PROFILE")?></a></li>
             <li><a class="dropdown-item" href="#"><?= lang("SETTINGS")?></a></a></li>
             <li><a class="dropdown-item" href="<?= $temp . "logout.php" ?>"><?= lang("LOGOUT")?></a></li>
           </ul>
