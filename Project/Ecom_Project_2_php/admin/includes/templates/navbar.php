@@ -15,7 +15,7 @@
       <li class="nav-item d-flex"> 
         <a class="nav-link" href="#"><?= lang("CATEGORIES")?></a>
         <a class="nav-link" href="#"><?= lang("ITEMS")?></a>
-        <a class="nav-link" href="#"><?= lang("MEMBERS")?></a>
+        <a class="nav-link" href="members.php?do=Manage"><?= lang("MEMBERS")?></a>
         <a class="nav-link" href="#"><?= lang("STATISTIC")?></a>
         <a class="nav-link" href="#"><?= lang("LOGS")?></a>
       </li>

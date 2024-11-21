@@ -7,11 +7,11 @@ body {
 
 /* Start Login Admin */
 .login-admin {
-    width: 300px; 
+    width: 300px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.login-admin input { 
+.login-admin input {
     background-color: #c1bebe;
 }
 
@@ -19,8 +19,9 @@ body {
     background-color: #008dde !important;
     color: white;
 }
+
 .login-admin input[type="text"]:focus::placeholder,
-.login-admin input[type="text"]:active::placeholder { 
+.login-admin input[type="text"]:active::placeholder {
     color: transparent;
 }
 
@@ -30,55 +31,60 @@ body {
 .navbar {
     font-size: 1em;
 }
+
 .navbar .navbar-brand {
     font-size: 1em;
 }
 
-.navbar  a.nav-link {
-    padding: 10px  !important;
+.navbar a.nav-link {
+    padding: 10px !important;
     transition: .3s;
- }
- .navbar  a.nav-link:hover {
-    padding: 10px 10px  8px 10px  !important;
+}
+
+.navbar a.nav-link:hover {
+    padding: 10px 10px 8px 10px !important;
     border-bottom: red 2px solid;
     color: red;
 
- }
+}
 
- .dropdown-menu {
+.dropdown-menu {
     left: -18px !important;
     min-width: 11em;
-    ul>li { 
-    width: 100%;
-    padding: 50px;
+
+    ul>li {
+        width: 100%;
+        padding: 50px;
     }
- } 
-    .dropdown-menu    li:hover { 
-    background-color: rgb(22, 22, 22); 
- }
+}
+
+.dropdown-menu li:hover {
+    background-color: rgb(22, 22, 22);
+}
 
 
 .navbar .dropdown-item {
     padding: 10px 12px;
-  &:hover,
-  &:focus {
-    color: red;
-    background-color: rgb(22, 22, 22);
-    border-bottom: red 2px solid;
-}
-}
 
-ul > li > a.dropdown-item {
-font-size: 1em;
-color: rgb(255, 255, 255);
-} 
-
-ul > li > a.dropdown-item:hover,
-ul > li > a.dropdown-item:active {
-width: max-content;    
+    &:hover,
+    &:focus {
+        color: red;
+        background-color: rgb(22, 22, 22);
+        border-bottom: red 2px solid;
+    }
 }
 
- 
+ul>li>a.dropdown-item {
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+}
+
+ul>li>a.dropdown-item:hover,
+ul>li>a.dropdown-item:active {
+    width: max-content;
+}
+
+
 
 
 
@@ -92,9 +98,30 @@ h1 {
     text-align: center;
 }
 
-/* End members  */
- 
+.form-control[required] {
+    position: relative;
+}
 
- 
+span.my-etoile {
+    color: red;
+    position: absolute;
+    right: 20px;
+    top: 13px;
+    font-size: 28px;
+}
+/* Add members */
+.password .password-show {
+    position: absolute;
+    font-size: 27px;
+    top: 16px;
+    right: -30px;
+    cursor:pointer;
+}
+
+
+
+/* End members  */
+
+
+
 /* End Bootstrap Edit  */
- 

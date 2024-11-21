@@ -26,11 +26,13 @@ static $lg=array(
 
     //Membres  edit
     "TITRE_MEMBERS"     =>"Edit Members", 
+    "TITRE_MEMBERS_ADD"     =>"Add New Member", 
     "NAME"              =>"NAME", 
     "FULLE_NAME"        =>"Full Name", 
     "EMAIL"             =>"Email", 
     "PASSWORD"          =>"Password", 
     "SAVE"          =>"Save", 
+    "ADD"          =>"Add New", 
     "NO_PROFILE_ID"          =>"No Profile withe this id",
 
     //Membres Update
