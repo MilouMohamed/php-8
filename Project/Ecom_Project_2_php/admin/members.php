@@ -10,12 +10,57 @@ if (!isset($_SESSION["UserName"])) {
     include "init.php";
 
     $action = isset($_GET["do"]) ? $_GET["do"] : "Manage";
+  
+//  echo "<br><br>isExistName<br>";
+//  print_r(   isExistName("nom 2"));   
 
 
     echo '<div class="container">';
     if ($action == "Manage") {
-        echo "Page Manage<br>";
-        echo "<a href='?do=Add'>Ajouter Nouvel Copmte </a><br>";
+
+        $items = getAllUsers();
+        // print_r($items);
+        ?>
+        <div class="manage table-responsive">
+            <h1 class="titre-page"><?= lang("TITRE_MEMBERS_ITEMS") ?> </h1>
+
+            <table class="table table-bordered text-center">
+
+                <tr>
+                    <td>#ID</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Full Name</td>
+                    <td>Register Date</td>
+                    <td>Controle</td>
+                </tr>
+                <?php foreach ($items as $item) { ?>
+                    <tr>
+                        <td class="fw-bold"> <?= $item->UserID ?></td>
+                        <td><?= $item->UserName ?></td>
+                        <td><?= $item->Email ?></td>
+                        <td><?= $item->FullName ?></td>
+                        <td><?= date_format(date_create($item->CreateAt), "Y-m-d") ?></td>
+                        <td>
+                            <!-- ?do=Edit&UserId=".$userId -->
+                            <a href="?do=Edit&UserId=<?= $item->UserID ?>" class="btn btn-success"><i class="fa-solid fa-user-pen"></i> Edite</a>
+                            <a href="?do=Delete&UserId=<?= $item->UserID ?>"
+                                onclick="return confirm('Vous Voullez Supprimer <?= $item->FullName ?> ???')"
+                                class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i> Delete</a>
+                        </td>
+                    </tr>
+
+                <?php } ?>
+
+
+            </table>
+        </div>
+
+        <a href='?do=Add' class="btn btn-primary"><i class="fa-solid fa-user-plus"></i>  New Member </a>
+
+        <?php
+
+
     } elseif ($action == "Insert") {
         echo "Page Insert<br>";
         /* */
@@ -25,15 +70,19 @@ if (!isset($_SESSION["UserName"])) {
             $userName = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
             $fullName = filter_var($_POST["full"], FILTER_SANITIZE_STRING);
             $email = $_POST["email"];
-         
+
             $pass = htmlspecialchars($_POST["new_pass"]);
             $pass_hash = sha1(htmlspecialchars($_POST["new_pass"]));
 
             // echo "<br>|| userName " . $userName . "|| pass " . $pass . " ||fullName " . $fullName . " ||email " . $email;
- 
+
 
             $errorsList = array();
 
+
+            if (isExistName($userName)) {
+                $errorsList[] = "The Name Is EXiste ";
+            }
             if (empty($userName)) {
                 $errorsList[] = "The Name Cant Be Empty";
             }
@@ -43,7 +92,7 @@ if (!isset($_SESSION["UserName"])) {
 
             if (empty($pass)) {
                 $errorsList[] = "The Password Cant Be Empty";
-            } 
+            }
             if (strlen($pass) < 4) {
                 $errorsList[] = "The Password Cant Be Less Than 4 Caracter";
             }
@@ -65,20 +114,22 @@ if (!isset($_SESSION["UserName"])) {
             // echo "id " . $UserID . " userName " . $userName . "pass " . $pass . "fullName " . $fullName . "email " . $email;
             if (count($errorsList) == 0) {
                 try {
- 
+
                     $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`) VALUES (?, ?, ?, ?)");
                     $row = $stmt->execute([$userName, $email, $fullName, $pass_hash]);
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                        <h2>The Profile Has Added </h2>
-                    </div> <?php
+                   
+                   
+                    redirectToHome("The Profile Has Added", 4,"alert-success");
+                   
+                //    ? >
+                //     <div class="alert alert-success" role="alert">
+                //         <h2>The Profile Has Added </h2>
+                //     </div> < ?php
 
 
                 } catch (PDOException $exp) {
-                    ?>
-                    <div class="alert alert-danger">
-                        <h2><?= " Error on Aded = " . $exp->getMessage(); ?> </h2>
-                    </div> <?php
+
+                    redirectToHome(" Error on Aded = " . $exp->getMessage(), 4);
                 }
             } else {
                 echo '<ul class="alert alert-danger m-5 list-unstyled" role="alert"> <h2>Errors</h2>';
@@ -89,7 +140,7 @@ if (!isset($_SESSION["UserName"])) {
                     <?php
                 }
                 echo '</ul>';
-                //   header("location:?do=Edite&UserId=".$userId);
+                //   header("location:?do=Edit&UserId=".$userId);
                 //   exit(); 
             }
 
@@ -97,19 +148,21 @@ if (!isset($_SESSION["UserName"])) {
 
 
         } else {
-            ?>
-            <div class="alert alert-danger">
-                <h2> Vous N avez pas le Droit de Modifier !!!</h2>
-            </div>
-            <?php
+            redirectToHome(" Vous N avez pas le Droit de Modifier !!!", 4);
+
+            // ? >
+            // <div class="alert alert-danger">
+            //     <h2> Vous N avez pas le Droit de Modifier !!!</h2>
+            // </div>
+             // < ? php  
         }
 
-        
+
     } elseif ($action == "Add") {
-        echo "Page Add<br>";
+
         ?>
 
-        <h1><?= lang("TITRE_MEMBERS_ADD") ?> </h1>
+        <h1 class="titre-page"><?= lang("TITRE_MEMBERS_ADD") ?> </h1>
         <form class="form-group " action="?do=Insert" method="post">
 
             <div class="row g-3 align-items-center justify-content-center">
@@ -125,7 +178,7 @@ if (!isset($_SESSION["UserName"])) {
                     <input type="password" class="form-control ps-4" id="pass-new-new" value="<?php $_POST["new_pass"] ?? "" ?>"
                         name="new_pass" placeholder="Password ">
                     <label class="ps-4" for="pass-new-new"><?= lang("PASSWORD") ?></label>
-                     <i class="fa-regular fa-eye password-show"></i>
+                    <i class="fa-regular fa-eye password-show"></i>
                 </div>
             </div>
 
@@ -174,7 +227,7 @@ if (!isset($_SESSION["UserName"])) {
 
                 ?>
 
-                <h1><?= lang("TITRE_MEMBERS") ?> </h1>
+                <h1 class="titre-page"><?= lang("TITRE_MEMBERS") ?> </h1>
                 <form class="form-group " action="?do=Update" method="post">
                     <input type="hidden" class="form-control ps-4" id="userId" name="userId" value="<?= $item->UserID ?>">
 
@@ -221,17 +274,27 @@ if (!isset($_SESSION["UserName"])) {
 
                 <?php
 
-            } else { ?>
-                <div class="alert alert-danger">
-                    <h2><?= lang("NO_PROFILE_ID") ?> Dans DB </h2>
-                </div>
-            <?php }
+            } else {
+                
+            redirectToHome(lang("NO_PROFILE_ID") ." Dans DB ", 3);
+                
+                // ? >
+                // <div class="alert alert-danger">
+                    // <h2>< ?= lang("NO_PROFILE_ID") ? > Dans DB </h2>
+                // </div>
+            // < ? php
+         }
 
-        } else { ?>
-            <div class="alert alert-danger">
-                <h2><?= lang("NO_PROFILE_ID") ?> Dans Url </h2>
-            </div>
-        <?php }
+        } else { 
+            
+            redirectToHome(lang("NO_PROFILE_ID") ."  Dans Url ", 3);
+
+        //     ? >
+        //     <div class="alert alert-danger">
+        //         <h2><?= lang("NO_PROFILE_ID") ? > Dans Url </h2>
+        //     </div>
+        // < ? php 
+    }
     } elseif ($action == "Update") {
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -276,17 +339,23 @@ if (!isset($_SESSION["UserName"])) {
 
                     $stmt = $cnx->prepare("Update Users set UserName=?, Email=?, FullName=?, Password=? where UserID=?");
                     $row = $stmt->execute([$userName, $email, $fullName, $pass, $UserID]);
-                    ?>
-                    <div class="alert alert-success" role="alert">
-                        <h2>The Profile Has Updated </h2>
-                    </div> <?php
+                    
+                    redirectToHome("The Profile Has Updated", 3,"alert-success");
+                    
+                    // ? >
+                    // <div class="alert alert-success" role="alert">
+                    //     <h2>The Profile Has Updated </h2>
+                    // </div> < ? php
 
 
                 } catch (PDOException $exp) {
-                    ?>
-                    <div class="alert alert-danger">
-                        <h2><?= " Error on Modification" . $exp->getMessage(); ?> </h2>
-                    </div> <?php
+                    
+                    redirectToHome(" Error on Modification" . $exp->getMessage(), 3);
+                    
+                    // ? >
+                    // <div class="alert alert-danger">
+                    //     <h2><?= " Error on Modification" . $exp->getMessage(); ? > </h2>
+                    // </div> < ?php
                 }
             } else {
                 echo '<ul class="alert alert-danger m-5 list-unstyled" role="alert"> <h2>Errors</h2>';
@@ -298,22 +367,72 @@ if (!isset($_SESSION["UserName"])) {
                 }
                 echo '</ul>';
 
-                /*  header("location:?do=Edite&UserId=".$userId);
-                  exit();*/
-
+                
             }
 
 
 
 
         } else {
-            ?>
-            <div class="alert alert-danger">
-                <h2> Vous N avez pas le Droit de Modifier !!!</h2>
-            </div>
-            <?php
+
+            redirectToHome("Vous N avez pas le Droit de Modifier !!!"  , 3);
+
+            // ? >
+            // <div class="alert alert-danger">
+            //     <h2> Vous N avez pas le Droit de Modifier !!!</h2>
+            // </div>
+            // < ?php
         }
 
+
+    } elseif ($action == "Delete") {
+
+        echo '  <h1 class="titre-page" >' . lang("TITRE_MEMBERS_DELETE") . ' </h1>';
+
+        // echo "Page Edite ID = ". $_GET["UserId"] ;
+        $userId = (isset($_GET["UserId"]) and intval($_GET["UserId"])) ? intval($_GET["UserId"]) : 0;
+
+
+        if ($userId != 0 and isExistId($userId)) {
+
+            $stmt = $cnx->prepare("delete   from users where UserID=?");
+            $stmt->execute([$userId]);
+
+echo " <br><br>";
+            redirectToHome("  The User Is Deleted", 3,"alert-success");
+
+            // ? >
+            // <!-- <br><br> --> 
+            // <!-- <div class="alert alert-success text-center">
+            //     The User Is Deleted
+            // </div> -->
+        // < ?php
+           
+        } else {
+
+            
+echo " <br><br>";
+redirectToHome("  This ID Is Not Existed !!!" , 3,"alert-warning");
+
+            // ? >
+            // <br><br>
+            // <div class="alert alert-warning text-center">
+            //     This ID Is Not Existed !!!
+            // </div>
+            // < ?php
+        }
+    } else {
+
+        
+echo " <br><br>";
+redirectToHome("  Probleme Dans L URL !!!" , 3);
+
+        // ? >
+        // <br><br>
+        // <div class="alert alert-danger text-center">
+        //     Probleme Dans L URL <br>
+        // </div>
+        // < ?php
 
     }
 

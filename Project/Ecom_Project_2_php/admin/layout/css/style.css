@@ -90,7 +90,10 @@ ul>li>a.dropdown-item:active {
 
 /* End Navbar  */
 /* Start members  */
-h1 {
+
+h1.titre-page,
+h1 /* Supprimer */ 
+{
     font-size: 50px;
     font-weight: bold;
     margin-top: 50px;
@@ -118,8 +121,31 @@ span.my-etoile {
     cursor:pointer;
 }
 
+/**Manage Members**/
+.manage   table  tr:first-child > td{
+    background-color: black !important;
+    color: white !important;
+padding:13px  4px !important;
 
+} 
+.manage table tr td {
+vertical-align: middle;
+padding:4px ;
 
+}
+.manage table tr td .btn {
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.manage table   {
+    box-shadow: 0 3px 10px black;
+    -webkit-box-shadow: 0 3px 10px black;
+    -moz-box-shadow: 0 3px 10px black;
+    
+     }
+    
 /* End members  */
 
 

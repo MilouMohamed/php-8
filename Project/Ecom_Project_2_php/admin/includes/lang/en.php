@@ -37,7 +37,11 @@ static $lg=array(
 
     //Membres Update
     "TITRE_MEMBERS_UPDATE"          =>"Update Members",
-
+    //Membres Items
+    "TITRE_MEMBERS_ITEMS"          =>"Thes Members",
+    //Membres Items
+    "TITRE_MEMBERS_DELETE"          =>"Delete Member",
+    
     
 
     
