@@ -10,8 +10,8 @@ if (!isset($_SESSION["UserName"])) {
     include "init.php";
 
     $action = isset($_GET["do"]) ? $_GET["do"] : "Manage";
-  
-//  echo "<br><br>isExistName<br>";
+
+    //  echo "<br><br>isExistName<br>";
 //  print_r(   isExistName("nom 2"));   
 
 
@@ -43,7 +43,8 @@ if (!isset($_SESSION["UserName"])) {
                         <td><?= date_format(date_create($item->CreateAt), "Y-m-d") ?></td>
                         <td>
                             <!-- ?do=Edit&UserId=".$userId -->
-                            <a href="?do=Edit&UserId=<?= $item->UserID ?>" class="btn btn-success"><i class="fa-solid fa-user-pen"></i> Edite</a>
+                            <a href="?do=Edit&UserId=<?= $item->UserID ?>" class="btn btn-success"><i
+                                    class="fa-solid fa-user-pen"></i> Edite</a>
                             <a href="?do=Delete&UserId=<?= $item->UserID ?>"
                                 onclick="return confirm('Vous Voullez Supprimer <?= $item->FullName ?> ???')"
                                 class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i> Delete</a>
@@ -56,13 +57,13 @@ if (!isset($_SESSION["UserName"])) {
             </table>
         </div>
 
-        <a href='?do=Add' class="btn btn-primary"><i class="fa-solid fa-user-plus"></i>  New Member </a>
+        <a href='?do=Add' class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> New Member </a>
 
         <?php
 
 
     } elseif ($action == "Insert") {
-        echo "Page Insert<br>";
+        // echo "Page Insert<br>";
         /* */
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
@@ -117,14 +118,14 @@ if (!isset($_SESSION["UserName"])) {
 
                     $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`) VALUES (?, ?, ?, ?)");
                     $row = $stmt->execute([$userName, $email, $fullName, $pass_hash]);
-                   
-                   
-                    redirectToHome("The Profile Has Added", 4,"alert-success");
-                   
-                //    ? >
-                //     <div class="alert alert-success" role="alert">
-                //         <h2>The Profile Has Added </h2>
-                //     </div> < ?php
+
+
+                    redirectToHome("The Profile Has Added", 4, "alert-success", "?do=Manage");
+
+                    //    ? >
+                    //     <div class="alert alert-success" role="alert">
+                    //         <h2>The Profile Has Added </h2>
+                    //     </div> < ?php
 
 
                 } catch (PDOException $exp) {
@@ -132,14 +133,17 @@ if (!isset($_SESSION["UserName"])) {
                     redirectToHome(" Error on Aded = " . $exp->getMessage(), 4);
                 }
             } else {
-                echo '<ul class="alert alert-danger m-5 list-unstyled" role="alert"> <h2>Errors</h2>';
+                // echo '<ul class="alert alert-danger m-5 list-unstyled" role="alert"> <h2>Errors</h2>';
 
-                foreach ($errorsList as $error) {
-                    ?>
-                    <li class="ps-4 mb-2"><?= $error ?> </li>
-                    <?php
-                }
-                echo '</ul>';
+                // foreach ($errorsList as $error) {
+                // ? >
+                // <!-- <li class="ps-4 mb-2"><?= $error ? > </li> -->
+                // < ? php
+                // }
+                $errorMsg = "<strong> Error</strong> <hr>" . implode("<br>", $errorsList);
+                redirectToHome($errorMsg, 6, "alert-danger", "?do=Add");
+
+                // echo '</ul>';
                 //   header("location:?do=Edit&UserId=".$userId);
                 //   exit(); 
             }
@@ -154,7 +158,7 @@ if (!isset($_SESSION["UserName"])) {
             // <div class="alert alert-danger">
             //     <h2> Vous N avez pas le Droit de Modifier !!!</h2>
             // </div>
-             // < ? php  
+            // < ? php  
         }
 
 
@@ -275,26 +279,26 @@ if (!isset($_SESSION["UserName"])) {
                 <?php
 
             } else {
-                
-            redirectToHome(lang("NO_PROFILE_ID") ." Dans DB ", 3);
-                
+
+                redirectToHome(lang("NO_PROFILE_ID") . " Dans DB ", 3);
+
                 // ? >
                 // <div class="alert alert-danger">
-                    // <h2>< ?= lang("NO_PROFILE_ID") ? > Dans DB </h2>
+                // <h2>< ?= lang("NO_PROFILE_ID") ? > Dans DB </h2>
                 // </div>
-            // < ? php
-         }
+                // < ? php
+            }
 
-        } else { 
-            
-            redirectToHome(lang("NO_PROFILE_ID") ."  Dans Url ", 3);
+        } else {
 
-        //     ? >
-        //     <div class="alert alert-danger">
-        //         <h2><?= lang("NO_PROFILE_ID") ? > Dans Url </h2>
-        //     </div>
-        // < ? php 
-    }
+            redirectToHome(lang("NO_PROFILE_ID") . "  Dans Url ", 3);
+
+            //     ? >
+            //     <div class="alert alert-danger">
+            //         <h2><?= lang("NO_PROFILE_ID") ? > Dans Url </h2>
+            //     </div>
+            // < ? php 
+        }
     } elseif ($action == "Update") {
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -339,9 +343,9 @@ if (!isset($_SESSION["UserName"])) {
 
                     $stmt = $cnx->prepare("Update Users set UserName=?, Email=?, FullName=?, Password=? where UserID=?");
                     $row = $stmt->execute([$userName, $email, $fullName, $pass, $UserID]);
-                    
-                    redirectToHome("The Profile Has Updated", 3,"alert-success");
-                    
+
+                    redirectToHome("The Profile Has Updated", 3, "alert-success", "?do=Edit&UserId=" . $UserID);
+
                     // ? >
                     // <div class="alert alert-success" role="alert">
                     //     <h2>The Profile Has Updated </h2>
@@ -349,9 +353,9 @@ if (!isset($_SESSION["UserName"])) {
 
 
                 } catch (PDOException $exp) {
-                    
+
                     redirectToHome(" Error on Modification" . $exp->getMessage(), 3);
-                    
+
                     // ? >
                     // <div class="alert alert-danger">
                     //     <h2><?= " Error on Modification" . $exp->getMessage(); ? > </h2>
@@ -367,7 +371,7 @@ if (!isset($_SESSION["UserName"])) {
                 }
                 echo '</ul>';
 
-                
+
             }
 
 
@@ -375,7 +379,7 @@ if (!isset($_SESSION["UserName"])) {
 
         } else {
 
-            redirectToHome("Vous N avez pas le Droit de Modifier !!!"  , 3);
+            redirectToHome("Vous N avez pas le Droit de Modifier !!!", 3);
 
             // ? >
             // <div class="alert alert-danger">
@@ -398,21 +402,21 @@ if (!isset($_SESSION["UserName"])) {
             $stmt = $cnx->prepare("delete   from users where UserID=?");
             $stmt->execute([$userId]);
 
-echo " <br><br>";
-            redirectToHome("  The User Is Deleted", 3,"alert-success");
+            echo " <br><br>";
+            redirectToHome("  The User Is Deleted", 4, "alert-success");
 
             // ? >
             // <!-- <br><br> --> 
             // <!-- <div class="alert alert-success text-center">
             //     The User Is Deleted
             // </div> -->
-        // < ?php
-           
+            // < ?php
+
         } else {
 
-            
-echo " <br><br>";
-redirectToHome("  This ID Is Not Existed !!!" , 3,"alert-warning");
+
+            echo " <br><br>";
+            redirectToHome("  This ID Is Not Existed !!!", 4, "alert-danger");
 
             // ? >
             // <br><br>
@@ -423,9 +427,9 @@ redirectToHome("  This ID Is Not Existed !!!" , 3,"alert-warning");
         }
     } else {
 
-        
-echo " <br><br>";
-redirectToHome("  Probleme Dans L URL !!!" , 3);
+
+        echo " <br><br>";
+        redirectToHome("  Probleme Dans L URL !!!", 3);
 
         // ? >
         // <br><br>

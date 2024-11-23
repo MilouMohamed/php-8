@@ -23,6 +23,7 @@ static $lg=array(
     "MEMBERS"           =>"Members", 
     "STATISTIC"         =>"Statistic", 
     "LOGS"              =>"Logs", 
+    "DASHBOARD"         =>"Dashboard", 
 
     //Membres  edit
     "TITRE_MEMBERS"     =>"Edit Members", 

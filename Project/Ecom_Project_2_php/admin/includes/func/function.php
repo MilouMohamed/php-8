@@ -55,20 +55,30 @@ function checkItem($etoie = "*", $att, $table, $value)
 
     $count = $stmnt->rowCount();
 
-    return ($count > 0 )? true :false;
+    return ($count > 0) ? true : false;
 }
 
 
 
 
-function redirectToHome($errMsg, $secend = 3, $type = "alert-danger",$url="members.php")
+function redirectToHome($errMsg, $secend = 3, $type = "alert-danger", $url = "members.php")
 {
 
     echo "  <div class='alert $type'>$errMsg</div>";
     echo "  <div class='alert alert-info'>You Well be Redirect In $secend secends ...</div>";
 
-    header("Refresh:3;url=$url");
+    header("Refresh:$secend;url=$url");
     exit();
+}
+
+function countItems($col, $table)
+{
+    global $cnx;
+
+    $qery = "select count($col) from $table ";
+    $stmnt = $cnx->prepare($qery);
+    $stmnt->execute();
+    return $stmnt->fetchColumn();
 }
 
 

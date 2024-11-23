@@ -151,3 +151,21 @@ padding:4px ;
 
 
 /* End Bootstrap Edit  */
+/* Start Dashboard */
+.dashbord-status .statu {
+    background-color: #E9E9E9;
+    padding: 18px; 
+    border: 2px solid #b3a9a9;
+    }
+    .dashbord-status .statu h3  {
+    font-size: 14px;
+    }
+    .dashbord-status .statu span  {
+    font-size: 40px;
+    }
+.dashbord-latest {
+    background-color: white;
+}
+
+
+/* End Dashboard */
