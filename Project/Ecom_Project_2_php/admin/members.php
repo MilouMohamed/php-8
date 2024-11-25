@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 session_start();
 
 if (!isset($_SESSION["UserName"])) {
@@ -17,8 +19,13 @@ if (!isset($_SESSION["UserName"])) {
 
     echo '<div class="container">';
     if ($action == "Manage") {
-
-        $items = getAllUsers();
+ 
+        
+        if(isset($_GET["Panding"])  and  $_GET["Panding"]="YES" ){
+            $items = getAllUsers(" and RegStatus = 0 ");}
+            else{
+            $items = getAllUsers();
+        }
         // print_r($items);
         ?>
         <div class="manage table-responsive">
@@ -34,7 +41,8 @@ if (!isset($_SESSION["UserName"])) {
                     <td>Register Date</td>
                     <td>Controle</td>
                 </tr>
-                <?php foreach ($items as $item) { ?>
+                <?php  if(count($items)> 0) {  
+                     foreach ($items as $item) { ?>
                     <tr>
                         <td class="fw-bold"> <?= $item->UserID ?></td>
                         <td><?= $item->UserName ?></td>
@@ -48,10 +56,20 @@ if (!isset($_SESSION["UserName"])) {
                             <a href="?do=Delete&UserId=<?= $item->UserID ?>"
                                 onclick="return confirm('Vous Voullez Supprimer <?= $item->FullName ?> ???')"
                                 class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i> Delete</a>
+                                <?php if($item->RegStatus == 0): ?> 
+                                    <a href="?do=Active&UserId=<?= $item->UserID ?>" class="btn btn-info"><i class="fa-solid fa-key"></i> Activate</a>
+                                <?php endif;  ?>
                         </td>
                     </tr>
 
-                <?php } ?>
+                    <?php }}  else{ ?>
+                <tr>
+                    <td colspan="6" class="text-center fw-bold p-5" >
+                        <h2 class="text fw-bold" ><i class="fa-regular fa-file"></i> Non Items</h2>
+                    </td>
+                </tr>
+                <?php }  ?>
+               
 
 
             </table>
@@ -114,9 +132,9 @@ if (!isset($_SESSION["UserName"])) {
 
             // echo "id " . $UserID . " userName " . $userName . "pass " . $pass . "fullName " . $fullName . "email " . $email;
             if (count($errorsList) == 0) {
-                try {
+                try { 
 
-                    $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`) VALUES (?, ?, ?, ?)");
+                    $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`,RegStatus) VALUES (?, ?, ?, ?,1)");
                     $row = $stmt->execute([$userName, $email, $fullName, $pass_hash]);
 
 
@@ -425,18 +443,32 @@ if (!isset($_SESSION["UserName"])) {
             // </div>
             // < ?php
         }
+    }elseif ($action == "Active") {
+
+           $userId = (isset($_GET["UserId"]) and intval($_GET["UserId"])) ? intval($_GET["UserId"]) : 0;
+
+
+        if ($userId != 0 and isExistId($userId)) {
+ 
+            $stmt = $cnx->prepare("Update users set RegStatus=1  where UserID=?");
+            $stmt->execute([$userId]);
+
+            echo " <br><br>";
+            redirectToHome("  The User Is Activated ", 4, "alert-success");
+ 
+
+        } else {
+ 
+            echo " <br><br>";
+            redirectToHome("  This ID Is Not Existed !!!", 4, "alert-danger");
+ 
+        }
     } else {
 
 
         echo " <br><br>";
-        redirectToHome("  Probleme Dans L URL !!!", 3);
-
-        // ? >
-        // <br><br>
-        // <div class="alert alert-danger text-center">
-        //     Probleme Dans L URL <br>
-        // </div>
-        // < ?php
+        redirectToHome(" Probleme Dans L URL !!!", 3);
+ 
 
     }
 
@@ -446,4 +478,5 @@ if (!isset($_SESSION["UserName"])) {
 
     include($temp . "footerAdmin.php");
 }
+ob_end_flush();
 

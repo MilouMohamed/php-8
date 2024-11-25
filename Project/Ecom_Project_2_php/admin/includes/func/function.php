@@ -11,11 +11,26 @@ function getTitle()
     }
 
 }
-function getAllUsers()
+function getAllUsers($query="")
+{
+    // global $cnx;
+    // $stmnt = $cnx->query("select * from users where GroupId != 1 order by CreateAt");
+    // return $stmnt->fetchAll(PDO::FETCH_OBJ);
+    return getAlllItemsWhere("users","2","1 and  GroupId != 1 $query order by CreateAt");
+}
+function getAlllItemsWhere($table ,$where ,$value,$opra="!=")
 {
     global $cnx;
-    $stmnt = $cnx->query("select * from users where GroupId != 1 order by CreateAt");
+    $stmnt = $cnx->query("select * from $table where $where $opra $value and  GroupId != 1");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function getCount($table ,$colon ,$where ,$value,$opra="!=")
+{
+    // global $cnx;
+    // $stmnt = $cnx->query("select count($colon) from $table where $where $opra $value and  GroupId != 1");
+   return  count( getAlllItemsWhere($table,$where,$value,$opra));
+    // return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
 function isExistId($userId)
@@ -75,11 +90,25 @@ function countItems($col, $table)
 {
     global $cnx;
 
-    $qery = "select count($col) from $table ";
+    $qery = "select count($col) from $table where  GroupId != 1";
     $stmnt = $cnx->prepare($qery);
     $stmnt->execute();
     return $stmnt->fetchColumn();
 }
+
+// Latest 
+
+function getLatest($col, $table,$limit=5,$order="UserID")
+{
+    global $cnx;
+
+    $qery = "select $col from $table  order by $order DESC limit $limit  "; 
+    // $qery = "select $col from $table  order by $order limit $limit  where  GroupId != 1";
+    $stmnt = $cnx->prepare($qery);
+    $stmnt->execute();
+    return $stmnt->fetchAll(PDO::FETCH_OBJ);
+}
+
 
 
 

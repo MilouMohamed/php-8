@@ -92,8 +92,10 @@ ul>li>a.dropdown-item:active {
 /* Start members  */
 
 h1.titre-page,
-h1 /* Supprimer */ 
-{
+h1
+
+/* Supprimer */
+    {
     font-size: 50px;
     font-weight: bold;
     margin-top: 50px;
@@ -112,40 +114,43 @@ span.my-etoile {
     top: 13px;
     font-size: 28px;
 }
+
 /* Add members */
 .password .password-show {
     position: absolute;
     font-size: 27px;
     top: 16px;
     right: -30px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 /**Manage Members**/
-.manage   table  tr:first-child > td{
+.manage table tr:first-child>td {
     background-color: black !important;
     color: white !important;
-padding:13px  4px !important;
-
-} 
-.manage table tr td {
-vertical-align: middle;
-padding:4px ;
+    padding: 13px 4px !important;
 
 }
+
+.manage table tr td {
+    vertical-align: middle;
+    padding: 4px;
+
+}
+
 .manage table tr td .btn {
     padding: 5px 10px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.manage table   {
+.manage table {
     box-shadow: 0 3px 10px black;
     -webkit-box-shadow: 0 3px 10px black;
     -moz-box-shadow: 0 3px 10px black;
-    
-     }
-    
+
+}
+
 /* End members  */
 
 
@@ -154,18 +159,43 @@ padding:4px ;
 /* Start Dashboard */
 .dashbord-status .statu {
     background-color: #E9E9E9;
-    padding: 18px; 
-    border: 2px solid #b3a9a9;
-    }
-    .dashbord-status .statu h3  {
-    font-size: 14px;
-    }
-    .dashbord-status .statu span  {
-    font-size: 40px;
-    }
-.dashbord-latest {
-    background-color: white;
+    padding: 18px;
+    /* border: 2px solid #b3a9a9; */
+    border-radius: 5px;
+    color: white;
 }
 
+.dashbord-status .statu h3 {
+    font-size: 14px;
+}
+
+.dashbord-status .statu span,
+.dashbord-status .statu span a {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.dashbord-status .st-members {
+    background: #247291;
+}
+
+.dashbord-status .st-pending {
+    background: #c24d2c;
+}
+
+.dashbord-status .st-items {
+    background: #2c786c;
+}
+
+.dashbord-status .st-comment {
+    background: #9ba6a5;
+}
+
+
+.dashbord-latest .list-group  li:nth-child(odd ){
+    background-color: rgb(242, 242, 242);
+}
 
 /* End Dashboard */

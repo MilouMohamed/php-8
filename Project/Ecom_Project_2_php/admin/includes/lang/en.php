@@ -42,8 +42,19 @@ static $lg=array(
     "TITRE_MEMBERS_ITEMS"          =>"Thes Members",
     //Membres Items
     "TITRE_MEMBERS_DELETE"          =>"Delete Member",
+    //Membres Pending
+    "TITRE_MEMBERS_PENDING"          =>"Pending Member",
+    "TITRE_MEMBERS_ACTIVE"          =>"Pending Activation",
     
-    
+    // Ctegories 
+    "TITRE_CATEGORIES_ADD"=>"Add New Categorie",
+    "DESCRITPNIO"=>"Description",
+    "ORDRING"=>"Ordring",
+    "VISIBILTY"=>"Visible",
+    "ALLOW_CMNT"=>"Allow Commenting",
+    "ALLOW_ADS"=>"Allow Ads",
+    "YES"=>"Yes",
+    "NO"=>"No",
 
     
 
