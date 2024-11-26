@@ -194,8 +194,52 @@ span.my-etoile {
 }
 
 
-.dashbord-latest .list-group  li:nth-child(odd ){
+.dashbord-latest .list-group li:nth-child(odd) {
     background-color: rgb(242, 242, 242);
 }
 
 /* End Dashboard */
+/* Start Categories */
+
+.categores-manage .div-date {
+    right: 18px;
+    /* bottom: 30px; */
+}
+
+.categores-manage .settings-cart span {
+    padding: 1px 5px;
+    border-radius: 6px;
+    color: rgb(0, 0, 0);
+}
+
+.categores-manage .card-body{ 
+    overflow: hidden;
+ }
+ .categores-manage .card-body:hover{
+    background-color: #e6e4e488;
+    overflow: hidden;
+ }
+.categores-manage .card-body .btns-hidden { 
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out; 
+    transition: all .3s ease-in-out;
+    right: -160px;
+    top: 5px;
+}
+.categores-manage .card-body:hover .btns-hidden  {
+    right: 5px;
+
+}
+
+
+.categores-manage .card-body .btns-hidden a {
+    padding: 1px 6px !important;
+    margin-left: 5px;
+}
+
+
+
+
+/* End Categories */

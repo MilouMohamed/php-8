@@ -17,11 +17,12 @@ function getAllUsers($query="")
     // $stmnt = $cnx->query("select * from users where GroupId != 1 order by CreateAt");
     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
     return getAlllItemsWhere("users","2","1 and  GroupId != 1 $query order by CreateAt");
-}
-function getAlllItemsWhere($table ,$where ,$value,$opra="!=")
+} 
+
+function getAlllItemsWhere($table ,$where ,$value,$opra="!=",$option ="and  GroupId != 1")
 {
     global $cnx;
-    $stmnt = $cnx->query("select * from $table where $where $opra $value and  GroupId != 1");
+    $stmnt = $cnx->query("select * from $table where $where $opra $value $option");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
