@@ -10,13 +10,13 @@ $lng="./includes/lang/";
 
 
 
+require("connect.php");
   
 include ($lng."en.php"); 
 include ($func."function.php");
 include($temp . "headerAdmin.php");
 
  
-require("connect.php");
 
 if(!isset($noNavbar)) {
 

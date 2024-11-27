@@ -1,5 +1,5 @@
 <?php
-ob_start();
+// ob_start();
 
 session_start();
 
@@ -18,65 +18,79 @@ if (!isset($_SESSION["UserName"])) {
     echo '<div class="container">';
     if ($action == "Manage") {
         $titlePage = "Page Manage Categories";
-        global  $sort;
+
         $sort = "ASC";
         $itemSort = array("DESC", "ASC");
         if (isset($_GET["Sort"]) && in_array($_GET["Sort"], $itemSort)) {
-          $sort = $_GET["Sort"];
+            $sort = $_GET["Sort"];
         }
-        
+
 
 
         $categoresAll = getAlllItemsWhere("categories", "1", "1", "=", " Order by OrderCat  $sort ");
-        
+
         ?>
         <div class="container categores-manage mb-5 mt-5">
             <div class="card border-info mb-3  " style1="max-width: 18rem;">
                 <div class="card-header d-flex justify-content-between">
-                    <span>List Of Categores</span>
-                    <span class="try-by   ">
+                    <span class="fw-bold  pt-2 pb-2">List Of Categores</span>
+                    <span class="try-by   pt-2 pb-2  ful-clsc">
                         Ordering :
-                        <a class="<?= ($sort=="DESC") ? "text-primary":  "text-black";  ?>" href="?Sort=DESC">DESC</a> |
-                        
-                        <a class="<?=  ($sort =="ASC")? "text-primary":  "text-black";   ?>" href="?Sort=ASC">ASC</a> 
-
-
+                        <a class="<?= ($sort == "DESC") ? "text-primary" : "text-black"; ?>" href="?Sort=DESC">DESC</a> |
+                        <a class="<?= ($sort == "ASC") ? "text-primary" : "text-black"; ?>" href="?Sort=ASC">ASC</a>
+                      ||  View :
+                        <span class="text-primary" data-name="full"> Full</span> |
+                        <span   data-name="classic"> Classic</span>
                     </span>
                 </div>
                 <?php foreach ($categoresAll as $cat): ?>
                     <div class="card-body position-relative border-info  border pt-0 pb-0">
+                    <div class="  position-absolute    btns-hidden ">
+                            <a class="btn btn-outline-primary  " href="?do=Edit&CateID=<?= $cat->CatID ?>"><i
+                                    class="fa  fa-edit"></i> Edite</a>
+                            <a class="btn btn-outline-danger  confirm"
+                             href="?do=Delete&catID=<?= $cat->CatID ?>"><i class="fa fa-close"></i> Dellet</a>
+                        </div> 
+                        <div class="  position-absolute    bg-transparent  div-date  "><?= $cat->Create_At ?></div> 
+                        <h5 class="card-title pt-1 d-block"><?= strtoupper($cat->NameCat) ?></h5>
 
-                        <h5 class="card-title "><?= strtoupper($cat->NameCat) ?></h5>
-                        <p class="card-text"><?= $cat->DescripCat ?></p>
 
-                        <div class="  position-absolute    btns-hidden ">
-                            <a class="btn btn-outline-primary  " href=""><i class="fa  fa-edit"></i> Edite</a>
-                            <a class="btn btn-outline-danger " href=""><i class="fa fa-close"></i> Dellet</a>
-                        </div>
+                        <div class="hide-show">
 
-                        <div class="  position-absolute    bg-transparent  div-date "><?= $cat->Create_At ?></div>
-
-                        <div class="settings-cart">
-                            <?php if ($cat->VisibiltyCat == 1) { ?>
+                        <p class="card-text d-block"><?= $cat->DescripCat ?></p>
+ 
+                        
+                        <div class="settings-cart d-block">
+                            <?php $cnot=0; if ($cat->VisibiltyCat == 1) { $cnot++; ?>
                                 <span class=" bg-info"> Hidden</span><?php } ?>
-                            <?php if ($cat->AllowCmntCat == 1) { ?>
+                            <?php if ($cat->AllowCmntCat == 1) { $cnot++; ?>
                                 <span class=" bg-danger"> Comment Disabled</span><?php } ?>
-                            <?php if ($cat->AllowAdsCAt == 1) { ?>
-                                <span class=" bg-warning"> Ads Disabled</span><?php } ?>
+                            <?php if ($cat->AllowAdsCAt == 1) { $cnot++; ?>
+                                <span class=" bg-warning"> Ads Disabled</span>
+                                <?php }
+                               
+                                if($cnot == 0){  ?>
+                                    <span > -------- ------</span>
+                                    <?php }   
+                                ?>
 
 
                         </div>
-
-                        <hr class="p-0 pb-3  m-0 mt-2" />
                     </div>
+                    <hr class="p-0 pb-3  m-0 mt-2" />
+
+                    </div>
+
+ 
                 <?php endforeach; ?>
 
             </div>
-        </div>
+            <a class='btn btn-primary  mt-1' href='?do=Add'>
+              <i class="fa fa-plus " ></i>  Add</a>
+            </div> 
+            
+            <br>
         <?php
-        echo "Add Cetegore <a href='?do=Add'>Add<a>";
-
-
 
 
 
@@ -131,9 +145,10 @@ if (!isset($_SESSION["UserName"])) {
 
             <div class="row g-3 align-items-center justify-content-center">
                 <div class="form-floating mb-3 col-lg-8  ">
-                    <input type="text" class="form-control ps-4" value="Decsription 1" name="descriptCat"
-                        placeholder="Desciption Of The Categorie ">
-                    <label class="ps-4" for="pass-new-new"><?= lang("DESCRITPNIO") ?> : </label>
+                    <!-- <input type="text" classs="form-control ps-4 d-none" value="Decsription 1" name="descriptCat1"
+                        placeholder="Desciption Of The Categorie "> -->
+                    <textarea class="form-control ps-4 h-50" name="descriptCat" id="descrip">Decsription 1</textarea>
+                    <label class="ps-4" for="descrip"><?= lang("DESCRITPNIO") ?> : </label>
                 </div>
             </div>
 
@@ -200,19 +215,211 @@ if (!isset($_SESSION["UserName"])) {
 
 
 
-
-
-
-
-
-
     } elseif ($action == "Edit") {
-        echo "Edit ";
+        // CateID
+
+        // echo "Page Categories ID = ". $_GET["CateID"] ;
+        $caetID = (isset($_GET["CateID"]) and intval($_GET["CateID"])) ? intval($_GET["CateID"]) : 0;
+
+
+        if ($caetID != 0) {
+
+            $item = getAlllItemsWhere("categories", "CatID", $caetID, "=", "");
+            $item = reset($item);
+
+            if ($item) {
+
+                ?>
+
+                <h1 class="titre-page"><?= lang("TITRE_CATEGORIES_EDIT") ?> </h1>
+                <form class="form-group " action="?do=Update" method="post">
+
+                    <div class="row g-3 align-items-center justify-content-center">
+                        <div class="form-floating mb-3 col-lg-8 ">
+                            <input type="hidden" name="catID" value="<?= $item->CatID ?>">
+                            <input type="text" class="form-control ps-4" name="name" placeholder="Name Of The Categorie"
+                                value="<?= $item->NameCat ?>" required>
+                            <label class="ps-4"><?= lang("NAME") ?>:</label>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 align-items-center justify-content-center">
+                        <div class="form-floating mb-3 col-lg-8  ">
+                            <!-- <input type="text" class="form-control ps-4" value="<?= $item->DescripCat ?>" name="descriptCat"
+                placeholder="Desciption Of The Categorie "> -->
+                            <textarea class="form-control ps-4 h-50" name="descriptCat"
+                                id="descrip"><?= $item->DescripCat ?></textarea>
+                            <label class="ps-4" for="descrip"><?= lang("DESCRITPNIO") ?> : </label>
+
+                        </div>
+                    </div>
+
+                    <div class="row g-3 align-items-center justify-content-center">
+                        <div class="form-floating mb-3 col-lg-8 ">
+                            <input type="number" value="<?= $item->OrderCat ?>" aria-valuemin="10" min="0" class="form-control ps-4"
+                                name="ordring" placeholder="Ordre Of Categorie">
+                            <label class="ps-4"><?= lang("ORDRING") ?> : </label>
+                        </div>
+                    </div>
+
+                    <div class="row    col-lg-6 col-xl-5  mx-auto  ">
+                        <div class=" form-control bg-light  mb-3  ">
+                            <div class=" m-1  d-flex align-items-center  ">
+                                <label class="pe-5  fw-bold col-form-label "><?= lang("VISIBILTY") ?> : </label>
+                                <input type="radio" name="visibile" id="vis-yes" value="1" <?= $item->VisibiltyCat == 1 ? "checked" : ""; ?> />
+                                <label class="pe-4 ps-1" for="vis-yes"><?= lang("YES") ?></label>
+                                <div class="ms-4 me-4">|||</div>
+                                <input type="radio" name="visibile" id="vis-non" value="0" <?= $item->VisibiltyCat == 0 ? "checked" : ""; ?> />
+                                <label class="pe-4  ps-1" for="vis-non"><?= lang("NO") ?></label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row col-lg-6  col-xl-5   mx-auto">
+                        <div class="form-control bg-light mb-3   mx-auto ">
+                            <div class="m-1 d-flex align-items-center ">
+                                <label class="pe-2 pe-md-4 fw-bold col-form-label">
+                                    <?= lang("ALLOW_CMNT") ?> :
+                                </label>
+
+                                <input type="radio" name="comment" value="1" id="cmnt-yes" <?= $item->AllowCmntCat == 1 ? "checked" : ""; ?> />
+                                <label class="pe-4 ps-1" for="cmnt-yes">
+                                    <?= lang("YES") ?>
+                                </label>
+
+                                <div class="ms-4 me-4">|||</div>
+
+                                <input type="radio" name="comment" value="0" id="cmnt-non" <?= $item->AllowCmntCat == 0 ? "checked" : ""; ?> />
+                                <label class="pe-4 ps-1" for="cmnt-non">
+                                    <?= lang("NO") ?>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row  col-lg-6 col-xl-5  mx-auto  ">
+                        <div class=" form-control bg-light  mb-3   ">
+                            <div class=" m-1  d-flex align-items-center  ">
+                                <label class="pe-5 fw-bold col-form-label "><?= lang("ALLOW_ADS") ?> : </label>
+                                <input type="radio" name="ads" value="1" id="ads-yes" <?= $item->AllowAdsCAt == 1 ? "checked" : ""; ?> />
+                                <label class="pe-4 ps-1" for="ads-yes"><?= lang("YES") ?></label>
+                                <div class="ms-4 me-4">|||</div>
+                                <input type="radio" name="ads" value="0" id="ads-non" <?= $item->AllowAdsCAt == 0 ? "checked" : ""; ?> />
+                                <label class="pe-4  ps-1" for="ads-non"><?= lang("NO") ?></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-8  text-center">
+                            <input class="btn btn-primary btn-lg w-100  " type="submit" value="<?= lang("SAVE") ?>">
+                        </div>
+                    </div>
+
+                </form>
+
+
+                <?php
+            } else {
+
+                echo "<br><br><br><br><br><br>";
+                redirectToHome("Pas De Categorie Pour ID = $caetID ", 4, url: "categories.php");
+                exit();
+            }
+        }
+ 
 
     } elseif ($action == "Update") {
-        echo "Update ";
+
+
+
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            echo "<h1>" . lang("TITRE_MEMBERS_UPDATE") . " </h1>";
+
+            $catID = $_POST["catID"];
+            $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+            $descriptCat = filter_var($_POST["descriptCat"], FILTER_SANITIZE_STRING);
+ 
+            $ordring = $_POST["ordring"];
+
+            $visibile = $_POST["visibile"];
+            $comment = $_POST["comment"];
+            $ads = $_POST["ads"];
+
+
+
+            $errorsList = array();
+
+            if (empty($name) || strlen($name)< 4) {
+                $errorsList[] = "The Name Cant Be Empty Or less Than 4 Charaters";
+            } 
+
+            if (count($errorsList) == 0) {
+                try { 
+$data=[ "NameCat"=>$name,"DescripCat"=>$descriptCat,
+"OrderCat"=>$ordring,
+"VisibiltyCat"=>$visibile,
+"AllowCmntCat"=>$comment,
+"AllowAdsCAt"=>$ads
+];
+                    updateTable("categories", $data, "CatID", $catID);
+ 
+                    redirectToHome("The Profile Has Updated", 3, "alert-success", "?do=Edit&CateID=" . $catID);
+
+
+
+                } catch (PDOException $exp) {
+
+                    redirectToHome(" Error on Modification" . $exp->getMessage(), 6, url: "categories.php");
+                }
+            } else {
+                echo '<ul class="alert alert-danger m-5 list-unstyled" role="alert"> <h2>Errors</h2>';
+
+                foreach ($errorsList as $error) {
+                    ?>
+                    <li class="ps-4 mb-2"><?= $error ?> </li>
+                    <?php
+                }
+                echo '</ul>'; 
+            }
+
+ 
+        } else {
+
+            redirectToHome("Vous N avez pas le Droit de Modifier !!!", 3,url:"categories.php");
+            
+        }
+
+
+
+
+
 
     } elseif ($action == "Delete") {
+
+         
+
+        $catID=(isset($_GET["catID"] ) && !is_nan($_GET["catID"]))?
+         intval($_GET["catID"]) : 0;
+       echo "id IS =". $catID;
+
+       if($catID != 0 &&  checkItem("*","CatID","categories",$catID)){
+
+        deleteItem("categories","CatID",$catID);
+           redirectToHome("Delete Successs ",3,"alert-success","categories.php");
+       }
+       else{
+        redirectToHome("Error en delete ",30,url:"categories.php");
+
+       }
+
+
+
+
         echo "Delete ";
 
     } elseif ($action == "Active") {
@@ -232,5 +439,6 @@ if (!isset($_SESSION["UserName"])) {
 
     include($temp . "footerAdmin.php");
 }
-ob_end_flush();
+
+// ob_end_flush();
 

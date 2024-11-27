@@ -203,7 +203,7 @@ span.my-etoile {
 
 .categores-manage .div-date {
     right: 18px;
-    /* bottom: 30px; */
+    bottom: 15px;
 }
 
 .categores-manage .settings-cart span {
@@ -212,23 +212,27 @@ span.my-etoile {
     color: rgb(0, 0, 0);
 }
 
-.categores-manage .card-body{ 
+.categores-manage .card-body {
     overflow: hidden;
- }
- .categores-manage .card-body:hover{
+    cursor: pointer;
+}
+
+.categores-manage .card-body:hover {
     background-color: #e6e4e488;
     overflow: hidden;
- }
-.categores-manage .card-body .btns-hidden { 
+}
+
+.categores-manage .card-body .btns-hidden {
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out; 
+    -ms-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
     right: -160px;
     top: 5px;
 }
-.categores-manage .card-body:hover .btns-hidden  {
+
+.categores-manage .card-body:hover .btns-hidden {
     right: 5px;
 
 }
@@ -239,7 +243,19 @@ span.my-etoile {
     margin-left: 5px;
 }
 
+.categores-manage .card-body .hide-show { 
+    height: 0;  
+    overflow: hidden;   
+    transition: all .3s ease-in-out;
+}
 
+.categores-manage .card-body:hover .hide-show {
+    height: max-content;  
+}
+.categores-manage   .ful-clsc   span{
+    cursor: pointer; 
+}
+ 
 
 
 /* End Categories */

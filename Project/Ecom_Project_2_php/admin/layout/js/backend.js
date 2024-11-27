@@ -29,5 +29,32 @@ window.onload = () => {
         .setAttribute("type", "password");
     });
   }
+
+  //Confirme For delette
+
+  var btns_delete = document.querySelectorAll(".confirm");
+
+  btns_delete.forEach((btn_delt) => {
+    btn_delt.addEventListener("click", (event) => {
+      if (!confirm("You wantte To delete This ")) {
+        event.preventDefault();
+      }
+    });
+  });
+
+  var ful_clsc = document.querySelector(".categores-manage .ful-clsc");
+
+  console.log(ful_clsc);
+
+  var ful = ful_clsc.querySelector("span[data-name='full']");
+  var cls = ful_clsc.querySelector("span[data-name='classic']");
+
+  ful.addEventListener("click", (event) => {
+    console.log("tes Oui ful");
+  });
+
+  cls.addEventListener("click", (event) => {
+    console.log("tes Oui cls");
+  });
 };
 console.log("oii");

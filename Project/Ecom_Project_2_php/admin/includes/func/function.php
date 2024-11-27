@@ -11,26 +11,26 @@ function getTitle()
     }
 
 }
-function getAllUsers($query="")
+function getAllUsers($query = "")
 {
     // global $cnx;
     // $stmnt = $cnx->query("select * from users where GroupId != 1 order by CreateAt");
     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
-    return getAlllItemsWhere("users","2","1 and  GroupId != 1 $query order by CreateAt");
-} 
+    return getAlllItemsWhere("users", "2", "1 and  GroupId != 1 $query order by CreateAt");
+}
 
-function getAlllItemsWhere($table ,$where ,$value,$opra="!=",$option ="and  GroupId != 1")
+function getAlllItemsWhere($table, $where, $value, $opra = "!=", $option = "and  GroupId != 1")
 {
     global $cnx;
     $stmnt = $cnx->query("select * from $table where $where $opra $value $option");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
-function getCount($table ,$colon ,$where ,$value,$opra="!=")
+function getCount($table, $colon, $where, $value, $opra = "!=")
 {
     // global $cnx;
     // $stmnt = $cnx->query("select count($colon) from $table where $where $opra $value and  GroupId != 1");
-   return  count( getAlllItemsWhere($table,$where,$value,$opra));
+    return count(getAlllItemsWhere($table, $where, $value, $opra));
     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
@@ -99,15 +99,49 @@ function countItems($col, $table)
 
 // Latest 
 
-function getLatest($col, $table,$limit=5,$order="UserID")
+function getLatest($col, $table, $limit = 5, $order = "UserID")
 {
     global $cnx;
 
-    $qery = "select $col from $table  order by $order DESC limit $limit  "; 
+    $qery = "select $col from $table  order by $order DESC limit $limit  ";
     // $qery = "select $col from $table  order by $order limit $limit  where  GroupId != 1";
     $stmnt = $cnx->prepare($qery);
     $stmnt->execute();
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
+}
+
+
+function updateTable($table, $data, $colID, $colIDVal)
+{
+    global $cnx;
+
+    $colums = array_keys($data); 
+    $values = array_values($data);
+    $values[] = $colIDVal; 
+
+    $setters = implode("=? , ", $colums) . "=? ";
+ 
+    $qery = "UPDATE $table SET  $setters WHERE  $colID=?"; 
+
+
+    $stmnt = $cnx->prepare($qery);
+    $stmnt->execute($values);
+
+    return $stmnt->rowCount(); 
+}
+ 
+
+
+function deleteItem($table, $colID, $colIDVal){
+    global $cnx;
+
+    
+    $qery = "Delete from  $table  WHERE  $colID = ?  ";  
+    $stmnt = $cnx->prepare($qery);
+    $stmnt->execute([$colIDVal]);
+    // return $stmnt->rowCount();
+
+
 }
 
 

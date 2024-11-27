@@ -55,6 +55,7 @@ static $lg=array(
     "ALLOW_ADS"=>"Allow Ads",
     "YES"=>"Yes",
     "NO"=>"No",
+    "TITRE_CATEGORIES_EDIT"=>"Edit Categorie",
 
     
 

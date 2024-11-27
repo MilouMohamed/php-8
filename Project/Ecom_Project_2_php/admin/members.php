@@ -19,11 +19,11 @@ if (!isset($_SESSION["UserName"])) {
 
     echo '<div class="container">';
     if ($action == "Manage") {
- 
-        
-        if(isset($_GET["Panding"])  and  $_GET["Panding"]="YES" ){
-            $items = getAllUsers(" and RegStatus = 0 ");}
-            else{
+
+
+        if (isset($_GET["Panding"]) and $_GET["Panding"] = "YES") {
+            $items = getAllUsers(" and RegStatus = 0 ");
+        } else {
             $items = getAllUsers();
         }
         // print_r($items);
@@ -41,35 +41,37 @@ if (!isset($_SESSION["UserName"])) {
                     <td>Register Date</td>
                     <td>Controle</td>
                 </tr>
-                <?php  if(count($items)> 0) {  
-                     foreach ($items as $item) { ?>
+                <?php if (count($items) > 0) {
+                    foreach ($items as $item) { ?>
+                        <tr>
+                            <td class="fw-bold"> <?= $item->UserID ?></td>
+                            <td><?= $item->UserName ?></td>
+                            <td><?= $item->Email ?></td>
+                            <td><?= $item->FullName ?></td>
+                            <td><?= date_format(date_create($item->CreateAt), "Y-m-d") ?></td>
+                            <td>
+                                <!-- ?do=Edit&UserId=".$userId -->
+                                <a href="?do=Edit&UserId=<?= $item->UserID ?>" class="btn btn-success"><i
+                                        class="fa-solid fa-user-pen"></i> Edite</a>
+                                <a href="?do=Delete&UserId=<?= $item->UserID ?>"
+                                    onclick="return confirm('Vous Voullez Supprimer <?= $item->FullName ?> ???')"
+                                    class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i> Delete</a>
+                                <?php if ($item->RegStatus == 0): ?>
+                                    <a href="?do=Active&UserId=<?= $item->UserID ?>" class="btn btn-info"><i class="fa-solid fa-key"></i>
+                                        Activate</a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+
+                    <?php }
+                } else { ?>
                     <tr>
-                        <td class="fw-bold"> <?= $item->UserID ?></td>
-                        <td><?= $item->UserName ?></td>
-                        <td><?= $item->Email ?></td>
-                        <td><?= $item->FullName ?></td>
-                        <td><?= date_format(date_create($item->CreateAt), "Y-m-d") ?></td>
-                        <td>
-                            <!-- ?do=Edit&UserId=".$userId -->
-                            <a href="?do=Edit&UserId=<?= $item->UserID ?>" class="btn btn-success"><i
-                                    class="fa-solid fa-user-pen"></i> Edite</a>
-                            <a href="?do=Delete&UserId=<?= $item->UserID ?>"
-                                onclick="return confirm('Vous Voullez Supprimer <?= $item->FullName ?> ???')"
-                                class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i> Delete</a>
-                                <?php if($item->RegStatus == 0): ?> 
-                                    <a href="?do=Active&UserId=<?= $item->UserID ?>" class="btn btn-info"><i class="fa-solid fa-key"></i> Activate</a>
-                                <?php endif;  ?>
+                        <td colspan="6" class="text-center fw-bold p-5">
+                            <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non Items</h2>
                         </td>
                     </tr>
+                <?php } ?>
 
-                    <?php }}  else{ ?>
-                <tr>
-                    <td colspan="6" class="text-center fw-bold p-5" >
-                        <h2 class="text fw-bold" ><i class="fa-regular fa-file"></i> Non Items</h2>
-                    </td>
-                </tr>
-                <?php }  ?>
-               
 
 
             </table>
@@ -132,7 +134,7 @@ if (!isset($_SESSION["UserName"])) {
 
             // echo "id " . $UserID . " userName " . $userName . "pass " . $pass . "fullName " . $fullName . "email " . $email;
             if (count($errorsList) == 0) {
-                try { 
+                try {
 
                     $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`,RegStatus) VALUES (?, ?, ?, ?,1)");
                     $row = $stmt->execute([$userName, $email, $fullName, $pass_hash]);
@@ -234,6 +236,7 @@ if (!isset($_SESSION["UserName"])) {
 
 
     } elseif ($action == "Edit") {
+
         // echo "Page Edite ID = ". $_GET["UserId"] ;
         $userId = (isset($_GET["UserId"]) and intval($_GET["UserId"])) ? intval($_GET["UserId"]) : 0;
 
@@ -443,32 +446,32 @@ if (!isset($_SESSION["UserName"])) {
             // </div>
             // < ?php
         }
-    }elseif ($action == "Active") {
+    } elseif ($action == "Active") {
 
-           $userId = (isset($_GET["UserId"]) and intval($_GET["UserId"])) ? intval($_GET["UserId"]) : 0;
+        $userId = (isset($_GET["UserId"]) and intval($_GET["UserId"])) ? intval($_GET["UserId"]) : 0;
 
 
         if ($userId != 0 and isExistId($userId)) {
- 
+
             $stmt = $cnx->prepare("Update users set RegStatus=1  where UserID=?");
             $stmt->execute([$userId]);
 
             echo " <br><br>";
             redirectToHome("  The User Is Activated ", 4, "alert-success");
- 
+
 
         } else {
- 
+
             echo " <br><br>";
             redirectToHome("  This ID Is Not Existed !!!", 4, "alert-danger");
- 
+
         }
     } else {
 
 
         echo " <br><br>";
         redirectToHome(" Probleme Dans L URL !!!", 3);
- 
+
 
     }
 
