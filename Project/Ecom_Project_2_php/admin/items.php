@@ -1,5 +1,4 @@
-<?php
-// ob_start();
+<?php 
 
 session_start();
 
@@ -8,27 +7,24 @@ if (!isset($_SESSION["UserName"])) {
     exit;
 } else {
 
-    $titlePage = "Categories";
+    $titlePage = "Items";
     include "init.php";
 
     $action = isset($_GET["do"]) ? $_GET["do"] : "Manage";
+ 
 
 
 
     echo '<div class="container">';
     if ($action == "Manage") {
-        $titlePage = "Page Manage Categories";
-
-        $sort = "ASC";
-        $itemSort = array("DESC", "ASC");
-        if (isset($_GET["Sort"]) && in_array($_GET["Sort"], $itemSort)) {
-            $sort = $_GET["Sort"];
-        }
+        $titlePage = "Page Manage Items";
+ 
+echo "is mamane";
+echo "<a href='?do=Add'> Add </a>"; 
 
 
-
-        $categoresAll = getAlllItemsWhere("categories", "1", "1", "=", " Order by OrderCat  $sort ");
-
+$itemsAll = getAlllItemsWhere("items", "1", "1", "=", " ");
+/*
         ?>
         <div class="container categores-manage mb-5 mt-5">
             <div class="card border-info mb-3  " style1="max-width: 18rem;">
@@ -94,7 +90,7 @@ if (!isset($_SESSION["UserName"])) {
             
             <br>
         <?php
-
+*/
 
 
     } elseif ($action == "Insert") {
@@ -102,26 +98,71 @@ if (!isset($_SESSION["UserName"])) {
         $titlePage = "Page Insert Categorie";
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            $name = $_POST["name"];
-            $desc = $_POST["descriptCat"];
-            $ordring = $_POST["ordring"];
-            $visible = $_POST["visibile"];
-            $comment = $_POST["comment"];
-            $ads = $_POST["ads"];
+            $nameItm    = htmlspecialchars($_POST["Name"]);
+            $descItm    =filter_var( $_POST["DescriptItem"],FILTER_SANITIZE_STRING);
+            $priceItm   = $_POST["Price"];
+            $countryItm =filter_var( $_POST["Country"],FILTER_SANITIZE_STRING);
+            $statusItm  = $_POST["Status"];
+            // $member_ID = $_SESSION["UserName"];
+            // print_r($_SESSION);
+            $member_ID = $_POST["MemberID"];
+            $cat_ID = $_POST["CatID"];
+            
+            $errorsInput=array();
 
-            if (empty($name) or strlen($name) < 4) {
-                redirectToHome(" Name Is Empty Or less thans 4 Caracters  !!!", type: "alert-danger mt-5", url: "categories.php?do=Add");
-            } elseif (checkItem("*", "NameCat", "categories", $name) > 0) {
-                redirectToHome("This Categore ($name) Is Existed   !!!", type: "alert-danger mt-5", url: "categories.php?do=Add");
+
+            if (empty($nameItm) or strlen($nameItm) < 4) {
+                $errorsInput[]=" Name Is Empty Or less thans 4 Caracters  !!!" ;
+            } 
+            if (empty($descItm) ) {
+                $errorsInput[]=" Description Is Empty   !!!" ;
+            } 
+            if (empty($priceItm) ) {
+                $errorsInput[]=" Price Is Empty   !!!" ;
+            } 
+            if (empty($countryItm) ) {
+                $errorsInput[]=" Country Made Is Empty   !!!" ;
+            } 
+            if ($statusItm == 0 ) {
+                $errorsInput[]=" Statut  Is Empty   !!!" ;
+            }  
+            if ($member_ID == 0 ) {
+                $errorsInput[]=" Member Name  Is Empty   !!!" ;
+            }  
+            if ($cat_ID == 0 ) {
+                $errorsInput[]=" Categorie Name   Is Empty   !!!" ;
+            }  
+
+            if(empty($errorsInput)){
+                
+                /*
+`items` SET `ItemID`='[value-1]',`Name`='[value-2]',`Description`='[value-3]',`Price`='[value-4]',`Add_Date`='[value-5]',`Country_Made`='[value-6]',`Image`='[value-7]',`Status`='[value-8]',`Rating`='[value-9]',`Cat_ID`='[value-10]',`Member_ID`='[value-11]'
+                */
+
+            if (checkItem("*", "Name", "items", $nameItm) > 0) {
+                redirectToHome("This Categore ($nameItm) Is Existed   !!!", type: "alert-danger mt-5", url: "items.php?do=Add");
 
             } else {
-                $stms2 = $cnx->prepare("INSERT INTO `categories`( `NameCat`, `DescripCat`, `OrderCat`, `VisibiltyCat`, `AllowCmntCat`, `AllowAdsCAt`) VALUES (?,?,?,?,?,?)");
+                $stms2 = $cnx->prepare("INSERT INTO `items`( `Name`, `Description`, `Price`, `Country_Made`, `Status`,`Member_ID`,`Cat_ID` ) VALUES (?,?,?,?,?,?,?)");
 
-                $stms2->execute([$name, $desc, $ordring, $visible, $comment, $ads]);
-                redirectToHome("The Categorie $name Is Aded", 4, "alert-success mt-5", url: "categories.php");
+                 $stms2->execute([$nameItm, $descItm, $priceItm, $countryItm, $statusItm, $member_ID, $cat_ID]);
+
+                 redirectToHome("The Categorie $nameItm Is Aded", 4, "alert-success mt-5", url: "items.php");
 
 
             }
+
+        }else {
+            echo "<br><br>";
+foreach ($errorsInput as $error) {
+    ?>
+    <div class="alert alert-danger">
+   <?=  $error ?>
+    </div>
+    <?php  
+}
+            
+        }
 
 
 
@@ -133,81 +174,93 @@ if (!isset($_SESSION["UserName"])) {
 
 
     } elseif ($action == "Add") {
+        $categoresAll = getAlllItemsWhere("categories", "1", "1", "=", " ");
+        $membersAll = getAlllItemsWhere("users", "1", "1", "=", " ");
+
         ?>
 
-        <h1 class="titre-page"><?= lang("TITRE_CATEGORIES_ADD") ?> </h1>
+        <h1 class="titre-page"><?= lang("TITRE_ITEMS_ADD") ?> </h1>
         <form class="form-group " action="?do=Insert" method="post">
 
             <div class="row g-3 align-items-center justify-content-center">
                 <div class="form-floating mb-3 col-lg-8 ">
-                    <input type="text" class="form-control ps-4" value="viecul 1" name="name"
-                        placeholder="Name Of The Categorie" required>
+                    <input type="text" class="form-control ps-4" value="danon 1" name="Name"
+                        placeholder="Name Of The Itame" >
                     <label class="ps-4"><?= lang("NAME") ?>:</label>
                 </div>
             </div>
 
             <div class="row g-3 align-items-center justify-content-center">
-                <div class="form-floating mb-3 col-lg-8  ">
-                    <!-- <input type="text" classs="form-control ps-4 d-none" value="Decsription 1" name="descriptCat1"
-                        placeholder="Desciption Of The Categorie "> -->
-                    <textarea class="form-control ps-4 h-50" name="descriptCat" id="descrip">Decsription 1</textarea>
-                    <label class="ps-4" for="descrip"><?= lang("DESCRITPNIO") ?> : </label>
+                <div class="form-floating mb-3 col-lg-8  "> 
+                    <textarea class="form-control ps-4 h-50" name="DescriptItem" id="descripItem">Bon Prodiot Of the Year 1</textarea>
+                    <label class="ps-4" for="descripItem"><?= lang("DESCRITPNIO") ?> : </label>
                 </div>
             </div>
 
             <div class="row g-3 align-items-center justify-content-center">
                 <div class="form-floating mb-3 col-lg-8 ">
-                    <input type="number" value="100" aria-valuemin="10" min="0" class="form-control ps-4" name="ordring"
-                        placeholder="Ordre Of Categorie">
-                    <label class="ps-4"><?= lang("ORDRING") ?> : </label>
+                    <input type="text" value="$100"  class="form-control ps-4" name="Price"
+                        placeholder="Price MAD">
+                    <label class="ps-4"><?= lang("PRICE") ?> : </label>
                 </div>
             </div>
-
-            <div class="row g-3  ">
-                <div
-                    class=" form-control bg-light  mb-3  col-md-6  col-lg-6 mx-auto  w-50  align-items-center justify-content-center">
-                    <div class=" m-1  d-flex align-items-center  ">
-                        <label class="pe-5 fw-bold col-form-label "><?= lang("VISIBILTY") ?> : </label>
-                        <input type="radio" name="visibile" id="vis-yes" value="1" checked />
-                        <label class="pe-4 ps-1" for="vis-yes"><?= lang("YES") ?></label>
-                        <div class="ms-4 me-4">|||</div>
-                        <input type="radio" name="visibile" id="vis-non" value="0" />
-                        <label class="pe-4  ps-1" for="vis-non"><?= lang("NO") ?></label>
-
-                    </div>
+   
+            <div class="row g-3 align-items-center justify-content-center">
+                <div class="form-floating mb-3 col-lg-8 ">
+                    <input type="text" value="China"  class="form-control ps-4" name="Country"
+                        placeholder="Contry Made">
+                    <label class="ps-4"><?= lang("COUNTRY") ?> : </label>
                 </div>
             </div>
-            <div class="row g-3  ">
-                <div
-                    class=" form-control bg-light  mb-3  col-md-6  col-lg-6 mx-auto  w-50  align-items-center justify-content-center">
-                    <div class=" m-1  d-flex align-items-center  ">
-                        <label class="pe-5 fw-bold col-form-label "><?= lang("ALLOW_CMNT") ?> : </label>
-                        <input type="radio" name="comment" value="1" id="cmnt-yes" checked />
-                        <label class="pe-4 ps-1" for="cmnt-yes"><?= lang("YES") ?></label>
-                        <div class="ms-4 me-4">|||</div>
-                        <input type="radio" name="comment" value="0" id="cmnt-non" />
-                        <label class="pe-4  ps-1" for="cmnt-non"><?= lang("NO") ?></label>
-
-                    </div>
+   
+            <div class="row g-3 align-items-center justify-content-center">
+                <div class="form-floating mb-3 col-lg-8 ">
+                     <select class="form-control" name="Status" id="statu">
+                        <option value="0">...</option>
+                        <option value="1">New</option>
+                        <option value="2">Like New</option>
+                        <option value="3">Used</option>
+                        <option value="4">Old</option>
+                     </select>
+                    <label class="ps-4" for="statu"><?= lang("STATUS") ?> : </label>
                 </div>
             </div>
-            <div class="row g-3  ">
-                <div
-                    class=" form-control bg-light  mb-3  col-md-6  col-lg-6 mx-auto  w-50  align-items-center justify-content-center">
-                    <div class=" m-1  d-flex align-items-center  ">
-                        <label class="pe-5 fw-bold col-form-label "><?= lang("ALLOW_ADS") ?> : </label>
-                        <input type="radio" name="ads" value="1" id="ads-yes" checked />
-                        <label class="pe-4 ps-1" for="ads-yes"><?= lang("YES") ?></label>
-                        <div class="ms-4 me-4">|||</div>
-                        <input type="radio" name="ads" value="0" id="ads-non" />
-                        <label class="pe-4  ps-1" for="ads-non"><?= lang("NO") ?></label>
-                    </div>
-                </div>
-            </div>
+   
 
-            <div class="row align-items-center justify-content-center">
+            <div class="row g-3 align-items-center justify-content-center">
+              
+            <div class="form-floating mb-3 col-md-6  col-lg-6 ">
+                     <select class="form-control" name="MemberID" id="statu">
+                        <option value="0">...</option>  
+                        <?php
+                        foreach ($membersAll as $member) { 
+                        echo "<option value='". $member->UserID."'>". $member->UserName."</option>";
+                    }
+                        ?>
+                     </select>
+                    <label class="ps-4" for="statu"><?= lang("MEMBERS") ?> : </label>
+                </div>
+
+                
+            <div class="form-floating mb-3 col-md-6 ">
+                     <select class="form-control" name="CatID" id="catid">
+                        <option value="0">...</option>  
+                        <?php
+                        foreach ($categoresAll as $cat) { 
+                        echo "<option value='". $cat->CatID."'>". $cat->NameCat."</option>";
+                    }
+                        ?>
+                     </select>
+                    <label class="ps-4" for="catid"><?= lang("CATEGORIES") ?> : </label>
+                </div>
+                
+
+            </div>
+   
+
+            <div class="row align-items-center justify-content-center mb-5">
                 <div class="col-lg-8  text-center">
-                    <input class="btn btn-primary btn-lg w-100  " type="submit" value="<?= lang("ADD") ?>">
+                    <input class="btn btn-primary btn-lg w-100  mb-5 " type="submit" value="+<?= lang("ADD") ?>">
                 </div>
             </div>
 
@@ -269,7 +322,8 @@ if (!isset($_SESSION["UserName"])) {
                         <div class=" form-control bg-light  mb-3  ">
                             <div class=" m-1  d-flex align-items-center  ">
                                 <label class="pe-5  fw-bold col-form-label "><?= lang("VISIBILTY") ?> : </label>
-                                <input type="radio" name="visibile" id="vis-yes" value="1" <?= $item->VisibiltyCat == 1 ? "checked" : ""; ?> />
+                                <input type="radio" name="visibile" id="vis-yes" value="1" 
+                                <?= $item->VisibiltyCat == 1 ? "checked" : ""; ?> />
                                 <label class="pe-4 ps-1" for="vis-yes"><?= lang("YES") ?></label>
                                 <div class="ms-4 me-4">|||</div>
                                 <input type="radio" name="visibile" id="vis-non" value="0" <?= $item->VisibiltyCat == 0 ? "checked" : ""; ?> />
@@ -444,4 +498,12 @@ $data=[ "NameCat"=>$name,"DescripCat"=>$descriptCat,
 }
 
 // ob_end_flush();
+
+
+
+
+
+
+
+
 

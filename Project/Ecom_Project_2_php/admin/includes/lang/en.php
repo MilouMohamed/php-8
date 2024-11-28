@@ -58,6 +58,13 @@ static $lg=array(
     "TITRE_CATEGORIES_EDIT"=>"Edit Categorie",
 
     
+    // Items 
+    "TITRE_ITEMS_ADD"=>"Add New Item",
+    "PRICE"=>"Price",
+    "COUNTRY"=>"Country",
+    "STATUS"=>"Status",
+    
+    
 
 
 );

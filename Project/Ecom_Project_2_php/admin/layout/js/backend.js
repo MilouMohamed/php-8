@@ -42,6 +42,24 @@ window.onload = () => {
     });
   });
 
+  /****START******** HIDE SHOW ELEMENTS  */
+
+  /* cardsBody = document.querySelectorAll(".categores-manage .card-body");
+
+  cardsBody.forEach((card_item) => {
+    card_item.addEventListener("mouseenter", () => {
+      showHide = card_item.querySelector(".hide-show"); 
+      showHide.style.height = "max-content"; 
+    });
+
+   card_item.addEventListener("mouseleave", () => {       
+      showHide = card_item.querySelector(".hide-show"); 
+      showHide.style.height = "0";  
+    });
+
+
+  });*/
+
   var ful_clsc = document.querySelector(".categores-manage .ful-clsc");
 
   console.log(ful_clsc);
@@ -49,12 +67,28 @@ window.onload = () => {
   var ful = ful_clsc.querySelector("span[data-name='full']");
   var cls = ful_clsc.querySelector("span[data-name='classic']");
 
+  hideShowAll =
+    ful_clsc.parentElement.parentElement.querySelectorAll(".hide-show ");
+
   ful.addEventListener("click", (event) => {
-    console.log("tes Oui ful");
+   
+    ful.classList.add("text-primary");
+    cls.classList.remove("text-primary"); 
+
+    hideShowAll.forEach((elemnt) => {
+      elemnt.style.height = "max-content";
+    });
   });
 
   cls.addEventListener("click", (event) => {
-    console.log("tes Oui cls");
+    
+    ful.classList.remove("text-primary");
+    cls.classList.add("text-primary"); 
+
+    hideShowAll.forEach((elemnt) => { 
+      elemnt.style.height = "0";
+    });
   });
+  /****END ******** HIDE SHOW ELEMENTS  */
 };
 console.log("oii");

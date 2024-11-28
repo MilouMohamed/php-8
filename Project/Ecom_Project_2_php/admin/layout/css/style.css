@@ -212,6 +212,20 @@ span.my-etoile {
     color: rgb(0, 0, 0);
 }
 
+
+.categores-manage .card-header span {
+    color: rgb(77, 76, 76);
+    font-size: 15px;
+}
+
+.categores-manage .card-header>span:first-of-type {
+    color: red;
+    font-size: 16px;
+}
+.categores-manage .card-title {
+    color: rgba(100, 100, 100, 0.78)
+}
+
 .categores-manage .card-body {
     overflow: hidden;
     cursor: pointer;
@@ -243,19 +257,20 @@ span.my-etoile {
     margin-left: 5px;
 }
 
-.categores-manage .card-body .hide-show { 
-    height: 0;  
-    overflow: hidden;   
+.categores-manage .card-body .hide-show {
+    height: 0;
+    overflow: hidden;
     transition: all .3s ease-in-out;
 }
 
 .categores-manage .card-body:hover .hide-show {
-    height: max-content;  
+    height: max-content;
 }
-.categores-manage   .ful-clsc   span{
-    cursor: pointer; 
+
+.categores-manage .ful-clsc span {
+    cursor: pointer;
 }
- 
+
 
 
 /* End Categories */
