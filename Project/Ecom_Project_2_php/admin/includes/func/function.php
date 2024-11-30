@@ -18,6 +18,7 @@ function getAllUsers($query = "")
     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
     return getAlllItemsWhere("users", "2", "1 and  GroupId != 1 $query order by CreateAt");
 }
+ 
 
 function getAlllItemsWhere($table, $where, $value, $opra = "!=", $option = "and  GroupId != 1")
 {
@@ -25,13 +26,13 @@ function getAlllItemsWhere($table, $where, $value, $opra = "!=", $option = "and 
     $stmnt = $cnx->query("select * from $table where $where $opra $value $option");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
-
-function getCount($table, $colon, $where, $value, $opra = "!=")
+ 
+function getCount($table , $where, $value, $opra = "!=",$option="")
 {
     // global $cnx;
     // $stmnt = $cnx->query("select count($colon) from $table where $where $opra $value and  GroupId != 1");
-    return count(getAlllItemsWhere($table, $where, $value, $opra));
-    // return $stmnt->fetchAll(PDO::FETCH_OBJ);
+    return count(getAlllItemsWhere($table, $where, $value, $opra,$option));
+     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
 function isExistId($userId)
@@ -98,7 +99,7 @@ function countItems($col, $table)
 }
 
 // Latest 
-
+ 
 function getLatest($col, $table, $limit = 5, $order = "UserID")
 {
     global $cnx;
@@ -144,7 +145,13 @@ function deleteItem($table, $colID, $colIDVal){
 
 }
 
-
+ 
+function getTablesJointur($table="* from users")
+{
+    global $cnx;
+    $stmnt = $cnx->query("select $table ");
+    return $stmnt->fetchAll(PDO::FETCH_OBJ);
+}
 
 
 

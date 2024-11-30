@@ -60,9 +60,12 @@ static $lg=array(
     
     // Items 
     "TITRE_ITEMS_ADD"=>"Add New Item",
+    "TITRE_ITEMS_ITEMS"=>"Page Of Items",
     "PRICE"=>"Price",
     "COUNTRY"=>"Country",
     "STATUS"=>"Status",
+    "TITRE_ITEMS_EDIT"=>"Item Edit",
+    
     
     
 

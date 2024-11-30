@@ -163,10 +163,35 @@ span.my-etoile {
     /* border: 2px solid #b3a9a9; */
     border-radius: 5px;
     color: white;
+    overflow: hidden;
+    position: relative;
 }
 
 .dashbord-status .statu h3 {
     font-size: 14px;
+}
+ 
+.dashbord-status .statu .info  { 
+    float: right;
+    z-index: 1;
+    position: relative;
+    span,a{
+        color: black;
+    }
+}
+.dashbord-status .statu i   { 
+    position :absolute; 
+    font-size: 50px;
+    left: 20px;
+    top: 50%;
+    z-index: 0;
+}
+@media (min-width:992px) {
+    
+.dashbord-status .statu i  { 
+    font-size: 80px; 
+    top: 20%;
+}
 }
 
 .dashbord-status .statu span,
@@ -194,9 +219,19 @@ span.my-etoile {
 }
 
 
+
+/*  Button Plus Moins */
+.dashbord-latest .card-header .show-hide-list { 
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
 .dashbord-latest .list-group li:nth-child(odd) {
     background-color: rgb(242, 242, 242);
 }
+
 
 /* End Dashboard */
 /* Start Categories */

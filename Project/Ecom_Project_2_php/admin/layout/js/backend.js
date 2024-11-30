@@ -1,7 +1,7 @@
 console.log("backend 22 ");
 
 window.onload = () => {
-  console.log("Is Load");
+  // console.log("Is Load");
 
   var inputs_requerd = document.querySelectorAll(
     "input.form-control[required]"
@@ -31,7 +31,6 @@ window.onload = () => {
   }
 
   //Confirme For delette
-
   var btns_delete = document.querySelectorAll(".confirm");
 
   btns_delete.forEach((btn_delt) => {
@@ -62,33 +61,51 @@ window.onload = () => {
 
   var ful_clsc = document.querySelector(".categores-manage .ful-clsc");
 
-  console.log(ful_clsc);
+  // console.log(ful_clsc);
+  if (ful_clsc != null) {
+    var ful = ful_clsc.querySelector("span[data-name='full']");
+    var cls = ful_clsc.querySelector("span[data-name='classic']");
 
-  var ful = ful_clsc.querySelector("span[data-name='full']");
-  var cls = ful_clsc.querySelector("span[data-name='classic']");
+    hideShowAll =
+      ful_clsc.parentElement.parentElement.querySelectorAll(".hide-show ");
 
-  hideShowAll =
-    ful_clsc.parentElement.parentElement.querySelectorAll(".hide-show ");
+    ful.addEventListener("click", (event) => {
+      ful.classList.add("text-primary");
+      cls.classList.remove("text-primary");
 
-  ful.addEventListener("click", (event) => {
-   
-    ful.classList.add("text-primary");
-    cls.classList.remove("text-primary"); 
-
-    hideShowAll.forEach((elemnt) => {
-      elemnt.style.height = "max-content";
+      hideShowAll.forEach((elemnt) => {
+        elemnt.style.height = "max-content";
+      });
     });
-  });
 
-  cls.addEventListener("click", (event) => {
-    
-    ful.classList.remove("text-primary");
-    cls.classList.add("text-primary"); 
+    cls.addEventListener("click", (event) => {
+      ful.classList.remove("text-primary");
+      cls.classList.add("text-primary");
 
-    hideShowAll.forEach((elemnt) => { 
-      elemnt.style.height = "0";
+      hideShowAll.forEach((elemnt) => {
+        elemnt.style.height = "0";
+      });
     });
-  });
+  }
+
   /****END ******** HIDE SHOW ELEMENTS  */
+
+  /* Button Show hide Liste Items Users Dashboard   */
+
+  var btns_plus_moin = document.querySelectorAll(".show-hide-list");
+  btns_plus_moin.forEach((btn_plus_moin) => {
+    var div_plus_moin = btn_plus_moin.parentElement.nextElementSibling;
+
+    btn_plus_moin.addEventListener("click", () => {
+      if (div_plus_moin.classList.contains("d-block")) {
+        btn_plus_moin.innerHTML = "<i class='fa fa-plus'></i>";
+        div_plus_moin.classList.add("d-none");
+        div_plus_moin.classList.remove("d-block");
+      } else {
+        div_plus_moin.classList.add("d-block");
+        div_plus_moin.classList.remove("d-none");
+        btn_plus_moin.innerHTML = "<i class='fa fa-minus'></i>";
+      }
+    });
+  });
 };
-console.log("oii");
