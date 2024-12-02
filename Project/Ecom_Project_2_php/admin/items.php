@@ -374,15 +374,66 @@ if (!isset($_SESSION["UserName"])) {
                 </div>
 
 
-                <div class="row align-items-center justify-content-center mb-5">
+                <div class="row align-items-center justify-content-center mb-2">
                     <div class="col-lg-8  text-center">
-                        <input class="btn btn-primary btn-lg w-100  mb-5 " type="submit" value="+<?= lang("SAVE") ?>">
+                        <input class="btn btn-primary btn-lg w-100  mb-2 " type="submit" value="+<?= lang("SAVE") ?>">
                     </div>
                 </div>
 
             </form>
 
 
+            <?php
+        $cmnts = getTablesJointur("  cm.*  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt where cm.Item_id_cmnt=  $itemID ");
+         
+         ?>
+         <div class="manage table-responsive">
+             <h1 class="titre-pagee mt-2 mb-4"><?= lang("COMMENTS") ?> </h1>
+ 
+             <table class="table table-bordered text-center">
+ 
+                 <tr>
+                     <td>#ID</td>
+                     <td>Comment</td> 
+                     <td>Member Name</td>
+                     <td>Creat Date</td>
+                     <td>Controle</td>
+                 </tr>
+                 <?php if (count($cmnts) > 0) {
+                     foreach ($cmnts as $cmnt) { ?>
+                         <tr>
+                             <td class="fw-bold"> <?= $cmnt->Cmnt_ID ?></td>
+                             <td><?= $cmnt->Cmnt_Txt ?></td> 
+                             <td><?= $cmnt->Member ?></td>
+                             <td><?= date_format(date_create($cmnt->Cmnt_Date), "Y-m-d") ?></td>
+                             <td> 
+                                 <a href="comments.php?do=Edit&cmntID=<?= $cmnt->Cmnt_ID ?>" class="btn btn-success"><i
+                                         class="fa-solid fa-user-pen"></i> Edite</a>
+                                 <a href="comments.php?do=Delete&cmntID=<?= $cmnt->Cmnt_ID ?>"
+                                     onclick="return confirm('Vous Voullez Supprimer <?= $cmnt->Cmnt_Txt ?> ???')"
+                                     class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i> Delete</a>
+                                 <?php if ($cmnt->Cmnt_Stat == 0): ?>
+                                     <a href="comments.php?do=Approve&cmntID=<?= $cmnt->Cmnt_ID ?>" class="btn btn-info"><i class="fa-solid fa-key"></i>
+                                         Approve</a>
+                                 <?php endif; ?>
+                             </td>
+                         </tr>
+ 
+                     <?php }
+                 } else { ?>
+                     <tr>
+                         <td colspan="6" class="text-center fw-bold p-5">
+                             <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non Comments</h2>
+                         </td>
+                     </tr>
+                 <?php } ?>
+ 
+ 
+ 
+             </table>
+         </div>
+ 
+  
             <?php
         }
 
@@ -511,8 +562,6 @@ echo "<br><br><br>";
 
  
 
-    } elseif ($action == "Active") {
-        echo "Active ";
     } else {
 
 

@@ -232,6 +232,54 @@ span.my-etoile {
     background-color: rgb(242, 242, 242);
 }
 
+/* Star dashboard Comments  */
+
+.comment-row { 
+    position: relative;
+    display: flex;
+}
+.comment-row .com-mbr,
+.comment-row .com-txt{
+display: block;
+}
+.comment-row .com-mbr { 
+    width: 80px;
+    text-align: center;
+    position: relative;
+    top: 5px;
+} 
+
+ 
+.comment-row .com-txt {
+    background-color: rgb(235, 235, 235);
+    color: rgb(0, 0, 0);
+    width: calc(100%  -  80px);
+    float: right;
+    padding:  5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+
+.comment-row .com-txt:before{
+position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border:15px solid black;
+    border-color: transparent rgb(235, 235, 235) transparent transparent;
+    left: -28px;
+    top: 3px;
+}
+
+
+
+
+
+
+/* End dashboard Comments  */
 
 /* End Dashboard */
 /* Start Categories */

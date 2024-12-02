@@ -68,7 +68,12 @@ static $lg=array(
     
     
     
-
+    // COMMENTS 
+    "COMMENTS"=>"Comments",
+    "NO_COMMENT_ID"=>"No Comment ",
+    "TITRE_COMMENT_UPDATE"=>"Update Comment ",
+    "TITRE_COMMENT_DELETE"=>"Dellete Comment ",
+    
 
 );
 return $lg[$phrase];

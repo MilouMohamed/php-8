@@ -16,6 +16,7 @@
         <a class="nav-link" href="categories.php?do=Manage"><?= lang("CATEGORIES")?></a>
         <a class="nav-link" href="items.php"><?= lang("ITEMS")?></a>
         <a class="nav-link" href="members.php"><?= lang("MEMBERS")?></a>
+        <a class="nav-link" href="comments.php"><?= lang("COMMENTS")?></a>
         <!-- <a class="nav-link" href="dashboard.php">< ?= lang("DASHBOARD")? ></a> -->
         <a class="nav-link" href="#"><?= lang("LOGS")?></a>
       </li>

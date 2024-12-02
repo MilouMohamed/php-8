@@ -70,7 +70,7 @@ if (!isset($_SESSION["UserName"])) {
             </div>
         </div>
 
-        <div class="dashbord-latest mt-3">
+        <div class="dashbord-latest mt-3 pb-5">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card ">
@@ -141,6 +141,54 @@ if (!isset($_SESSION["UserName"])) {
                 </div>
             </div>
 
+            <!-- START comments  -->
+            <div class="row mt-2 ">
+                <div class="col-sm-6">
+                    <div class="card ">
+                        <div class="card-header d-flex">
+                            <i class="fa fa-comments fs-4"></i> Latest Comments <span
+                                class="show-hide-list ms-auto ">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                        </div>
+                        <div class="card-body d-none">
+
+                            <?php
+
+                            $cmnts = getTablesJointur("  cm.* ,i.Name as NameItem  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt inner join items i  on i.ItemID = cm.Item_id_cmnt ");
+
+                            ?>
+                            <?php if (count($cmnts) > 0) {
+                                foreach ($cmnts as $cmnt) { ?>
+                                    <!-- <td>< ?= $cmnt->Member  $cmnt->Cmnt_Txt  ?></td> -->
+                                    <div class="comment-row">
+                                        <span class="com-mbr"><?=$cmnt->Member?> </span>
+                                        <div class="com-txt"><?=$cmnt->Cmnt_Txt?></div>
+                                    </div>
+
+                                <?php }
+                            } else { ?>
+                                <div colspan="6" class="text-center fw-bold p-5">
+                                    <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non Comments</h2>
+                                </div>
+                            <?php } ?>
+
+
+
+
+
+
+                        </div>
+
+                        <div class="card-footer text-muted">
+                            Pied de page
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- END cmments -->
 
 
         </div>
