@@ -11,13 +11,20 @@ if (!isset($_SESSION["UserName"])) {
     include "init.php";
 
     // Start Dashboard $_SESSION['UserName'] $_SESSION['Id'].
+
+    $nbrCommnt = 5; 
+    $cmnts = getTablesJointur("  cm.* ,i.Name as NameItem  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt inner join items i  on i.ItemID = cm.Item_id_cmnt  order by cm.Cmnt_ID desc limit  $nbrCommnt");
+
+
     $nbrUsers = 5;
     $usersLatest = getLatest("*", "users", $nbrUsers);
 
     $nbrItems = 5;
     $itemsLatest = getLatest("*", "items", $nbrItems, "Add_Date");
-
+ 
     ?>
+
+
     <h1 class="titre-page text-uppercase"><?= lang("DASHBOARD") ?> </h1>
 
     <div class="container">
@@ -62,7 +69,9 @@ if (!isset($_SESSION["UserName"])) {
                         <i class="fa fa-comments "></i>
                         <div class="info">
                             <h3>Total Comments</h3>
-                            <span>3500</span>
+                            <span>
+                            <a href="comments.php?do=Manage"><?= getCount("comments", "1", "1", "="); ?></a>
+ </span>
                         </div>
                     </div>
                 </div>
@@ -82,7 +91,15 @@ if (!isset($_SESSION["UserName"])) {
                         </div>
                         <div class="card-body d-none">
                             <ul class="list-group list-group-numbered1">
-                                <?php foreach ($usersLatest as $key => $item) { ?>
+                                <?php 
+                                if(empty($usersLatest)){?>
+                                    <div colspan="6" class="text-center fw-bold p-5">
+                                    <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> No Users</h2>
+                                </div>
+                                <?php   } else {
+
+                                
+                                foreach ($usersLatest as $key => $item) { ?>
                                     <li class="list-group-item justify-content-between d-flex">
                                         <?= strtoupper(($key + 1) . " | " . $item->FullName) ?>
                                         <div>
@@ -97,7 +114,7 @@ if (!isset($_SESSION["UserName"])) {
                                             <?php endif; ?>
                                         </div>
                                     </li>
-                                <?php } ?>
+                                <?php } } ?>
                             </ul>
                         </div>
                         <div class="card-footer text-muted">
@@ -116,7 +133,13 @@ if (!isset($_SESSION["UserName"])) {
                         </div>
                         <div class="card-body d-none">
                             <ul class="list-group list-group-numbered1">
-                                <?php foreach ($itemsLatest as $key => $item) { ?>
+                            <?php 
+                                if(empty($itemsLatest)){?>
+                                    <div colspan="6" class="text-center fw-bold p-5">
+                                    <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> No Items</h2>
+                                </div>
+                                <?php   } else { 
+                                     foreach ($itemsLatest as $key => $item) { ?>
                                     <li class="list-group-item justify-content-between d-flex">
                                         <?= strtoupper(($key + 1) . " | " . $item->Name) ?>
                                         <div>
@@ -131,7 +154,7 @@ if (!isset($_SESSION["UserName"])) {
                                             <?php endif; ?>
                                         </div>
                                     </li>
-                                <?php } ?>
+                                <?php } } ?>
                             </ul>
                         </div>
                         <div class="card-footer text-muted">
@@ -146,24 +169,22 @@ if (!isset($_SESSION["UserName"])) {
                 <div class="col-sm-6">
                     <div class="card ">
                         <div class="card-header d-flex">
-                            <i class="fa fa-comments fs-4"></i> Latest Comments <span
-                                class="show-hide-list ms-auto ">
+                            <i class="fa fa-comments fs-4"></i> Latest <?=    $nbrCommnt ?> Comments <span class="show-hide-list ms-auto ">
                                 <i class="fa fa-plus"></i>
                             </span>
                         </div>
                         <div class="card-body d-none">
 
                             <?php
-
-                            $cmnts = getTablesJointur("  cm.* ,i.Name as NameItem  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt inner join items i  on i.ItemID = cm.Item_id_cmnt ");
-
-                            ?>
-                            <?php if (count($cmnts) > 0) {
+ 
+                            if (count($cmnts) > 0) {
                                 foreach ($cmnts as $cmnt) { ?>
-                                    <!-- <td>< ?= $cmnt->Member  $cmnt->Cmnt_Txt  ?></td> -->
-                                    <div class="comment-row">
-                                        <span class="com-mbr"><?=$cmnt->Member?> </span>
-                                        <div class="com-txt"><?=$cmnt->Cmnt_Txt?></div>
+                                       <div class="comment-row">
+                                        <span class="com-mbr">
+                                      <a href="members.php?do=Edit&UserId=<?= $cmnt->User_id_cmnt ?> "> <?= $cmnt->Member ?>  </a>
+                                        
+                                        </span>
+                                        <div class="com-txt"><?= $cmnt->Cmnt_Txt ?></div>
                                     </div>
 
                                 <?php }

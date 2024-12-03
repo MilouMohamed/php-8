@@ -12,10 +12,7 @@ if (!isset($_SESSION["UserName"])) {
     include "init.php";
 
     $action = isset($_GET["do"]) ? $_GET["do"] : "Manage";
-
-    //  echo "<br><br>isExistName<br>";
-//  print_r(   isExistName("nom 2"));   
-
+ 
 
     echo '<div class="container">';
     if ($action == "Manage") {
@@ -101,7 +98,7 @@ if (!isset($_SESSION["UserName"])) {
             $errorsList = array();
 
 
-            if (isExistName($userName)) {
+            if (isExistName($userName,0)) {
                 $errorsList[] = "The Name Is EXiste ";
             }
             if (empty($userName)) {
@@ -331,10 +328,14 @@ if (!isset($_SESSION["UserName"])) {
             $email = $_POST["email"];
 
 
+
             $pass = (empty($_POST["new_pass"])) ? $_POST["old_pass"] : sha1($_POST["new_pass"]);
 
             $errorsList = array();
 
+            if (isExistName($userName,$UserID)) {
+                $errorsList[] = "The Name Existe In db";
+            }
             if (empty($userName)) {
                 $errorsList[] = "The Name Cant Be Empty";
             }

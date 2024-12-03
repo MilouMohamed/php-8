@@ -75,6 +75,13 @@ static $lg=array(
     "TITRE_COMMENT_DELETE"=>"Dellete Comment ",
     
 
+    // FIN  HOME  ADMIN
+    // STRAT CLIENT
+    "CLIENT"=>"Client ",
+
+    // END CLIENT
+
+
 );
 return $lg[$phrase];
 
