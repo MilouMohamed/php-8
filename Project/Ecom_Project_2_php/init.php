@@ -2,7 +2,7 @@
 
 
 $css="./admin/layout/css/";
-$js="./layout/js/"; 
+$js="./admin/layout/js/"; 
 $temp="./includes/templates/";
 $func="./includes/func/";
 $lng="./admin/includes/lang/";

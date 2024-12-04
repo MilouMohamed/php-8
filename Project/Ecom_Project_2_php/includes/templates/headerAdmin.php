@@ -1,8 +1,11 @@
 <?php
 
+
+
+
 $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC");
 
- 
+
 
 ?>
 
@@ -27,11 +30,31 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
 </head>
 
 <body>
+  <div class="container d-flex">
+    <div class="signup-login ms-auto">
+      
+  <?php 
+session_start(); 
+ 
+    if( !isset($_SESSION["client"]) ): ?>
+      <a href="login.php" class=" fw-bold d-block p-2  text-decoration-none">Login/Signup</a>
+      <?php  
+    elseif(checkItemStaus($_SESSION["client"]["userName"])):
+      echo "yes Login ---- .".$_SESSION["client"]["userName"];
+      ?>
+      <a href="profile.php">My Profile</a>
+      <?php    
+    endif; ?>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg bg-body " data-bs-theme="dark">
     <div class="container">
       <ul class="navbar-nav   mb-2 mb-lg-0">
-        <li class="nav-item">
+      <li class="nav-item">
           <a class="navbar-brand" href="index.php"><?= lang("CLIENT") ?></a>
+        </li> <li class="nav-item">
+          <a class="navbar-brand" href="./admin/index.php"><?= lang("ADMIN") ?></a>
         </li>
       </ul>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
@@ -41,11 +64,12 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
 
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="navbar-nav  ms-auto  mb-2 mb-lg-0">
-          <?php 
-          foreach ($allCats as $cat) {    ?>
+          <?php
+          foreach ($allCats as $cat) { ?>
             <li class="nav-item ">
-              <a class="nav-link " href="categorie.php?pageId=<?= $cat->CatID ?>&pageName=<?=  str_replace(" ","-", $cat->NameCat )?>">
-                <?=   $cat->NameCat  ?>
+              <a class="nav-link "
+                href="categorie.php?pageId=<?= $cat->CatID ?>&pageName=<?= str_replace(" ", "-", $cat->NameCat) ?>">
+                <?= $cat->NameCat ?>
               </a>
             </li>
           <?php } ?>
@@ -57,12 +81,12 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <?= lang("MY_NAME") ?>
+            < ?= lang("MY_NAME") ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="members.php?do=Edit&UserId=<?= $_SESSION["Id"] ?>"><?= lang("EDIT_PROFILE") ?></a></li>
-            <li><a class="dropdown-item" href="#"><?= lang("SETTINGS") ?></a></a></li>
-            <li><a class="dropdown-item" href="<?= $temp . "logout.php" ?>"><?= lang("LOGOUT") ?></a></li>
+            <li><a class="dropdown-item" href="members.php?do=Edit&UserId=< ?= $_SESSION["Id"] ?>">< ?= lang("EDIT_PROFILE") ?></a></li>
+            <li><a class="dropdown-item" href="#">< ?= lang("SETTINGS") ?></a></a></li>
+            <li><a class="dropdown-item" href="< ?= $temp . "logout.php" ?>">< ?= lang("LOGOUT") ?></a></li>
           </ul>
         </li>
       </ul>

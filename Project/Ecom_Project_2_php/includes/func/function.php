@@ -20,10 +20,18 @@ function getAllUsers($query = "")
 }
  
 
+function checkItemStaus($name ){
+    
+   $etat=   getAlllItemsWhere("users", "UserName", $name, "=", "and  RegStatus = '1' ") ;
+
+   $etat=reset($etat); 
+
+   return  $etat? true : false;
+}
 function getAlllItemsWhere($table, $where, $value, $opra = "!=", $option = "and  GroupId != 1")
 {
     global $cnx;
-    $stmnt = $cnx->query("select * from $table where $where $opra $value $option");
+      $stmnt = $cnx->query("select * from $table where $where $opra '$value' $option");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
  

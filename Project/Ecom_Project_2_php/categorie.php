@@ -10,7 +10,7 @@ $name_cat = isset($_GET["pageName"]) ? $_GET["pageName"] : "";
 $name_cat = str_replace("-", " ", $name_cat);
 
 $itemsOfCat = getAlllItemsWhere("items", "Cat_ID", $id_cat, "=", "");
-print_r($itemsOfCat);
+// print_r($itemsOfCat);
 ?>
 <div class="container">
     <h1 class="titre-page"><?= $name_cat . " id=" . $id_cat ?> </h1>

@@ -2,7 +2,7 @@
 // Project Start le  14-11-2024 
  
 
-$titlePage = "Home";
+$titlePage = "Profile ";
 
 include "init.php"; 
 
@@ -14,16 +14,8 @@ if(empty($_SESSION["client"])){
 }
 
 
- echo "is Client";
-
- $allUsers = getAlllItemsWhere("users", "UserID", "12", "=", "")[0];
- 
-  
- 
- echo  $allUsers->UserName ."<br>";
- echo  $allUsers->UserName ."<br>";
- echo  $allUsers->UserName ."<br>";
- echo  $allUsers->UserName ."<br>";
+ echo  "<br>Page Profile <br>";
+ echo "Welcome ". $_SESSION["client"] ["userName"];
 ?>
  
 
