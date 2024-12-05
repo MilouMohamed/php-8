@@ -31,18 +31,19 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
 
 <body>
   <div class="container d-flex">
-    <div class="signup-login ms-auto">
+    <div class="signup-login ms-auto d-flex align-items-center ">
       
   <?php 
-session_start(); 
+// session_start(); 
  
     if( !isset($_SESSION["client"]) ): ?>
       <a href="login.php" class=" fw-bold d-block p-2  text-decoration-none">Login/Signup</a>
       <?php  
-    elseif(checkItemStaus($_SESSION["client"]["userName"])):
-      echo "yes Login ---- .".$_SESSION["client"]["userName"];
+    elseif(checkItemStaus($sessionUser )):
+      echo "Welcome  ".$sessionUser;
       ?>
-      <a href="profile.php">My Profile</a>
+      <a  class=" fw-bold d-block p-2  text-decoration-none" href="profile.php">My Profile</a> |
+      <a  class=" fw-bold d-block p-2  text-decoration-none" href="logout.php">Logout</a>
       <?php    
     endif; ?>
     </div>

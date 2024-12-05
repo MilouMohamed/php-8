@@ -2,36 +2,86 @@
 $titlePage = "Login/Signup";
 
 include "init.php";
-if(!empty( $_SESSION["client"]) and  $_SESSION["client"]){
-      header("location:index.php");
-   exit;
+if (!empty($sessionUser)) {
+    header("location:index.php");
+    exit;
 }
 
 // $password = $userName = "8888";
 
+// print_r($_POST);
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $userName = filter_var(isset($_POST["name"]) ? $_POST["name"] : null, FILTER_SANITIZE_STRING);
-    $password = filter_var(isset($_POST["password"]) ? $_POST["password"] : null, FILTER_SANITIZE_STRING);
-    $password = sha1($password);
+    $listErrors = [];
 
-   
+    if (isset($_POST["LOGIN"])) {
 
-    $etat = getAlllItemsWhere("users ", "UserName", $userName, "=", " and Password = '$password' ");
-    
+        $userName = filter_var((isset($_POST["name"]) ? $_POST["name"] : null), FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (strlen($userName) < 4) {
+            $listErrors[] = "The Name Is Less Than 4 Characters !!!";
+        } else {
 
 
-    if ($etat) {
-        $_SESSION["client"] = ["userName" => $userName, "noId" => 10000];
-         header("location:index.php");
-        exit;
+            $password = filter_var((isset($_POST["password"]) ? $_POST["password"] : ""));
+            $password = sha1($password);
+
+
+
+            $etat = getAlllItemsWhere("users ", "UserName", $userName, "=", " and Password = '$password' ");
+
+
+
+            if ($etat) {
+                $_SESSION["client"] = ["userName" => $userName, "noId" => 10000];
+                header("location:index.php");
+                exit;
+            }else{
+            $listErrors[] = "The Name  Or Password Incorect  !!!";
+
+            }
+        }
+
+    } elseif (isset($_POST["SIGNUP"])) {
+ 
+
+        $userName = filter_var((isset($_POST["Username"]) ? $_POST["Username"] : null), FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $email = strip_tags((isset($_POST["email"]) ? $_POST["email"] : ""));
+
+
+        $password = filter_var((isset($_POST["password"]) ? $_POST["password"] : ""));
+        $passwordConfer = filter_var((isset($_POST["passwordConfer"]) ? $_POST["passwordConfer"] : ""));
+
+        $passwordConfer = sha1($passwordConfer);
+        $password = sha1($password); 
+
+        if (strlen($userName) < 4) {
+            $listErrors[] = "The Name Is Less Than 4 Characters !!!";
+        }
+
+        if (strlen($email) < 8) {
+            $listErrors[] = "The Emial Is Less Than 8 Characters !!!";
+        }
+ 
+        if ($password !== $passwordConfer) {
+            $listErrors[] = "The Password Is  Not Matsh !!!";
+        }
+
+
+
+
+
+        echo "is SIGNUP";
+
     }
-    
-    
-    
-}
 
-$password1 = $userName1 = "00005";
+
+
+}
+$userName1 = "Yasssin";
+$password1 = "0000";
 
 
 ?>
@@ -48,6 +98,8 @@ $password1 = $userName1 = "00005";
         </span>
     </div>
 
+
+
     <form id="LOGIN" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Name</span>
@@ -62,10 +114,14 @@ $password1 = $userName1 = "00005";
         </div>
 
         <!-- Bouton de soumission -->
-        <button type="submit" class="btn btn-success w-100">Login</button>
+        <input type="submit" name="LOGIN" class="btn btn-success w-100">Login</input>
     </form>
 
-    <form id="SIGNUP" class="d-none">
+
+
+
+
+    <form id="SIGNUP" class="d-none" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Name</span>
             <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="name"
@@ -92,24 +148,31 @@ $password1 = $userName1 = "00005";
         </div>
 
 
-
-
-
-        <!-- Bouton de soumission -->
-        <button type="submit" class="btn btn-primary w-100">Signup</button>
+        <input type="submit" name="SIGNUP" class="btn btn-primary w-100">Signup</input>
     </form>
 
 
-    
-    <?php  //login
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        if (empty($etat) || is_null($etat)) { ?>
-            <div class="alert alert-danger m-5">
-                Error UserName Or Password
-            </div>
-        <?php }
-    } ?>
+
+
+
+    <div class="container">
+
+        <?php  //login
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (!empty($listErrors)) {
+                echo "<div class='alert alert-danger'><h3 class='fw-bbold'>Errors</h3> ";
+                foreach ($listErrors as $erro) { ?>
+                    <div>
+                        <p> <?= $erro ?></p>
+                    </div>
+                <?php }
+                echo "<div>";
+            }
+        } ?>
+    </div>
 </div>
+</div>
+
 
 
 

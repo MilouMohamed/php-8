@@ -8,7 +8,7 @@ include "init.php";
 
 // $_SESSION["client"] = ["userName" => $userName, "noId" => 10000];
 
-if(empty($_SESSION["client"])){
+if(empty($sessionUser)){
      header("location:login.php");
    exit; 
 }

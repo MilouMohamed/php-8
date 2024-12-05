@@ -2,6 +2,9 @@
 // Project Start le  14-11-2024
 // Ecom Project 128 v  php Mysql jquery bootstrap
 
+// v 90
+// ini_set("display_errors","on");
+// error_reporting(E_ALL);
 
 
 

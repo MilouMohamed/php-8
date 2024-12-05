@@ -1,9 +1,11 @@
 <?php
-$titlePage = "Logout/Signup";
+session_start();
  
-session_start(); 
-session_reset();
-session_destroy();
-session_cache_expire(0);
+session_unset();
+session_destroy(); 
+header("location:./index.php");
+exit;
 
-echo "is Desconnected <br>";
+
+
+

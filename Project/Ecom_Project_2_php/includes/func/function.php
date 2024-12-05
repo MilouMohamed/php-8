@@ -52,7 +52,7 @@ function isExistId($userId)
     // $count = $stmnt->rowCount();
     // return ($count > 0) ? true : false; 
 
-    return checkItem("*", "UserID", "users", $userId) > 0 ? true : false;
+    return checkItem(  "UserID", "users", $userId) > 0 ? true : false;
 
 }
 function isExistName($Username,$idUser=0)
@@ -63,11 +63,11 @@ function isExistName($Username,$idUser=0)
     // $stmnt->execute();
     // $count = $stmnt->rowCount();
     // return ($count > 0) ? true : false; 
-    return checkItem("*", "UserName", "users", $Username) > 0 ? true : false;
+    return checkItem( "UserName", "users", $Username) > 0 ? true : false;
 
 }
 
-function checkItem($etoie = "*", $att, $table, $value)
+function checkItem( $att, $table, $value,$etoie = "*")
 {
     global $cnx;
     // $stmnt = $cnx->prepare("select ? from ? where  ?=?");
