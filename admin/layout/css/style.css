@@ -1,0 +1,434 @@
+body {
+    background-color: #cbc9c9;
+    font-size: 16px;
+}
+
+.border-left-2-red{
+    border-left: 2px solid red;
+}
+
+/* Start Login Admin */
+.login-admin {
+    width: 300px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login-admin input {
+    background-color: #c1bebe;
+}
+
+.login-admin input[type="submit"] {
+    background-color: #008dde !important;
+    color: white;
+}
+
+.login-admin input[type="text"]:focus::placeholder,
+.login-admin input[type="text"]:active::placeholder {
+    color: transparent;
+}
+
+
+/* End Login Admin */
+/* Start Bootstrap Edit  */
+/* Start Navbar  */
+.navbar {
+    font-size: 1em;
+}
+
+.navbar .navbar-brand {
+    font-size: 1em;
+}
+
+.navbar a.nav-link {
+    padding: 10px !important;
+    transition: .3s;
+}
+
+.navbar a.nav-link:hover {
+    padding: 10px 10px 8px 10px !important;
+    border-bottom: red 2px solid;
+    color: red;
+
+}
+
+.dropdown-menu {
+    left: -18px !important;
+    min-width: 11em;
+
+    ul>li {
+        width: 100%;
+        padding: 50px;
+    }
+}
+
+.dropdown-menu li:hover {
+    background-color: rgb(22, 22, 22);
+}
+
+
+.navbar .dropdown-item {
+    padding: 10px 12px;
+
+    &:hover,
+    &:focus {
+        color: red;
+        background-color: rgb(22, 22, 22);
+        border-bottom: red 2px solid;
+    }
+}
+
+ul>li>a.dropdown-item {
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+}
+
+ul>li>a.dropdown-item:hover,
+ul>li>a.dropdown-item:active {
+    width: max-content;
+}
+
+
+
+
+
+/* End Navbar  */
+/* Start members  */
+
+h1.titre-page,
+h1
+
+/* Supprimer */
+    {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.form-control[required] {
+    position: relative;
+}
+
+span.my-etoile {
+    color: red;
+    position: absolute;
+    right: 20px;
+    top: 13px;
+    font-size: 28px;
+}
+
+/* Add members */
+.password .password-show {
+    position: absolute;
+    font-size: 27px;
+    top: 16px;
+    right: -30px;
+    cursor: pointer;
+}
+
+/**Manage Members**/
+.manage table tr:first-child>td {
+    background-color: black !important;
+    color: white !important;
+    padding: 13px 4px !important;
+
+}
+
+.manage table tr td {
+    vertical-align: middle;
+    padding: 4px;
+
+}
+
+.manage table tr td .btn {
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.manage table {
+    box-shadow: 0 3px 10px black;
+    -webkit-box-shadow: 0 3px 10px black;
+    -moz-box-shadow: 0 3px 10px black;
+
+}
+
+/* End members  */
+
+
+
+/* End Bootstrap Edit  */
+/* Start Dashboard */
+.dashbord-status .statu {
+    background-color: #E9E9E9;
+    padding: 18px;
+    /* border: 2px solid #b3a9a9; */
+    border-radius: 5px;
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.dashbord-status .statu h3 {
+    font-size: 14px;
+}
+ 
+.dashbord-status .statu .info  { 
+    float: right;
+    z-index: 1;
+    position: relative;
+    span,a{
+        color: black;
+    }
+}
+.dashbord-status .statu i   { 
+    position :absolute; 
+    font-size: 50px;
+    left: 20px;
+    top: 50%;
+    z-index: 0;
+}
+@media (min-width:992px) {
+    
+.dashbord-status .statu i  { 
+    font-size: 80px; 
+    top: 20%;
+}
+}
+
+.dashbord-status .statu span,
+.dashbord-status .statu span a {
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.dashbord-status .st-members {
+    background: #247291;
+}
+
+.dashbord-status .st-pending {
+    background: #c24d2c;
+}
+
+.dashbord-status .st-items {
+    background: #2c786c;
+}
+
+.dashbord-status .st-comment {
+    background: #9ba6a5;
+}
+
+
+
+/*  Button Plus Moins */
+.dashbord-latest .card-header .show-hide-list { 
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+.dashbord-latest .list-group li:nth-child(odd) {
+    background-color: rgb(242, 242, 242);
+}
+
+/* Star dashboard Comments  */
+
+.comment-row { 
+    position: relative;
+    display: flex;
+}
+.comment-row .com-mbr,
+.comment-row .com-txt{
+display: block;
+}
+.comment-row .com-mbr { 
+    width: 80px;
+    text-align: center;
+    position: relative;
+    top: 5px; 
+} 
+.comment-row .com-mbr a {  
+    text-decoration: none;
+    color: #555555;
+} 
+
+ 
+.comment-row .com-txt {
+    background-color: rgb(235, 235, 235);
+    color: rgb(0, 0, 0);
+    width: calc(100%  -  80px);
+    float: right;
+    padding:  5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+
+
+
+
+.comment-row .com-txt:before{
+position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border:15px solid black;
+    border-color: transparent rgb(235, 235, 235) transparent transparent;
+    left: -28px;
+    top: 3px;
+}
+
+
+
+
+
+
+/* End dashboard Comments  */
+
+/* End Dashboard */
+/* Start Categories */
+
+.categores-manage .div-date {
+    right: 18px;
+    bottom: 15px;
+}
+
+.categores-manage .settings-cart span {
+    padding: 1px 5px;
+    border-radius: 6px;
+    color: rgb(0, 0, 0);
+}
+
+
+.categores-manage .card-header span {
+    color: rgb(77, 76, 76);
+    font-size: 15px;
+}
+
+.categores-manage .card-header>span:first-of-type {
+    color: red;
+    font-size: 16px;
+}
+.categores-manage .card-title {
+    color: rgba(100, 100, 100, 0.78)
+}
+
+.categores-manage .card-body {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.categores-manage .card-body:hover {
+    background-color: #e6e4e488;
+    overflow: hidden;
+}
+
+.categores-manage .card-body .btns-hidden {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    right: -160px;
+    top: 5px;
+}
+
+.categores-manage .card-body:hover .btns-hidden {
+    right: 5px;
+
+}
+
+
+.categores-manage .card-body .btns-hidden a {
+    padding: 1px 6px !important;
+    margin-left: 5px;
+}
+
+.categores-manage .card-body .hide-show {
+    height: 0;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.categores-manage .card-body:hover .hide-show {
+    height: max-content;
+}
+
+.categores-manage .ful-clsc span {
+    cursor: pointer;
+}
+
+
+
+/* End Categories */
+/* End BackEnd */
+/*************************************************************************/
+/* Start  FrontEnd */
+
+.box-item {
+    background-color: #ffffff;
+    position: relative; 
+    border-radius: 5px;
+    overflow: hidden;
+    }
+
+    .box-item .price-tag {  
+        background-color: #b1aeae;
+        position: absolute;
+        padding: 3px;
+        width: max-content;
+        padding: 0px 5px;
+        color: white;
+        left: 0px;
+        font-size: 18px;
+        top: 8px;
+    }
+
+    .page-login  h1 {  
+        margin-bottom: 25px;
+        color: #555555;
+        cursor: pointer;
+    }
+    .page-login    .title-login { 
+        font-size: 50px;
+        font-weight: bold;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    
+    .page-login    .title-login .active {
+color: red;
+    }
+    
+    .page-login form {
+        max-width: 320px;
+        margin: 10px auto;
+    }
+    
+
+    
+    .page-login form span.my-etoile {
+    color: red;
+    position: absolute; 
+     right: 8px;
+    top: 2px;
+    font-size: 28px;
+}
+
+.page-login  input[type="text"]:focus::placeholder,
+.page-login  input[type="text"]:active::placeholder {
+    color: transparent;
+}
+
+/* End  FrontEnd */
+
+
+
+ 
