@@ -2,6 +2,9 @@
 echo "<div style='padding:20px'>  ";
 // var_dump($sqlstat->errorInfo());
 
+ini_set("display_errors","on");
+error_reporting(E_ALL);v 90 de 128 project php ews
+
 /*
 ytb : https://www.youtube.com/@JamaouiMouad
 
