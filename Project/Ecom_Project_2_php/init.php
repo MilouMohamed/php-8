@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $css="./admin/layout/css/";
 $js="./admin/layout/js/"; 
 $temp="./includes/templates/";
-$func="./includes/func/";
+$func="./admin/includes/func/";
 $lng="./admin/includes/lang/";
 
 

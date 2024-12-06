@@ -12,7 +12,7 @@ if (!isset($_SESSION["UserName"])) {
 
     // Start Dashboard $_SESSION['UserName'] $_SESSION['Id'].
 
-    $nbrCommnt = 5; 
+    $nbrCommnt = 5;
     $cmnts = getTablesJointur("  cm.* ,i.Name as NameItem  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt inner join items i  on i.ItemID = cm.Item_id_cmnt  order by cm.Cmnt_ID desc limit  $nbrCommnt");
 
 
@@ -21,7 +21,7 @@ if (!isset($_SESSION["UserName"])) {
 
     $nbrItems = 5;
     $itemsLatest = getLatest("*", "items", $nbrItems, "Add_Date");
- 
+
     ?>
 
 
@@ -70,8 +70,8 @@ if (!isset($_SESSION["UserName"])) {
                         <div class="info">
                             <h3>Total Comments</h3>
                             <span>
-                            <a href="comments.php?do=Manage"><?= getCount("comments", "1", "1", "="); ?></a>
- </span>
+                                <a href="comments.php?do=Manage"><?= getCount("comments", "1", "1", "="); ?></a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -80,8 +80,9 @@ if (!isset($_SESSION["UserName"])) {
         </div>
 
         <div class="dashbord-latest mt-3 pb-5">
-            <div class="row">
-                <div class="col-sm-6">
+            <div class="row   ">
+
+                <div class="col-md-12 col-xl-6 mb-2  ">
                     <div class="card ">
                         <div class="card-header d-flex">
                             <i class="fa-solid fa-people-line fs-4"></i> Latest <?= $nbrUsers ?> Registered Users
@@ -91,30 +92,31 @@ if (!isset($_SESSION["UserName"])) {
                         </div>
                         <div class="card-body d-none">
                             <ul class="list-group list-group-numbered1">
-                                <?php 
-                                if(empty($usersLatest)){?>
+                                <?php
+                                if (empty($usersLatest)) { ?>
                                     <div colspan="6" class="text-center fw-bold p-5">
-                                    <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> No Users</h2>
-                                </div>
-                                <?php   } else {
+                                        <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> No Users</h2>
+                                    </div>
+                                <?php } else {
 
-                                
-                                foreach ($usersLatest as $key => $item) { ?>
-                                    <li class="list-group-item justify-content-between d-flex">
-                                        <?= strtoupper(($key + 1) . " | " . $item->FullName) ?>
-                                        <div>
-                                            <a class="btn btn-primary   ps-2 pe-2 p-0"
-                                                href="members.php?do=Edit&UserId=<?= $item->UserID ?>"><i
-                                                    class="fa  fa-edit"></i> Ed</a>
 
-                                            <?php if ($item->RegStatus == 0): ?>
-                                                <a href="members.php?do=Active&UserId=<?= $item->UserID ?>"
-                                                    class="btn btn-info   ps-2 pe-2 p-0 text-white"><i class="fa-solid fa-key"></i>
-                                                    Ac</a>
-                                            <?php endif; ?>
-                                        </div>
-                                    </li>
-                                <?php } } ?>
+                                    foreach ($usersLatest as $key => $item) { ?>
+                                        <li class="list-group-item justify-content-between d-flex">
+                                            <?= strtoupper(($key + 1) . " | " . $item->FullName) ?>
+                                            <div>
+                                                <a class="btn btn-primary   ps-2 pe-2 p-0"
+                                                    href="members.php?do=Edit&UserId=<?= $item->UserID ?>"><i
+                                                        class="fa  fa-edit"></i> Ed</a>
+
+                                                <?php if ($item->RegStatus == 0): ?>
+                                                    <a href="members.php?do=Active&UserId=<?= $item->UserID ?>"
+                                                        class="btn btn-info   ps-2 pe-2 p-0 text-white"><i class="fa-solid fa-key"></i>
+                                                        Ac</a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </li>
+                                    <?php }
+                                } ?>
                             </ul>
                         </div>
                         <div class="card-footer text-muted">
@@ -123,7 +125,7 @@ if (!isset($_SESSION["UserName"])) {
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-md-12 col-xl-6 mb-2  ">
                     <div class="card">
                         <div class="card-header d-flex">
                             <i class="fa-solid fa-list-check fs-4"></i> Latest <?= $nbrItems ?> Registered Items
@@ -133,56 +135,56 @@ if (!isset($_SESSION["UserName"])) {
                         </div>
                         <div class="card-body d-none">
                             <ul class="list-group list-group-numbered1">
-                            <?php 
-                                if(empty($itemsLatest)){?>
+                                <?php
+                                if (empty($itemsLatest)) { ?>
                                     <div colspan="6" class="text-center fw-bold p-5">
-                                    <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> No Items</h2>
-                                </div>
-                                <?php   } else { 
-                                     foreach ($itemsLatest as $key => $item) { ?>
-                                    <li class="list-group-item justify-content-between d-flex">
-                                        <?= strtoupper(($key + 1) . " | " . $item->Name) ?>
-                                        <div>
-                                            <a class="btn btn-primary   ps-2 pe-2 p-0"
-                                                href="items.php?do=Edit&itemID=<?= $item->ItemID ?>"><i class="fa  fa-edit"></i>
-                                                Ed</a>
+                                        <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> No Items</h2>
+                                    </div>
+                                <?php } else {
+                                    foreach ($itemsLatest as $key => $item) { ?>
+                                        <li class="list-group-item justify-content-between d-flex">
+                                            <?= strtoupper(($key + 1) . " | " . $item->Name) ?>
+                                            <div>
+                                                <a class="btn btn-primary   ps-2 pe-2 p-0"
+                                                    href="items.php?do=Edit&itemID=<?= $item->ItemID ?>"><i class="fa  fa-edit"></i>
+                                                    Ed</a>
 
-                                            <?php if ($item->ApproveItm == 0): ?>
-                                                <a href="items.php?do=Approve&itemID=<?= $item->ItemID ?>"
-                                                    class="btn btn-info   ps-2 pe-2 p-0 text-white"><i class="fa fa-check"></i>
-                                                    Ap</a>
-                                            <?php endif; ?>
-                                        </div>
-                                    </li>
-                                <?php } } ?>
+                                                <?php if ($item->ApproveItm == 0): ?>
+                                                    <a href="items.php?do=Approve&itemID=<?= $item->ItemID ?>"
+                                                        class="btn btn-info   ps-2 pe-2 p-0 text-white"><i class="fa fa-check"></i>
+                                                        Ap</a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </li>
+                                    <?php }
+                                } ?>
                             </ul>
                         </div>
                         <div class="card-footer text-muted">
                             Pied de page Items
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> 
 
-            <!-- START comments  -->
-            <div class="row mt-2 ">
-                <div class="col-sm-6">
+                <div class="col-md-12 col-xl-6 mb-2">
                     <div class="card ">
                         <div class="card-header d-flex">
-                            <i class="fa fa-comments fs-4"></i> Latest <?=    $nbrCommnt ?> Comments <span class="show-hide-list ms-auto ">
+                            <i class="fa fa-comments fs-4"></i> Latest <?= $nbrCommnt ?> Comments <span
+                                class="show-hide-list ms-auto ">
                                 <i class="fa fa-plus"></i>
                             </span>
                         </div>
                         <div class="card-body d-none">
 
                             <?php
- 
+
                             if (count($cmnts) > 0) {
                                 foreach ($cmnts as $cmnt) { ?>
-                                       <div class="comment-row">
+                                    <div class="comment-row">
                                         <span class="com-mbr">
-                                      <a href="members.php?do=Edit&UserId=<?= $cmnt->User_id_cmnt ?> "> <?= $cmnt->Member ?>  </a>
-                                        
+                                            <a href="members.php?do=Edit&UserId=<?= $cmnt->User_id_cmnt ?> "> <?= $cmnt->Member ?>
+                                            </a>
+
                                         </span>
                                         <div class="com-txt"><?= $cmnt->Cmnt_Txt ?></div>
                                     </div>
@@ -205,6 +207,7 @@ if (!isset($_SESSION["UserName"])) {
                             Pied de page
                         </div>
                     </div>
+                    <!-- </div> -->
                 </div>
 
             </div>

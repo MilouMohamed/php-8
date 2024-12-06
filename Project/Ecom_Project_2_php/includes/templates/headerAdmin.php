@@ -43,6 +43,7 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
       echo "Welcome  ".$sessionUser;
       ?>
       <a  class=" fw-bold d-block p-2  text-decoration-none" href="profile.php">My Profile</a> |
+      <a  class=" fw-bold d-block p-2  text-decoration-none" href="newAd.php">New Ad</a> |
       <a  class=" fw-bold d-block p-2  text-decoration-none" href="logout.php">Logout</a>
       <?php    
     endif; ?>
@@ -54,7 +55,7 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
       <ul class="navbar-nav   mb-2 mb-lg-0">
       <li class="nav-item">
           <a class="navbar-brand" href="index.php"><?= lang("CLIENT") ?></a>
-        </li> <li class="nav-item">
+         
           <a class="navbar-brand" href="./admin/index.php"><?= lang("ADMIN") ?></a>
         </li>
       </ul>

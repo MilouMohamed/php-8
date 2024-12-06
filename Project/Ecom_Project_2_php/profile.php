@@ -30,7 +30,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
 
 
 
-echo "<b>" . $User->UserName . "</b><br>";
+// echo "<b>" . $User->UserName . "</b><br>";
 
 ?>
 
@@ -38,17 +38,19 @@ echo "<b>" . $User->UserName . "</b><br>";
   <div class="container">
     <div class="row row-cols-1    g-4">
 
-      <div class="col col-md-6">
+      <div class="col col-xl-6">
         <div class="card h-100">
-          <div class="card-header  text-white bg-primary">My Information</div>
+          <div class="card-header  text-white bg-primary"><i class="fa-solid fa-circle-info"></i> My Information</div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="card-body">
-            <h5 class="card-title border-bottom">Name : <?= $sessionUser ?> </h5>
-            <div class="card-text">
-              <div> Email : <?= $User->UserName ?> </div>
-              <div> Full Name : <?= $User->FullName ?> </div>
-              <div> Regester Date : <?= $User->CreateAt ?> </div>
-              <div> Favourite Category : <?= $User->CreateAt ?> </div>
+            <h5 class="card-title  border-bottom border-1 border-dark mb-1"> <i class="fa-solid fa-lock"></i> Name : <?= $sessionUser ?> </h5>
+            <div class="card-text info"> 
+              <div><span><i class="fa-regular fa-paper-plane"></i> Email </span> : <?= $User->UserName ?> </div>
+              <div><span><i class="fa-solid fa-user"></i> Full Name </span> : <?= $User->FullName ?> </div>
+              <div><span><i class="fa-solid fa-calendar-days"></i> Regester Date </span> : <?= $User->CreateAt ?> </div>
+              <div><span><i class="fa-regular fa-star"></i> Favourite Category  </span> : <?= $User->CreateAt ?> </div>
+              </ul>
+
             </div>
           </div>
           <div class="card-footer">
@@ -56,15 +58,14 @@ echo "<b>" . $User->UserName . "</b><br>";
           </div>
         </div>
       </div>
+ 
 
-
-
-      <div class="col col-md-6">
+      <div class="col col-xl-6">
         <div class="card h-100">
-          <div class="card-header  text-white bg-primary">Latest Comments</div>
+          <div class="card-header  text-white bg-primary"> <i class="fa-regular fa-comments"></i> Latest Comments</div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
-          <div class="card-body">
-            <h5 class="card-title">Test : Comments <?= $sessionUser ?> </h5>
+          <div class="card-body ">
+            <h5 class="card-title border-bottom border-1 border-dark mb-1">Test : Comments <?= $sessionUser ?> </h5>
             <div class="card-text">
               <?php
               if (empty($commentsOfUser)) {
@@ -88,10 +89,10 @@ echo "<b>" . $User->UserName . "</b><br>";
 
       <div class="col  ">
         <div class="card h-100">
-          <div class="card-header  text-white bg-primary">My Ads</div>
+          <div class="card-header  text-white bg-primary"><i class="fa-solid fa-puzzle-piece"></i> My Ads</div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="card-body">
-            <h5 class="card-title">Test : Ads <?= $sessionUser ?> </h5>
+            <h5 class="card-title border-bottom border-1 border-dark mb-1">Test : Ads <?= $sessionUser ?> </h5>
             <div class="card-text mydisp ">
               <div class="row">
 

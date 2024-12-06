@@ -111,7 +111,7 @@ if (!isset($_SESSION["UserName"])) {
 
             if (empty($name) or strlen($name) < 4) {
                 redirectToHome(" Name Is Empty Or less thans 4 Caracters  !!!", type: "alert-danger mt-5", url: "categories.php?do=Add");
-            } elseif (checkItem("*", "NameCat", "categories", $name) > 0) {
+            } elseif (checkItem(  "NameCat", "categories", $name) > 0) {
                 redirectToHome("This Categore ($name) Is Existed   !!!", type: "alert-danger mt-5", url: "categories.php?do=Add");
 
             } else {
@@ -410,7 +410,7 @@ $data=[ "NameCat"=>$name,"DescripCat"=>$descriptCat,
          intval($_GET["catID"]) : 0;
        echo "id IS =". $catID;
 
-       if($catID != 0 &&  checkItem("*","CatID","categories",$catID)){
+       if($catID != 0 &&  checkItem("CatID","categories",$catID)){
 
         deleteItem("categories","CatID",$catID);
            redirectToHome("Delete Successs ",3,"alert-success","categories.php");

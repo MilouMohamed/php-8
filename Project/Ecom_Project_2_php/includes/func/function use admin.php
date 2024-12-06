@@ -1,5 +1,5 @@
 <?php
-
+/*
 function getTitle()
 {
     global $titlePage;
@@ -18,21 +18,20 @@ function getAllUsers($query = "")
     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
     return getAlllItemsWhere("users", "2", "1 and  GroupId != 1 $query order by CreateAt");
 }
-  
+ 
 
-function checkItemStaus($name ){
+// function checkItemStaus($name ){
     
-    $etat=   getAlllItemsWhere("users", "UserName", $name, "=", "and  RegStatus = '1' ") ;
- 
-    $etat=reset($etat); 
- 
-    return  $etat? true : false;
- }
-function getAlllItemsWhere($table,      $where,     $value,     $opra = "!=", $option = "and  GroupId != 1")
-{
+//    $etat=   getAlllItemsWhere("users", "UserName", $name, "=", "and  RegStatus = '1' ") ;
 
+//    $etat=reset($etat); 
+
+//    return  $etat? true : false;
+// }
+function getAlllItemsWhere($table, $where, $value, $opra = "!=", $option = "and  GroupId != 1")
+{
     global $cnx;
-    $stmnt = $cnx->query("select * from $table where $where $opra '$value' $option");
+      $stmnt = $cnx->query("select * from $table where $where $opra '$value' $option");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
  
@@ -53,15 +52,18 @@ function isExistId($userId)
     // $count = $stmnt->rowCount();
     // return ($count > 0) ? true : false; 
 
-
-    return checkItem( "UserID", "users", $userId) > 0 ? true : false;
+    return checkItem(  "UserID", "users", $userId) > 0 ? true : false;
 
 }
-function isExistName($Username,$idUser=0,$opre="!=")
-{  
-    $count= getCount("users" , "UserName", $Username, "="," and  UserID $opre $idUser");
-
-    return $count > 0 ? true : false;
+function isExistName($Username,$idUser=0)
+{
+    // global $cnx;
+    // $stmnt = $cnx->prepare("select * from users where UserName = :userNAME");
+    // $stmnt->bindParam(":userNAME", $Username);
+    // $stmnt->execute();
+    // $count = $stmnt->rowCount();
+    // return ($count > 0) ? true : false; 
+    return checkItem( "UserName", "users", $Username) > 0 ? true : false;
 
 }
 
@@ -159,6 +161,6 @@ function getTablesJointur($table="* from users")
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
-
+*/
 
 

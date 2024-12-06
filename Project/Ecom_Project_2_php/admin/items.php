@@ -137,7 +137,7 @@ if (!isset($_SESSION["UserName"])) {
 `items` SET `ItemID`='[value-1]',`Name`='[value-2]',`Description`='[value-3]',`Price`='[value-4]',`Add_Date`='[value-5]',`Country_Made`='[value-6]',`Image`='[value-7]',`Status`='[value-8]',`Rating`='[value-9]',`Cat_ID`='[value-10]',`Member_ID`='[value-11]'
                 */
 
-                if (checkItem("*", "Name", "items", $nameItm) > 0) {
+                if (checkItem( "Name", "items", $nameItm) > 0) {
                     redirectToHome("This Categore ($nameItm) Is Existed   !!!", type: "alert-danger mt-5", url: "items.php?do=Add");
 
                 } else {
@@ -278,7 +278,7 @@ if (!isset($_SESSION["UserName"])) {
         // echo "Page Categories ID = ". $_GET["CateID"] ;
         $itemID = (isset($_GET["itemID"]) and intval($_GET["itemID"])) ? intval($_GET["itemID"]) : 0;
 
-        if (checkItem("*", "ItemID", "items", $itemID) == 0) {
+        if (checkItem( "ItemID", "items", $itemID) == 0) {
             redirectToHome("This Item  Is not Existed   !!!", type: "alert-danger mt-5", url: "items.php");
 
         } else {
@@ -458,7 +458,7 @@ if (!isset($_SESSION["UserName"])) {
             $member_ID = $_POST["MemberID"];
             $cat_ID = $_POST["CatID"];
 
-            if (checkItem("*", "ItemID", "items", $itemID) == 0) {
+            if (checkItem( "ItemID", "items", $itemID) == 0) {
                 redirectToHome("This Item ($nameItm) Is not Existed   !!!", type: "alert-danger mt-5", url: "items.php");
 
             } else {
@@ -526,7 +526,7 @@ if (!isset($_SESSION["UserName"])) {
             intval($_GET["itemID"]) : 0;
         // echo "id IS =" . $itemID;
 
-        if ($itemID != 0 && checkItem("*", "ItemID", "items", $itemID)) {
+        if ($itemID != 0 && checkItem( "ItemID", "items", $itemID)) {
 
             deleteItem("items", "ItemID", $itemID);
 
@@ -549,7 +549,7 @@ echo "<br><br><br>";
             intval($_GET["itemID"]) : 0;
         // echo "id IS =" . $itemID;
 
-        if ($itemID != 0 && checkItem("*", "ItemID", "items", $itemID)) {
+        if ($itemID != 0 && checkItem( "ItemID", "items", $itemID)) {
 
             $data=["ApproveItm"=>1];
             updateTable("items", $data,"ItemID", $itemID);
