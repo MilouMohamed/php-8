@@ -10,18 +10,19 @@ $categoresAll = getAlllItemsWhere("categories", "1", "1", "=", " ");
 $membersAll = getAlllItemsWhere("users", "1", "1", "=", " ");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    print_r($_POST);
+ 
     // Array ( [Name] => danon 1 [DescriptItem] => Bon Prodiot Of the Year 1 [Price] => $100 [Country] => China [Status] => 0 [CatID] => 0 ) 
     $errors = [];
-    $name = filter_var($_POST["Name"], FILTER_SANITIZE_STRING);
-    $desc = filter_var($_POST["DescriptItem"], FILTER_SANITIZE_STRING);
-    $price = filter_var($_POST["Price"], FILTER_SANITIZE_STRING);
-    $country = filter_var($_POST["Country"], FILTER_SANITIZE_STRING);
+    
+    $name = filter_input(INPUT_POST,"Name", FILTER_SANITIZE_SPECIAL_CHARS);
+    $desc = filter_input(INPUT_POST,"DescriptItem", FILTER_SANITIZE_SPECIAL_CHARS);
+    $price = filter_input(INPUT_POST,"Price", FILTER_SANITIZE_SPECIAL_CHARS);
+    $country = filter_input(INPUT_POST,"Country", FILTER_SANITIZE_SPECIAL_CHARS);
     $statu = filter_var($_POST["Status"], FILTER_SANITIZE_NUMBER_INT);
     $catId = filter_var($_POST["CatID"], FILTER_SANITIZE_NUMBER_INT);
 
 
+    
     if (strlen($name) < 4) {
         $errors[] = "The Name Must Be At 4 Charas";
     }
@@ -41,6 +42,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $errors[] = "The Categorie Can t Be Empty";
     }
 
+    if (empty($errors)) {
+        // $_SESSION["client"] = ["userName" => $userName, "userId" => $etat->UserID];
+
+
+        $qery = "INSERT INTO `items`( `Name`, `Description`, `Price`, `Add_Date`, `Country_Made` , `Status`,     `Cat_ID`, `Member_ID`) VALUES (?,?,?,now(),?,?,?,?)";
+        $stmnt = $cnx->prepare($qery);
+        $stmnt->execute([$name, $desc, $price, $country, $statu, $catId, $_SESSION["client"]["userId"]]);
+       
+
+        if ($stmnt) { 
+            ?>
+            <div  class=" m-5 alert alert-success">
+                This Item Has ben Added
+            </div>
+        <?php
+
+        }
+    }
 
 
 }
@@ -51,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <div class="container">
     <h1 class="titre-page">Create New Ad</h1>
 
-    <div class="card ">
+    <div class="card  mb-5">
         <div class="card-header  text-white bg-primary">
             <i class="fa-regular fa-pen-to-square"></i> New Ad
         </div>
@@ -151,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </div>
 
         <?php if (isset($errors)) {
-            foreach ($errors as $err): ?> 
+            foreach ($errors as $err): ?>
                 <div class="alert alert-danger ms-5 me-5">
                     <?= $err ?>
                 </div>

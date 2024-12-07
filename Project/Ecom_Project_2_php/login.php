@@ -32,10 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $etat = getAlllItemsWhere("users ", "UserName", $userName, "=", " and Password = '$password' ");
 
 
-
             if ($etat) {
-                $_SESSION["client"] = ["userName" => $userName, "noId" => 10000];
-                header("location:index.php");
+                $etat=reset($etat);
+ 
+                $_SESSION["client"] = ["userName" => $userName, "userId" => $etat->UserID];
+                  header("location:index.php"); 
                 exit;
             } else {
                 $listErrors[] = "The Name  Or Password  Incorect  !!!";

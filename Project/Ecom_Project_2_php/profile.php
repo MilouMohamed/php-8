@@ -22,14 +22,7 @@ $ItemsOfUser = getAlllItemsWhere("items", "Member_ID", $User->UserID, "=", "");
 $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "=", "");
 // $ItemsOfUser=[];
 // $commentsOfUser=[];
-
-// print_r($commentsOfUser );
-
-// print_r($ItemsOfUser); 
-// $cateFavor = getTablesJointur("SELECT count(*) FROM `items` i INNER JOIN  categories c on i.Cat_ID = c.CatID WHERE i.Member_ID= $User->UserID")[0];
-
-
-
+ 
 // echo "<b>" . $User->UserName . "</b><br>";
 
 ?>
@@ -43,12 +36,14 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
           <div class="card-header  text-white bg-primary"><i class="fa-solid fa-circle-info"></i> My Information</div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="card-body">
-            <h5 class="card-title  border-bottom border-1 border-dark mb-1"> <i class="fa-solid fa-lock"></i> Name : <?= $sessionUser ?> </h5>
-            <div class="card-text info"> 
+            <h5 class="card-title  border-bottom border-1 border-dark mb-1">
+              <i class="fa-solid fa-lock"></i> Name : <?= $sessionUser ?>
+            </h5>
+            <div class="card-text info">
               <div><span><i class="fa-regular fa-paper-plane"></i> Email </span> : <?= $User->UserName ?> </div>
               <div><span><i class="fa-solid fa-user"></i> Full Name </span> : <?= $User->FullName ?> </div>
               <div><span><i class="fa-solid fa-calendar-days"></i> Regester Date </span> : <?= $User->CreateAt ?> </div>
-              <div><span><i class="fa-regular fa-star"></i> Favourite Category  </span> : <?= $User->CreateAt ?> </div>
+              <div><span><i class="fa-regular fa-star"></i> Favourite Category </span> : <?= $User->CreateAt ?> </div>
               </ul>
 
             </div>
@@ -58,7 +53,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
           </div>
         </div>
       </div>
- 
+
 
       <div class="col col-xl-6">
         <div class="card h-100">
@@ -102,16 +97,24 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
                 } else {
                   foreach ($ItemsOfUser as $item): ?>
 
-                    <div class="col-sm-6 col-md-4 col-lg-2  mb-1 mt-1 ">
-                      <div class="thumbnail box-item ">
+                    <div class="col-sm-6 col-md-3    p-2">
+                      <div class="thumbnail box-item  border-1 border border p-1">
                         <div class="price-tag">
                           <?= $item->Price ?>
                         </div>
                         <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail" />
-                        <h3 class="title p-1"><?= $item->Name ?></h3>
-                        <p class="p-2">
+                        <h3 class="title p-1">
+
+                          <a href="itemDetail.php?itemId=<?= $item->ItemID ?>">
+                            <?= $item->Name ?>
+                          </a>
+                        </h3>
+                        <p class="pt-2 p-0 mb-0">
                           <?= substr($item->Description, 0, 50) . "..." ?>
                         </p>
+                        <div class="date text-end">
+                        <?= $item->Add_Date ?>
+                        </div>
                       </div>
                     </div>
 
