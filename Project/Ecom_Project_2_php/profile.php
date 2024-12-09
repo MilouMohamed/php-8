@@ -18,6 +18,7 @@ $User = getAlllItemsWhere("users", "UserName", $sessionUser, "=", "")[0];
 
 $ItemsOfUser = getAlllItemsWhere("items", "Member_ID", $User->UserID, "=", "");
 
+// print_r($ItemsOfUser);
 
 $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "=", "");
 // $ItemsOfUser=[];
@@ -102,6 +103,11 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
                         <div class="price-tag">
                           <?= $item->Price ?>
                         </div>
+                        <?php if( $item->ApproveItm ==0){   ?>
+                          <div class="p-absolut">
+                            Pending ...
+                          </div>
+                          <?php   }  ?>
                         <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail" />
                         <h3 class="title p-1">
 
