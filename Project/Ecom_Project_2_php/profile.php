@@ -30,6 +30,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
 
 <div class="info pt-3 pb-4">
   <div class="container">
+  <h1 class="titre-page">My Profile</h1>
     <div class="row row-cols-1    g-4">
 
       <div class="col col-xl-6">
@@ -56,7 +57,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
       </div>
 
 
-      <div class="col col-xl-6">
+      <div class="col col-xl-6" i="commetID">
         <div class="card h-100">
           <div class="card-header  text-white bg-primary"> <i class="fa-regular fa-comments"></i> Latest Comments</div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
@@ -104,17 +105,16 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
                           <?= $item->Price ?>
                         </div>
                         <?php if( $item->ApproveItm ==0){   ?>
-                          <div class="p-absolut">
+                          <div class="p-absolut pending-approve">
                             Pending ...
                           </div>
                           <?php   }  ?>
                         <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail" />
-                        <h3 class="title p-1">
-
+                        <h4 class="title p-1"> 
                           <a href="itemDetail.php?itemId=<?= $item->ItemID ?>">
                             <?= $item->Name ?>
                           </a>
-                        </h3>
+                        </h4>
                         <p class="pt-2 p-0 mb-0">
                           <?= substr($item->Description, 0, 50) . "..." ?>
                         </p>

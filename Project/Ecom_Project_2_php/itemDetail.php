@@ -26,9 +26,8 @@ if (is_numeric($itemId)) {
 
 echo '<div class="container">';
 
+$item = getTablesJointur("i.* , c.NameCat   ,u.UserName from users u inner join  items i on  u.UserID = i.Member_ID inner join categories c  on i.Cat_ID = c.CatID  where i.ItemID=$itemId   AND  ApproveItm=1 ");
 
-
-$item = getTablesJointur("i.* , c.NameCat   ,u.UserName from users u inner join  items i on  u.UserID = i.Member_ID inner join categories c  on i.Cat_ID = c.CatID  where i.ItemID=$itemId   ");
 $item = reset($item);
 
 
@@ -137,7 +136,7 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
         <?php } else {
         ?>
             <div class="text-center fw-bold p-5">
-                <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non item</h2>
+                <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non item Or Pending Approve</h2>
             </div>
 
             <?php
@@ -155,7 +154,7 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
     // echo "itemId $itemId";
     // echo "item->UserID $item->UserID";
     
-  
+
 
     if (!empty($comntsItem)) {
         foreach ($comntsItem as $comt) { ?>
@@ -163,10 +162,11 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
 
                 <div class="col-md-3 border-left-2-black">
                     <div class=" fw-bold text-center  ">
-                    <img src="./doc/user-picture.png" alt="No Image" class="d-block  border-3 mx-auto img-thumbnail rounded-circle" width="100px" />
-                 <div>
-                 <?= $comt->member ?> 
-                 </div>
+                        <img src="./doc/user-picture.png" alt="No Image"
+                            class="d-block  border-3 mx-auto img-thumbnail rounded-circle" width="100px" />
+                        <div>
+                            <?= $comt->member ?>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9 border-right-2-black ">
@@ -176,17 +176,19 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
                 </div>
             </div>
         <?php }
-    } else { ?>
-        <div  class="text-center fw-bold p-5">
-            <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non Comments</h2>
-        </div>
-    <?php } ?>
+    } else {
+        if (!empty($item)) { ?>  
+            <div class="text-center fw-bold p-5">
+                <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non Comments</h2>
+            </div>
+        <?php }
+    } ?>
 </div>
 
 <?php
 
 
-echo  "<br/>";
+echo "<br/>";
 
 echo "</div>";//container
 

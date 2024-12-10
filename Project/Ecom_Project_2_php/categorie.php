@@ -8,7 +8,7 @@ $id_cat = isset($_GET["pageId"]) ? $_GET["pageId"] : "0";
 // $name_cat = isset($_GET["pageName"]) ? $_GET["pageName"] : "";
 
 
-$itemsOfCat = getAlllItemsWhere("items", "Cat_ID", $id_cat, "=", " and ApproveItm =1");
+$itemsOfCat = getAlllItemsWhere("items", "Cat_ID", $id_cat, "=", " and ApproveItm=1 ");
 //    print_r($itemsOfCat);
  
 // $name_cat = str_replace("-", " ", $name_cat);
@@ -24,38 +24,46 @@ $name_cat=reset($name_cat)->NameCat;
 
     <div class="row">
 
-        <?php foreach ($itemsOfCat as $item): ?>
+        <?php 
+        if(empty($itemsOfCat)){
+        echo "<div class='text-center alert alert-danger'> No Items Or pending Approve 🤗🤗🤗</div>";
 
-            <div class="col-sm-6 col-md-3 mb-1 mt-1">
+        }else{
+
+        foreach ($itemsOfCat as $item):      ?>
+
+            <div class="col-sm-4 col-md-3 mb-1 mt-1">
                 <div class="thumbnail box-item">
                     <div class="price-tag">
                     <?= $item->Price ?>
                     </div>
                     <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail" />
-                    <h3 class="title p-1"><a href="itemDetail.php?itemId=<?= $item->ItemID ?>"> <?= $item->Name ?> </a></h3>
-                    <p class="p-2">
+                    <h4 class="title p-1 "><a href="itemDetail.php?itemId=<?= $item->ItemID ?>"> <?= $item->Name ?> </a></h4>
+                    <p class="p-2 pb-0">
                         <?= $item->Description ?>
                     </p> 
                 </div> 
             </div>
 
-            <!-- Delete  -->
-            <div class="col-sm-6 col-md-3">
+            <!-- <Double > --> 
+            <div class="col-sm-4 col-md-3 mb-1 mt-1">
                 <div class="thumbnail box-item">
                     <div class="price-tag">
                     <?= $item->Price ?>
                     </div>
                     <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail" />
-                    <h3 class="title p-1"><?= $item->Name ?></h3>
+                    <h4 class="title p-1"><a href="itemDetail.php?itemId=<?= $item->ItemID ?>"> <?= $item->Name ?> </a></h4>
                     <p class="p-2">
                         <?= $item->Description ?>
                     </p> 
                 </div> 
-            </div>
-            <!-- Delete  -->
+            </div> 
+                <!-- Double -->
+           
 
 
-        <?php endforeach; ?>  
+        <?php endforeach;
+        }  ?>  
     </div>
 
 
