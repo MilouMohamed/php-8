@@ -51,7 +51,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
             </div>
           </div>
           <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
+            <div class="text-body-secondary mx-auto  text-center">------------ ------------ ------------</div>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
             </div>
           </div>
           <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
+            <div class="text-body-secondary mx-auto text-center">------------ ------------ ------------</div>
           </div>
         </div>
       </div>
@@ -133,7 +133,7 @@ $commentsOfUser = getAlllItemsWhere("comments", "User_id_cmnt", $User->UserID, "
             </div>
           </div>
           <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
+            <div class="text-body-secondary mx-auto  text-center">------------ ------------ ------------</div>
           </div>
         </div>
       </div>
