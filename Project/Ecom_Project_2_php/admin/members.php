@@ -98,7 +98,7 @@ if (!isset($_SESSION["UserName"])) {
             $errorsList = array();
 
 
-            if (isExistName($userName,0)) {
+            if (isExistName($userName)) {
                 $errorsList[] = "The Name Is EXiste ";
             }
             if (empty($userName)) {
@@ -333,7 +333,7 @@ if (!isset($_SESSION["UserName"])) {
 
             $errorsList = array();
 
-            if (isExistName($userName,$UserID)) {
+            if (isExistName($userName,$UserID,"!=")) {
                 $errorsList[] = "The Name Existe In db";
             }
             if (empty($userName)) {

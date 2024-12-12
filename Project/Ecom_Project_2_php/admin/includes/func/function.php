@@ -18,30 +18,32 @@ function getAllUsers($query = "")
     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
     return getAlllItemsWhere("users", "2", "1 and  GroupId != 1 $query order by CreateAt");
 }
-  
 
-function checkItemStaus($name ){
-    
-    $etat=   getAlllItemsWhere("users", "UserName", $name, "=", "and  RegStatus = '1' ") ;
- 
-    $etat=reset($etat); 
- 
-    return  $etat? true : false;
- }
-function getAlllItemsWhere($table,      $where,     $value,     $opra = "!=", $option = "and  GroupId != 1")
+
+function checkItemStaus($name)
+{
+
+    $etat = getAlllItemsWhere("users", "UserName", $name, "=", "and  RegStatus = '1' ");
+
+    $etat = reset($etat);
+
+    return $etat ? true : false;
+}
+//  $allItems = getAlllItemsWhere("items", "ApproveItm ", "1", "=", " and order by ItemID DESC") ;
+function getAlllItemsWhere($table, $where, $value, $opra = "!=", $option = "and  GroupId != 1")
 {
 
     global $cnx;
     $stmnt = $cnx->query("select * from $table where $where $opra '$value' $option");
     return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
- 
-function getCount($table , $where, $value, $opra = "!=",$option="")
+
+function getCount($table, $where, $value, $opra = "!=", $option = "")
 {
     // global $cnx;
     // $stmnt = $cnx->query("select count($colon) from $table where $where $opra $value and  GroupId != 1");
-    return count(getAlllItemsWhere($table, $where, $value, $opra,$option));
-     // return $stmnt->fetchAll(PDO::FETCH_OBJ);
+    return count(getAlllItemsWhere($table, $where, $value, $opra, $option));
+    // return $stmnt->fetchAll(PDO::FETCH_OBJ);
 }
 
 function isExistId($userId)
@@ -54,18 +56,18 @@ function isExistId($userId)
     // return ($count > 0) ? true : false; 
 
 
-    return checkItem( "UserID", "users", $userId) > 0 ? true : false;
+    return checkItem("UserID", "users", $userId) > 0 ? true : false;
 
 }
-function isExistName($Username,$idUser=0,$opre="!=")
-{  
-    $count= getCount("users" , "UserName", $Username, "="," and  UserID $opre $idUser");
+function isExistName($Username, $idUser = 0, $opre = "!=")
+{
+    $count = getCount("users", "UserName", $Username, "=", " and  UserID $opre $idUser");
 
     return $count > 0 ? true : false;
 
 }
 
-function checkItem( $att, $table, $value,$etoie = "*")
+function checkItem($att, $table, $value, $etoie = "*")
 {
     global $cnx;
     // $stmnt = $cnx->prepare("select ? from ? where  ?=?");
@@ -105,7 +107,7 @@ function countItems($col, $table)
 }
 
 // Latest 
- 
+
 function getLatest($col, $table, $limit = 5, $order = "UserID")
 {
     global $cnx;
@@ -122,28 +124,29 @@ function updateTable($table, $data, $colID, $colIDVal)
 {
     global $cnx;
 
-    $colums = array_keys($data); 
+    $colums = array_keys($data);
     $values = array_values($data);
-    $values[] = $colIDVal; 
+    $values[] = $colIDVal;
 
     $setters = implode("=? , ", $colums) . "=? ";
- 
-    $qery = "UPDATE $table SET  $setters WHERE  $colID=?"; 
+
+    $qery = "UPDATE $table SET  $setters WHERE  $colID=?";
 
 
     $stmnt = $cnx->prepare($qery);
     $stmnt->execute($values);
 
-    return $stmnt->rowCount(); 
+    return $stmnt->rowCount();
 }
- 
 
 
-function deleteItem($table, $colID, $colIDVal){
+
+function deleteItem($table, $colID, $colIDVal)
+{
     global $cnx;
 
-    
-    $qery = "Delete from  $table  WHERE  $colID = ?  ";  
+
+    $qery = "Delete from  $table  WHERE  $colID = ?  ";
     $stmnt = $cnx->prepare($qery);
     $stmnt->execute([$colIDVal]);
     // return $stmnt->rowCount();
@@ -151,8 +154,8 @@ function deleteItem($table, $colID, $colIDVal){
 
 }
 
- 
-function getTablesJointur($table="* from users")
+
+function getTablesJointur($table = "* from users")
 {
     global $cnx;
     $stmnt = $cnx->query("select $table ");
@@ -160,5 +163,12 @@ function getTablesJointur($table="* from users")
 }
 
 
+function fncIsHasChildren($all, $id)
+{
+    $test = array_filter($all, function ($elm) use ($id) {
+         return $elm->ParentCat == $id ? true : false;
+    });
+    return count($test) > 0 ? true : False;
+}
 
 

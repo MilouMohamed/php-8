@@ -17,7 +17,7 @@ if (!isset($_SESSION["UserName"])) {
     echo '<div class="container">';
     if ($action == "Manage") {
 
-        $cmnts = getTablesJointur("  cm.* ,i.Name as NameItem  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt inner join items i  on i.ItemID = cm.Item_id_cmnt ");
+        $cmnts = getTablesJointur("  cm.* ,i.Name as NameItem  ,u.UserName as Member from users u inner join  comments cm on  u.UserID  = cm.User_id_cmnt inner join items i  on i.ItemID = cm.Item_id_cmnt order by  cm.Cmnt_ID DESC ");
          
         ?>
         <div class="manage table-responsive">

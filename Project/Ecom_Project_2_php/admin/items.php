@@ -21,9 +21,9 @@ if (!isset($_SESSION["UserName"])) {
 
         $titlePage = "Page Manage Items";
 
-        // $items = getAlllItemsWhere("items","1","1","=","");
-        $items = getAlllItemsWhere("items", "1", "1", "=", "");
-        $items = getTablesJointur("i.* , c.NameCat   ,u.UserName from users u inner join  items i on  u.UserID = i.Member_ID inner join categories c  on i.Cat_ID = c.CatID ");
+        // // $items = getAlllItemsWhere("items","1","1","=","");
+        // $items = getAlllItemsWhere("items", "1", "1", "=", " ORDER BY ItemID DESC");
+        $items = getTablesJointur("i.* , c.NameCat   ,u.UserName from users u inner join  items i on  u.UserID = i.Member_ID inner join categories c  on i.Cat_ID = c.CatID   ORDER BY ItemID DESC");
 
 
 
@@ -101,6 +101,7 @@ if (!isset($_SESSION["UserName"])) {
             $priceItm = $_POST["Price"];
             $countryItm = filter_var($_POST["Country"], FILTER_SANITIZE_STRING);
             $statusItm = $_POST["Status"];
+            $tagsItem = $_POST["tagsItem"];
             // $member_ID = $_SESSION["UserName"];
             // print_r($_SESSION);
             $member_ID = $_POST["MemberID"];
@@ -141,9 +142,9 @@ if (!isset($_SESSION["UserName"])) {
                     redirectToHome("This Categore ($nameItm) Is Existed   !!!", type: "alert-danger mt-5", url: "items.php?do=Add");
 
                 } else {
-                    $stms2 = $cnx->prepare("INSERT INTO `items`( `Name`, `Description`, `Price`, `Country_Made`, `Status`,`Member_ID`,`Cat_ID` ) VALUES (?,?,?,?,?,?,?)");
+                    $stms2 = $cnx->prepare("INSERT INTO `items`( `Name`, `Description`, `Price`, `Country_Made`, `tagsItem`,`Status`,`Member_ID`,`Cat_ID` ) VALUES (?,?,?,?,?,?,?,?)");
 
-                    $stms2->execute([$nameItm, $descItm, $priceItm, $countryItm, $statusItm, $member_ID, $cat_ID]);
+                    $stms2->execute([$nameItm, $descItm, $priceItm, $countryItm ,$tagsItem,$statusItm, $member_ID, $cat_ID]);
 
                     redirectToHome("The Categorie $nameItm Is Aded", 4, "alert-success mt-5", url: "items.php");
 
@@ -202,11 +203,17 @@ if (!isset($_SESSION["UserName"])) {
                     <label class="ps-4"><?= lang("PRICE") ?> : </label>
                 </div>
             </div>
-
+            
             <div class="row g-3 align-items-center justify-content-center">
                 <div class="form-floating mb-3 col-lg-8 ">
                     <input type="text" value="China" class="form-control ps-4" name="Country" placeholder="Contry Made">
                     <label class="ps-4"><?= lang("COUNTRY") ?> : </label>
+                </div>
+            </div>
+            <div class="row g-3 align-items-center justify-content-center">
+                <div class="form-floating mb-3 col-lg-8 ">
+                    <input type="text" value="Phone,info,HeadPhone" class="form-control ps-4" name="tagsItem" placeholder="Contry Made">
+                    <label class="ps-4"><?= lang("TAGS") ?> : </label>
                 </div>
             </div>
 
@@ -243,8 +250,16 @@ if (!isset($_SESSION["UserName"])) {
                     <select class="form-control" name="CatID" id="catid">
                         <option value="0">...</option>
                         <?php
-                        foreach ($categoresAll as $cat) {
-                            echo "<option value='" . $cat->CatID . "'>" . $cat->NameCat . "</option>";
+                        foreach ($categoresAll as $cat) { 
+
+                            if($cat->ParentCat == 0) {
+                                echo "<option value='" . $cat->CatID . "'>"  .$cat->NameCat . "</option>";
+                            } 
+                            foreach ($categoresAll as $c) {
+                                if($c->ParentCat == $cat->CatID ) {
+                                    echo "<option value='" . $cat->CatID . "'>" . "----".$cat->NameCat . "</option>";
+                                }
+                            }
                         }
                         ?>
                     </select>
@@ -318,13 +333,22 @@ if (!isset($_SESSION["UserName"])) {
                     </div>
                 </div>
 
-                <div class="row g-3 align-items-center justify-content-center">
-                    <div class="form-floating mb-3 col-lg-8 ">
-                        <input type="text" value="<?= $item->Country_Made ?>" class="form-control ps-4" name="Country"
-                            placeholder="Contry Made">
-                        <label class="ps-4"><?= lang("COUNTRY") ?> : </label>
-                    </div>
-                </div>
+<div class="row g-3 align-items-center justify-content-center">
+    <div class="form-floating mb-3 col-lg-8 ">
+        <input type="text" value="<?= $item->Country_Made ?>" class="form-control ps-4" name="Country"
+            placeholder="Contry Made">
+        <label class="ps-4"><?= lang("COUNTRY") ?> : </label>
+    </div>
+</div>
+
+<div class="row g-3 align-items-center justify-content-center">
+    <div class="form-floating mb-3 col-lg-8 ">
+        <input type="text" value="<?= $item->tagsItem ?>" class="form-control ps-4" name="tagsItem"
+            placeholder="Contry Made">
+        <label class="ps-4"><?= lang("TAGS") ?> : </label>
+    </div>
+</div>
+                <!--  -->
 
                 <div class="row g-3 align-items-center justify-content-center">
                     <div class="form-floating mb-3 col-lg-8 ">
@@ -363,8 +387,37 @@ if (!isset($_SESSION["UserName"])) {
                             foreach ($categoresAll as $cat) {
                                 $echk = ($item->Cat_ID == $cat->CatID) ? "selected" : "";
 
-                                echo "<option value='" . $cat->CatID . "' $echk >" . $cat->NameCat . "</option>";
+                                if($cat->ParentCat == 0) {
+                                    echo "<option value='" . $cat->CatID . "' $echk>"  .$cat->NameCat . "</option>";
+                                } 
+
+                                foreach ($categoresAll as $c) {
+                                $echk = ($item->Cat_ID == $c->CatID) ? "selected" : "";
+
+                                    if($c->ParentCat == $cat->CatID ) {
+                                        echo "<option value='" . $c->CatID . "' $echk>" . "----".$c->NameCat . "</option>";
+                                    }
+                                }
+ 
+                                // echo "<option value='" . $cat->CatID . "' $echk >" . $cat->NameCat . "</option>";
                             }
+
+/*
+foreach ($categoresAll as $cat) { 
+
+                            if($cat->ParentCat == 0) {
+                                echo "<option value='" . $cat->CatID . "'>"  .$cat->NameCat . "</option>";
+                            } 
+                            foreach ($categoresAll as $c) {
+                                if($c->ParentCat == $cat->CatID ) {
+                                    echo "<option value='" . $cat->CatID . "'>" . "----".$cat->NameCat . "</option>";
+                                }
+                            }
+                        }
+
+
+*/
+
                             ?>
                         </select>
                         <label class="ps-4" for="catid"><?= lang("CATEGORIES") ?> : </label>
@@ -457,6 +510,8 @@ if (!isset($_SESSION["UserName"])) {
 
             $member_ID = $_POST["MemberID"];
             $cat_ID = $_POST["CatID"];
+            $tagsItem =htmlspecialchars( $_POST["tagsItem"]);
+            
 
             if (checkItem( "ItemID", "items", $itemID) == 0) {
                 redirectToHome("This Item ($nameItm) Is not Existed   !!!", type: "alert-danger mt-5", url: "items.php");
@@ -490,7 +545,7 @@ if (!isset($_SESSION["UserName"])) {
                 if (empty($errorsInput)) {
 
 
-                    $data = ["Name" => $nameItm, "Description" => $descItm, "Price" => $priceItm, "Country_Made" => $countryItm, "Status" => $statusItm, "Member_ID" => $member_ID, "Cat_ID" => $cat_ID];
+                    $data = ["Name" => $nameItm, "Description" => $descItm, "Price" => $priceItm, "Country_Made" => $countryItm, "Status" => $statusItm, "Member_ID" => $member_ID,"tagsItem"=>$tagsItem, "Cat_ID" => $cat_ID];
 
                     updateTable("items", $data, "ItemID", $itemID);
 

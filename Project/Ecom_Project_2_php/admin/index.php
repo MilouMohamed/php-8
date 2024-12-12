@@ -19,12 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $userName = filter_var($_POST["UserName"], FILTER_SANITIZE_STRING);
         $password = filter_var($_POST["Password"], FILTER_SANITIZE_STRING);
-
-        // $hasPass=password_hash($password,PASSWORD_DEFAULT );
+ 
         $hasPass = sha1($password);
-
-        // echo  "<br>";
-// echo $hasPass."<br><br>";
+ 
         $stmt = $cnx->prepare("SELECT UserID, UserName , Password FROM `users` WHERE UserName=? and Password=? and GroupID =1  limit 1");
 
         $stmt->execute([$userName, $hasPass]);
@@ -63,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <h2 class="text text-center text-black-50">
             <?= lang("PAGE_LOGIN_TITRE") ?>
         </h2>
-        <input class="form-control text-black-50 mt-3" type="text" name="UserName" placeholder="Nom 1" value="med">
-        <input class="form-control text-black-50 mt-3" type="text" name="Password" placeholder="0000" value="0000">
+        <input class="form-control text-black-50 mt-3" type="text" name="UserName" placeholder="Name Admin" value="med2">
+        <input class="form-control text-black-50 mt-3" type="text" name="Password" placeholder="0000" value="1111">
         <input class="btn btn-primary w-100 mt-3 mb-3" name="send" type="submit" value="Connection">
 
     </div>

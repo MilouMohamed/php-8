@@ -3,7 +3,7 @@
 
 
 
-$allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC");
+$allCats = getAlllItemsWhere("categories", "ParentCat", "0", "=", "order by CatID  ASC");
 
 
 
@@ -32,30 +32,47 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
 <body>
   <div class="container d-flex">
     <div class="signup-login ms-auto d-flex align-items-center ">
+
+      <?php
+      // session_start(); 
       
-  <?php 
-// session_start(); 
- 
-    if( !isset($_SESSION["client"]) ): ?>
-      <a href="login.php" class=" fw-bold d-block p-2  text-decoration-none">Login/Signup</a>
-      <?php  
-    elseif(checkItemStaus($sessionUser )):
-      echo "Welcome  ".$sessionUser;
-      ?>
-      <a  class=" fw-bold d-block p-2  text-decoration-none" href="profile.php">My Profile</a> |
-      <a  class=" fw-bold d-block p-2  text-decoration-none" href="newAd.php">New Ad</a> |
-      <a  class=" fw-bold d-block p-2  text-decoration-none" href="logout.php">Logout</a>
-      <?php    
-    endif; ?>
+      if (!isset($_SESSION["client"])): ?>
+        <a href="login.php" class=" fw-bold d-block p-2  text-decoration-none">Login/Signup</a>
+      <?php
+      elseif (checkItemStaus($sessionUser)):  ?>
+     <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail rounded-circle" />
+
+        <div class="btn-group ">
+          <button class="btn btn-default dropdown-toggle " data-bs-toggle="dropdown"><span class="caret"> <?= $sessionUser ?></span></button>
+
+          <ul class="   dropdown-menu ">
+            <li>  <a class=" fw-bold d-block p-2  text-decoration-none" href="profile.php">My Profile</a>  
+            </li>
+            <li>
+              <a class=" fw-bold d-block p-2  text-decoration-none" href="profile.php#commetID">My Comments</a>  
+            </li> 
+            <li>
+              <a class=" fw-bold d-block p-2  text-decoration-none" href="newAd.php">New Ad</a>  
+            </li>
+
+            <li>
+              <a class=" fw-bold d-block p-2  text-decoration-none" href="logout.php">Logout</a>
+
+            </li>
+          </ul>
+        </div>
+
+      <?php
+      endif; ?>
     </div>
   </div>
 
   <nav class="navbar navbar-expand-lg bg-body " data-bs-theme="dark">
     <div class="container">
       <ul class="navbar-nav   mb-2 mb-lg-0">
-      <li class="nav-item">
+        <li class="nav-item">
           <a class="navbar-brand" href="index.php"><?= lang("CLIENT") ?></a>
-         
+
           <a class="navbar-brand" href="./admin/index.php"><?= lang("ADMIN") ?></a>
         </li>
       </ul>
@@ -69,8 +86,7 @@ $allCats = getAlllItemsWhere("categories", "1", "1", "=", "order by CatID  ASC")
           <?php
           foreach ($allCats as $cat) { ?>
             <li class="nav-item ">
-              <a class="nav-link "
-                href="categorie.php?pageId=<?= $cat->CatID ?>&pageName=<?= str_replace(" ", "-", $cat->NameCat) ?>">
+              <a class="nav-link " href="categorie.php?pageId=<?= $cat->CatID ?>">
                 <?= $cat->NameCat ?>
               </a>
             </li>

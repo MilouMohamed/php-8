@@ -55,7 +55,9 @@ static $lg=array(
     "ALLOW_ADS"=>"Allow Ads",
     "YES"=>"Yes",
     "NO"=>"No",
+    "PARENT"=>"Parent",
     "TITRE_CATEGORIES_EDIT"=>"Edit Categorie",
+    
 
     
     // Items 
@@ -65,6 +67,7 @@ static $lg=array(
     "COUNTRY"=>"Country",
     "STATUS"=>"Status",
     "TITRE_ITEMS_EDIT"=>"Item Edit",
+    "TAGS"=>"Tags",
     
     
     

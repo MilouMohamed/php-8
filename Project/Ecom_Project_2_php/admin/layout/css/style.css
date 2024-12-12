@@ -7,10 +7,39 @@ body {
     border-left: 2px solid red;
 }
 
-f.orm-floating>label,
+h1.titre-page,
+.border-x-2-red {
+    border-right: 4px solid red;
+    border-left: 4px solid red; 
+}
+
+h1.titre-page   { 
+     border-bottom: 3px solid black;
+}
+
+.border-left-2-black {
+    border-left: 2px solid rgb(0, 0, 0);
+}
+
+.border-right-2-black {
+    border-right: 2px solid rgb(0, 0, 0);
+}
+
+.border-top-2-gray {
+    border-top: 2px solid rgb(92, 92, 92);
+}
+
+h1.titre-page,
+.w-max{
+    width: max-content;
+    padding: 5px 20px ;
+    margin: auto auto;
+    border-radius: 50px 50px 20px 20px;
+}
+
+.form-floating>label,
 .form-floating>label::after {
-    left: 13px !important;
-    background-color: red;
+    left: 13px !important; 
 }
 
 /* Start Login Admin */
@@ -342,7 +371,7 @@ span.my-etoile {
     background-color: #e6e4e488;
     overflow: hidden;
 }
-
+/* .btns-hidden, */
 .categores-manage .card-body .btns-hidden {
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -353,12 +382,13 @@ span.my-etoile {
     top: 5px;
 }
 
+/* .btns-hidden, */
 .categores-manage .card-body:hover .btns-hidden {
     right: 5px;
 
 }
 
-
+/* .btns-hidden, */
 .categores-manage .card-body .btns-hidden a {
     padding: 1px 6px !important;
     margin-left: 5px;
@@ -391,7 +421,7 @@ span.my-etoile {
     border-radius: 5px;
     overflow: hidden;
 }
-
+.box-item .pending-approve ,
 .box-item .price-tag {
     background-color: #b1aeae;
     position: absolute;
@@ -402,6 +432,15 @@ span.my-etoile {
     left: 0px;
     font-size: 18px;
     top: 8px;
+}
+.box-item .pending-approve {
+    top: 38px;
+    background-color: #ff8300;
+    border-radius: 0 10px 10px 0;
+}
+.box-item  p {
+    height: 80px;;
+    overflow: hidden;
 }
 
 .page-login h1 {
@@ -463,7 +502,49 @@ span.my-etoile {
 .info .card-text.info div:nth-child(odd) {
     background-color: #c6c6c6;
 }
+.signup-login img{ 
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
 
 /* End Profile */
+/* Start Detail Item */
+ 
+.detai_item div label{  
+    width: 170px;    
+}  
+.detai_item div:nth-child(even){ 
+    
+    background-color: rgba(92, 92, 92, 0.44);
+    padding: 5px;
+    border-radius: 3px;
+    margin: 10px 0;  
+    font-weight: bold;   
+}  
+
+.detai_item div:first-child{
+    background-color: rgba(92, 92, 92, 0);
+}
+ 
+
+.box-coment .lead {  
+    position: relative;
+    background-color: #9ba6a5;
+}
+
+.box-coment .lead::before {  
+    width: 0;
+    height: 0;
+    border: 16px solid black;;
+    border-color:  transparent #9ba6a5  transparent transparent; 
+    content: "";
+    position: absolute; 
+    top: 0;
+    left: -32px;
+}
+
+
+/* End Detail Item */
 
 /* End  FrontEnd */
