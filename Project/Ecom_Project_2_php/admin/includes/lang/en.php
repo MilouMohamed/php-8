@@ -35,6 +35,8 @@ static $lg=array(
     "SAVE"          =>"Save", 
     "ADD"          =>"Add New", 
     "NO_PROFILE_ID"          =>"No Profile withe this id",
+    "PICTUR"          =>"Image",
+    
 
     //Membres Update
     "TITRE_MEMBERS_UPDATE"          =>"Update Members",

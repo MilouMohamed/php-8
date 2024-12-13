@@ -12,7 +12,7 @@ if (!isset($_SESSION["UserName"])) {
     include "init.php";
 
     $action = isset($_GET["do"]) ? $_GET["do"] : "Manage";
- 
+
 
     echo '<div class="container">';
     if ($action == "Manage") {
@@ -84,6 +84,22 @@ if (!isset($_SESSION["UserName"])) {
         /* */
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
+ 
+                $img = $_FILES["image"]; 
+
+
+            $nameImg = $img["name"];
+            $pathImg = $img["full_path"];
+            $nameTmpImg = $img["tmp_name"];
+            $typeImg = $img["type"];
+            $errorImg = $img["error"];
+            $sizeImg = $img["size"];
+
+            $listExtenImg = ["jpg", "png", "jpeg", "gif"];
+
+            $typeImg = explode("/", strtolower($typeImg));
+            $typeImg = end($typeImg);
+
 
             $userName = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
             $fullName = filter_var($_POST["full"], FILTER_SANITIZE_STRING);
@@ -126,43 +142,45 @@ if (!isset($_SESSION["UserName"])) {
             if (strlen($email) < 4) {
                 $errorsList[] = "The Email Cant Be Less Than 4 Caracter";
             }
+            if (!empty($nameImg) && !in_array($typeImg, $listExtenImg)) {
+                $errorsList[] = "The Extention Is Not  Image";
+            }
+            if (empty($nameImg)) {
+                $errorsList[] = "The Image Cant Be Empty";
+            }
+            if ($sizeImg >   4_194_304 ) {
+                // 4Mo×1048576=4194304o
+                $errorsList[] = "The Image Size  Cant Be > 4MB ";
+            }
 
 
 
-            // echo "id " . $UserID . " userName " . $userName . "pass " . $pass . "fullName " . $fullName . "email " . $email;
             if (count($errorsList) == 0) {
                 try {
 
-                    $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`,RegStatus) VALUES (?, ?, ?, ?,1)");
-                    $row = $stmt->execute([$userName, $email, $fullName, $pass_hash]);
+                    $nameImg=rand(100,1000000000)."_$nameImg"; 
+ 
+
+                       move_uploaded_file($nameTmpImg,"./Upload/Avatar/$nameImg");
+                  
+                    
+
+                    $stmt = $cnx->prepare("INSERT INTO `users`(`UserName`, `Email`, `FullName`, `Password`,RegStatus,`Avatar`) VALUES (?, ?, ?, ?,1,?)");
+                    $row = $stmt->execute([$userName, $email, $fullName, $pass_hash,$nameImg]);
 
 
                     redirectToHome("The Profile Has Added", 4, "alert-success", "?do=Manage");
-
-                    //    ? >
-                    //     <div class="alert alert-success" role="alert">
-                    //         <h2>The Profile Has Added </h2>
-                    //     </div> < ?php
-
+  
 
                 } catch (PDOException $exp) {
 
                     redirectToHome(" Error on Aded = " . $exp->getMessage(), 4);
                 }
             } else {
-                // echo '<ul class="alert alert-danger m-5 list-unstyled" role="alert"> <h2>Errors</h2>';
-
-                // foreach ($errorsList as $error) {
-                // ? >
-                // <!-- <li class="ps-4 mb-2"><?= $error ? > </li> -->
-                // < ? php
-                // }
+                 
                 $errorMsg = "<strong> Error</strong> <hr>" . implode("<br>", $errorsList);
                 redirectToHome($errorMsg, 6, "alert-danger", "?do=Add");
-
-                // echo '</ul>';
-                //   header("location:?do=Edit&UserId=".$userId);
-                //   exit(); 
+ 
             }
 
 
@@ -171,11 +189,7 @@ if (!isset($_SESSION["UserName"])) {
         } else {
             redirectToHome(" Vous N avez pas le Droit de Modifier !!!", 4);
 
-            // ? >
-            // <div class="alert alert-danger">
-            //     <h2> Vous N avez pas le Droit de Modifier !!!</h2>
-            // </div>
-            // < ? php  
+            
         }
 
 
@@ -184,7 +198,7 @@ if (!isset($_SESSION["UserName"])) {
         ?>
 
         <h1 class="titre-page"><?= lang("TITRE_MEMBERS_ADD") ?> </h1>
-        <form class="form-group " action="?do=Insert" method="post">
+        <form class="form-group " action="?do=Insert" method="post" enctype="multipart/form-data">
 
             <div class="row g-3 align-items-center justify-content-center">
                 <div class="form-floating mb-3 col-lg-8 ">
@@ -210,14 +224,27 @@ if (!isset($_SESSION["UserName"])) {
                     <label class="ps-4" for="email-new"><?= lang("EMAIL") ?></label>
                 </div>
             </div>
-
+ 
             <div class="row g-3 align-items-center justify-content-center">
                 <div class="form-floating mb-3 col-lg-8 ">
-                    <input type="text" class="form-control ps-4" name="full" value="<?php $_POST["full"] ?? "" ?>" id="full-new"
-                        placeholder="Fullname">
-                    <label class="ps-4" for="full-new"><?= lang("FULLE_NAME") ?></label>
+                    <input type="text" class="form-control ps-4" name="full" id="email-new" placeholder="Full name"
+                        value="<?php $_POST["full"] ?? "" ?>" required>
+                    <label class="ps-4" for="email-new"><?= lang("FULLE_NAME") ?></label>
                 </div>
             </div>
+ 
+             
+
+            <div class="row g-3 align-items-center justify-content-center">
+                <div class="form-floating mb-1 col-lg-8 ">
+                    <input type="file" accept1=".png, .jpg, .jpeg, .gif" class="form-control ps-4 mb-3" name="image"
+                        placeholder="Upload Image">
+                </div>
+            </div>
+
+
+
+
 
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-8  text-center">
@@ -333,7 +360,7 @@ if (!isset($_SESSION["UserName"])) {
 
             $errorsList = array();
 
-            if (isExistName($userName,$UserID,"!=")) {
+            if (isExistName($userName, $UserID, "!=")) {
                 $errorsList[] = "The Name Existe In db";
             }
             if (empty($userName)) {

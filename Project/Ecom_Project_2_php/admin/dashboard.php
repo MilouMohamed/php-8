@@ -120,7 +120,7 @@ if (!isset($_SESSION["UserName"])) {
                             </ul>
                         </div>
                         <div class="card-footer text-muted">
-                            Pied de page
+                        Pied The Page Of Users 
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ if (!isset($_SESSION["UserName"])) {
                             </ul>
                         </div>
                         <div class="card-footer text-muted">
-                            Pied de page Items
+                        Pied The Page Of   Items
                         </div>
                     </div>
                 </div> 
@@ -204,7 +204,7 @@ if (!isset($_SESSION["UserName"])) {
                         </div>
 
                         <div class="card-footer text-muted">
-                            Pied de page
+                            Pied The Page Of Comments 
                         </div>
                     </div>
                     <!-- </div> -->
