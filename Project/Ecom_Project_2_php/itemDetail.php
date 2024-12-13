@@ -14,12 +14,9 @@ $itemId = isset($_GET["itemId"]) ? $_GET["itemId"] : 0;
 
 $itemId = isset($_GET["itemId"]) ? $_GET["itemId"] : 0;
 if (is_numeric($itemId)) {
-    $itemId = intval($itemId);
-    // echo "  ID Item =";
-    // echo $itemId; 
+    $itemId = intval($itemId); 
 
-}
-// print_r($_SESSION["client"] ["userId"]);
+} 
 
 
 
@@ -34,8 +31,12 @@ $item = reset($item);
 /*
 stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paine paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paineDescp paine [Price] => $100 [Add_Date] => 2024-12-05 [Country_Made] => Made In Moroci [Image] => no-img.jpg [Status] => New Product [ApproveItm] => 0 [Rating] => 0 [Cat_ID] => 10 [Member_ID] => 27 [NameCat] => Tools [UserName] => Yasssin ) 
 */
-// print_r($item);
-// echo "----------------";
+$tagsList=[];
+if (!empty($item) &&  !empty(trim($item->tagsItem)) )  {
+    $tagsList = explode(",", trim($item->tagsItem));
+
+    print_r($tagsList);
+}
 ?>
 <div class="manage ">
 
@@ -59,7 +60,7 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
 
                     <div>
                         <label class="fw-bold"> <i class="fa-solid fa-money-check"></i> Description :</label>
-                        <p> <?= substr($item->Description, 0, 500) . "..." ?>
+                        <p> <?= substr($item->Description, 0, 500) . " ..." ?>
                         </p>
                     </div>
 
@@ -79,6 +80,20 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
                     <div class=" fw-bold">
                         <label> <i class="fa-solid fa-user"></i> Added By :</label><a href="#proifle">
                             <?= $item->UserName ?></a>
+                    </div>
+
+                    <div class=" fw-bold">
+                        <label> <i class="fa-solid fa-user"></i> <?= lang("TAGS") ?> :</label>
+
+                        <?php   
+                        if (empty($tagsList)) { ?>
+                            <span class="text-center fw-bold  p-1">
+                                <span class="text fw-bold m-1"><i class="fa-solid fa-server"></i> Non Tags ...</span>
+                            </span>
+                        <?php } else
+                            foreach ($tagsList as $tag) {  ?> 
+                                <a href="<?="tags.php?name=$tag"   ?>" class="btn btn-outline-dark btn-sm"><?= $tag ?> </a>
+                            <?php } ?>
                     </div>
 
                     <div class=" text-end">
@@ -177,7 +192,7 @@ stdClass Object ( [ItemID] => 18 [Name] => Paineau [Description] => Descp paineD
             </div>
         <?php }
     } else {
-        if (!empty($item)) { ?>  
+        if (!empty($item)) { ?>
             <div class="text-center fw-bold p-5">
                 <h2 class="text fw-bold"><i class="fa-regular fa-file"></i> Non Comments</h2>
             </div>

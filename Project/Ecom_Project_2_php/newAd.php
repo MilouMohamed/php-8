@@ -8,21 +8,23 @@ $titlePage = "New Ad";
 
 $categoresAll = getAlllItemsWhere("categories", "1", "1", "=", " ");
 $membersAll = getAlllItemsWhere("users", "1", "1", "=", " ");
+ 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
- 
+
     // Array ( [Name] => danon 1 [DescriptItem] => Bon Prodiot Of the Year 1 [Price] => $100 [Country] => China [Status] => 0 [CatID] => 0 ) 
     $errors = [];
-    
-    $name = filter_input(INPUT_POST,"Name", FILTER_SANITIZE_SPECIAL_CHARS);
-    $desc = filter_input(INPUT_POST,"DescriptItem", FILTER_SANITIZE_SPECIAL_CHARS);
-    $price = filter_input(INPUT_POST,"Price", FILTER_SANITIZE_SPECIAL_CHARS);
-    $country = filter_input(INPUT_POST,"Country", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $name = filter_input(INPUT_POST, "Name", FILTER_SANITIZE_SPECIAL_CHARS);
+    $desc = filter_input(INPUT_POST, "DescriptItem", FILTER_SANITIZE_SPECIAL_CHARS);
+    $price = filter_input(INPUT_POST, "Price", FILTER_SANITIZE_SPECIAL_CHARS);
+    $country = filter_input(INPUT_POST, "Country", FILTER_SANITIZE_SPECIAL_CHARS);
+    $tags = filter_input(INPUT_POST, "tags", FILTER_SANITIZE_SPECIAL_CHARS);
     $statu = filter_var($_POST["Status"], FILTER_SANITIZE_NUMBER_INT);
     $catId = filter_var($_POST["CatID"], FILTER_SANITIZE_NUMBER_INT);
 
 
-    
+
     if (strlen($name) < 4) {
         $errors[] = "The Name Must Be At 4 Charas";
     }
@@ -46,17 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // $_SESSION["client"] = ["userName" => $userName, "userId" => $etat->UserID];
 
 
-        $qery = "INSERT INTO `items`( `Name`, `Description`, `Price`, `Add_Date`, `Country_Made` , `Status`,     `Cat_ID`, `Member_ID`) VALUES (?,?,?,now(),?,?,?,?)";
+        $qery = "INSERT INTO `items`( `Name`, `Description`, `Price`, `Add_Date`, `Country_Made` ,`tagsItem`, `Status`,     `Cat_ID`, `Member_ID`) VALUES (?,?,?,now(),?,?,?,?,?)";
         $stmnt = $cnx->prepare($qery);
-        $stmnt->execute([$name, $desc, $price, $country, $statu, $catId, $_SESSION["client"]["userId"]]);
-       
+        $stmnt->execute([$name, $desc, $price, $country,$tags, $statu, $catId, $_SESSION["client"]["userId"]]);
 
-        if ($stmnt) { 
+
+        if ($stmnt) {
             ?>
-            <div  class=" m-5 alert alert-success">
+            <div class=" m-5 alert alert-success">
                 This Item Has ben Added
             </div>
-        <?php
+            <?php
 
         }
     }
@@ -113,6 +115,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                     </div>
 
+                    <div class="row g-3 align-items-center justify-content-center">
+                        <div class="form-floating mb-3  ">
+                            <input type="text" value="tag1 ,tag2,tag4" class="form-control ps-4" name="tags"
+                                placeholder="Contry Made">
+                            <label class="ps-4"><?= lang("TAGS") ?> : </label>
+                        </div>
+                    </div>
+
+                    
+
                     <div class="row">
 
                         <div class="form-floating mb-3   col-md-6">
@@ -131,9 +143,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <select class="form-control" name="CatID" id="catid">
                                 <option value="0">...</option>
                                 <?php
-                                foreach ($categoresAll as $cat) {
-                                    echo "<option value='" . $cat->CatID . "'>" . $cat->NameCat . "</option>";
-                                }
+                                foreach ($categoresAll as $cat):
+                                    if ($cat->ParentCat == 0) {
+                                        echo "<option value='" . $cat->CatID . "'>" . $cat->NameCat . "</option>";
+                                    } 
+                                     
+                                        foreach ($categoresAll as $c):
+                                            if($cat->CatID == $c->ParentCat){ 
+                                                echo "<option value='" . $c->CatID . "'>----" . $c->NameCat . "</option>";
+                                            }
+
+                                        endforeach;
+                                    
+                                endforeach;
                                 ?>
                             </select>
                             <label class="ps-4" for="catid"><?= lang("CATEGORIES") ?> : </label>
