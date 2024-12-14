@@ -40,8 +40,9 @@ $allCats = getAlllItemsWhere("categories", "ParentCat", "0", "=", "order by CatI
         <a href="login.php" class=" fw-bold d-block p-2  text-decoration-none">Login/Signup</a>
       <?php
       elseif (checkItemStaus($sessionUser)):  ?>
-     <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail rounded-circle" />
-
+     <!-- <img src="./doc/user-picture.png" alt="No Image" class="img-fluid img-thumbnail rounded-circle" /> -->
+     <img src='./admin/Upload/Avatar/<?= $_SESSION["client"]["img"] ?>' alt="No Image" class="img-fluid img-thumbnail rounded-circle" />
+      
         <div class="btn-group ">
           <button class="btn btn-default dropdown-toggle " data-bs-toggle="dropdown"><span class="caret"> <?= $sessionUser ?></span></button>
 

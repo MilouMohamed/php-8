@@ -33,10 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
             if ($etat) {
-                $etat=reset($etat);
- 
-                $_SESSION["client"] = ["userName" => $userName, "userId" => $etat->UserID];
-                  header("location:index.php"); 
+                $etat = reset($etat);
+                $img = $etat->Avatar;
+                if (empty($img)) {
+                    $img = "no_img.JPG";
+                }
+                $_SESSION["client"] = ["userName" => $userName, "userId" => $etat->UserID, "img" => $img];
+                header("location:index.php");
                 exit;
             } else {
                 $listErrors[] = "The Name  Or Password  Incorect  !!!";
@@ -76,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         if (empty($listErrors)) {
- 
-            if (isExistName($userName,opre:"!=")) {
+
+            if (isExistName($userName, opre: "!=")) {
                 $listErrors[] = "Sory The User Name Is Exist !!!";
 
             } else {
@@ -88,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $stmint_one->execute([$userName, $email, sha1($password)]);
 
                 $msgValid = "Your Acconet Has ben Created Successfly";
- 
+
             }
 
         }
@@ -127,7 +130,7 @@ $password1 = "0000";
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon2">Password</span>
-            <input type="text" class="form-control" placeholder="password" aria-label="password" name="password" 
+            <input type="text" class="form-control" placeholder="password" aria-label="password" name="password"
                 value="<?= $password1 ?>" aria-describedby="basic-addon1">
         </div>
 
@@ -142,15 +145,15 @@ $password1 = "0000";
     <form id="SIGNUP" class="d-none" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Name :</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="name" value="Name One"
-                aria-describedby="basic-addon1" minlength="4" pattern=".{4,}"
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="name"
+                value="Name One" aria-describedby="basic-addon1" minlength="4" pattern=".{4,}"
                 title="User Name Must Be at Least 4 Characters" required>
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon2">Password</span>
-            <input type="text" class="form-control" placeholder="password" aria-label="password" name="password" value="0000"
-                aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="password" aria-label="password" name="password"
+                value="0000" aria-describedby="basic-addon1">
         </div>
 
 
@@ -161,7 +164,7 @@ $password1 = "0000";
         </div>
 
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Email" aria-label="email" 
+            <input type="text" class="form-control" placeholder="Email" aria-label="email"
                 aria-describedby="basic-addon2" name="email" value="123456@example.com">
             <span class="input-group-text" id="basic-addon2">@example.com</span>
         </div>
