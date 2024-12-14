@@ -28,7 +28,7 @@ if (!isset($_SESSION["UserName"])) {
         <div class="manage table-responsive">
             <h1 class="titre-page"><?= lang("TITRE_MEMBERS_ITEMS") ?> </h1>
 
-            <table class="table table-bordered text-center">
+            <table class="table  table-bordered text-center">
 
                 <tr>
                     <td>#ID</td>
@@ -39,10 +39,15 @@ if (!isset($_SESSION["UserName"])) {
                     <td>Controle</td>
                 </tr>
                 <?php if (count($items) > 0) {
-                    foreach ($items as $item) { ?>
+                    foreach ($items as $item) {
+                        $img=" <img src='./Upload/Avatar/".$item->Avatar."' >";
+                        if( empty($item->Avatar)){
+                            $img=" <img src='./Upload/Avatar/no_img.JPG' >";
+                        } ?>
+                       
                         <tr>
                             <td class="fw-bold"> <?= $item->UserID ?></td>
-                            <td><?= $item->UserName ?></td>
+                            <td>   <?= $img." ". $item->UserName ?></td>
                             <td><?= $item->Email ?></td>
                             <td><?= $item->FullName ?></td>
                             <td><?= date_format(date_create($item->CreateAt), "Y-m-d") ?></td>
@@ -151,6 +156,9 @@ if (!isset($_SESSION["UserName"])) {
             if ($sizeImg >   4_194_304 ) {
                 // 4Mo×1048576=4194304o
                 $errorsList[] = "The Image Size  Cant Be > 4MB ";
+            }
+            if ($errorImg != 0 ) { 
+                $errorsList[] = "The Image  Has Error ";
             }
 
 
